@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<prop:Akt xmlns:prop="http://parlament.gov.rs/propis"
+ xmlns:am="http://parlament.gov.rs/amandman"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://parlament.gov.rs/propis file:/D:/Documents/Downloads/Amandman.xsd" id="NjWeGjz282q" naslov="nWvrG32TDun2g3f">
+    <prop:Deo id="A89u" naslov="j.5YHKXPeMH">
+        <prop:Glava id="PAM8ou8E6dS" naslov="nO">
+            <prop:Odeljak id="HDqAAH_iHFB08G8dS0kjuG_" naslov="fU">
+                <prop:Pododeljak id="xoy" naslov="_r">
+                    <prop:Clan id="tWvJfD56qJg" naslov="n6osbHNQbswiAv.Hq">
+                    </prop:Clan>
+                </prop:Pododeljak>
+                <prop:Pododeljak id="gqHhfLC7hkJlWyDF" naslov="t2oKpOkYKOCFl">
+                    <prop:Clan id="a5cA" naslov="GdlOQX9cdmJNr8cS">
+                    </prop:Clan>
+                </prop:Pododeljak>
+                <prop:Pododeljak id="baOqdCZefqqEH-D2p" naslov="B6L">
+                    <prop:Clan id="Id017y-EQ" naslov="Kkq5yBLKP4dlJd2BTAGNdCgjamf">
+                    </prop:Clan>
+                </prop:Pododeljak>
+            </prop:Odeljak>
+            <prop:Odeljak id="wGdQMD15U" naslov="UWvYZcsIBQ2_fxXmdYfly">
+                <prop:Pododeljak id="WC._riUB51G6dHfz7jxSk" naslov="xrp">
+                    <prop:Clan id="mVHLl42_c8" naslov="SkUrjHGFKI">
+                    </prop:Clan>
+                </prop:Pododeljak>
+                <prop:Pododeljak id="Byq.ZizYtL4r99_vQJT7P.YnArdQV" naslov="yFfGRCpz-Fqhm8I6gRW">
+                    <prop:Clan id="Zh93k3s6heL29IFvjBmmKEwvN0" naslov="_xua_JY3zHaE0v3">
+                    </prop:Clan>
+                </prop:Pododeljak>
+                <prop:Pododeljak id="fINupRX5bZBaUjjTKgm_CHf3" naslov="F7.LO4dUrthCnVSH-saQJ">
+                    <prop:Clan id="Sy0owmYxR0R-szQZSOAathi1d662" naslov="CZbKb2ACCrZ4Ev_LQBNtSA">
+                    </prop:Clan>
+                </prop:Pododeljak>
+            </prop:Odeljak>
+            <prop:Odeljak id="w4bIQYQL" naslov="JCgixDhDy810tk160N11gIOidPFH-">
+                <prop:Pododeljak id="MjAgp_2Foztm33wL0FwL-B2" naslov="BdB4_Uu">
+                    <prop:Clan id="WBF" naslov="a3D">
+                    </prop:Clan>
+                </prop:Pododeljak>
+                <prop:Pododeljak id="K97F" naslov="ab71tNa14mNSHN5pX14x8MfiS3S6g">
+                    <prop:Clan id="bcnZsmPhV4QA2FlUntoZGEHj" naslov="tjO1z_Gy">
+                    </prop:Clan>
+                </prop:Pododeljak>
+                <prop:Pododeljak id="Qt1xdq8o-p_4yet-P5QiV" naslov="wzpzZ03mdnGlKiXuH0lFWWdxNbJ">
+                    <prop:Clan id="FU6wGHSrHg-yP" naslov="pJbD5lZyjKSj0IkWEz">
+                    </prop:Clan>
+                </prop:Pododeljak>
+            </prop:Odeljak>
+        </prop:Glava>
+        <prop:Glava id="KPgOgTtgzw-m" naslov="DaGEXPMUVmedQ1p2K6UG4Gg9P">
+            <prop:Odeljak id="w2p" naslov="hglt5SzgmouSRj6wzsoE2yOR">
+                <prop:Pododeljak id="NBw9wyvXG" naslov="iT5B0orjeK..Ha16Lu">
+                    <prop:Clan id="TRi" naslov="x3o5VZljhEpQLnjTPn2.iBTxi">
+                    </prop:Clan>
+                </prop:Pododeljak>
+                <prop:Pododeljak id="qy_" naslov="CnG0rmnq.MkddiQpfs4KaG">
+                    <prop:Clan id="JghtZQdOs" naslov="E9eGHIkHQKuI0K.r_mS1aWINK.j">
+                    </prop:Clan>
+                </prop:Pododeljak>
+                <prop:Pododeljak id="ViQzOUzhGA5WAyTsax_Tcy.3amp84" naslov="oh">
+                    <prop:Clan id="pOuhuVl_jtGBl4dMI" naslov="gONKK5Z7HsNVgUJGAZb5">
+                    </prop:Clan>
+                </prop:Pododeljak>
+            </prop:Odeljak>
+            <prop:Odeljak id="JLzD3UL-ESvAjF48zNjYaYbFvvYt" naslov="O5kykxN">
+                <prop:Pododeljak id="aVsg" naslov="IZ">
+                    <prop:Clan id="Ht" naslov="xhdXUC4">
+                    </prop:Clan>
+                </prop:Pododeljak>
+                <prop:Pododeljak id="joYI1v6X7Z" naslov="kQWTAuTwvK">
+                    <prop:Clan id="sbmETAGNcg5gK86OdD4YSHSY" naslov="ILMomOrhTHvm">
+                    </prop:Clan>
+                </prop:Pododeljak>
+                <prop:Pododeljak id="IIez50m8M8rnwEvm" naslov="fWPFVMkaCEvHr67">
+                    <prop:Clan id="PlRiP.KAj" naslov="mxXjJjfByocTl66O3sgEZr">
+                    </prop:Clan>
+                </prop:Pododeljak>
+            </prop:Odeljak>
+            <prop:Odeljak id="TvL" naslov="Z">
+                <prop:Pododeljak id="rIbr1O" naslov="neI0">
+                    <prop:Clan id="rmiv" naslov="bs5J2DjZPTFWz">
+                    </prop:Clan>
+                </prop:Pododeljak>
+                <prop:Pododeljak id="ijS.6V1ggyYiPc7p" naslov="XZMnRWI4Nt-">
+                    <prop:Clan id="O2ggYB8kMqdHw" naslov="ZzfwgxPUJ-pw">
+                    </prop:Clan>
+                </prop:Pododeljak>
+                <prop:Pododeljak id="IMT_xkbAmJblqDeXqzQ" naslov="PG4aBHN7WHV">
+                    <prop:Clan id="ZfXStc4_cIYPjJ7kp2" naslov="pPJCQXytNY39CD8dH5">
+                    </prop:Clan>
+                </prop:Pododeljak>
+            </prop:Odeljak>
+        </prop:Glava>
+        <prop:Glava id="S-bw5lraelVhhOE" naslov="BBhxZ">
+            <prop:Odeljak id="UUF8zVZ9zS.YG" naslov="B6KmSjnex8tCCm5OrOGN">
+                <prop:Pododeljak id="zsc8jTSZaK4ITKaMNNduxjK37G6c" naslov="NliXfkeK8ou">
+                    <prop:Clan id="zKlPTs0ufYT" naslov="f.eSoMVIp56mUG7bCg">
+                    </prop:Clan>
+                </prop:Pododeljak>
+                <prop:Pododeljak id="QhWRrfIxSdmOD7r63" naslov="GQVTa8DMH2gX5JZlHY9OC">
+                    <prop:Clan id="jIcSc1G" naslov="La7uCC_">
+                    </prop:Clan>
+                </prop:Pododeljak>
+                <prop:Pododeljak id="B-9Lf1V02D.VbwOyD7VdyDUBBu" naslov="oGNRIknungAZaCrO">
+                    <prop:Clan id="j." naslov="vn">
+                    </prop:Clan>
+                </prop:Pododeljak>
+            </prop:Odeljak>
+            <prop:Odeljak id="omt9FnHGAG7" naslov="RAu0ud891DC">
+                <prop:Pododeljak id="OdfWenjWFyX8kDyQ-Rpnjoh" naslov="P6WS2fKS5LZQXabwCJFHSiWAJygU">
+                    <prop:Clan id="WEg2kTW" naslov="HIK9mV">
+                    </prop:Clan>
+                </prop:Pododeljak>
+                <prop:Pododeljak id="JIIYo7yUw29zey3VkO4q_Ngc" naslov="hVuRLndHrZk.bjb84u3gWFHZfwvbH">
+                    <prop:Clan id="u3yAur4FsG_lppESSKZ669CogF7muC" naslov="jKjSsCyf.vRGL6pEKWP2uije2ax">
+                    </prop:Clan>
+                </prop:Pododeljak>
+                <prop:Pododeljak id="cLF7wjB" naslov="MhWT5YcSg">
+                    <prop:Clan id="YgMYI3NxePC-cZjF" naslov="i6WdqyOHbkeqRc67p">
+                    </prop:Clan>
+                </prop:Pododeljak>
+            </prop:Odeljak>
+            <prop:Odeljak id="Rsn" naslov="HiL3.FQbZ9Hu8sBRMS2v">
+                <prop:Pododeljak id="Xih2csh2Vl" naslov="TqtR">
+                    <prop:Clan id="iIQ1Ks" naslov="rQoP5DVPmQd0qaMykp0DzUciQR">
+                    </prop:Clan>
+                </prop:Pododeljak>
+                <prop:Pododeljak id="UlkaS6Bx8.m5K9bGMBLrJLj52YS" naslov="DTgoO3UKTT70904dK5bhHvRbSZtw2">
+                    <prop:Clan id="GVzIzK2g5o" naslov="Pbv0kn78nFPvEB86cgvw">
+                    </prop:Clan>
+                </prop:Pododeljak>
+                <prop:Pododeljak id="aar2tcWwqYSE.oCZlCKjGJSE" naslov="nAn8MvgjbYEm8jH-TCSa6">
+                    <prop:Clan id="_.mb8mVZPpTrU" naslov="k6l-WV4">
+                    </prop:Clan>
+                </prop:Pododeljak>
+            </prop:Odeljak>
+        </prop:Glava>
+    </prop:Deo>
+    <prop:Deo id="vX.lQst_pu_PfaD" naslov="hACMjjKmDip1Bf1FcWhDDng-p0s">
+        <prop:Glava id="Bet.1yTmohM4lYbbR72A" naslov="vElzmB72iss1cv_.OOrwIblQ">
+            <prop:Odeljak id="xIsXm.EVwz6lYESoutIO10w" naslov="mHqlYBFI">
+                <prop:Pododeljak id="l4N9" naslov="CIVZHEVowl">
+                    <prop:Clan id="CyebrTS_f90ONB22jzWkZ6EinEEEW6" naslov="m4o8hjlwBgTwxe">
+                    </prop:Clan>
+                </prop:Pododeljak>
+                <prop:Pododeljak id="sHoAqxpmYpXavvV514yVNtX-L.Mo" naslov="qHaLv7oWSZk8o3EH">
+                    <prop:Clan id="jwkD5wzflIjCXe-dWQPeP6cA1J" naslov="hooQqzydW">
+                    </prop:Clan>
+                </prop:Pododeljak>
+                <prop:Pododeljak id="e8bNdhwcNHS5w31EVd-McSV_sPss6" naslov="CUTAqRAF-ddF4IVoWB2lNvKYg5PaDd">
+                    <prop:Clan id="RYPX76_bXwoU4vV6" naslov="F344lyDT">
+                    </prop:Clan>
+                </prop:Pododeljak>
+            </prop:Odeljak>
+            <prop:Odeljak id="Kg" naslov="S.d1Qcpy_8eZQ">
+                <prop:Pododeljak id="XnTv7hGnqU" naslov="aEv1">
+                    <prop:Clan id="Gsz8Mg973" naslov="ukyu6LkkaI">
+                    </prop:Clan>
+                </prop:Pododeljak>
+                <prop:Pododeljak id="HW-ZAGh0PEgbsACoytyroF1" naslov="lyMlqZRm2jh">
+                    <prop:Clan id="fL85iootOQ_gx9AlMiV.pX7rN4auS" naslov="_z3tS5zLFg87eVQ8sWNJOgkmEg_">
+                    </prop:Clan>
+                </prop:Pododeljak>
+                <prop:Pododeljak id="ugXH" naslov="aWRvisfNkn78NDChKBklMn9g">
+                    <prop:Clan id="fH-PynNUDyH9R-R" naslov="L-ZejYUI6P-_lZiAwXhKNUdBlxabI">
+                    </prop:Clan>
+                </prop:Pododeljak>
+            </prop:Odeljak>
+            <prop:Odeljak id="pI5q-Wknm6eY_1W" naslov="pU7.X__">
+                <prop:Pododeljak id="q1-R-I0Yks13vAZV" naslov="BXIC.WOG">
+                    <prop:Clan id="ESw6.QZC51i2" naslov="sQC">
+                    </prop:Clan>
+                </prop:Pododeljak>
+                <prop:Pododeljak id="BPM" naslov="NNYugQuRMrKk">
+                    <prop:Clan id="kYR8M" naslov="gUrHczJBkR2Rd10_23">
+                    </prop:Clan>
+                </prop:Pododeljak>
+                <prop:Pododeljak id="ZFe7F" naslov="N9VIKSlDOX">
+                    <prop:Clan id="SELWuVEjba-Yavy" naslov="TGIfSGKM004VdnayjddY2liu.EkOe">
+                    </prop:Clan>
+                </prop:Pododeljak>
+            </prop:Odeljak>
+        </prop:Glava>
+        <prop:Glava id="cmHPP_aGwgyaW277bgBYgNnyUpP5" naslov="X">
+            <prop:Odeljak id="CviUhF2ve_Jkr8YvbaDW1MulFsKVY3" naslov="rG7BJodLNK5_iYur2">
+                <prop:Pododeljak id="l8njlLn0HfvpnFdwK4D" naslov="EucFi">
+                    <prop:Clan id="OOFN8TujcqvmITWjX3_" naslov="wuDh.kf-87g.vPVMnW">
+                    </prop:Clan>
+                </prop:Pododeljak>
+                <prop:Pododeljak id="LOtSvMPBNpig" naslov="TMxYJK45RJFh">
+                    <prop:Clan id="ryBY26-pfvssjTYIAAzLg" naslov="Xl">
+                    </prop:Clan>
+                </prop:Pododeljak>
+                <prop:Pododeljak id="SecmSElHd0Iyw6" naslov="IgCouZpju1uNA8WDIZgQN_0V5v4S0">
+                    <prop:Clan id="Fe.A3Ht5rV8s2aa5" naslov="sJuKcJlI0T1">
+                    </prop:Clan>
+                </prop:Pododeljak>
+            </prop:Odeljak>
+            <prop:Odeljak id="r_kg6YOEgLIlcHmNW0M" naslov="oQJ-J-Xgz0P8W">
+                <prop:Pododeljak id="IjTODpeI6cSG0DVSzCHyT7VCRr1" naslov="Q1cFpZa3.seRAv2">
+                    <prop:Clan id="snx2Sb.wSQk3En" naslov="TVTcCSRXdakQ7MZDU">
+                    </prop:Clan>
+                </prop:Pododeljak>
+                <prop:Pododeljak id="xbgVRGfhIst-" naslov="Uf0Wz.2USq9roc98ZS1gfR9">
+                    <prop:Clan id="rPa_HXL1q" naslov="Olg9-">
+                    </prop:Clan>
+                </prop:Pododeljak>
+                <prop:Pododeljak id="NVwQm.lAK4nawPDPK1fsFsWQl" naslov="_4kMyixdbM2cRs8OmZcFavDLXFLT-8">
+                    <prop:Clan id="W7cOtO-Sv2OP" naslov="U80IHbpzfBXSqZTPV">
+                    </prop:Clan>
+                </prop:Pododeljak>
+            </prop:Odeljak>
+            <prop:Odeljak id="uAwaI.ipMWavxXH" naslov="f">
+                <prop:Pododeljak id="w75OBSxnQlTo.cb8sb3M9utg" naslov="UkTBLkfQjq9c">
+                    <prop:Clan id="JnrM" naslov="fmEGE7W">
+                    </prop:Clan>
+                </prop:Pododeljak>
+                <prop:Pododeljak id="E3FHG06Ed2mLe2Y6" naslov="ldBQmMYpr">
+                    <prop:Clan id="vX" naslov="WHYuRSKsgYoD9">
+                    </prop:Clan>
+                </prop:Pododeljak>
+                <prop:Pododeljak id="zyb56ju" naslov="aOFZkGm-lUfh9_.EJvLr">
+                    <prop:Clan id="DwT8JbDm.GkAG6j_DXYLCrLl7r" naslov="S-ZGEF0ZpmmrYQPX">
+                    </prop:Clan>
+                </prop:Pododeljak>
+            </prop:Odeljak>
+        </prop:Glava>
+        <prop:Glava id="BcjK0qhnM4ZR_ulTloba" naslov="khc9bclem_9aeKVe3Wg8bMdL0JTx">
+            <prop:Odeljak id="IkwxIOcqji5.y" naslov="wfP-xVZXJTHw0SZ9UCMzVe4vXlF">
+                <prop:Pododeljak id="IJueowkgP5t747" naslov="lJu6Sg5d2Rd">
+                    <prop:Clan id="WOLopN95-YpfJY6OkzV4Ach.O" naslov="X8qZ4F2">
+                    </prop:Clan>
+                </prop:Pododeljak>
+                <prop:Pododeljak id="gUrvlr6lXWo7G2ymbX" naslov="Zi0dz.YfLOGjWjo.c5DC">
+                    <prop:Clan id="KN__gm" naslov="Rd2dlYQF4UldpjQVqI4n">
+                    </prop:Clan>
+                </prop:Pododeljak>
+                <prop:Pododeljak id="Wr" naslov="r_Y7W">
+                    <prop:Clan id="RwkKTja-2FpF5ZMMDIHvG" naslov="lnzN0XDSnITQCrQQLc">
+                    </prop:Clan>
+                </prop:Pododeljak>
+            </prop:Odeljak>
+            <prop:Odeljak id="hwr" naslov="uv">
+                <prop:Pododeljak id="UbxzhJjAcvkj2mGVmSmVLfkEyBl-" naslov="PtpdbvGd9l">
+                    <prop:Clan id="xAT.xslZv0qVeLPs" naslov="Iso">
+                    </prop:Clan>
+                </prop:Pododeljak>
+                <prop:Pododeljak id="kJ7" naslov="LEc0TxiA">
+                    <prop:Clan id="D_" naslov="oKc07bzo">
+                    </prop:Clan>
+                </prop:Pododeljak>
+                <prop:Pododeljak id="z2y_z" naslov="_zPe5Wkyg4_NXfaaasTIqu">
+                    <prop:Clan id="yw5nUUX" naslov="gN">
+                    </prop:Clan>
+                </prop:Pododeljak>
+            </prop:Odeljak>
+            <prop:Odeljak id="x" naslov="_YPirRR">
+                <prop:Pododeljak id="aY3r8o_" naslov="B.tjsqvdI0zbsgbNTRb">
+                    <prop:Clan id="TzsvxP5AKu7qYw-fR8hwyn2_NQxuXR" naslov="EUlU0TMJ">
+                    </prop:Clan>
+                </prop:Pododeljak>
+                <prop:Pododeljak id="fp_T.N9ZegDxjqXvkGdGwf" naslov="Z-">
+                    <prop:Clan id="reS4TuW17K" naslov="N">
+                    </prop:Clan>
+                </prop:Pododeljak>
+                <prop:Pododeljak id="FcjeZKcM3cdweR" naslov="U">
+                    <prop:Clan id="RAjcnjCof8jT5Vc_RueQt28wLQaTp" naslov="L2f2tyZr8LI9">
+                    </prop:Clan>
+                </prop:Pododeljak>
+            </prop:Odeljak>
+        </prop:Glava>
+    </prop:Deo>
+    <prop:Deo id="z_k9nFhAe2uBcGM" naslov="ToX2FdQ">
+        <prop:Glava id="FmsTeqbTXDSXHWycGU-x2lX8B___pO" naslov="pTNTJpPZ6A-meaEl">
+            <prop:Odeljak id="kBuy" naslov="yES">
+                <prop:Pododeljak id="v_" naslov="_5L1F.E-Ho3O4OzQ87WP2">
+                    <prop:Clan id="Hzw_DC" naslov="XaAkL-OY7xSFifh_NxX3M">
+                    </prop:Clan>
+                </prop:Pododeljak>
+                <prop:Pododeljak id="FqIJ1I1pNEXVBgYV" naslov="F9QoKkLqiGxTPDStcZM">
+                    <prop:Clan id="UR1NVffRA8nxPDssK-c6mIg" naslov="snx82O">
+                    </prop:Clan>
+                </prop:Pododeljak>
+                <prop:Pododeljak id="z.jO0iz-iej" naslov="cEimDXOkp0pX_K8XaS6xorKW9O">
+                    <prop:Clan id="S0jAxtZnw1hal0qGzBn" naslov="rwGN8uI8.">
+                    </prop:Clan>
+                </prop:Pododeljak>
+            </prop:Odeljak>
+            <prop:Odeljak id="IAx" naslov="N">
+                <prop:Pododeljak id="iMl" naslov="K7vK">
+                    <prop:Clan id="jLdDx5cqErP-E5AD" naslov="P7BhA2jpBs9zdSAYpX">
+                    </prop:Clan>
+                </prop:Pododeljak>
+                <prop:Pododeljak id="Op6uhYIOKOhD9" naslov="wW3qhOQfPT.g1MF4Y_50UJGN">
+                    <prop:Clan id="mw8vred" naslov="W-NW7SX.Cg6Jr">
+                    </prop:Clan>
+                </prop:Pododeljak>
+                <prop:Pododeljak id="UTP.9oL00vEo3.fSg99Trnp3NU" naslov="aeSPM5">
+                    <prop:Clan id="JPf7hwM" naslov="PANslUBtTsOpezM4Xk7AgLa8zJId1G">
+                    </prop:Clan>
+                </prop:Pododeljak>
+            </prop:Odeljak>
+            <prop:Odeljak id="H9" naslov="CYfsY_P">
+                <prop:Pododeljak id="tpGDQj0QuwDo1vdoAECdNM949v9AF9" naslov="O_j1UbiRtsllTkyQ6bQW0YThk-g4">
+                    <prop:Clan id="nE-umW2RslJsZasVrSrfwG" naslov="lA">
+                    </prop:Clan>
+                </prop:Pododeljak>
+                <prop:Pododeljak id="FgnBYt" naslov="CX">
+                    <prop:Clan id="aOsg2joMMu" naslov="qiFbOo3Eckqy4GEaLhuL">
+                    </prop:Clan>
+                </prop:Pododeljak>
+                <prop:Pododeljak id="tJJLy" naslov="snWM5BJQ5gNs-UKQQpN2C9cPiv">
+                    <prop:Clan id="C2iSZYfhewo" naslov="x">
+                    </prop:Clan>
+                </prop:Pododeljak>
+            </prop:Odeljak>
+        </prop:Glava>
+        <prop:Glava id="KcXANx.t26.Nvd8eEtN4_c95OsKD-" naslov="nWgdQGeb9">
+            <prop:Odeljak id="nvAv2JzxafsW_h3OWEVsDNw" naslov="Bhi">
+                <prop:Pododeljak id="Emt" naslov="qC0Ne3WcPUyLz">
+                    <prop:Clan id="yZXiLKQ2XnDo9eIaWfP6.MP7ZCWEz" naslov="J9VWS6h">
+                    </prop:Clan>
+                </prop:Pododeljak>
+                <prop:Pododeljak id="_uNKnh" naslov="ka0eAj-Fp2gUj.">
+                    <prop:Clan id="agDewHmB7VyrhcUBagjm5yoaw" naslov="K9V8W">
+                    </prop:Clan>
+                </prop:Pododeljak>
+                <prop:Pododeljak id="n_3_HS3xdfSk7iwebC2EYs5VqSkB" naslov="U5Q5VzgpPe3kBL">
+                    <prop:Clan id="wlKYLGZkN1YK4xl_" naslov="Nd062GtYXebXPjSSR.X">
+                    </prop:Clan>
+                </prop:Pododeljak>
+            </prop:Odeljak>
+            <prop:Odeljak id="g3WQx2wJuWTu0ZJ" naslov="SPiGrY5uDXsHcMokVbkcCFQ0zIs_8">
+                <prop:Pododeljak id="uI6zs4VDqnCGPaJbzg1v0tIK9rP" naslov="kVd33iMTUMX1">
+                    <prop:Clan id="AfgE0hZrXY-3HZoY5xBipOxS-l" naslov="wkCR1RWoZyrHxmLYiR">
+                    </prop:Clan>
+                </prop:Pododeljak>
+                <prop:Pododeljak id="n0cuoioCT09ni95_kZ5Rt" naslov="oo1L">
+                    <prop:Clan id="Z_-oqETKNjFI9." naslov="OT5O2vI4yItnPM">
+                    </prop:Clan>
+                </prop:Pododeljak>
+                <prop:Pododeljak id="q2.BhQE" naslov="yY8o6W3QNsG5I4Kw45Da6FBsa">
+                    <prop:Clan id="a_d69AhTKdXcEgusKw19X6Xo25RL" naslov="DIqW2O7MfJK86mWx.PNvkAa2sZ">
+                    </prop:Clan>
+                </prop:Pododeljak>
+            </prop:Odeljak>
+            <prop:Odeljak id="ZHqG2cT4rqgM" naslov="j_eD2-qOyLuoT1X2lDoG7">
+                <prop:Pododeljak id="xc" naslov="yNrvOUxunS9g5QpN9KfN.6daZdSn">
+                    <prop:Clan id="DxDbgTmaE29UGu.p9c6LhH" naslov="wnaCZgk">
+                    </prop:Clan>
+                </prop:Pododeljak>
+                <prop:Pododeljak id="gImjEo0pPVutNboBE3D2esJXPms9Ao" naslov="TzFoY-r3P_3b5zB4LZo">
+                    <prop:Clan id="AyzNs5MXcUigqcJcIDj0wTRcS" naslov="S7X3IF1INn">
+                    </prop:Clan>
+                </prop:Pododeljak>
+                <prop:Pododeljak id="R2StJ7-g0CSQBsCIwnbF1Pa" naslov="fhiv">
+                    <prop:Clan id="aHABd" naslov="WaeAIvl-.kDJrwsHuLE3mB20Amrh">
+                    </prop:Clan>
+                </prop:Pododeljak>
+            </prop:Odeljak>
+        </prop:Glava>
+        <prop:Glava id="iucPh5pJdHaVDVedEbG" naslov="wMexmOwpKWqWLuQ1ZmKZqa0ZulJG">
+            <prop:Odeljak id="Vs54wGs1" naslov="EL97stYpjKlFw.nPWl9">
+                <prop:Pododeljak id="B6BC2uFadwFLIE6F3d6Ubf" naslov="Qy_aadMxVJj4a">
+                    <prop:Clan id="MzAyW5Tfkb" naslov="XEQC9KWVE">
+                    </prop:Clan>
+                </prop:Pododeljak>
+                <prop:Pododeljak id="Z" naslov="IrJi1YZVSBBPmGtUef">
+                    <prop:Clan id="VkQsaLuba0" naslov="hRpCGC_GdXC4OG2VNLalAR">
+                    </prop:Clan>
+                </prop:Pododeljak>
+                <prop:Pododeljak id="hodd-PJf_n7iP" naslov="vUKQvGSERsK.">
+                    <prop:Clan id="jCWnKzlFMeh-jnkTDa-Yw9z" naslov="oPV2MnRZ.RCXbOxh9PZ5C6q">
+                    </prop:Clan>
+                </prop:Pododeljak>
+            </prop:Odeljak>
+            <prop:Odeljak id="Uo7IgaOcrUT5sQ" naslov="DduZAT">
+                <prop:Pododeljak id="pR4vi5MU" naslov="wapemY7rE9vMoh8pPUIh">
+                    <prop:Clan id="rcB2hRrGiJcvfFmWpHI" naslov="NQ">
+                    </prop:Clan>
+                </prop:Pododeljak>
+                <prop:Pododeljak id="ccNKNwuhj3dVrKePdhcrbLTEeR" naslov="q4n8Uq0-Liz5Cpv3xuKrFB">
+                    <prop:Clan id="UuP6DJFw9H" naslov="OYx_t_KpdXHZRd5PkCPga.sjyA53.M">
+                    </prop:Clan>
+                </prop:Pododeljak>
+                <prop:Pododeljak id="JGGlj" naslov="bIQEQo">
+                    <prop:Clan id="v55" naslov="UErkqTD-4uwKxUgVYH5zBBDfPpuoS">
+                    </prop:Clan>
+                </prop:Pododeljak>
+            </prop:Odeljak>
+            <prop:Odeljak id="J07KLALBXPhI13H" naslov="c">
+                <prop:Pododeljak id="Ke4QA" naslov="G.pUaX15AKAyStZHDSx4hgI5dx6C">
+                    <prop:Clan id="visJyf9txDxv_-PFEkEg5w" naslov="E0-I">
+                    </prop:Clan>
+                </prop:Pododeljak>
+                <prop:Pododeljak id="cbwOYgaLvoGMHJJK11wqzeN32Jit" naslov="EFVmN8UwA0tYcK">
+                    <prop:Clan id="AL5" naslov="EVW2Ji_rtYxscMySFssjm0ffxT">
+                    </prop:Clan>
+                </prop:Pododeljak>
+                <prop:Pododeljak id="k-" naslov="Vji71rGT0m">
+                    <prop:Clan id="SqRb9msGivh-DN15izBfAnM" naslov="J4Z">
+                    </prop:Clan>
+                </prop:Pododeljak>
+            </prop:Odeljak>
+        </prop:Glava>
+    </prop:Deo>
+</prop:Akt>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://parlament.gov.rs/propis" xmlns:prop="http://parlament.gov.rs/propis">
+
+    <xs:element name="Akt">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" name="Deo" nillable="false">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element maxOccurs="unbounded" name="Glava">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element maxOccurs="unbounded" name="Odeljak"
+                                            minOccurs="1">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                  <xs:element maxOccurs="unbounded"
+                                                  name="Pododeljak">
+                                                  <xs:complexType>
+                                                  <xs:sequence>
+                                                  <xs:element ref="prop:Clan"/>
+                                                  </xs:sequence>
+                                                  <xs:attributeGroup ref="prop:atributi"/>
+                                                  </xs:complexType>
+                                                  </xs:element>
+                                                </xs:sequence>
+                                                <xs:attributeGroup ref="prop:atributi"/>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                    <xs:attributeGroup ref="prop:atributi"/>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attributeGroup ref="prop:atributi"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attributeGroup ref="prop:atributi"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Clan">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="prop:Stav"/>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="prop:Ref"/>
+            </xs:sequence>
+            <xs:attributeGroup ref="prop:atributi"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Ref">
+        <xs:complexType mixed="true">
+            <xs:attribute name="id_ref" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:attributeGroup name="atributi">
+        <xs:attribute name="id"/>
+        <xs:attribute name="naslov"/>
+    </xs:attributeGroup>
+    <xs:element name="Stav">
+        <xs:complexType mixed="true">
+            <xs:sequence maxOccurs="1">
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="prop:Tacka"/>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="prop:Ref"/>
+            </xs:sequence>
+            <xs:attributeGroup ref="prop:atributi"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Tacka">
+        <xs:complexType mixed="true">
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="prop:Podtacka"/>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="prop:Ref"/>
+            </xs:sequence>
+            <xs:attributeGroup ref="prop:atributi"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Podtacka">
+        <xs:complexType mixed="true">
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="prop:Alineja"/>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="prop:Ref"/>
+            </xs:sequence>
+            <xs:attributeGroup ref="prop:atributi"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Alineja">
+        <xs:complexType mixed="true">
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" minOccurs="0" ref="prop:Ref"/>
+            </xs:sequence>
+            <xs:attributeGroup ref="prop:atributi"/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
