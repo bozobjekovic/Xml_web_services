@@ -27,15 +27,15 @@ public class Util {
 			user = props.getProperty("conn.user").trim();
 			password = props.getProperty("conn.password").trim();
 			database = props.getProperty("conn.database").trim();
-			proxyHost = props.getProperty("conn.proxy_host").trim();
-			proxyPort = props.getProperty("conn.proxy_port").trim();
-			usingProxy = Boolean.parseBoolean(props.getProperty("conn.using_proxy").trim());
+			//proxyHost = props.getProperty("conn.proxy_host").trim();
+			//proxyPort = props.getProperty("conn.proxy_port").trim();
+			//usingProxy = Boolean.parseBoolean(props.getProperty("conn.using_proxy").trim());
 			authType = Authentication.valueOf(props.getProperty("conn.authentication_type").toUpperCase().trim());
 			
 			// Proxy settings
-			if (usingProxy) {
-				setProxy(proxyHost, proxyPort);
-			}
+//			if (usingProxy) {
+//				setProxy(proxyHost, proxyPort);
+//			}
 		}
 	}
 

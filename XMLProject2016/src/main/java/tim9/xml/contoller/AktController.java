@@ -19,7 +19,8 @@ public class AktController {
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public void saveAkt() throws FileNotFoundException, IOException{
-		XMLWriter.run(Util.loadProperties(), ".asa", "./data/akt1.xml");
+		System.out.println("OVDE");
+		XMLWriter.run(Util.loadProperties(), ".ana", "./data/akt1.xml");
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
