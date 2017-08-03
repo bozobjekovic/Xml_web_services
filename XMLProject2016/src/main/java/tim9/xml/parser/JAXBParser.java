@@ -12,11 +12,11 @@ import javax.xml.validation.SchemaFactory;
 
 import org.xml.sax.SAXException;
 
-import tim9.xml.model.Akt;
-import tim9.xml.model.Akt.Deo;
-import tim9.xml.model.Akt.Deo.Glava;
-import tim9.xml.model.Akt.Deo.Glava.Odeljak;
-import tim9.xml.model.Akt.Deo.Glava.Odeljak.Pododeljak;
+import tim9.xml.model.akt.Akt;
+import tim9.xml.model.akt.Deo;
+import tim9.xml.model.akt.Glava;
+import tim9.xml.model.akt.Odeljak;
+import tim9.xml.model.akt.Pododeljak;
 
 public class JAXBParser {
 	
@@ -78,7 +78,7 @@ public class JAXBParser {
 		System.out.println("- Naslov akta : " + akt.getNaslov() + "\n");
 		
 		System.out.println("\t---- DEO ----");
-		for(Akt.Deo deo : akt.getDeo())
+		for(Deo deo : akt.getDeo())
 			printDeo(deo);
 		
 	}
@@ -88,7 +88,7 @@ public class JAXBParser {
 		System.out.println("\t- Naslov dela : " + deo.getNaslov() + "\n");
 		
 		System.out.println("\t\t---- GLAVA ----");
-		for(Akt.Deo.Glava glava : deo.getGlava())
+		for(Glava glava : deo.getGlava())
 			printGlava(glava);
 		
 	}
@@ -98,7 +98,7 @@ public class JAXBParser {
 		System.out.println("\t\t- Naslov glave : " + glava.getNaslov() + "\n");
 		
 		System.out.println("\t\t\t---- ODELJAK ----");
-		for(Akt.Deo.Glava.Odeljak odeljak : glava.getOdeljak())
+		for(Odeljak odeljak : glava.getOdeljak())
 			printOdaljak(odeljak);
 		
 	}
@@ -108,7 +108,7 @@ public class JAXBParser {
 		System.out.println("\t\t\t- Naslov odeljka : " + odeljak.getNaslov() + "\n");
 		
 		System.out.println("\t\t\t\t---- PODODELJAK ----");
-		for(Akt.Deo.Glava.Odeljak.Pododeljak pododeljak : odeljak.getPododeljak())
+		for(Pododeljak pododeljak : odeljak.getPododeljak())
 			printPododaljak(pododeljak);
 		
 	}
@@ -119,7 +119,7 @@ public class JAXBParser {
 		System.out.println("\t\t\t\t- Naslov pododeljka : " + pododeljak.getNaslov() + "\n");
 		
 		System.out.println("\t\t\t\t\t---- CLAN ----");
-		System.out.println("\t\t\t\t\t- Clan : " + pododeljak.getClan().getNaslov() + "\n");
+		System.out.println("\t\t\t\t\t- Clan : " + pododeljak.getClan() + "\n");
 		
 	}
 	

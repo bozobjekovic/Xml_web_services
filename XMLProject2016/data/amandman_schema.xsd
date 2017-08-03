@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://www.tim9.com/amandman" xmlns:akt="http://www.tim9.com/akt"
+    xmlns:amd="http://www.tim9.com/amandman">
+    <xs:import namespace="http://www.tim9.com/akt" schemaLocation="akt_schema.xsd"/>
+    <xs:element name="Amandman">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Naslov" type="xs:string"/>
+                <xs:element name="PravniOsnov" type="xs:string"/>
+                <xs:element maxOccurs="unbounded" ref="amd:Sadrzaj"/>
+            </xs:sequence>
+            <xs:attribute name="id"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Sadrzaj">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" name="NazivAkta" type="xs:string"/>
+                <xs:element ref="amd:OdredbaAkta"/>
+                <xs:element name="PredlozenoResenje" type="xs:string"/>
+                <xs:element ref="amd:Obrazlozenje"/>
+            </xs:sequence>
+            <xs:attribute name="id"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Obrazlozenje">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="RazlogPodnosenja" type="xs:string"/>
+                <xs:element name="Objasnjenje" type="xs:string"/>
+                <xs:element name="CiljPodnosenja" type="xs:string"/>
+                <xs:element name="ProcenaUticaja" type="xs:string"/>
+            </xs:sequence>
+            <xs:attribute name="id"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="OdredbaAkta">
+        <xs:complexType>
+            <xs:choice>
+                <xs:element ref="akt:Clan"/>
+                <xs:element ref="akt:Deo"/>
+                <xs:element ref="akt:Glava"/>
+                <xs:element ref="akt:Odeljak"/>
+                <xs:element ref="akt:Pododeljak"/>
+                <xs:element ref="akt:Podtacka"/>
+                <xs:element ref="akt:Tacka"/>
+                <xs:element ref="akt:Stav"/>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
