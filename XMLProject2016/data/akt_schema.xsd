@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://www.tim9.com/akt" xmlns:akt="http://www.tim9.com/akt">
+    <xs:element name="Akt">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="akt:Preambula"/>
+                <xs:choice>
+                    <xs:element maxOccurs="unbounded" minOccurs="2" ref="akt:Deo"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="2" ref="akt:Clan"/>
+                </xs:choice>
+            </xs:sequence>
+            <xs:attribute name="id"/>
+            <xs:attribute name="naslov" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Deo">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:choice>
+                    <xs:element maxOccurs="unbounded" minOccurs="2" ref="akt:Glava"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="2" ref="akt:Clan"/>
+                </xs:choice>
+            </xs:sequence>
+            <xs:attribute name="id"/>
+            <xs:attribute name="redniBroj" type="xs:string"/>
+            <xs:attribute name="naslov" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Glava">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:choice>
+                    <xs:element maxOccurs="unbounded" minOccurs="2" ref="akt:Odeljak"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="2" ref="akt:Clan"/>
+                </xs:choice>
+            </xs:sequence>
+            <xs:attribute name="id"/>
+            <xs:attribute name="naslov" type="xs:string"/>
+            <xs:attribute name="redniBroj" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Odeljak">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:choice>
+                    <xs:element maxOccurs="unbounded" minOccurs="1" ref="akt:Pododeljak"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="2" ref="akt:Clan"/>
+                </xs:choice>
+            </xs:sequence>
+            <xs:attribute name="id"/>
+            <xs:attribute name="naslov" type="xs:string"/>
+            <xs:attribute name="redniBroj" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Pododeljak">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="akt:Clan"/>
+            </xs:sequence>
+            <xs:attribute name="id"/>
+            <xs:attribute name="naslov" type="xs:string"/>
+            <xs:attribute name="redniBroj" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Clan">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="akt:Stav"/>
+            </xs:sequence>
+            <xs:attribute name="id"/>
+            <xs:attribute name="naslov" type="xs:string"/>
+            <xs:attribute name="redniBroj" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Stav">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:choice>
+                    <xs:element maxOccurs="unbounded" minOccurs="2" ref="akt:Tacka"/>
+                    <xs:element name="Sadrzaj" type="xs:string"/>
+                </xs:choice>
+            </xs:sequence>
+            <xs:attribute name="id"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Tacka">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:choice>
+                    <xs:element maxOccurs="unbounded" minOccurs="2" ref="akt:Podtacka"/>
+                    <xs:element name="Sadrzaj" type="xs:string"/>
+                </xs:choice>
+            </xs:sequence>
+            <xs:attribute name="id"/>
+            <xs:attribute name="redniBroj" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Podtacka">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:choice>
+                    <xs:element maxOccurs="unbounded" minOccurs="2" ref="akt:Alineja"/>
+                    <xs:element name="Sadrzaj" type="xs:string"/>
+                </xs:choice>
+            </xs:sequence>
+            <xs:attribute name="id"/>
+            <xs:attribute name="redniBroj" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Preambula">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="PravniOsnov" type="xs:string"/>
+                <xs:element name="NazivOrgana" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Alineja">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Sadrzaj" type="xs:string"/>
+            </xs:sequence>
+            <xs:attribute name="id"/>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
