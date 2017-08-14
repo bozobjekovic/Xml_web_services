@@ -2,6 +2,8 @@ package tim9.xml.xpath;
 
 import java.io.File;
 import java.io.OutputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -26,13 +28,12 @@ import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
 
-public class XPathHandler {
+public class XPathAkt {
 	
 	private static DocumentBuilderFactory documentFactory;
-	
 	private static TransformerFactory transformerFactory;
-	
 	private static XPathFactory xPathFactory;
+	private static Map<String, String> namespaceMappings;
 	
 	private Document document;
 	
@@ -47,20 +48,20 @@ public class XPathHandler {
 
 		xPathFactory = XPathFactory.newInstance();
 		
+		namespaceMappings = new HashMap<String, String>();
+		
 	}
 	
 	public void evaluateXPath(String expression) {
 		
 		XPath xPath = xPathFactory.newXPath();
 		XPathExpression xPathExpression;
+		namespaceMappings.put("akt", "http://www.tim9.com/akt");
+		xPath.setNamespaceContext(new NamespaceContext(namespaceMappings));
 		
 		try {
 			
 			xPathExpression = xPath.compile(expression);
-			
-			// String singleResult = xPathExpression.evaluate(document);
-			// Node singleNode = (Node) xPathExpression.evaluate(document, XPathConstants.NODE);
-			// NodeList nodeList = (NodeList) xPathExpression.evaluate(document, XPathConstants.NODESET);
 
 			NodeList nodeList = (NodeList) xPathExpression.evaluate(document, XPathConstants.NODESET);
 			Node node;
@@ -143,9 +144,9 @@ public class XPathHandler {
 		}
 	}
 	
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		
-		XPathHandler handler = new XPathHandler();
+		XPathAkt handler = new XPathAkt();
 
 		String filePath = "./data/akt.xml";
 		
@@ -158,6 +159,6 @@ public class XPathHandler {
 		System.out.println("*********************");
 		handler.evaluateXPath(expression);
 		handler.transform(System.out);
-	}
+	}*/
 	
 }
