@@ -78,7 +78,7 @@
             <xs:sequence>
                 <xs:choice>
                     <xs:element maxOccurs="unbounded" minOccurs="2" ref="akt:Tacka"/>
-                    <xs:element name="Sadrzaj"/>
+                    <xs:element name="Sadrzaj" type="xs:string"/>
                 </xs:choice>
             </xs:sequence>
             <xs:attribute name="id"/>
@@ -89,7 +89,7 @@
             <xs:sequence>
                 <xs:choice>
                     <xs:element maxOccurs="unbounded" minOccurs="2" ref="akt:Podtacka"/>
-                    <xs:element name="Sadrzaj"/>
+                    <xs:element name="Sadrzaj" type="xs:string"/>
                 </xs:choice>
             </xs:sequence>
             <xs:attribute name="id"/>
@@ -100,15 +100,8 @@
         <xs:complexType>
             <xs:sequence>
                 <xs:choice>
-                    <xs:element maxOccurs="unbounded" minOccurs="2" name="Alineja">
-                        <xs:complexType>
-                            <xs:sequence>
-                                <xs:element name="Sadrzaj"/>
-                            </xs:sequence>
-                            <xs:attribute name="id"/>
-                        </xs:complexType>
-                    </xs:element>
-                    <xs:element name="Sadrzaj"/>
+                    <xs:element maxOccurs="unbounded" minOccurs="2" ref="akt:Alineja"/>
+                    <xs:element name="Sadrzaj" type="xs:string"/>
                 </xs:choice>
             </xs:sequence>
             <xs:attribute name="id"/>
@@ -121,6 +114,14 @@
                 <xs:element name="PravniOsnov" type="xs:string"/>
                 <xs:element name="NazivOrgana" type="xs:string"/>
             </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Alineja">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Sadrzaj" type="xs:string"/>
+            </xs:sequence>
+            <xs:attribute name="id"/>
         </xs:complexType>
     </xs:element>
 </xs:schema>

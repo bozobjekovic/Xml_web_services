@@ -25,6 +25,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
+
 public class XPathHandler {
 	
 	private static DocumentBuilderFactory documentFactory;
@@ -142,20 +143,21 @@ public class XPathHandler {
 		}
 	}
 	
-/*	public static void main(String[] args) {
+	public static void main(String[] args) {
 		
 		XPathHandler handler = new XPathHandler();
 
-		String filePath = "./data/akt1.xml";
+		String filePath = "./data/akt.xml";
 		
 		handler.buildDocument(filePath);
 
 		handler.transform(System.out);
 		
-		String expression = "//Pododeljak";
+		String expression = "//Tacka";
 		
 		System.out.println("*********************");
 		handler.evaluateXPath(expression);
-	}*/
+		handler.transform(System.out);
+	}
 	
 }
