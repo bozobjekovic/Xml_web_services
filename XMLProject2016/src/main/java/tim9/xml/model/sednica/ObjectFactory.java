@@ -6,7 +6,7 @@
 //
 
 
-package com.tim9.amandman;
+package tim9.xml.model.sednica;
 
 import javax.xml.bind.annotation.XmlRegistry;
 
@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlRegistry;
 /**
  * This object contains factory methods for each 
  * Java content interface and Java element interface 
- * generated in the com.tim9.amandman package. 
+ * generated in the com.tim9.sednica package. 
  * <p>An ObjectFactory allows you to programatically 
  * construct new instances of the Java representation 
  * for XML content. The Java representation of XML 
@@ -30,42 +30,18 @@ public class ObjectFactory {
 
 
     /**
-     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.tim9.amandman
+     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.tim9.sednica
      * 
      */
     public ObjectFactory() {
     }
 
     /**
-     * Create an instance of {@link Amandman }
+     * Create an instance of {@link Sednica }
      * 
      */
-    public Amandman createAmandman() {
-        return new Amandman();
-    }
-
-    /**
-     * Create an instance of {@link Sadrzaj }
-     * 
-     */
-    public Sadrzaj createSadrzaj() {
-        return new Sadrzaj();
-    }
-
-    /**
-     * Create an instance of {@link OdredbaAkta }
-     * 
-     */
-    public OdredbaAkta createOdredbaAkta() {
-        return new OdredbaAkta();
-    }
-
-    /**
-     * Create an instance of {@link Obrazlozenje }
-     * 
-     */
-    public Obrazlozenje createObrazlozenje() {
-        return new Obrazlozenje();
+    public Sednica createSednica() {
+        return new Sednica();
     }
 
 }

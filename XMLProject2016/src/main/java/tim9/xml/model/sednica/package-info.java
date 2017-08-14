@@ -5,5 +5,5 @@
 // Generated on: 2017.08.14 at 05:56:57 PM CEST 
 //
 
-@javax.xml.bind.annotation.XmlSchema(namespace = "http://www.tim9.com/amandman", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
-package com.tim9.amandman;
+@javax.xml.bind.annotation.XmlSchema(namespace = "http://www.tim9.com/sednica", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
+package tim9.xml.model.sednica;

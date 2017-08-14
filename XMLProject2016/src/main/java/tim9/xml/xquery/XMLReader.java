@@ -18,33 +18,34 @@ import tim9.xml.xquery.Util.ConnectionProperties;
 
 @Component
 public class XMLReader {
-	
-private static DatabaseClient client;
-	
+
+	private static DatabaseClient client;
+
 	public static void run(ConnectionProperties props, String docId) throws FileNotFoundException, JAXBException {
 
-		client = DatabaseClientFactory.newClient(props.host, props.port, props.database, props.user, props.password, props.authType);
-		
+		client = DatabaseClientFactory.newClient(props.host, props.port, props.database, props.user, props.password,
+				props.authType);
+
 		XMLDocumentManager xmlManager = client.newXMLDocumentManager();
 
 		// A JAXB handle to receive the document's content.
 		JAXBContext context = JAXBContext.newInstance("tim9.xml.model");
 		JAXBHandle<Akt> handle = new JAXBHandle<Akt>(context);
-				
+
 		DocumentMetadataHandle metadata = new DocumentMetadataHandle();
-		
+
 		xmlManager.read(docId, metadata, handle);
 
 		// Retrieving a Bookstore instance
 		Akt akt = handle.get();
-		
+
 		// Serializing DOM tree to standard output.
 		System.out.println("[INFO] Retrieved content:");
 		System.out.println(akt);
-		
+
 		// Release the client
 		client.release();
-		
+
 		System.out.println("[INFO] End.");
 	}
 

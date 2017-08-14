@@ -8,8 +8,6 @@
 
 package com.tim9.akt;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -29,13 +27,9 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;choice>
- *           &lt;element ref="{http://www.tim9.com/akt}Alineja" maxOccurs="unbounded" minOccurs="2"/>
- *           &lt;element name="Sadrzaj" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;/choice>
+ *         &lt;element name="Sadrzaj" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *       &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}anySimpleType" />
- *       &lt;attribute name="redniBroj" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -45,50 +39,16 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "alineja",
     "sadrzaj"
 })
-@XmlRootElement(name = "Podtacka")
-public class Podtacka {
+@XmlRootElement(name = "Alineja")
+public class Alineja {
 
-    @XmlElement(name = "Alineja")
-    protected List<Alineja> alineja;
-    @XmlElement(name = "Sadrzaj")
+    @XmlElement(name = "Sadrzaj", required = true)
     protected String sadrzaj;
     @XmlAttribute(name = "id")
     @XmlSchemaType(name = "anySimpleType")
     protected String id;
-    @XmlAttribute(name = "redniBroj")
-    protected String redniBroj;
-
-    /**
-     * Gets the value of the alineja property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the alineja property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getAlineja().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link Alineja }
-     * 
-     * 
-     */
-    public List<Alineja> getAlineja() {
-        if (alineja == null) {
-            alineja = new ArrayList<Alineja>();
-        }
-        return this.alineja;
-    }
 
     /**
      * Gets the value of the sadrzaj property.
@@ -136,30 +96,6 @@ public class Podtacka {
      */
     public void setId(String value) {
         this.id = value;
-    }
-
-    /**
-     * Gets the value of the redniBroj property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getRedniBroj() {
-        return redniBroj;
-    }
-
-    /**
-     * Sets the value of the redniBroj property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setRedniBroj(String value) {
-        this.redniBroj = value;
     }
 
 }
