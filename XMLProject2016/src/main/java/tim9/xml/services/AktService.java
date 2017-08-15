@@ -39,4 +39,15 @@ public class AktService {
 		client.release();
 	}
 	
+	public String getTestAkt() {
+		String akt;
+		try {
+			akt = xmlManager.readAs(".ana", String.class);
+		} catch (Exception e) {
+			akt = null;
+		}
+
+		return akt;
+	}
+	
 }
