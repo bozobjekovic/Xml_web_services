@@ -14,7 +14,7 @@ import com.marklogic.client.io.DocumentMetadataHandle;
 import com.marklogic.client.io.JAXBHandle;
 
 import tim9.xml.model.akt.Akt;
-import tim9.xml.xquery.Util.ConnectionProperties;
+import tim9.xml.util.Util.ConnectionProperties;
 
 @Component
 public class XMLReader {

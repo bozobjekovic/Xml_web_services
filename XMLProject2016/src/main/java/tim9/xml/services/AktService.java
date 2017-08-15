@@ -12,7 +12,7 @@ import com.marklogic.client.document.XMLDocumentManager;
 import com.marklogic.client.io.JAXBHandle;
 
 import tim9.xml.model.akt.Akt;
-import tim9.xml.xquery.Util;
+import tim9.xml.util.Util;
 
 @Service
 public class AktService {

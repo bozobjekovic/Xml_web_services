@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import tim9.xml.services.AktService;
 import tim9.xml.services.AmandmanService;
-import tim9.xml.xquery.Util;
+import tim9.xml.util.Util;
 import tim9.xml.xquery.XMLReader;
 import tim9.xml.xquery.XMLWriter;
 

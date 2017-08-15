@@ -10,7 +10,8 @@ import com.marklogic.client.DatabaseClientFactory;
 import com.marklogic.client.document.XMLDocumentManager;
 import com.marklogic.client.io.InputStreamHandle;
 
-import tim9.xml.xquery.Util.ConnectionProperties;
+import tim9.xml.util.Util.ConnectionProperties;
+
 
 @Component
 public class XMLWriter {
