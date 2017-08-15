@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Akt xmlns="http://www.tim9.com/akt"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.tim9.com/akt file:/E:/7.%20semestar/XML%20i%20veb%20servisi/Projekat/Projekat/Xml_web_services/XMLProject2016/data/akt_schema.xsd" id="id1" naslov="naslov1">
+    <Preambula>
+        <PravniOsnov>PravniOsnov0</PravniOsnov>
+        <NazivOrgana>NazivOrgana0</NazivOrgana>
+        <Oblast property="property1" datatype="datatype1">Oblast0</Oblast>
+        <Status property="property3" datatype="datatype3">Status0</Status>
+        <DatumPredaje property="property5" datatype="datatype5">2006-05-04</DatumPredaje>
+        <DatumObjave property="property7" datatype="datatype7">DatumObjave0</DatumObjave>
+        <BrojGlasovaZa property="property9" datatype="datatype9">0</BrojGlasovaZa>
+        <BrojGlasovaProtiv property="property11" datatype="datatype11">0</BrojGlasovaProtiv>
+        <BrojGlasovaUzdrzano property="property13" datatype="datatype13">0</BrojGlasovaUzdrzano>
+    </Preambula>
+    <Clan id="id3" naslov="naslov3" redniBroj="redniBroj1">
+        <Stav id="id5">
+            <Tacka id="id7" redniBroj="redniBroj3">
+                <Podtacka id="id9" redniBroj="redniBroj5">
+                    <Alineja id="id11">
+                        <Sadrzaj>Sadrzaj0</Sadrzaj>
+                    </Alineja>
+                    <Alineja id="id13">
+                        <Sadrzaj>Sadrzaj1</Sadrzaj>
+                    </Alineja>
+                </Podtacka>
+                <Podtacka id="id15" redniBroj="redniBroj7">
+                    <Alineja id="id17">
+                        <Sadrzaj>Sadrzaj2</Sadrzaj>
+                    </Alineja>
+                    <Alineja id="id19">
+                        <Sadrzaj>Sadrzaj3</Sadrzaj>
+                    </Alineja>
+                </Podtacka>
+            </Tacka>
+            <Tacka id="id21" redniBroj="redniBroj9">
+                <Podtacka id="id23" redniBroj="redniBroj11">
+                    <Sadrzaj>Sadrzaj4</Sadrzaj>
+                </Podtacka>
+                <Podtacka id="id25" redniBroj="redniBroj13">
+                    <Sadrzaj>Sadrzaj5</Sadrzaj>
+                </Podtacka>
+            </Tacka>
+        </Stav>
+        <Stav id="id27">
+            <Tacka id="id29" redniBroj="redniBroj15">
+                <Podtacka id="id31" redniBroj="redniBroj17">
+                    <Sadrzaj>Sadrzaj6</Sadrzaj>
+                </Podtacka>
+                <Podtacka id="id33" redniBroj="redniBroj19">
+                    <Sadrzaj>Sadrzaj7</Sadrzaj>
+                </Podtacka>
+            </Tacka>
+            <Tacka id="id35" redniBroj="redniBroj21">
+                <Podtacka id="id37" redniBroj="redniBroj23">
+                    <Sadrzaj>Sadrzaj8</Sadrzaj>
+                </Podtacka>
+                <Podtacka id="id39" redniBroj="redniBroj25">
+                    <Alineja id="id41">
+                        <Sadrzaj>Sadrzaj9</Sadrzaj>
+                    </Alineja>
+                    <Alineja id="id43">
+                        <Sadrzaj>Sadrzaj10</Sadrzaj>
+                    </Alineja>
+                </Podtacka>
+            </Tacka>
+        </Stav>
+    </Clan>
+    <Clan id="id45" naslov="naslov5" redniBroj="redniBroj27">
+        <Stav id="id47">
+            <Tacka id="id49" redniBroj="redniBroj29">
+                <Podtacka id="id51" redniBroj="redniBroj31">
+                    <Alineja id="id53">
+                        <Sadrzaj>Sadrzaj11</Sadrzaj>
+                    </Alineja>
+                    <Alineja id="id55">
+                        <Sadrzaj>Sadrzaj12</Sadrzaj>
+                    </Alineja>
+                </Podtacka>
+                <Podtacka id="id57" redniBroj="redniBroj33">
+                    <Alineja id="id59">
+                        <Sadrzaj>Sadrzaj13</Sadrzaj>
+                    </Alineja>
+                    <Alineja id="id61">
+                        <Sadrzaj>Sadrzaj14</Sadrzaj>
+                    </Alineja>
+                </Podtacka>
+            </Tacka>
+            <Tacka id="id63" redniBroj="redniBroj35">
+                <Podtacka id="id65" redniBroj="redniBroj37">
+                    <Alineja id="id67">
+                        <Sadrzaj>Sadrzaj15</Sadrzaj>
+                    </Alineja>
+                    <Alineja id="id69">
+                        <Sadrzaj>Sadrzaj16</Sadrzaj>
+                    </Alineja>
+                </Podtacka>
+                <Podtacka id="id71" redniBroj="redniBroj39">
+                    <Alineja id="id73">
+                        <Sadrzaj>Sadrzaj17</Sadrzaj>
+                    </Alineja>
+                    <Alineja id="id75">
+                        <Sadrzaj>Sadrzaj18</Sadrzaj>
+                    </Alineja>
+                </Podtacka>
+            </Tacka>
+        </Stav>
+        <Stav id="id77">
+            <Tacka id="id79" redniBroj="redniBroj41">
+                <Sadrzaj>Sadrzaj19</Sadrzaj>
+            </Tacka>
+            <Tacka id="id81" redniBroj="redniBroj43">
+                <Podtacka id="id83" redniBroj="redniBroj45">
+                    <Alineja id="id85">
+                        <Sadrzaj>Sadrzaj20</Sadrzaj>
+                    </Alineja>
+                    <Alineja id="id87">
+                        <Sadrzaj>Sadrzaj21</Sadrzaj>
+                    </Alineja>
+                </Podtacka>
+                <Podtacka id="id89" redniBroj="redniBroj47">
+                    <Alineja id="id91">
+                        <Sadrzaj>Sadrzaj22</Sadrzaj>
+                    </Alineja>
+                    <Alineja id="id93">
+                        <Sadrzaj>Sadrzaj23</Sadrzaj>
+                    </Alineja>
+                </Podtacka>
+            </Tacka>
+        </Stav>
+    </Clan>
+</Akt>
