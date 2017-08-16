@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-    targetNamespace="http://www.tim9.com/akt" xmlns:akt="http://www.tim9.com/akt">
+    targetNamespace="http://www.tim9.com/akt" xmlns:akt="http://www.tim9.com/akt"
+    xmlns="http://www.w3.org/ns/rdfa#">
     <xs:element name="Akt">
         <xs:complexType>
             <xs:sequence>
@@ -117,8 +118,8 @@
                     <xs:complexType>
                         <xs:simpleContent>
                             <xs:extension base="xs:string">
-                                <xs:attribute name="property" type="xs:string"/>
-                                <xs:attribute name="datatype" type="xs:string"/>
+                                <xs:attribute name="property" type="xs:string" default="oblast"/>
+                                <xs:attribute name="datatype" type="xs:string" default="xs:string"/>
                             </xs:extension>
                         </xs:simpleContent>
                     </xs:complexType>
@@ -127,8 +128,8 @@
                     <xs:complexType>
                         <xs:simpleContent>
                             <xs:extension base="xs:string">
-                                <xs:attribute name="property" type="xs:string"/>
-                                <xs:attribute name="datatype" type="xs:string"/>
+                                <xs:attribute name="property" type="xs:string" default="status"/>
+                                <xs:attribute name="datatype" type="xs:string" default="xs:string"/>
                             </xs:extension>
                         </xs:simpleContent>
                     </xs:complexType>
@@ -137,8 +138,9 @@
                     <xs:complexType>
                         <xs:simpleContent>
                             <xs:extension base="xs:date">
-                                <xs:attribute name="property" type="xs:string"/>
-                                <xs:attribute name="datatype" type="xs:string"/>
+                                <xs:attribute name="property" type="xs:string"
+                                    default="datumPredaje"/>
+                                <xs:attribute name="datatype" type="xs:string" default="xs:date"/>
                             </xs:extension>
                         </xs:simpleContent>
                     </xs:complexType>
@@ -147,8 +149,8 @@
                     <xs:complexType>
                         <xs:simpleContent>
                             <xs:extension base="xs:string">
-                                <xs:attribute name="property" type="xs:string"/>
-                                <xs:attribute name="datatype" type="xs:string"/>
+                                <xs:attribute name="property" type="xs:string" default="datumObjave"/>
+                                <xs:attribute name="datatype" type="xs:string" default="xs:date"/>
                             </xs:extension>
                         </xs:simpleContent>
                     </xs:complexType>
@@ -157,8 +159,8 @@
                     <xs:complexType>
                         <xs:simpleContent>
                             <xs:extension base="xs:int">
-                                <xs:attribute name="property" type="xs:string"/>
-                                <xs:attribute name="datatype" type="xs:string"/>
+                                <xs:attribute name="property" type="xs:string" default="za"/>
+                                <xs:attribute name="datatype" type="xs:string" default="xs:date"/>
                             </xs:extension>
                         </xs:simpleContent>
                     </xs:complexType>
@@ -167,8 +169,8 @@
                     <xs:complexType>
                         <xs:simpleContent>
                             <xs:extension base="xs:int">
-                                <xs:attribute name="property" type="xs:string"/>
-                                <xs:attribute name="datatype" type="xs:string"/>
+                                <xs:attribute name="property" type="xs:string" default="protiv"/>
+                                <xs:attribute name="datatype" type="xs:string" default="xs:date"/>
                             </xs:extension>
                         </xs:simpleContent>
                     </xs:complexType>
@@ -177,8 +179,8 @@
                     <xs:complexType>
                         <xs:simpleContent>
                             <xs:extension base="xs:int">
-                                <xs:attribute name="property" type="xs:string"/>
-                                <xs:attribute name="datatype" type="xs:string"/>
+                                <xs:attribute name="property" type="xs:string" default="uzdrzano"/>
+                                <xs:attribute name="datatype" type="xs:string" default="xs:date"/>
                             </xs:extension>
                         </xs:simpleContent>
                     </xs:complexType>
