@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="css/nexus.css" rel="stylesheet">
     </head>
     
-    <body ng-app="webShopApp">
+    <body ng-app="xmlWebServices">
         <div id="body-bg">
         
         	<!-- === BEGIN HEADER === -->
@@ -195,8 +195,20 @@
             <script src="scripts/restangular.js" type="text/javascript"></script>
             <script src="scripts/angular-lodash-module.js" type="text/javascript"></script>
             
-            <!-- CONTROLLERS -->
+            <!-- SETUP -->
             <script src="angular/app.js"></script>
+            <script src="angular/app.controller.js"></script>
+            <script src="angular/app.service.js"></script>
+            <script src="angular/app.routes.js"></script>
+            
+            <!-- CONTROLLERS -->
+            <script src="angular/controller/index-controller.js"></script>
+            <script src="angular/controller/login-controller.js"></script>
+			<script src="angular/factory/login-factory.js"></script>
+			<script src="angular/controller/registration-controller.js"></script>
+			<script src="angular/factory/registration-factory.js"></script>
+			<script src="angular/controller/akti-controller.js"></script>
+			<script src="angular/factory/akti-factory.js"></script>
             
             <!-- End JS -->
         </div>
