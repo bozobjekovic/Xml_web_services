@@ -19,26 +19,26 @@ public class AktService {
 
 	DatabaseClient client;
 	XMLDocumentManager xmlManager;
-	
+
 	Util.ConnectionProperties properties;
-	
+
 	public AktService() throws IOException {
 		try {
 			DatabaseClientFactory.getHandleRegistry().register(JAXBHandle.newFactory(Akt.class));
 		} catch (JAXBException e) {
 			e.printStackTrace();
 		}
-		
+
 		properties = Util.loadProperties();
 		client = DatabaseClientFactory.newClient(properties.host, properties.port, properties.database, properties.user,
 				properties.password, properties.authType);
 		xmlManager = client.newXMLDocumentManager();
 	}
-	
+
 	public void release() {
 		client.release();
 	}
-	
+
 	public String getTestAkt() {
 		String akt;
 		try {
@@ -49,5 +49,5 @@ public class AktService {
 
 		return akt;
 	}
-	
+
 }

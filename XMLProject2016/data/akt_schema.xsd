@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
     targetNamespace="http://www.tim9.com/akt" xmlns:akt="http://www.tim9.com/akt"
-    xmlns="http://www.w3.org/ns/rdfa#">
+    xmlns="http://www.w3.org/ns/rdfa#" xmlns:korisnik="http://www.tim9.com/korisnik">
+    <xs:import namespace="http://www.tim9.com/korisnik" schemaLocation="korisnik_schema.xsd"/>
     <xs:element name="Akt">
         <xs:complexType>
             <xs:sequence>
@@ -10,6 +11,7 @@
                     <xs:element maxOccurs="unbounded" minOccurs="2" ref="akt:Deo"/>
                     <xs:element maxOccurs="unbounded" minOccurs="2" ref="akt:Clan"/>
                 </xs:choice>
+                <xs:element maxOccurs="1" minOccurs="0" ref="korisnik:Korisnik"/>
             </xs:sequence>
             <xs:attribute name="id"/>
             <xs:attribute name="naslov" type="xs:string"/>

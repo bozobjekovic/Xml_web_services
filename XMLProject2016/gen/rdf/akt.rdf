@@ -1,0 +1,23 @@
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:h="http://www.w3.org/1999/xhtml">
+  <rdf:Description rdf:about="http://www.kmj.com/model/akt/829">
+    <pred:oblast xmlns:pred="http://www.kmj.com/model/akt/rdf/predikati/" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Zdravstvo</pred:oblast>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.kmj.com/model/akt/829">
+    <pred:status xmlns:pred="http://www.kmj.com/model/akt/rdf/predikati/" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">U nacelu</pred:status>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.kmj.com/model/akt/829">
+    <pred:datumPredaje xmlns:pred="http://www.kmj.com/model/akt/rdf/predikati/" rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2017-01-26</pred:datumPredaje>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.kmj.com/model/akt/829">
+    <pred:datumObjave xmlns:pred="http://www.kmj.com/model/akt/rdf/predikati/" rdf:datatype="http://www.w3.org/2001/XMLSchema#date">0001-01-01</pred:datumObjave>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.kmj.com/model/akt/829">
+    <pred:za xmlns:pred="http://www.kmj.com/model/akt/rdf/predikati/" rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</pred:za>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.kmj.com/model/akt/829">
+    <pred:protiv xmlns:pred="http://www.kmj.com/model/akt/rdf/predikati/" rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</pred:protiv>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.kmj.com/model/akt/829">
+    <pred:uzdrzano xmlns:pred="http://www.kmj.com/model/akt/rdf/predikati/" rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</pred:uzdrzano>
+  </rdf:Description>
+</rdf:RDF>

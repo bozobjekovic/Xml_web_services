@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<akt:Akt xmlns:akt="http://www.tim9.com/akt" xmlns:korisnik="http://www.tim9.com/korisnik"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="id0" naslov="naslov0"
+	xsi:schemaLocation="http://www.tim9.com/akt file:/D:/7.%20SEMESTAR/XML/XML/Xml_web_services/XMLProject2016/data/akt_schema.xsd">
+	<akt:Preambula>
+		<akt:PravniOsnov>PravniOsnov0</akt:PravniOsnov>
+		<akt:NazivOrgana>NazivOrgana0</akt:NazivOrgana>
+		<akt:Oblast datatype="xs:string" property="oblast">Oblast0</akt:Oblast>
+		<akt:Status datatype="xs:string" property="status">Status0</akt:Status>
+		<akt:DatumPredaje datatype="xs:date" property="datumPredaje">2006-05-04</akt:DatumPredaje>
+		<akt:DatumObjave datatype="xs:date" property="datumObjave">DatumObjave0</akt:DatumObjave>
+		<akt:BrojGlasovaZa datatype="xs:date" property="za">0</akt:BrojGlasovaZa>
+		<akt:BrojGlasovaProtiv datatype="xs:date"
+			property="protiv">0</akt:BrojGlasovaProtiv>
+		<akt:BrojGlasovaUzdrzano datatype="xs:date"
+			property="uzdrzano">0</akt:BrojGlasovaUzdrzano>
+	</akt:Preambula>
+	<akt:Clan id="id1" naslov="naslov1" redniBroj="redniBroj0">
+		<akt:Stav id="id2">
+			<akt:Tacka id="id3" redniBroj="redniBroj1">
+				<akt:Podtacka id="id4" redniBroj="redniBroj2">
+					<akt:Alineja id="id5">
+						<akt:Sadrzaj>Sadrzaj0</akt:Sadrzaj>
+					</akt:Alineja>
+					<akt:Alineja id="id6">
+						<akt:Sadrzaj>Sadrzaj1</akt:Sadrzaj>
+					</akt:Alineja>
+				</akt:Podtacka>
+				<akt:Podtacka id="id7" redniBroj="redniBroj3">
+					<akt:Alineja id="id8">
+						<akt:Sadrzaj>Sadrzaj2</akt:Sadrzaj>
+					</akt:Alineja>
+					<akt:Alineja id="id9">
+						<akt:Sadrzaj>Sadrzaj3</akt:Sadrzaj>
+					</akt:Alineja>
+				</akt:Podtacka>
+			</akt:Tacka>
+			<akt:Tacka id="id10" redniBroj="redniBroj4">
+				<akt:Podtacka id="id11" redniBroj="redniBroj5">
+					<akt:Sadrzaj>Sadrzaj4</akt:Sadrzaj>
+				</akt:Podtacka>
+				<akt:Podtacka id="id12" redniBroj="redniBroj6">
+					<akt:Alineja id="id13">
+						<akt:Sadrzaj>Sadrzaj5</akt:Sadrzaj>
+					</akt:Alineja>
+					<akt:Alineja id="id14">
+						<akt:Sadrzaj>Sadrzaj6</akt:Sadrzaj>
+					</akt:Alineja>
+				</akt:Podtacka>
+			</akt:Tacka>
+		</akt:Stav>
+		<akt:Stav id="id15">
+			<akt:Sadrzaj>Sadrzaj7</akt:Sadrzaj>
+		</akt:Stav>
+	</akt:Clan>
+	<akt:Clan id="id16" naslov="naslov2" redniBroj="redniBroj7">
+		<akt:Stav id="id17">
+			<akt:Tacka id="id18" redniBroj="redniBroj8">
+				<akt:Podtacka id="id19" redniBroj="redniBroj9">
+					<akt:Sadrzaj>Sadrzaj8</akt:Sadrzaj>
+				</akt:Podtacka>
+				<akt:Podtacka id="id20" redniBroj="redniBroj10">
+					<akt:Alineja id="id21">
+						<akt:Sadrzaj>Sadrzaj9</akt:Sadrzaj>
+					</akt:Alineja>
+					<akt:Alineja id="id22">
+						<akt:Sadrzaj>Sadrzaj10</akt:Sadrzaj>
+					</akt:Alineja>
+				</akt:Podtacka>
+			</akt:Tacka>
+			<akt:Tacka id="id23" redniBroj="redniBroj11">
+				<akt:Sadrzaj>Sadrzaj11</akt:Sadrzaj>
+			</akt:Tacka>
+		</akt:Stav>
+		<akt:Stav id="id24">
+			<akt:Sadrzaj>Sadrzaj12</akt:Sadrzaj>
+		</akt:Stav>
+	</akt:Clan>
+	<korisnik:Korisnik Id="Id0">
+		<korisnik:Uloga>Uloga0</korisnik:Uloga>
+		<korisnik:Ime>Ime0</korisnik:Ime>
+		<korisnik:Prezime>Prezime0</korisnik:Prezime>
+		<korisnik:Email>Email0</korisnik:Email>
+		<korisnik:Lozinka>Lozinka0</korisnik:Lozinka>
+	</korisnik:Korisnik>
+</akt:Akt>
