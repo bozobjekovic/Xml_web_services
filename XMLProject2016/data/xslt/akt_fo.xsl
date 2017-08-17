@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:akt="http://www.kmj.com/model/akt"
+    xmlns:akt="http://www.tim9.com/akt"
     xmlns:fo="http://www.w3.org/1999/XSL/Format" 
     version="2.0">
     
@@ -82,7 +82,7 @@
         </fo:root>
     </xsl:template>
     
-    <xsl:template match="akt:Clan">
+    <!-- <xsl:template match="akt:Clan">
     
 		<fo:block id="{@id}" font-family="Arial" text-align="center" font-size="13px" margin-top="20px">
       		<fo:inline font-weight="bold">
@@ -100,10 +100,10 @@
             	<xsl:apply-templates select="akt:Tacka"/>
             </fo:block>
 		</xsl:for-each>
-    </xsl:template>
+    </xsl:template> -->
 
     
-    <xsl:template match="akt:Tekst">
+    <!-- <xsl:template match="akt:Tekst">
     		<xsl:apply-templates />
     </xsl:template>
     
@@ -118,7 +118,7 @@
             		<xsl:value-of select="text()"/>
             	</fo:basic-link>
 	        </xsl:when>
-			<!--  kada referenca pocinje sa #, referencira se unutar dokumenta -->
+			 kada referenca pocinje sa #, referencira se unutar dokumenta
 	        <xsl:otherwise>
 	        	<xsl:variable name="referenca" select="substring-after(@URL,'#')"/>
 	        	<fo:basic-link color="#876185" internal-destination="{$referenca}">
@@ -149,6 +149,6 @@
          <fo:block id="{@id}" font-family="Arial" font-size="12" text-align="justify" margin-bottom="10px" margin-left="80px">  
         	<xsl:value-of select="akt:Tekst"/>
         </fo:block>
-    </xsl:template>
+    </xsl:template> -->
     
 </xsl:stylesheet>

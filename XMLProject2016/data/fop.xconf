@@ -1,5 +1,14 @@
 <fop version="1.0">
-
+  <renderers>
+    <renderer mime="application/pdf">
+	  <fonts>
+  		<font kerning="yes" embed-url="arial.ttf" embedding-mode="subset">
+           <font-triplet name="Arial" style="normal" weight="normal"/>
+       </font>
+     </fonts>
+   </renderer>
+  </renderers>
+  
   <!-- Strict user configuration -->
   <strict-configuration>true</strict-configuration>
 

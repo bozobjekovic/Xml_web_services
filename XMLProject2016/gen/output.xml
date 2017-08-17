@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <akt:Akt xmlns:akt="http://www.tim9.com/akt" xmlns:korisnik="http://www.tim9.com/korisnik"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="id0" naslov="naslov0"
-	xsi:schemaLocation="http://www.tim9.com/akt file:/D:/7.%20SEMESTAR/XML/XML/Xml_web_services/XMLProject2016/data/akt_schema.xsd">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="942" naslov="naslov0"
+	xsi:schemaLocation="http://www.tim9.com/akt file:/C:/Users/bbozo/Documents/Faculty/XML/Xml_web_services/XMLProject2016/data/akt_schema.xsd">
 	<akt:Preambula>
 		<akt:PravniOsnov>PravniOsnov0</akt:PravniOsnov>
 		<akt:NazivOrgana>NazivOrgana0</akt:NazivOrgana>

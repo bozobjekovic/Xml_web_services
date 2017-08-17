@@ -11,6 +11,26 @@
 		
 		var retVal = {};
 		
+		retVal.getAll = function() {
+			return Restangular.all('akt').getList().then(
+					function (data) {
+						return data;	
+					}
+				);
+		}
+		
+		retVal.getAktPDF = function(id) {
+			return Restangular.one('akt/pdf/', id).withHttpConfig({ responseType: 'arraybuffer' }).get().then(
+					function(data) {
+						return data;
+					},
+					function(err) {
+						console.log(err);
+						return null;
+					}
+			);
+		}
+		
 		
 		return retVal;
 

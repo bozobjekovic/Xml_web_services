@@ -10,6 +10,7 @@ package tim9.xml.model.akt;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -17,6 +18,8 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
+
+import tim9.xml.model.korisnik.Korisnik;
 
 
 /**
@@ -34,6 +37,7 @@ import javax.xml.bind.annotation.XmlType;
  *           &lt;element ref="{http://www.tim9.com/akt}Deo" maxOccurs="unbounded" minOccurs="2"/>
  *           &lt;element ref="{http://www.tim9.com/akt}Clan" maxOccurs="unbounded" minOccurs="2"/>
  *         &lt;/choice>
+ *         &lt;element ref="{http://www.tim9.com/korisnik}Korisnik" minOccurs="0"/>
  *       &lt;/sequence>
  *       &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}anySimpleType" />
  *       &lt;attribute name="naslov" type="{http://www.w3.org/2001/XMLSchema}string" />
@@ -48,7 +52,8 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "", propOrder = {
     "preambula",
     "deo",
-    "clan"
+    "clan",
+    "korisnik"
 })
 @XmlRootElement(name = "Akt")
 public class Akt {
@@ -59,6 +64,8 @@ public class Akt {
     protected List<Deo> deo;
     @XmlElement(name = "Clan")
     protected List<Clan> clan;
+    @XmlElement(name = "Korisnik", namespace = "http://www.tim9.com/korisnik")
+    protected Korisnik korisnik;
     @XmlAttribute(name = "id")
     @XmlSchemaType(name = "anySimpleType")
     protected String id;
@@ -145,6 +152,30 @@ public class Akt {
             clan = new ArrayList<Clan>();
         }
         return this.clan;
+    }
+
+    /**
+     * Gets the value of the korisnik property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Korisnik }
+     *     
+     */
+    public Korisnik getKorisnik() {
+        return korisnik;
+    }
+
+    /**
+     * Sets the value of the korisnik property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Korisnik }
+     *     
+     */
+    public void setKorisnik(Korisnik value) {
+        this.korisnik = value;
     }
 
     /**

@@ -1,11 +1,8 @@
 package tim9.xml.transformation;
 
-import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.StringReader;
 import java.io.StringWriter;
 
@@ -73,13 +70,13 @@ public class TransformationAkt {
     
     }
 	
-	private void generatePDF(String inputXml) throws Exception {
+	public byte[] generatePDF(String inputXml) throws Exception {
 
 		// Point to the XSL-FO file
 		File xslFile = new File(FO_FILE);
 		
 		XMLStreamReader xmlSR = XMLInputFactory.newInstance().createXMLStreamReader(new StringReader(inputXml));
-
+		
 		// Create transformation source
 		StreamSource transformSource = new StreamSource(xslFile);
 		
@@ -105,7 +102,7 @@ public class TransformationAkt {
 		// Start XSLT transformation and FOP processing
 		xslFoTransformer.transform(source, res);
 
-		// Generate PDF file
+		/*// Generate PDF file
 		File pdfFile = new File("data/pdf/akt.pdf");
 		if (!pdfFile.getParentFile().exists()) {
 			System.out.println("[INFO] A new directory is created: " + pdfFile.getParentFile().getAbsolutePath() + ".");
@@ -116,9 +113,11 @@ public class TransformationAkt {
 		out.write(outStream.toByteArray());
 
 		System.out.println("[INFO] File \"" + pdfFile.getCanonicalPath() + "\" generated successfully.");
-		out.close();
+		out.close();*/
 		
 		System.out.println("[INFO] End.");
+		
+		return outStream.toByteArray();
 
 	}
 	

@@ -239,32 +239,18 @@
 							<tr>
 								<th>Broj</th>
 								<th>Naziv</th>
-								<th>Opis</th>
+								<th>Opseg</th>
 								<th>Datum</th>
-								<th>Podneo</th>
-								<th>Odobrio</th>
 								<th>Preuzmi</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>1</td>
-								<td>Akt 1</td>
-								<td>Opiss</td>
-								<td>03.03.2003.</td>
-								<td>Å½ana</td>
-								<td>Bilbi</td>
-								<td><img border="0" src="../images/pdfIcon.png"> <img
-									border="0" src="../images/xhtmlIcon.png"></td>
-							</tr>
-							<tr>
-								<td>2</td>
-								<td>Akt 1</td>
-								<td>Opiss</td>
-								<td>03.03.2003.</td>
-								<td>Å½ana</td>
-								<td>Bilbi</td>
-								<td><img border="0" src="../images/pdfIcon.png"> <img
+							<tr ng-repeat="akt in aktiCtrl.akti">
+								<td>{{ $index + 1 }}</td>
+								<td>{{ akt.naslov }}</td>
+								<td>{{ akt.preambula.oblast.value }}</td>
+								<td>{{ akt.preambula.datumObjave.value }}</td>
+								<td><img border="0" src="../images/pdfIcon.png" ng-click="aktiCtrl.downloadPDF(akt.id)"> <img
 									border="0" src="../images/xhtmlIcon.png"></td>
 							</tr>
 						</tbody>
