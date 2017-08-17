@@ -12,7 +12,7 @@
 		$locationProvider.hashPrefix('');
 		$routeProvider
 		.when('/', {
-			templateUrl : 'views/index.html',
+			templateUrl : 'views/main.html',
 			controller  : 'IndexController',
 			controllerAs: 'indexCtrl'
 		}).when('/login', {
@@ -23,8 +23,8 @@
 			templateUrl : 'views/registration.html',
 			controller  : 'RegistrationController',
 			controllerAs: 'registrationCtrl'
-		}).when('/akti	', {
-			templateUrl : 'views/sviAkti.html',
+		}).when('/akti', {
+			templateUrl : 'views/akti.html',
 			controller  : 'AktiController',
 			controllerAs: 'aktiCtrl'
 		}).otherwise({

@@ -1,102 +1,87 @@
 <html>
-    <head>
-        <title>Skupština Grada Novog Sada</title>
-        
-        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-        
-        <link rel="stylesheet" href="css/bootstrap.css" rel="stylesheet">
-        <link rel="stylesheet" href="css/nexus.css" rel="stylesheet">
-    </head>
-    
-    <body ng-app="xmlWebServices">
-        <div id="body-bg">
-        
-        	<!-- === BEGIN HEADER === -->
-            <div id="header">
-                <img border="0" style="float: right" src="images/login.png">
-                <div class="container">
-                    <div class="logo">
-                        <a href="index.html">
-                            <img src="images/logo.png" alt="Logo" />
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Top Menu -->
-            <div id="hornav" class="container no-padding">
-                <div class="row">
-                    <div class="col-md-12 no-padding">
-                        <div class="text-center visible-lg">
-                            <ul id="hornavmenu" class="nav navbar-nav">
-                                <li>
-                                    <a href="index.html" class="fa-home">Akti</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="fa-comment">Amandmani</a>
-                                </li>
-								
-								<!--Odbornik i predsednik-->
-                                <li>
-                                    <a href="#" class="fa-comment">Predloži akt</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="fa-comment">Predloži amandman</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="fa-comment">Moji predlozi</a>
-                                </li>
-								
-								<!--Predsednik-->
-                                <li>
-                                    <a href="#" class="fa-comment">Sednica</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- End Top Menu -->
-            
-            <div id="post_header" class="container" style="height:100px"></div>
-            <div id="content-top-border" class="container"></div>
-            
-			<div ng-view="">
-				
+<head>
+<title>Skupština Grada Novog Sada</title>
+
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<link rel="stylesheet" href="css/bootstrap.css" rel="stylesheet">
+<link rel="stylesheet" href="css/nexus.css" rel="stylesheet">
+</head>
+
+<body ng-app="xmlWebServices">
+	<div id="body-bg" style="height: 100%;">
+
+		<!-- === BEGIN HEADER === -->
+		<div id="header">
+			<a href="#" ng-href="/#/login"
+				style="float: right; margin-right: 30px; font-size: 18px;">Login</a>
+			<div class="container">
+				<div class="logo">
+					<a ng-href="/#/"> <img src="images/logo.png" alt="Logo" />
+					</a>
+				</div>
 			</div>
-			
-            <div id="content-bottom-border" class="container"></div>
-            <div style="padding-bottom: 500px"></div>
-            
-            <!-- JS -->
-            <script type="text/javascript" src="scripts/jquery.js" type="text/javascript"></script>
-            <!-- <script type="text/javascript" src="scripts/bootstrap.min.js" type="text/javascript"></script> -->
-            
-            <!-- ANGULAR -->
-            <script src="scripts/angular.js" type="text/javascript"></script>
-            <script src="scripts/angular-resource.js" type="text/javascript"></script>
-            <script src="scripts/angular-route.js" type="text/javascript"></script>
-            <script src="scripts/lodash.js" type="text/javascript"></script>
-            <script src="scripts/restangular.js" type="text/javascript"></script>
-            <script src="scripts/angular-lodash-module.js" type="text/javascript"></script>
-            
-            <!-- SETUP -->
-            <script src="angular/app.js"></script>
-            <script src="angular/app.controller.js"></script>
-            <script src="angular/app.service.js"></script>
-            <script src="angular/app.routes.js"></script>
-            
-            <!-- CONTROLLERS -->
-            <script src="angular/controller/index-controller.js"></script>
-            <script src="angular/controller/login-controller.js"></script>
-			<script src="angular/factory/login-factory.js"></script>
-			<script src="angular/controller/registration-controller.js"></script>
-			<script src="angular/factory/registration-factory.js"></script>
-			<script src="angular/controller/akti-controller.js"></script>
-			<script src="angular/factory/akti-factory.js"></script>
-            
-            <!-- End JS -->
-        </div>
-    </body>
+		</div>
+
+		<!-- Top Menu -->
+		<div id="hornav" class="container no-padding">
+			<div class="row">
+				<div class="col-md-12 no-padding">
+					<div class="text-center visible-lg">
+						<ul id="hornavmenu" class="nav navbar-nav">
+							<li><a ng-href="/#/akti" class="fa-home">Akti</a></li>
+							<li><a href="#" class="fa-comment">Amandmani</a></li>
+
+							<!--Odbornik i predsednik-->
+							<li><a href="#" class="fa-comment">Predloži akt</a></li>
+							<li><a href="#" class="fa-comment">Predloži amandman</a></li>
+							<li><a href="#" class="fa-comment">Moji predlozi</a></li>
+
+							<!--Predsednik-->
+							<li><a href="#" class="fa-comment">Sednica</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Top Menu -->
+
+		<div id="post_header" class="container" style="height: 100px"></div>
+
+		<div ng-view=""></div>
+
+
+		<!-- JS -->
+		<script type="text/javascript" src="scripts/jquery.js"
+			type="text/javascript"></script>
+		<!-- <script type="text/javascript" src="scripts/bootstrap.min.js" type="text/javascript"></script> -->
+
+		<!-- ANGULAR -->
+		<script src="scripts/angular.js" type="text/javascript"></script>
+		<script src="scripts/angular-resource.js" type="text/javascript"></script>
+		<script src="scripts/angular-route.js" type="text/javascript"></script>
+		<script src="scripts/lodash.js" type="text/javascript"></script>
+		<script src="scripts/restangular.js" type="text/javascript"></script>
+		<script src="scripts/angular-lodash-module.js" type="text/javascript"></script>
+
+		<!-- SETUP -->
+		<script src="angular/app.js"></script>
+		<script src="angular/app.controller.js"></script>
+		<script src="angular/app.service.js"></script>
+		<script src="angular/app.routes.js"></script>
+
+		<!-- CONTROLLERS -->
+		<script src="angular/controller/index-controller.js"></script>
+		<script src="angular/controller/login-controller.js"></script>
+		<script src="angular/factory/login-factory.js"></script>
+		<script src="angular/controller/registration-controller.js"></script>
+		<script src="angular/factory/registration-factory.js"></script>
+		<script src="angular/controller/akti-controller.js"></script>
+		<script src="angular/factory/akti-factory.js"></script>
+
+		<!-- End JS -->
+	</div>
+</body>
 </html>

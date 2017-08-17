@@ -5,11 +5,15 @@
 
 			<!--Kriterijumi pretrage-->
 			<div class="col-sm-3">
-				<h3><b>Kriterijum pretrage</b></h3> <br>
+				<h3>
+					<b>Kriterijum pretrage</b>
+				</h3>
+				<br>
 
 				<div class="panel panel-default">
-					<div class="panel-heading"  data-toggle="collapse" data-target="#collapse0" style="cursor: pointer">
-						<h4 class="panel-title"> Status </h4>
+					<div class="panel-heading" data-toggle="collapse"
+						data-target="#collapse0" style="cursor: pointer">
+						<h4 class="panel-title">Status</h4>
 					</div>
 					<div id="collapse0" class="panel-collapse collapse">
 						<div class="panel-body">
@@ -18,13 +22,16 @@
 									<label><input type="radio" name="optradio" value="">Svi</label>
 								</div>
 								<div class="radio">
-									<label><input type="radio" name="optradio" value="U proceduri">U proceduri</label>
+									<label><input type="radio" name="optradio"
+										value="U proceduri">U proceduri</label>
 								</div>
 								<div class="radio">
-									<label><input type="radio" name="optradio" value="U celosti">U celosti</label>
+									<label><input type="radio" name="optradio"
+										value="U celosti">U celosti</label>
 								</div>
 								<div class="radio">
-									<label><input type="radio" name="optradio" value="U nacelu">U načelu</label>
+									<label><input type="radio" name="optradio"
+										value="U nacelu">U načelu</label>
 								</div>
 							</form>
 						</div>
@@ -32,8 +39,9 @@
 				</div>
 
 				<div class="panel panel-default">
-					<div class="panel-heading"  data-toggle="collapse" data-target="#collapse1" style="cursor: pointer">
-						<h4 class="panel-title"> Oblast </h4>
+					<div class="panel-heading" data-toggle="collapse"
+						data-target="#collapse1" style="cursor: pointer">
+						<h4 class="panel-title">Oblast</h4>
 					</div>
 					<div id="collapse1" class="panel-collapse collapse">
 						<div class="panel-body">
@@ -42,19 +50,24 @@
 									<label><input type="radio" name="optradio" value="">Sve</label>
 								</div>
 								<div class="radio">
-									<label><input type="radio" name="optradio" value="Zdravstvo">Zdravstvo</label>
+									<label><input type="radio" name="optradio"
+										value="Zdravstvo">Zdravstvo</label>
 								</div>
 								<div class="radio">
-									<label><input type="radio" name="optradio" value="Školstvo">Školstvo</label>
+									<label><input type="radio" name="optradio"
+										value="Å kolstvo">Školstvo</label>
 								</div>
 								<div class="radio">
-									<label><input type="radio" name="optradio" value="Vojska">Vojska</label>
+									<label><input type="radio" name="optradio"
+										value="Vojska">Vojska</label>
 								</div>
 								<div class="radio">
-									<label><input type="radio" name="optradio" value="Policija">Policija</label>
+									<label><input type="radio" name="optradio"
+										value="Policija">Policija</label>
 								</div>
 								<div class="radio">
-									<label><input type="radio" name="optradio" value="Pravosudje">Pravosuđe</label>
+									<label><input type="radio" name="optradio"
+										value="Pravosudje">Pravosuđe</label>
 								</div>
 							</form>
 						</div>
@@ -62,40 +75,41 @@
 				</div>
 
 				<div class="panel panel-default">
-					<div class="panel-heading" data-toggle="collapse" data-target="#collapse2" style="cursor: pointer">
-						<h4 class="panel-title"> Datum objave </h4>
+					<div class="panel-heading" data-toggle="collapse"
+						data-target="#collapse2" style="cursor: pointer">
+						<h4 class="panel-title">Datum objave</h4>
 					</div>
 					<div id="collapse2" class="panel-collapse collapse">
 						<div class="panel-body">
 							<div class="form-group">
-								<label for="minDatumObjave">Početni datum:</label> 
+								<label for="minDatumObjave">Početni datum:</label>
 								<div class="input-group">
 									<input type="text" class="form-control" readonly
-										uib-datepicker-popup='dd-MMMM-yyyy' 
-										ng-model="aktiCtrl.minDatumObjave" 
-										is-open="aktiCtrl.popup1.opened" 
-										datepicker-options="aktiCtrl.dateOptions"  
-										close-text="Close" />
+										uib-datepicker-popup='dd-MMMM-yyyy'
+										ng-model="aktiCtrl.minDatumObjave"
+										is-open="aktiCtrl.popup1.opened"
+										datepicker-options="aktiCtrl.dateOptions" close-text="Close" />
 									<span class="input-group-btn">
-										<button type="button" class="btn btn-default" 
-										ng-click="aktiCtrl.open1()">
-									<i class="glyphicon glyphicon-calendar"></i></button>
+										<button type="button" class="btn btn-default"
+											ng-click="aktiCtrl.open1()">
+											<i class="glyphicon glyphicon-calendar"></i>
+										</button>
 									</span>
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="maxDatumObjave">Krajnji datum:</label> 
+								<label for="maxDatumObjave">Krajnji datum:</label>
 								<div class="input-group">
 									<input type="text" class="form-control" readonly
-										uib-datepicker-popup='dd-MMMM-yyyy' 
-										ng-model="aktiCtrl.maxDatumObjave" 
-										is-open="aktiCtrl.popup2.opened" 
-										datepicker-options="aktiCtrl.dateOptions"  
-										close-text="Close" />
+										uib-datepicker-popup='dd-MMMM-yyyy'
+										ng-model="aktiCtrl.maxDatumObjave"
+										is-open="aktiCtrl.popup2.opened"
+										datepicker-options="aktiCtrl.dateOptions" close-text="Close" />
 									<span class="input-group-btn">
-										<button type="button" class="btn btn-default" 
-										ng-click="aktiCtrl.open2()">
-										<i class="glyphicon glyphicon-calendar"></i></button>
+										<button type="button" class="btn btn-default"
+											ng-click="aktiCtrl.open2()">
+											<i class="glyphicon glyphicon-calendar"></i>
+										</button>
 									</span>
 								</div>
 							</div>
@@ -104,40 +118,41 @@
 				</div>
 
 				<div class="panel panel-default">
-					<div class="panel-heading" data-toggle="collapse" data-target="#collapse3" style="cursor: pointer">
-						<h4 class="panel-title"> Datum predaje </h4>
+					<div class="panel-heading" data-toggle="collapse"
+						data-target="#collapse3" style="cursor: pointer">
+						<h4 class="panel-title">Datum predaje</h4>
 					</div>
 					<div id="collapse3" class="panel-collapse collapse">
 						<div class="panel-body">
 							<div class="form-group">
-								<label for="minDatumPredaje">Početni datum:</label> 
+								<label for="minDatumPredaje">Početni datum:</label>
 								<div class="input-group">
 									<input type="text" class="form-control" readonly
-										uib-datepicker-popup='dd-MMMM-yyyy' 
-										ng-model="aktiCtrl.minDatumPredaje" 
-										is-open="aktiCtrl.popup3.opened" 
-										datepicker-options="aktiCtrl.dateOptions"  
-										close-text="Close" />
+										uib-datepicker-popup='dd-MMMM-yyyy'
+										ng-model="aktiCtrl.minDatumPredaje"
+										is-open="aktiCtrl.popup3.opened"
+										datepicker-options="aktiCtrl.dateOptions" close-text="Close" />
 									<span class="input-group-btn">
-										<button type="button" class="btn btn-default" 
-										ng-click="aktiCtrl.open3()">
-										<i class="glyphicon glyphicon-calendar"></i></button>
+										<button type="button" class="btn btn-default"
+											ng-click="aktiCtrl.open3()">
+											<i class="glyphicon glyphicon-calendar"></i>
+										</button>
 									</span>
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="maxDatumPredaje">Krajnji datum:</label> 
+								<label for="maxDatumPredaje">Krajnji datum:</label>
 								<div class="input-group">
 									<input type="text" class="form-control" readonly
-										uib-datepicker-popup='dd-MMMM-yyyy' 
-										ng-model="aktiCtrl.maxDatumPredaje" 
-										is-open="aktiCtrl.popup4.opened" 
-										datepicker-options="aktiCtrl.dateOptions"  
-										close-text="Close" />
+										uib-datepicker-popup='dd-MMMM-yyyy'
+										ng-model="aktiCtrl.maxDatumPredaje"
+										is-open="aktiCtrl.popup4.opened"
+										datepicker-options="aktiCtrl.dateOptions" close-text="Close" />
 									<span class="input-group-btn">
-										<button type="button" class="btn btn-default" 
-										ng-click="aktiCtrl.open4()">
-										<i class="glyphicon glyphicon-calendar"></i></button>
+										<button type="button" class="btn btn-default"
+											ng-click="aktiCtrl.open4()">
+											<i class="glyphicon glyphicon-calendar"></i>
+										</button>
 									</span>
 								</div>
 							</div>
@@ -146,19 +161,20 @@
 				</div>
 
 				<div class="panel panel-default">
-					<div class="panel-heading" data-toggle="collapse" data-target="#collapse4" style="cursor: pointer">
-						<h4 class="panel-title"> Broj glasova za </h4>
+					<div class="panel-heading" data-toggle="collapse"
+						data-target="#collapse4" style="cursor: pointer">
+						<h4 class="panel-title">Broj glasova za</h4>
 					</div>
 					<div id="collapse4" class="panel-collapse collapse">
 						<div class="panel-body">
 							<div class="form-group">
-								<label for="minZa">Minimalan broj glasova:</label> 
+								<label for="minZa">Minimalan broj glasova:</label>
 								<div class="input-group">
 									<input type="number" class="form-control" id="minZa" min="0">
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="maxZa">Maksimalan broj glasova:</label> 
+								<label for="maxZa">Maksimalan broj glasova:</label>
 								<div class="input-group">
 									<input type="number" class="form-control" id="maxZa" min="0">
 								</div>
@@ -168,30 +184,35 @@
 				</div>
 
 				<div class="panel panel-default">
-					<div class="panel-heading" data-toggle="collapse" data-target="#collapse5" style="cursor: pointer">
-						<h4 class="panel-title"> Broj glasova protiv </h4>
+					<div class="panel-heading" data-toggle="collapse"
+						data-target="#collapse5" style="cursor: pointer">
+						<h4 class="panel-title">Broj glasova protiv</h4>
 					</div>
 					<div id="collapse5" class="panel-collapse collapse">
 						<div class="panel-body">
 							<div class="form-group">
-								<label for="minProtiv">Minimalan broj glasova:</label> 
+								<label for="minProtiv">Minimalan broj glasova:</label>
 								<div class="input-group">
-									<input type="number" class="form-control" id="minProtiv" min="0">
+									<input type="number" class="form-control" id="minProtiv"
+										min="0">
 								</div>
 							</div>
 							<div class="form-group">
-								<label for="maxProtiv">Maksimalan broj glasova:</label> 
+								<label for="maxProtiv">Maksimalan broj glasova:</label>
 								<div class="input-group">
-									<input type="number" class="form-control" id="maxProtiv" min="0">
+									<input type="number" class="form-control" id="maxProtiv"
+										min="0">
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>							
+				</div>
 
 				<div class="panel panel-default" style="cursor: pointer" ng-click="">
 					<div class="panel-heading" style="background-color: green">
-						<h4 class="panel-title" style="text-align:center"><b> Pretraži </b></h4>
+						<h4 class="panel-title" style="text-align: center">
+							<b> Pretraži </b>
+						</h4>
 					</div>
 				</div>
 
@@ -212,7 +233,7 @@
 				</form>
 
 				<h2 class="animate fadeIn text-center">Spisak akata</h2>
-				<div class="table-responsive">          
+				<div class="table-responsive">
 					<table class="table">
 						<thead>
 							<tr>
@@ -231,24 +252,20 @@
 								<td>Akt 1</td>
 								<td>Opiss</td>
 								<td>03.03.2003.</td>
-								<td>Žana</td>
+								<td>Å½ana</td>
 								<td>Bilbi</td>
-								<td>
-									<img border="0" src="assets/img/pdfIcon.png">
-									<img border="0" src="assets/img/xhtmlIcon.png">
-								</td>
+								<td><img border="0" src="../images/pdfIcon.png"> <img
+									border="0" src="../images/xhtmlIcon.png"></td>
 							</tr>
 							<tr>
 								<td>2</td>
 								<td>Akt 1</td>
 								<td>Opiss</td>
 								<td>03.03.2003.</td>
-								<td>Žana</td>
+								<td>Å½ana</td>
 								<td>Bilbi</td>
-								<td>
-									<img border="0" src="assets/img/pdfIcon.png">
-									<img border="0" src="assets/img/xhtmlIcon.png">
-								</td>
+								<td><img border="0" src="../images/pdfIcon.png"> <img
+									border="0" src="../images/xhtmlIcon.png"></td>
 							</tr>
 						</tbody>
 					</table>
