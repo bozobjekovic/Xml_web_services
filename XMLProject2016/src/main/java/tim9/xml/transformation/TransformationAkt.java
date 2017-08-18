@@ -24,6 +24,7 @@ import org.apache.fop.apps.MimeConstants;
 import org.xml.sax.SAXException;
 
 import net.sf.saxon.TransformerFactoryImpl;
+import tim9.xml.services.AktService;
 
 /**
  * 
@@ -71,6 +72,7 @@ public class TransformationAkt {
     }
 	
 	public byte[] generatePDF(String inputXml) throws Exception {
+	//public void generatePDF(String inputXml) throws Exception { // FOR TEST
 
 		// Point to the XSL-FO file
 		File xslFile = new File(FO_FILE);
@@ -113,9 +115,9 @@ public class TransformationAkt {
 		out.write(outStream.toByteArray());
 
 		System.out.println("[INFO] File \"" + pdfFile.getCanonicalPath() + "\" generated successfully.");
-		out.close();*/
+		out.close();
 		
-		System.out.println("[INFO] End.");
+		System.out.println("[INFO] End.");*/
 		
 		return outStream.toByteArray();
 
@@ -125,8 +127,9 @@ public class TransformationAkt {
     	
 		TransformationAkt aktTransformer = new TransformationAkt();
 		
-		System.out.println(aktTransformer.generateHTML(INPUT_FILE));
-		aktTransformer.generatePDF("");
+		//System.out.println(aktTransformer.generateHTML(INPUT_FILE));
+		AktService aktService = new AktService();
+		aktTransformer.generatePDF(aktService.getOne("942"));
 		
 		System.out.println("[INFO] End.");
     }

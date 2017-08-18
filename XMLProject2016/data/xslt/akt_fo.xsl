@@ -82,7 +82,7 @@
         </fo:root>
     </xsl:template>
     
-    <!-- <xsl:template match="akt:Clan">
+    <xsl:template match="akt:Clan">
     
 		<fo:block id="{@id}" font-family="Arial" text-align="center" font-size="13px" margin-top="20px">
       		<fo:inline font-weight="bold">
@@ -96,11 +96,11 @@
   	    
 		<xsl:for-each select="akt:Stav">
 		    <fo:block id="{@id}" font-family="Arial" font-size="12" text-align="justify" text-indent="40px" margin="10px">
-            	<xsl:apply-templates select="akt:Tekst"/>
+            	<!-- <xsl:apply-templates select="akt:Sadrzaj"/> -->
             	<xsl:apply-templates select="akt:Tacka"/>
             </fo:block>
 		</xsl:for-each>
-    </xsl:template> -->
+    </xsl:template>
 
     
     <!-- <xsl:template match="akt:Tekst">
@@ -125,13 +125,13 @@
 						<xsl:value-of select="text()"/>	</fo:basic-link>
 	        </xsl:otherwise>
 		</xsl:choose>
-    </xsl:template>
+    </xsl:template> -->
     
     <xsl:template match="akt:Tacka">
     	<fo:block id="{@id}" font-family="Arial" font-size="12" text-align="justify" text-indent="40px" margin-bottom="10px" margin-top="10px">
         	<xsl:value-of select="@redniBroj"/>
         	<xsl:text> </xsl:text>
-        	<xsl:value-of select="akt:Tekst"/>
+        	<xsl:value-of select="akt:Sadrzaj"/>
         	<xsl:apply-templates select="akt:Podtacka"/>
         </fo:block>
     </xsl:template>
@@ -140,15 +140,15 @@
         <fo:block id="{@id}" font-family="Arial" font-size="12" text-align="justify" text-indent="40px" margin-bottom="10px" margin-left="40px" margin-top="10px">
         	<xsl:value-of select="@redniBroj"/>
         	<xsl:text> </xsl:text>
-        	<xsl:value-of select="akt:Tekst"/>
+        	<xsl:value-of select="akt:Sadrzaj"/>
         	<xsl:apply-templates select="akt:Alineja"/>
 		</fo:block>
     </xsl:template>
     
     <xsl:template match="akt:Alineja">
          <fo:block id="{@id}" font-family="Arial" font-size="12" text-align="justify" margin-bottom="10px" margin-left="80px">  
-        	<xsl:value-of select="akt:Tekst"/>
+        	<xsl:value-of select="akt:Sadrzaj"/>
         </fo:block>
-    </xsl:template> -->
+    </xsl:template>
     
 </xsl:stylesheet>
