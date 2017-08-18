@@ -27,6 +27,10 @@
 			templateUrl : 'views/akti.html',
 			controller  : 'AktiController',
 			controllerAs: 'aktiCtrl'
+		}).when('/preview/:id', {
+			templateUrl : 'views/pregledAkta.html',
+			controller  : 'AktPreviewController',
+			controllerAs: 'aktPreviewCtrl'
 		}).otherwise({
 			redirectTo : '/'
 		});

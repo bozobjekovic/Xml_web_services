@@ -5,11 +5,13 @@
 		.module('xmlWebServices.controllers')
 		.controller('AktiController', AktiController);
 	
-	AktiController.$inject = ['$scope', 'AktiFactory'];
+	AktiController.$inject = ['$scope', '$location', 'AktiFactory'];
 
-	function AktiController($scope, AktiFactory) {
+	function AktiController($scope, $location, AktiFactory) {
 		
 		var vm = this;
+		
+		vm.html = "";
 		
 		vm.getAll = function() {
 			AktiFactory.getAll().then(
@@ -38,6 +40,10 @@
 					}
 				}
 			);
+		}
+		
+		vm.previewHTML = function(id) {
+			$location.path('/preview/' + id);
 		}
 
 	}

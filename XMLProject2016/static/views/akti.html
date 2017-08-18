@@ -241,6 +241,7 @@
 								<th>Naziv</th>
 								<th>Opseg</th>
 								<th>Datum</th>
+								<th>Pregledaj</th>
 								<th>Preuzmi</th>
 							</tr>
 						</thead>
@@ -250,8 +251,8 @@
 								<td>{{ akt.naslov }}</td>
 								<td>{{ akt.preambula.oblast.value }}</td>
 								<td>{{ akt.preambula.datumObjave.value }}</td>
-								<td><img border="0" src="../images/pdfIcon.png" ng-click="aktiCtrl.downloadPDF(akt.id)"> <img
-									border="0" src="../images/xhtmlIcon.png"></td>
+								<td><a href="" ng-click="aktiCtrl.previewHTML(akt.id)"><img border="0" src="../images/xhtmlIcon.png"></a></td>
+								<td><a href="" ng-click="aktiCtrl.downloadPDF(akt.id)"><img border="0" src="../images/pdfIcon.png"></a></td>
 							</tr>
 						</tbody>
 					</table>

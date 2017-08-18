@@ -25,7 +25,17 @@
 						return data;
 					},
 					function(err) {
-						console.log(err);
+						return null;
+					}
+			);
+		}
+		
+		retVal.getHTML = function(id) {
+			return Restangular.one('akt/html/', id).get().then(
+					function(data) {
+						return data;
+					},
+					function(err) {
 						return null;
 					}
 			);
