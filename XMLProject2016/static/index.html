@@ -8,6 +8,7 @@
 
 <link rel="stylesheet" href="css/bootstrap.css" rel="stylesheet">
 <link rel="stylesheet" href="css/nexus.css" rel="stylesheet">
+<link rel="stylesheet" href="css/tim9.css" rel="stylesheet">
 </head>
 
 <body ng-app="xmlWebServices">
@@ -32,15 +33,15 @@
 					<div class="text-center visible-lg">
 						<ul id="hornavmenu" class="nav navbar-nav">
 							<li><a ng-href="/#/akti" class="fa-home">Akti</a></li>
-							<li><a href="#" class="fa-comment">Amandmani</a></li>
+							<li><a ng-href="#/amandmani" class="fa-comment">Amandmani</a></li>
 
 							<!--Odbornik i predsednik-->
-							<li><a href="#" class="fa-comment">Predloži akt</a></li>
-							<li><a href="#" class="fa-comment">Predloži amandman</a></li>
+							<li><a ng-href="#/dodajAkt" class="fa-comment">Predloži akt</a></li>
+							<li><a ng-href="#/dodajAmandman" class="fa-comment">Predloži amandman</a></li>
 							<li><a href="#" class="fa-comment">Moji predlozi</a></li>
 
 							<!--Predsednik-->
-							<li><a href="#" class="fa-comment">Sednica</a></li>
+							<li><a ng-href="#/zakazivanje" class="fa-comment">Sednica</a></li>
 						</ul>
 					</div>
 				</div>
@@ -80,7 +81,10 @@
 		<script src="angular/factory/registration-factory.js"></script>
 		<script src="angular/controller/akti-controller.js"></script>
 		<script src="angular/factory/akti-factory.js"></script>
-
+		<script src="angular/controller/akti-preview-controller.js"></script>
+		<script src="angular/controller/amandmani-controller.js"></script>
+		<script src="angular/factory/amandmani-factory.js"></script>
+		
 		<!-- End JS -->
 	</div>
 </body>

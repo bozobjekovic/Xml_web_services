@@ -1,0 +1,47 @@
+<div id="content-top-border" class="container"></div>
+<div id="content">
+	<div class="container background-white">
+		<div class="row padding-vert-40">
+
+			<h2 class="animate fadeIn text-center">Održavanje sednice</h2><br>
+
+			<form>
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Broj</th>
+								<th>Naziv</th>
+								<th>Broj glasova za</th>
+								<th>Broj glasova protiv</th>
+								<th>Broj suzdržanih</th>
+								<th> </th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>{{ $index + 1 }}</td>
+								<td>{{ akt.naslov }}</td>
+								<td>
+									<input type="number" min="0" max="250">
+								</td>
+								<td>
+									<input type="number" min="0" max="250">
+								</td>
+								<td>
+									<input type="number" min="0" max="250">
+								</td>
+								<td>
+									<input type="submit" class="btn btn-success" value="Potvrdi">
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</form>
+			
+		</div>
+	</div>
+</div>
+
+<div id="content-bottom-border" class="container"></div>

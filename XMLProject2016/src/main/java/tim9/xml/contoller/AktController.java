@@ -3,15 +3,18 @@ package tim9.xml.contoller;
 import static org.apache.xerces.jaxp.JAXPConstants.JAXP_SCHEMA_LANGUAGE;
 import static org.apache.xerces.jaxp.JAXPConstants.W3C_XML_SCHEMA;
 
+import java.io.IOException;
 import java.io.StringReader;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.TransformerException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -113,7 +116,6 @@ public class AktController implements ErrorHandler {
 		String aktXML = aktService.getOne(id);
 		
 		if (aktXML == null) {
-			System.out.println("NIJE PRONASAO AKT!");
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		
@@ -126,6 +128,24 @@ public class AktController implements ErrorHandler {
 		}
 		
 		return new ResponseEntity<byte[]>(pdf, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/html/{id}", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
+	public ResponseEntity<String> getHTML(@PathVariable String id){
+		String aktXML = aktService.getOne(id);
+		String html = "";
+		
+		if(aktXML == null){
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		
+		try {
+			html = new TransformationAkt().generateHTML(aktXML);
+		} catch (TransformerException | SAXException | IOException e) {
+			e.printStackTrace();
+		}
+		
+		return new ResponseEntity<String>(html, HttpStatus.OK);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)

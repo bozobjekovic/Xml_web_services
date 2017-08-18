@@ -27,6 +27,26 @@
 			templateUrl : 'views/akti.html',
 			controller  : 'AktiController',
 			controllerAs: 'aktiCtrl'
+		}).when('/amandmani', {
+			templateUrl : 'views/amandmani.html',
+			controller  : 'AmandmaniController',
+			controllerAs: 'amandmaniCtrl'
+		}).when('/preview/:id', {
+			templateUrl : 'views/pregledAkta.html',
+			controller  : 'AktPreviewController',
+			controllerAs: 'aktPreviewCtrl'
+		}).when('/dodajAkt', {
+			templateUrl : 'views/dodajAkt.html'
+		}).when('/dodajAmandman', {
+			templateUrl : 'views/dodajAmandman.html'
+		}).when('/zakazivanje', {
+			templateUrl : 'views/zakazivanjeSednice.html'
+		}).when('/odrzavanje', {
+			templateUrl : 'views/odrzavanjeSednice.html'
+		}).when('/glasanje', {
+			templateUrl : 'views/glasanjeSednice.html'
+		}).when('/rezultati', {
+			templateUrl : 'views/rezultatiSednice.html'
 		}).otherwise({
 			redirectTo : '/'
 		});

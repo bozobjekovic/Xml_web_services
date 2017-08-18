@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<akt:Akt xmlns:korisnik="http://www.tim9.com/korisnik"
+ xmlns:akt="http://www.tim9.com/akt"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.tim9.com/akt file:/D:/7.%20SEMESTAR/XML/XML/Xml_web_services/XMLProject2016/data/akt_schema.xsd" id="id0" naslov="naslov0">
+    <akt:Preambula>
+        <akt:PravniOsnov>PravniOsnov0</akt:PravniOsnov>
+        <akt:NazivOrgana>NazivOrgana0</akt:NazivOrgana>
+        <akt:Oblast property="oblast" datatype="xs:string">Oblast0</akt:Oblast>
+        <akt:Status property="status" datatype="xs:string">Status0</akt:Status>
+        <akt:DatumPredaje property="datumPredaje" datatype="xs:date">2006-05-04</akt:DatumPredaje>
+        <akt:DatumObjave property="datumObjave" datatype="xs:date">DatumObjave0</akt:DatumObjave>
+        <akt:BrojGlasovaZa property="za" datatype="xs:date">0</akt:BrojGlasovaZa>
+        <akt:BrojGlasovaProtiv property="protiv" datatype="xs:date">0</akt:BrojGlasovaProtiv>
+        <akt:BrojGlasovaUzdrzano property="uzdrzano" datatype="xs:date">0</akt:BrojGlasovaUzdrzano>
+    </akt:Preambula>
+    <akt:Deo id="id1" redniBroj="redniBroj0" naslov="naslov1">
+        <akt:Clan id="id2" naslov="naslov2" redniBroj="redniBroj1">
+            <akt:Stav id="id3">
+                <akt:Tacka id="id4" redniBroj="redniBroj2">
+                    <akt:Sadrzaj>Sadrzaj0</akt:Sadrzaj>
+                </akt:Tacka>
+                <akt:Tacka id="id5" redniBroj="redniBroj3">
+                    <akt:Podtacka id="id6" redniBroj="redniBroj4">
+                        <akt:Sadrzaj>Sadrzaj1</akt:Sadrzaj>
+                    </akt:Podtacka>
+                    <akt:Podtacka id="id7" redniBroj="redniBroj5">
+                        <akt:Sadrzaj>Sadrzaj2</akt:Sadrzaj>
+                    </akt:Podtacka>
+                </akt:Tacka>
+            </akt:Stav>
+            <akt:Stav id="id8">
+                <akt:Sadrzaj>Sadrzaj3</akt:Sadrzaj>
+            </akt:Stav>
+        </akt:Clan>
+        <akt:Clan id="id9" naslov="naslov3" redniBroj="redniBroj6">
+            <akt:Stav id="id10">
+                <akt:Sadrzaj>Sadrzaj4</akt:Sadrzaj>
+            </akt:Stav>
+            <akt:Stav id="id11">
+                <akt:Sadrzaj>Sadrzaj5</akt:Sadrzaj>
+            </akt:Stav>
+        </akt:Clan>
+    </akt:Deo>
+    <akt:Deo id="id12" redniBroj="redniBroj7" naslov="naslov4">
+        <akt:Glava id="id13" naslov="naslov5" redniBroj="redniBroj8">
+            <akt:Clan id="id14" naslov="naslov6" redniBroj="redniBroj9">
+                <akt:Stav id="id15">
+                    <akt:Sadrzaj>Sadrzaj6</akt:Sadrzaj>
+                </akt:Stav>
+                <akt:Stav id="id16">
+                    <akt:Sadrzaj>Sadrzaj7</akt:Sadrzaj>
+                </akt:Stav>
+            </akt:Clan>
+            <akt:Clan id="id17" naslov="naslov7" redniBroj="redniBroj10">
+                <akt:Stav id="id18">
+                    <akt:Sadrzaj>Sadrzaj8</akt:Sadrzaj>
+                </akt:Stav>
+                <akt:Stav id="id19">
+                    <akt:Tacka id="id20" redniBroj="redniBroj11">
+                        <akt:Podtacka id="id21" redniBroj="redniBroj12">
+                            <akt:Sadrzaj>Sadrzaj9</akt:Sadrzaj>
+                        </akt:Podtacka>
+                        <akt:Podtacka id="id22" redniBroj="redniBroj13">
+                            <akt:Alineja id="id23">
+                                <akt:Sadrzaj>Sadrzaj10</akt:Sadrzaj>
+                            </akt:Alineja>
+                            <akt:Alineja id="id24">
+                                <akt:Sadrzaj>Sadrzaj11</akt:Sadrzaj>
+                            </akt:Alineja>
+                        </akt:Podtacka>
+                    </akt:Tacka>
+                    <akt:Tacka id="id25" redniBroj="redniBroj14">
+                        <akt:Podtacka id="id26" redniBroj="redniBroj15">
+                            <akt:Alineja id="id27">
+                                <akt:Sadrzaj>Sadrzaj12</akt:Sadrzaj>
+                            </akt:Alineja>
+                            <akt:Alineja id="id28">
+                                <akt:Sadrzaj>Sadrzaj13</akt:Sadrzaj>
+                            </akt:Alineja>
+                        </akt:Podtacka>
+                        <akt:Podtacka id="id29" redniBroj="redniBroj16">
+                            <akt:Alineja id="id30">
+                                <akt:Sadrzaj>Sadrzaj14</akt:Sadrzaj>
+                            </akt:Alineja>
+                            <akt:Alineja id="id31">
+                                <akt:Sadrzaj>Sadrzaj15</akt:Sadrzaj>
+                            </akt:Alineja>
+                        </akt:Podtacka>
+                    </akt:Tacka>
+                </akt:Stav>
+            </akt:Clan>
+        </akt:Glava>
+        <akt:Glava id="id32" naslov="naslov8" redniBroj="redniBroj17">
+            <akt:Odeljak id="id33" naslov="naslov9" redniBroj="redniBroj18">
+                <akt:Pododeljak id="id34" naslov="naslov10" redniBroj="redniBroj19">
+                    <akt:Clan id="id35" naslov="naslov11" redniBroj="redniBroj20">
+                        <akt:Stav id="id36">
+                            <akt:Tacka id="id37" redniBroj="redniBroj21">
+                                <akt:Podtacka id="id38" redniBroj="redniBroj22">
+                                    <akt:Sadrzaj>Sadrzaj16</akt:Sadrzaj>
+                                </akt:Podtacka>
+                                <akt:Podtacka id="id39" redniBroj="redniBroj23">
+                                    <akt:Alineja id="id40">
+                                        <akt:Sadrzaj>Sadrzaj17</akt:Sadrzaj>
+                                    </akt:Alineja>
+                                    <akt:Alineja id="id41">
+                                        <akt:Sadrzaj>Sadrzaj18</akt:Sadrzaj>
+                                    </akt:Alineja>
+                                </akt:Podtacka>
+                            </akt:Tacka>
+                            <akt:Tacka id="id42" redniBroj="redniBroj24">
+                                <akt:Sadrzaj>Sadrzaj19</akt:Sadrzaj>
+                            </akt:Tacka>
+                        </akt:Stav>
+                        <akt:Stav id="id43">
+                            <akt:Tacka id="id44" redniBroj="redniBroj25">
+                                <akt:Podtacka id="id45" redniBroj="redniBroj26">
+                                    <akt:Sadrzaj>Sadrzaj20</akt:Sadrzaj>
+                                </akt:Podtacka>
+                                <akt:Podtacka id="id46" redniBroj="redniBroj27">
+                                    <akt:Alineja id="id47">
+                                        <akt:Sadrzaj>Sadrzaj21</akt:Sadrzaj>
+                                    </akt:Alineja>
+                                    <akt:Alineja id="id48">
+                                        <akt:Sadrzaj>Sadrzaj22</akt:Sadrzaj>
+                                    </akt:Alineja>
+                                </akt:Podtacka>
+                            </akt:Tacka>
+                            <akt:Tacka id="id49" redniBroj="redniBroj28">
+                                <akt:Sadrzaj>Sadrzaj23</akt:Sadrzaj>
+                            </akt:Tacka>
+                        </akt:Stav>
+                    </akt:Clan>
+                    <akt:Clan id="id50" naslov="naslov12" redniBroj="redniBroj29">
+                        <akt:Stav id="id51">
+                            <akt:Tacka id="id52" redniBroj="redniBroj30">
+                                <akt:Podtacka id="id53" redniBroj="redniBroj31">
+                                    <akt:Alineja id="id54">
+                                        <akt:Sadrzaj>Sadrzaj24</akt:Sadrzaj>
+                                    </akt:Alineja>
+                                    <akt:Alineja id="id55">
+                                        <akt:Sadrzaj>Sadrzaj25</akt:Sadrzaj>
+                                    </akt:Alineja>
+                                </akt:Podtacka>
+                                <akt:Podtacka id="id56" redniBroj="redniBroj32">
+                                    <akt:Alineja id="id57">
+                                        <akt:Sadrzaj>Sadrzaj26</akt:Sadrzaj>
+                                    </akt:Alineja>
+                                    <akt:Alineja id="id58">
+                                        <akt:Sadrzaj>Sadrzaj27</akt:Sadrzaj>
+                                    </akt:Alineja>
+                                </akt:Podtacka>
+                            </akt:Tacka>
+                            <akt:Tacka id="id59" redniBroj="redniBroj33">
+                                <akt:Podtacka id="id60" redniBroj="redniBroj34">
+                                    <akt:Alineja id="id61">
+                                        <akt:Sadrzaj>Sadrzaj28</akt:Sadrzaj>
+                                    </akt:Alineja>
+                                    <akt:Alineja id="id62">
+                                        <akt:Sadrzaj>Sadrzaj29</akt:Sadrzaj>
+                                    </akt:Alineja>
+                                </akt:Podtacka>
+                                <akt:Podtacka id="id63" redniBroj="redniBroj35">
+                                    <akt:Sadrzaj>Sadrzaj30</akt:Sadrzaj>
+                                </akt:Podtacka>
+                            </akt:Tacka>
+                        </akt:Stav>
+                        <akt:Stav id="id64">
+                            <akt:Tacka id="id65" redniBroj="redniBroj36">
+                                <akt:Sadrzaj>Sadrzaj31</akt:Sadrzaj>
+                            </akt:Tacka>
+                            <akt:Tacka id="id66" redniBroj="redniBroj37">
+                                <akt:Podtacka id="id67" redniBroj="redniBroj38">
+                                    <akt:Alineja id="id68">
+                                        <akt:Sadrzaj>Sadrzaj32</akt:Sadrzaj>
+                                    </akt:Alineja>
+                                    <akt:Alineja id="id69">
+                                        <akt:Sadrzaj>Sadrzaj33</akt:Sadrzaj>
+                                    </akt:Alineja>
+                                </akt:Podtacka>
+                                <akt:Podtacka id="id70" redniBroj="redniBroj39">
+                                    <akt:Sadrzaj>Sadrzaj34</akt:Sadrzaj>
+                                </akt:Podtacka>
+                            </akt:Tacka>
+                        </akt:Stav>
+                    </akt:Clan>
+                </akt:Pododeljak>
+                <akt:Pododeljak id="id71" naslov="naslov13" redniBroj="redniBroj40">
+                    <akt:Clan id="id72" naslov="naslov14" redniBroj="redniBroj41">
+                        <akt:Stav id="id73">
+                            <akt:Tacka id="id74" redniBroj="redniBroj42">
+                                <akt:Sadrzaj>Sadrzaj35</akt:Sadrzaj>
+                            </akt:Tacka>
+                            <akt:Tacka id="id75" redniBroj="redniBroj43">
+                                <akt:Podtacka id="id76" redniBroj="redniBroj44">
+                                    <akt:Alineja id="id77">
+                                        <akt:Sadrzaj>Sadrzaj36</akt:Sadrzaj>
+                                    </akt:Alineja>
+                                    <akt:Alineja id="id78">
+                                        <akt:Sadrzaj>Sadrzaj37</akt:Sadrzaj>
+                                    </akt:Alineja>
+                                </akt:Podtacka>
+                                <akt:Podtacka id="id79" redniBroj="redniBroj45">
+                                    <akt:Alineja id="id80">
+                                        <akt:Sadrzaj>Sadrzaj38</akt:Sadrzaj>
+                                    </akt:Alineja>
+                                    <akt:Alineja id="id81">
+                                        <akt:Sadrzaj>Sadrzaj39</akt:Sadrzaj>
+                                    </akt:Alineja>
+                                </akt:Podtacka>
+                            </akt:Tacka>
+                        </akt:Stav>
+                        <akt:Stav id="id82">
+                            <akt:Tacka id="id83" redniBroj="redniBroj46">
+                                <akt:Sadrzaj>Sadrzaj40</akt:Sadrzaj>
+                            </akt:Tacka>
+                            <akt:Tacka id="id84" redniBroj="redniBroj47">
+                                <akt:Podtacka id="id85" redniBroj="redniBroj48">
+                                    <akt:Sadrzaj>Sadrzaj41</akt:Sadrzaj>
+                                </akt:Podtacka>
+                                <akt:Podtacka id="id86" redniBroj="redniBroj49">
+                                    <akt:Alineja id="id87">
+                                        <akt:Sadrzaj>Sadrzaj42</akt:Sadrzaj>
+                                    </akt:Alineja>
+                                    <akt:Alineja id="id88">
+                                        <akt:Sadrzaj>Sadrzaj43</akt:Sadrzaj>
+                                    </akt:Alineja>
+                                </akt:Podtacka>
+                            </akt:Tacka>
+                        </akt:Stav>
+                    </akt:Clan>
+                    <akt:Clan id="id89" naslov="naslov15" redniBroj="redniBroj50">
+                        <akt:Stav id="id90">
+                            <akt:Sadrzaj>Sadrzaj44</akt:Sadrzaj>
+                        </akt:Stav>
+                        <akt:Stav id="id91">
+                            <akt:Tacka id="id92" redniBroj="redniBroj51">
+                                <akt:Podtacka id="id93" redniBroj="redniBroj52">
+                                    <akt:Sadrzaj>Sadrzaj45</akt:Sadrzaj>
+                                </akt:Podtacka>
+                                <akt:Podtacka id="id94" redniBroj="redniBroj53">
+                                    <akt:Alineja id="id95">
+                                        <akt:Sadrzaj>Sadrzaj46</akt:Sadrzaj>
+                                    </akt:Alineja>
+                                    <akt:Alineja id="id96">
+                                        <akt:Sadrzaj>Sadrzaj47</akt:Sadrzaj>
+                                    </akt:Alineja>
+                                </akt:Podtacka>
+                            </akt:Tacka>
+                            <akt:Tacka id="id97" redniBroj="redniBroj54">
+                                <akt:Podtacka id="id98" redniBroj="redniBroj55">
+                                    <akt:Alineja id="id99">
+                                        <akt:Sadrzaj>Sadrzaj48</akt:Sadrzaj>
+                                    </akt:Alineja>
+                                    <akt:Alineja id="id100">
+                                        <akt:Sadrzaj>Sadrzaj49</akt:Sadrzaj>
+                                    </akt:Alineja>
+                                </akt:Podtacka>
+                                <akt:Podtacka id="id101" redniBroj="redniBroj56">
+                                    <akt:Sadrzaj>Sadrzaj50</akt:Sadrzaj>
+                                </akt:Podtacka>
+                            </akt:Tacka>
+                        </akt:Stav>
+                    </akt:Clan>
+                </akt:Pododeljak>
+            </akt:Odeljak>
+            <akt:Odeljak id="id102" naslov="naslov16" redniBroj="redniBroj57">
+                <akt:Clan id="id103" naslov="naslov17" redniBroj="redniBroj58">
+                    <akt:Stav id="id104">
+                        <akt:Sadrzaj>Sadrzaj51</akt:Sadrzaj>
+                    </akt:Stav>
+                    <akt:Stav id="id105">
+                        <akt:Sadrzaj>Sadrzaj52</akt:Sadrzaj>
+                    </akt:Stav>
+                </akt:Clan>
+                <akt:Clan id="id106" naslov="naslov18" redniBroj="redniBroj59">
+                    <akt:Stav id="id107">
+                        <akt:Sadrzaj>Sadrzaj53</akt:Sadrzaj>
+                    </akt:Stav>
+                    <akt:Stav id="id108">
+                        <akt:Sadrzaj>Sadrzaj54</akt:Sadrzaj>
+                    </akt:Stav>
+                </akt:Clan>
+            </akt:Odeljak>
+        </akt:Glava>
+    </akt:Deo>
+    <korisnik:Korisnik Id="Id0">
+        <korisnik:Uloga>Uloga0</korisnik:Uloga>
+        <korisnik:Ime>Ime0</korisnik:Ime>
+        <korisnik:Prezime>Prezime0</korisnik:Prezime>
+        <korisnik:Email>Email0</korisnik:Email>
+        <korisnik:Lozinka>Lozinka0</korisnik:Lozinka>
+    </korisnik:Korisnik>
+</akt:Akt>
