@@ -5,24 +5,26 @@
 		<div class="row padding-vert-40">
 
 			<h2 class="animate fadeIn text-center">Spisak amandmana</h2>
-			<div class="table-responsive">
+			<div class="table-responsive" style="margin-left: 10%; margin-right: 10%; margin-top: 5%">
 				<table class="table">
 					<thead>
 						<tr>
 							<th>Broj</th>
 							<th>Naslov</th>
 							<th>Pravni osnov</th>
-							<th>Preuzmi</th>
+							<th>Pregledaj</th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody ng-repeat="amandman in amandmaniCtrl.amandmani">
 						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td><img border="0" src="../images/pdfIcon.png"> <img
-								border="0" src="../images/xhtmlIcon.png"></td>
+							<td>{{ $index + 1 }}</td>
+							<td>{{ amandman.naslov }}</td>
+							<td>{{ amandman.pravniOsnov }}</td>
+							<td>
+								<a href="" ng-click="amandmaniCtrl.previewHTML(amandman.id)">
+									<img border="0" src="../images/xhtmlIcon.png">
+								</a>
+							</td>
 						</tr>
 					</tbody>
 				</table>

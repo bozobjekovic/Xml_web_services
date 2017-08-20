@@ -35,6 +35,10 @@
 			templateUrl : 'views/pregledAkta.html',
 			controller  : 'AktPreviewController',
 			controllerAs: 'aktPreviewCtrl'
+		}).when('/previewAmd/:id', {
+			templateUrl : 'views/pregledAmandmana.html',
+			controller  : 'AmandmanPreviewController',
+			controllerAs: 'amandmanPreviewCtrl'
 		}).when('/dodajAkt', {
 			templateUrl : 'views/dodajAkt.html'
 		}).when('/dodajAmandman', {
