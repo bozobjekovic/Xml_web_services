@@ -121,5 +121,16 @@ public class AktService {
 
 		return akt;
 	}
+	
+	public Akt findAktDocId(String docId) {
+		Akt akt;
+		try {
+			akt = xmlManager.readAs(docId, Akt.class);
+		} catch (Exception e) {
+			akt = null;
+		}
+
+		return akt;
+	}
 
 }
