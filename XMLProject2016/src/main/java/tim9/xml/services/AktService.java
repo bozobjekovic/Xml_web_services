@@ -2,7 +2,7 @@ package tim9.xml.services;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,19 +21,25 @@ import javax.xml.transform.stream.StreamResult;
 
 import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
+import org.xml.sax.SAXException;
 
 import com.marklogic.client.DatabaseClient;
 import com.marklogic.client.DatabaseClientFactory;
 import com.marklogic.client.document.XMLDocumentManager;
 import com.marklogic.client.io.DocumentMetadataHandle;
+import com.marklogic.client.io.FileHandle;
 import com.marklogic.client.io.InputStreamHandle;
 import com.marklogic.client.io.JAXBHandle;
 import com.marklogic.client.io.SearchHandle;
 import com.marklogic.client.query.MatchDocumentSummary;
 import com.marklogic.client.query.QueryManager;
 import com.marklogic.client.query.StringQueryDefinition;
+import com.marklogic.client.semantics.GraphManager;
+import com.marklogic.client.semantics.RDFMimeTypes;
 
 import tim9.xml.model.akt.Akt;
+import tim9.xml.rdf.AktMetadata;
+import tim9.xml.rdf.MetadataExtractor;
 import tim9.xml.util.Util;
 
 @Service
@@ -78,7 +84,7 @@ public class AktService {
 		return akti;
 	}
 	
-	public Akt save(Document akt, int id) throws TransformerFactoryConfigurationError, TransformerException, FileNotFoundException, JAXBException {
+	public Akt save(Document akt, int id) throws TransformerFactoryConfigurationError, TransformerException, JAXBException, SAXException, IOException {
 		
 		String collId = "akti";
 		String docId = "akti/" + id;
@@ -95,7 +101,8 @@ public class AktService {
 		InputStreamHandle handle = new InputStreamHandle(new FileInputStream("gen/output.xml"));
 		xmlManager.write(docId, metadata, handle);
 		
-		// TODO: SAČUVATI METAPODATKE
+		//AktMetadata.saveMetadata(Util.loadProperties(), Integer.toString(id));
+		saveMD(Integer.toString(id));
 		
 		// Definiše se JAXB kontekst (putanja do paketa sa JAXB bean-ovima)
 		JAXBContext context = JAXBContext.newInstance("tim9.xml.model.akt");
@@ -108,6 +115,33 @@ public class AktService {
 		Akt newAkt = (Akt) unmarshaller.unmarshal(new File("./gen/output.xml"));
 		
 		return newAkt;
+	}
+	
+	private void saveMD(String id) throws SAXException, IOException, TransformerException {
+		
+		// Create a document manager to work with XML files.
+		GraphManager graphManager = client.newGraphManager();
+
+		// Set the default media type (RDF/XML)
+		graphManager.setDefaultMimetype(RDFMimeTypes.RDFXML);
+
+		// Referencing XML file with RDF data in attributes
+		String xmlFilePath = "./gen/output.xml";
+
+		String rdfFilePath = "gen/rdf/akt1.rdf";
+
+		// Automatic extraction of RDF triples from XML file
+		MetadataExtractor metadataExtractor = new MetadataExtractor();
+
+		metadataExtractor.extractMetadata(new FileInputStream(new File(xmlFilePath)),
+				new FileOutputStream(new File(rdfFilePath)));
+
+		// A handle to hold the RDF content.
+		FileHandle rdfFileHandle = new FileHandle(new File(rdfFilePath)).withMimetype(RDFMimeTypes.RDFXML);
+
+		// Writing the named graph
+		System.out.println("[INFO] Tripleti su uspesno dodati u bazu. Id trupleta: " + "akti/metadata/" + id + ".");
+		graphManager.write("akti/metadata/" + id, rdfFileHandle);
 	}
 
 	public String getOne(String id) {

@@ -95,7 +95,7 @@ public class AktMetadata {
 		graphManager.setDefaultMimetype(RDFMimeTypes.RDFXML);
 
 		// Referencing XML file with RDF data in attributes
-		String xmlFilePath = "./data/akt1.xml";
+		String xmlFilePath = "./gen/output.xml";
 
 		String rdfFilePath = "gen/rdf/akt1.rdf";
 
@@ -110,7 +110,7 @@ public class AktMetadata {
 
 		// Writing the named graph
 		System.out.println("[INFO] Tripleti su uspesno dodati u bazu. Id trupleta: " + AKT_GRAPH_URI + id + ".");
-		graphManager.write("sadasd", rdfFileHandle);
+		graphManager.write(AKT_GRAPH_URI + id, rdfFileHandle);
 	}
 	
 	public static Akt save(ConnectionProperties properties, Document akt, int id)

@@ -36,7 +36,9 @@ public class AktSPARQL {
 
 		SPARQLQueryManager sparqlQueryManager = client.newSPARQLQueryManager();
 
-		String sparqlQuery = "PREFIX xs:     <http://www.w3.org/2001/XMLSchema#>\n" + "SELECT * WHERE { ";
+		String sparqlQuery = "PREFIX xs:     <http://www.w3.org/2001/XMLSchema#>\n"
+							 + "SELECT * "
+							 + "WHERE { ";
 
 		// STATUS
 		if (searchDTO.getStatus().trim().equals(""))
@@ -44,6 +46,10 @@ public class AktSPARQL {
 		else
 			sparqlQuery += "?akt <http://www.tim9.com/akt/rdf/predikati/status> " + "\"" + searchDTO.getStatus()
 					+ "\" .\n";
+		
+		sparqlQuery += " }";
+		
+		System.out.println(sparqlQuery);
 
 		SPARQLQueryDefinition query = sparqlQueryManager.newQueryDefinition(sparqlQuery);
 

@@ -28,11 +28,14 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
+import tim9.xml.DTO.SearchDTO;
 import tim9.xml.DTO.XmlObjectDTO;
 import tim9.xml.model.akt.Akt;
+import tim9.xml.rdf.AktSPARQL;
 import tim9.xml.services.AktService;
 import tim9.xml.services.AmandmanService;
 import tim9.xml.transformation.TransformationAkt;
+import tim9.xml.util.Util;
 
 @Controller
 @RequestMapping(value="xmlWS/akt")
@@ -50,12 +53,7 @@ public class AktController implements ErrorHandler {
 		// preuzmem string xml-a amandmana
 		String xml = xmlObjectDTO.getXml();
 		
-		String putanjaDoSeme = System.getProperty("user.dir") + "/data/akt_schema.xsd";
-		putanjaDoSeme = putanjaDoSeme.replace("\\", "/");
-
-		xml = xml.replace("xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"",
-				"xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"  xsi:schemaLocation=\"http://www.tim9.com/akt file:/"
-						+ putanjaDoSeme + "\" ");
+		xml = addNamespaces(xml, xmlObjectDTO);
 		
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		dbFactory.setValidating(true);
@@ -80,7 +78,7 @@ public class AktController implements ErrorHandler {
 			// dodavanje nedostajucih elemenata i atributa
 			Element aktElement = doc.getDocumentElement();
 			aktElement.setAttribute("id", id + "");
-			// ####################### ABOUT
+			aktElement.setAttribute("about", "http://www.tim9.com/akt/" + id);
 			
 			// META PODACI
 			/* Detektuju eventualne greske */
@@ -111,6 +109,24 @@ public class AktController implements ErrorHandler {
 		
 	}
 	
+	private String addNamespaces(String xml, XmlObjectDTO xmlObjectDTO) {
+		xml = xml.replaceAll("property=\"", "property=\"pred:");
+		
+		String putanjaDoSeme = System.getProperty("user.dir") + "/data/akt_schema.xsd";
+		putanjaDoSeme = putanjaDoSeme.replace("\\", "/");
+		
+		xml = xml.replace("xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"",
+				"xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"  xsi:schemaLocation=\"http://www.tim9.com/akt file:/"
+						+ putanjaDoSeme + "\" ");
+		
+		xml = xml.replace("xmlns:akt=\"http://www.tim9.com/akt\"", "xmlns:akt=\"http://www.tim9.com/akt\" xmlns=\"http://www.w3.org/ns/rdfa#\" "
+				+ "xmlns:pred=\"http://www.tim9.com/akt/rdf/predikati/\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema#\"");
+		
+		return xml;
+		
+	}
+	
+
 	@RequestMapping(value = "/pdf/{id}", method = RequestMethod.GET)
 	public ResponseEntity<byte[]> getAktForPDF(@PathVariable String id) {
 		String aktXML = aktService.getOne(id);
@@ -154,7 +170,24 @@ public class AktController implements ErrorHandler {
 		
 		return new ResponseEntity<List<Akt>>(retVal, HttpStatus.OK);
 	}
-
+	
+	@RequestMapping(value = "/pretraga", method = RequestMethod.POST)
+	public ResponseEntity<List<Akt>> searchByMetaData(@RequestBody SearchDTO searchDTO) {
+		List<Akt> retVal = null;
+		
+		try {
+			retVal = AktSPARQL.searchMetaData(Util.loadProperties(), searchDTO);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
+		if (retVal == null) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		
+		return new ResponseEntity<List<Akt>>(retVal, HttpStatus.OK);
+	}
+	
 	@Override
 	public void error(SAXParseException arg0) throws SAXException {
 		// TODO Auto-generated method stub
