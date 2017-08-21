@@ -17,6 +17,7 @@
             <xs:attribute name="naslov" type="xs:string"/>
             <xs:attribute default="http://www.tim9.com/akt/rdf/predikati/" name="vocab"
                 type="xs:string"/>
+            <xs:attribute name="about" type="xs:string"/>
         </xs:complexType>
     </xs:element>
     <xs:element name="Deo">
@@ -83,7 +84,7 @@
             <xs:sequence>
                 <xs:choice>
                     <xs:element maxOccurs="unbounded" minOccurs="2" ref="akt:Tacka"/>
-                    <xs:element name="Sadrzaj" type="xs:string"/>
+                    <xs:element ref="akt:Sadrzaj"/>
                 </xs:choice>
             </xs:sequence>
             <xs:attribute name="id"/>
@@ -94,7 +95,7 @@
             <xs:sequence>
                 <xs:choice>
                     <xs:element maxOccurs="unbounded" minOccurs="2" ref="akt:Podtacka"/>
-                    <xs:element name="Sadrzaj" type="xs:string"/>
+                    <xs:element ref="akt:Sadrzaj"/>
                 </xs:choice>
             </xs:sequence>
             <xs:attribute name="id"/>
@@ -106,7 +107,7 @@
             <xs:sequence>
                 <xs:choice>
                     <xs:element maxOccurs="unbounded" minOccurs="2" ref="akt:Alineja"/>
-                    <xs:element name="Sadrzaj" type="xs:string"/>
+                    <xs:element ref="akt:Sadrzaj"/>
                 </xs:choice>
             </xs:sequence>
             <xs:attribute name="id"/>
@@ -152,7 +153,7 @@
                 <xs:element minOccurs="0" name="DatumObjave">
                     <xs:complexType>
                         <xs:simpleContent>
-                            <xs:extension base="xs:string">
+                            <xs:extension base="xs:date">
                                 <xs:attribute name="property" type="xs:string" default="datumObjave"/>
                                 <xs:attribute name="datatype" type="xs:string" default="xs:date"/>
                             </xs:extension>
@@ -164,7 +165,7 @@
                         <xs:simpleContent>
                             <xs:extension base="xs:int">
                                 <xs:attribute name="property" type="xs:string" default="za"/>
-                                <xs:attribute name="datatype" type="xs:string" default="xs:date"/>
+                                <xs:attribute name="datatype" type="xs:string" default="xs:int"/>
                             </xs:extension>
                         </xs:simpleContent>
                     </xs:complexType>
@@ -174,7 +175,7 @@
                         <xs:simpleContent>
                             <xs:extension base="xs:int">
                                 <xs:attribute name="property" type="xs:string" default="protiv"/>
-                                <xs:attribute name="datatype" type="xs:string" default="xs:date"/>
+                                <xs:attribute name="datatype" type="xs:string" default="xs:int"/>
                             </xs:extension>
                         </xs:simpleContent>
                     </xs:complexType>
@@ -184,7 +185,7 @@
                         <xs:simpleContent>
                             <xs:extension base="xs:int">
                                 <xs:attribute name="property" type="xs:string" default="uzdrzano"/>
-                                <xs:attribute name="datatype" type="xs:string" default="xs:date"/>
+                                <xs:attribute name="datatype" type="xs:string" default="xs:int"/>
                             </xs:extension>
                         </xs:simpleContent>
                     </xs:complexType>
@@ -195,9 +196,24 @@
     <xs:element name="Alineja">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="Sadrzaj" type="xs:string"/>
+                <xs:element ref="akt:Sadrzaj"/>
             </xs:sequence>
             <xs:attribute name="id"/>
         </xs:complexType>
     </xs:element>
+    <xs:complexType mixed="true" name="SadrzajTip">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" ref="akt:Referenca"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="Referenca">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute name="URL" type="xs:string"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Sadrzaj" type="akt:SadrzajTip"/>
 </xs:schema>

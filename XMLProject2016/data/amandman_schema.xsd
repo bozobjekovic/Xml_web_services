@@ -6,11 +6,15 @@
     <xs:element name="Amandman">
         <xs:complexType>
             <xs:sequence>
+                <xs:element minOccurs="0" ref="amd:Preambula"/>
                 <xs:element name="Naslov" type="xs:string"/>
                 <xs:element name="PravniOsnov" type="xs:string"/>
                 <xs:element maxOccurs="unbounded" ref="amd:Sadrzaj"/>
             </xs:sequence>
             <xs:attribute name="id"/>
+            <xs:attribute default="http://www.tim9.com/amandman/rdf/predikati/" name="vocab"
+                type="xs:string"/>
+            <xs:attribute name="about" type="xs:string"/>
         </xs:complexType>
     </xs:element>
     <xs:element name="Sadrzaj">
@@ -47,6 +51,74 @@
                 <xs:element ref="akt:Tacka"/>
                 <xs:element ref="akt:Stav"/>
             </xs:choice>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Preambula">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="NazivOrgana" type="xs:string"/>
+                <xs:element name="Status">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute default="status" name="property" type="xs:string"/>
+                                <xs:attribute default="xs:string" name="datatype" type="xs:string"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="DatumPredaje">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:date">
+                                <xs:attribute default="datumPredaje" name="property"
+                                    type="xs:string"/>
+                                <xs:attribute default="xs:date" name="datatype" type="xs:string"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element minOccurs="0" name="DatumObjave">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:date">
+                                <xs:attribute default="datumObjave" name="property" type="xs:string"/>
+                                <xs:attribute default="xs:date" name="datatype" type="xs:string"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element form="qualified" minOccurs="0" name="BrojGlasovaZa">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:int">
+                                <xs:attribute default="za" name="property" type="xs:string"/>
+                                <xs:attribute default="xs:int" name="datatype" type="xs:string"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element minOccurs="0" name="BrojGlasovaProtiv">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:int">
+                                <xs:attribute default="protiv" name="property" type="xs:string"/>
+                                <xs:attribute default="xs:int" name="datatype" type="xs:string"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element minOccurs="0" name="BrojGlasovaUzdrzano">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:int">
+                                <xs:attribute default="uzdrzano" name="property" type="xs:string"/>
+                                <xs:attribute default="xs:int" name="datatype" type="xs:string"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
         </xs:complexType>
     </xs:element>
 </xs:schema>

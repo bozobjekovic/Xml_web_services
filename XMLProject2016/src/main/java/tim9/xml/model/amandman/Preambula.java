@@ -6,7 +6,7 @@
 //
 
 
-package com.tim9.akt;
+package tim9.xml.model.amandman;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -29,18 +29,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="PravniOsnov" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="NazivOrgana" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="Oblast">
- *           &lt;complexType>
- *             &lt;simpleContent>
- *               &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema>string">
- *                 &lt;attribute name="property" type="{http://www.w3.org/2001/XMLSchema}string" default="oblast" />
- *                 &lt;attribute name="datatype" type="{http://www.w3.org/2001/XMLSchema}string" default="xs:string" />
- *               &lt;/extension>
- *             &lt;/simpleContent>
- *           &lt;/complexType>
- *         &lt;/element>
  *         &lt;element name="Status">
  *           &lt;complexType>
  *             &lt;simpleContent>
@@ -71,7 +60,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *             &lt;/simpleContent>
  *           &lt;/complexType>
  *         &lt;/element>
- *         &lt;element name="BrojGlasovaZa" minOccurs="0">
+ *         &lt;element name="BrojGlasovaZa" minOccurs="0" form="qualified">
  *           &lt;complexType>
  *             &lt;simpleContent>
  *               &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema>int">
@@ -111,9 +100,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "pravniOsnov",
     "nazivOrgana",
-    "oblast",
     "status",
     "datumPredaje",
     "datumObjave",
@@ -124,12 +111,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
 @XmlRootElement(name = "Preambula")
 public class Preambula {
 
-    @XmlElement(name = "PravniOsnov", required = true)
-    protected String pravniOsnov;
     @XmlElement(name = "NazivOrgana", required = true)
     protected String nazivOrgana;
-    @XmlElement(name = "Oblast", required = true)
-    protected Preambula.Oblast oblast;
     @XmlElement(name = "Status", required = true)
     protected Preambula.Status status;
     @XmlElement(name = "DatumPredaje", required = true)
@@ -142,30 +125,6 @@ public class Preambula {
     protected Preambula.BrojGlasovaProtiv brojGlasovaProtiv;
     @XmlElement(name = "BrojGlasovaUzdrzano")
     protected Preambula.BrojGlasovaUzdrzano brojGlasovaUzdrzano;
-
-    /**
-     * Gets the value of the pravniOsnov property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getPravniOsnov() {
-        return pravniOsnov;
-    }
-
-    /**
-     * Sets the value of the pravniOsnov property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setPravniOsnov(String value) {
-        this.pravniOsnov = value;
-    }
 
     /**
      * Gets the value of the nazivOrgana property.
@@ -189,30 +148,6 @@ public class Preambula {
      */
     public void setNazivOrgana(String value) {
         this.nazivOrgana = value;
-    }
-
-    /**
-     * Gets the value of the oblast property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Preambula.Oblast }
-     *     
-     */
-    public Preambula.Oblast getOblast() {
-        return oblast;
-    }
-
-    /**
-     * Sets the value of the oblast property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Preambula.Oblast }
-     *     
-     */
-    public void setOblast(Preambula.Oblast value) {
-        this.oblast = value;
     }
 
     /**
@@ -888,120 +823,6 @@ public class Preambula {
         public String getDatatype() {
             if (datatype == null) {
                 return "xs:date";
-            } else {
-                return datatype;
-            }
-        }
-
-        /**
-         * Sets the value of the datatype property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
-         */
-        public void setDatatype(String value) {
-            this.datatype = value;
-        }
-
-    }
-
-
-    /**
-     * <p>Java class for anonymous complex type.
-     * 
-     * <p>The following schema fragment specifies the expected content contained within this class.
-     * 
-     * <pre>
-     * &lt;complexType>
-     *   &lt;simpleContent>
-     *     &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema>string">
-     *       &lt;attribute name="property" type="{http://www.w3.org/2001/XMLSchema}string" default="oblast" />
-     *       &lt;attribute name="datatype" type="{http://www.w3.org/2001/XMLSchema}string" default="xs:string" />
-     *     &lt;/extension>
-     *   &lt;/simpleContent>
-     * &lt;/complexType>
-     * </pre>
-     * 
-     * 
-     */
-    @XmlAccessorType(XmlAccessType.FIELD)
-    @XmlType(name = "", propOrder = {
-        "value"
-    })
-    public static class Oblast {
-
-        @XmlValue
-        protected String value;
-        @XmlAttribute(name = "property")
-        protected String property;
-        @XmlAttribute(name = "datatype")
-        protected String datatype;
-
-        /**
-         * Gets the value of the value property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
-         */
-        public String getValue() {
-            return value;
-        }
-
-        /**
-         * Sets the value of the value property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
-         */
-        public void setValue(String value) {
-            this.value = value;
-        }
-
-        /**
-         * Gets the value of the property property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
-         */
-        public String getProperty() {
-            if (property == null) {
-                return "oblast";
-            } else {
-                return property;
-            }
-        }
-
-        /**
-         * Sets the value of the property property.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
-         */
-        public void setProperty(String value) {
-            this.property = value;
-        }
-
-        /**
-         * Gets the value of the datatype property.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
-         */
-        public String getDatatype() {
-            if (datatype == null) {
-                return "xs:string";
             } else {
                 return datatype;
             }
