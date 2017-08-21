@@ -11,6 +11,16 @@
 		
 		var retVal = {};
 		
+		retVal.registrate = function(user) {
+			return Restangular.one('user/registration').customPOST(user).then(
+				function(data) {
+					return data;
+				},
+				function() {
+					return null;
+				}
+			);
+		}
 		
 		return retVal;
 

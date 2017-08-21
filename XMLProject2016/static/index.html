@@ -9,6 +9,8 @@
 <link rel="stylesheet" href="css/bootstrap.css" rel="stylesheet">
 <link rel="stylesheet" href="css/nexus.css" rel="stylesheet">
 <link rel="stylesheet" href="css/tim9.css" rel="stylesheet">
+
+<link rel="stylesheet" href="css/font-awesome.css" rel="stylesheet">
 </head>
 
 <body ng-app="xmlWebServices">
@@ -32,16 +34,16 @@
 				<div class="col-md-12 no-padding">
 					<div class="text-center visible-lg">
 						<ul id="hornavmenu" class="nav navbar-nav">
-							<li><a ng-href="/#/akti" class="fa-home">Akti</a></li>
-							<li><a ng-href="#/amandmani" class="fa-comment">Amandmani</a></li>
+							<li><a ng-href="/#/akti">Akti</a></li>
+							<li><a ng-href="#/amandmani">Amandmani</a></li>
 
 							<!--Odbornik i predsednik-->
-							<li><a ng-href="#/dodajAkt" class="fa-comment">Predloži akt</a></li>
-							<li><a ng-href="#/dodajAmandman" class="fa-comment">Predloži amandman</a></li>
-							<li><a href="#" class="fa-comment">Moji predlozi</a></li>
+							<li><a ng-href="#/dodajAkt">Predloži akt</a></li>
+							<li><a ng-href="#/dodajAmandman">Predloži amandman</a></li>
+							<li><a href="#/mojiPredlozi">Moji predlozi</a></li>
 
 							<!--Predsednik-->
-							<li><a ng-href="#/zakazivanje" class="fa-comment">Sednica</a></li>
+							<li><a ng-href="#/zakazivanje">Sednica</a></li>
 						</ul>
 					</div>
 				</div>
@@ -66,6 +68,7 @@
 		<script src="scripts/lodash.js" type="text/javascript"></script>
 		<script src="scripts/restangular.js" type="text/javascript"></script>
 		<script src="scripts/angular-lodash-module.js" type="text/javascript"></script>
+		<script src="scripts/ngStorage.min.js" type="text/javascript"></script>
 		<script src="scripts/bootstrap.min.js" type="text/javascript"></script>
 
 		<!-- SETUP -->
@@ -86,6 +89,8 @@
 		<script src="angular/controller/amandmani-controller.js"></script>
 		<script src="angular/factory/amandmani-factory.js"></script>
 		<script src="angular/controller/amandmani-preview-controller.js"></script>
+		<script src="angular/controller/predlozi-controller.js"></script>
+		<script src="angular/factory/predlozi-factory.js"></script>
 		
 		<!-- End JS -->
 	</div>

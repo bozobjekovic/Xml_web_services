@@ -3,16 +3,16 @@
 
 	angular
 		.module('xmlWebServices.factories')
-		.factory('LoginFactory', LoginFactory);
+		.factory('PredloziFactory', PredloziFactory);
 	
-	LoginFactory.$inject = ['Restangular'];
+	PredloziFactory.$inject = ['Restangular'];
 
-	function LoginFactory(Restangular) {
+	function PredloziFactory(Restangular) {
 		
 		var retVal = {};
 		
-		retVal.logn = function(user) {
-			return Restangular.one('user/login').customPOST(user).then(
+		retVal.getAkts = function(user) {
+			return Restangular.one('akt/byUser').customPOST(user).then(
 				function(data) {
 					return data;
 				}, 
@@ -21,7 +21,6 @@
 				}
 			);
 		}
-		
 		
 		return retVal;
 

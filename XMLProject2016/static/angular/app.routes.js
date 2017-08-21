@@ -3,7 +3,7 @@
 	
 	angular.module(
 			'xmlWebServices.routes',
-			[ 'ngRoute', 'restangular', 'lodash']).config(configure).run(runBlock);
+			[ 'ngRoute', 'restangular', 'ngStorage', 'lodash']).config(configure).run(runBlock);
 	
 	configure.$inject = [ '$routeProvider', '$locationProvider' ];
 	runBlock.$inject = [ 'Restangular' ];
@@ -39,6 +39,10 @@
 			templateUrl : 'views/pregledAmandmana.html',
 			controller  : 'AmandmanPreviewController',
 			controllerAs: 'amandmanPreviewCtrl'
+		}).when('/mojiPredlozi', {
+			templateUrl : 'views/predlozi.html',
+			controller  : 'PredloziController',
+			controllerAs: 'predloziCtrl'
 		}).when('/dodajAkt', {
 			templateUrl : 'views/dodajAkt.html'
 		}).when('/dodajAmandman', {

@@ -1,23 +1,23 @@
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:h="http://www.w3.org/1999/xhtml">
-  <rdf:Description rdf:about="http://www.tim9.com/akt/995">
+  <rdf:Description rdf:about="http://www.tim9.com/akt/809">
     <pred:oblast xmlns:pred="http://www.tim9.com/akt/rdf/predikati/" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Oblast0</pred:oblast>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.tim9.com/akt/995">
-    <pred:status xmlns:pred="http://www.tim9.com/akt/rdf/predikati/" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Status0</pred:status>
+  <rdf:Description rdf:about="http://www.tim9.com/akt/809">
+    <pred:status xmlns:pred="http://www.tim9.com/akt/rdf/predikati/" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">U proceduri</pred:status>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.tim9.com/akt/995">
-    <pred:datumPredaje xmlns:pred="http://www.tim9.com/akt/rdf/predikati/" rdf:datatype="http://www.w3.org/ns/rdfa#">2006-05-04</pred:datumPredaje>
+  <rdf:Description rdf:about="http://www.tim9.com/akt/809">
+    <pred:datumPredaje xmlns:pred="http://www.tim9.com/akt/rdf/predikati/" rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2006-05-04</pred:datumPredaje>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.tim9.com/akt/995">
-    <pred:datumObjave xmlns:pred="http://www.tim9.com/akt/rdf/predikati/" rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2006-05-04</pred:datumObjave>
+  <rdf:Description rdf:about="http://www.tim9.com/akt/809">
+    <pred:datumObjave xmlns:pred="http://www.tim9.com/akt/rdf/predikati/" rdf:datatype="http://www.w3.org/2001/XMLSchema#date">DatumObjave0</pred:datumObjave>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.tim9.com/akt/995">
+  <rdf:Description rdf:about="http://www.tim9.com/akt/809">
     <pred:za xmlns:pred="http://www.tim9.com/akt/rdf/predikati/" rdf:datatype="http://www.w3.org/2001/XMLSchema#date">0</pred:za>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.tim9.com/akt/995">
+  <rdf:Description rdf:about="http://www.tim9.com/akt/809">
     <pred:protiv xmlns:pred="http://www.tim9.com/akt/rdf/predikati/" rdf:datatype="http://www.w3.org/2001/XMLSchema#date">0</pred:protiv>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.tim9.com/akt/995">
+  <rdf:Description rdf:about="http://www.tim9.com/akt/809">
     <pred:uzdrzano xmlns:pred="http://www.tim9.com/akt/rdf/predikati/" rdf:datatype="http://www.w3.org/2001/XMLSchema#date">0</pred:uzdrzano>
   </rdf:Description>
 </rdf:RDF>

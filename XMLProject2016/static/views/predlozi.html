@@ -1,0 +1,37 @@
+<div id="content">
+	<div class="container background-white">
+
+		<div class="row padding-vert-40">
+
+			<!--Izlistavanje rezultata-->
+			<div class="col-sm-12">
+
+				<h2 class="animate fadeIn text-center">Spisak predloga</h2>
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Broj</th>
+								<th>Naziv</th>
+								<th>Oblast</th>
+								<th>Datum</th>
+								<th>Pregledaj</th>
+								<th>Preuzmi</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="akt in predloziCtrl.predlozi">
+								<td>{{ $index + 1 }}</td>
+								<td>{{ akt.naslov }}</td>
+								<td>{{ akt.preambula.oblast.value }}</td>
+								<td>{{ akt.preambula.datumObjave.value }}</td>
+								<td style="text-align:center"><a href="" ng-click="aktiCtrl.previewHTML(akt.id)"><img border="0" src="../images/xhtmlIcon.png"></a></td>
+								<td style="text-align:center"><a href="" ng-click="aktiCtrl.downloadPDF(akt.id)"><img border="0" src="../images/pdfIcon.png"></a></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

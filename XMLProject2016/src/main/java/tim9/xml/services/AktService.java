@@ -38,7 +38,7 @@ import com.marklogic.client.semantics.GraphManager;
 import com.marklogic.client.semantics.RDFMimeTypes;
 
 import tim9.xml.model.akt.Akt;
-import tim9.xml.rdf.AktMetadata;
+import tim9.xml.model.korisnik.Korisnik;
 import tim9.xml.rdf.MetadataExtractor;
 import tim9.xml.util.Util;
 
@@ -84,7 +84,7 @@ public class AktService {
 		return akti;
 	}
 	
-	public Akt save(Document akt, int id) throws TransformerFactoryConfigurationError, TransformerException, JAXBException, SAXException, IOException {
+	public Akt save(Document akt, int id, Korisnik korisnik) throws TransformerFactoryConfigurationError, TransformerException, JAXBException, SAXException, IOException {
 		
 		String collId = "akti";
 		String docId = "akti/" + id;
@@ -101,7 +101,6 @@ public class AktService {
 		InputStreamHandle handle = new InputStreamHandle(new FileInputStream("gen/output.xml"));
 		xmlManager.write(docId, metadata, handle);
 		
-		//AktMetadata.saveMetadata(Util.loadProperties(), Integer.toString(id));
 		saveMD(Integer.toString(id));
 		
 		// Definiše se JAXB kontekst (putanja do paketa sa JAXB bean-ovima)

@@ -5,7 +5,10 @@ import static org.apache.xerces.jaxp.JAXPConstants.W3C_XML_SCHEMA;
 
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -31,11 +34,13 @@ import org.xml.sax.SAXParseException;
 import tim9.xml.DTO.SearchDTO;
 import tim9.xml.DTO.XmlObjectDTO;
 import tim9.xml.model.akt.Akt;
+import tim9.xml.model.korisnik.Korisnik;
 import tim9.xml.rdf.AktSPARQL;
 import tim9.xml.services.AktService;
 import tim9.xml.services.AmandmanService;
 import tim9.xml.transformation.TransformationAkt;
 import tim9.xml.util.Util;
+import tim9.xml.xquery.XQueryAkt;
 
 @Controller
 @RequestMapping(value="xmlWS/akt")
@@ -85,7 +90,7 @@ public class AktController implements ErrorHandler {
 			if (doc != null)
 				System.out.println("[INFO] File parsed with no errors.");
 			
-			Akt akt = aktService.save(doc, id);
+			Akt akt = aktService.save(doc, id, xmlObjectDTO.getUser());
 			
 			return new ResponseEntity<Akt>(akt, HttpStatus.CREATED);
 		} catch (SAXParseException e) {
@@ -121,6 +126,16 @@ public class AktController implements ErrorHandler {
 		
 		xml = xml.replace("xmlns:akt=\"http://www.tim9.com/akt\"", "xmlns:akt=\"http://www.tim9.com/akt\" xmlns=\"http://www.w3.org/ns/rdfa#\" "
 				+ "xmlns:pred=\"http://www.tim9.com/akt/rdf/predikati/\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema#\"");
+		
+		xml = xml.replace("</akt:Akt>",
+							"<korisnik:Korisnik>"
+									+ "<korisnik:Uloga>" + xmlObjectDTO.getUser().getUloga() + "</korisnik:Uloga>"
+									+ "<korisnik:Ime>" + xmlObjectDTO.getUser().getIme() + "</korisnik:Ime>"
+									+ "<korisnik:Prezime>" + xmlObjectDTO.getUser().getPrezime() + "</korisnik:Prezime>"
+									+ "<korisnik:Email>" + xmlObjectDTO.getUser().getEmail() + "</korisnik:Email>"
+									+ "<korisnik:Lozinka>" + xmlObjectDTO.getUser().getLozinka() + "</korisnik:Lozinka>"
+						   + "</korisnik:Korisnik>"
+						+ "</akt:Akt>");
 		
 		return xml;
 		
@@ -185,6 +200,24 @@ public class AktController implements ErrorHandler {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		
+		return new ResponseEntity<List<Akt>>(retVal, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/byUser", method = RequestMethod.POST)
+	public ResponseEntity<List<Akt>> predloziKorisnikaAkti(@RequestBody Korisnik korisnik) throws IOException {
+		List<Akt> retVal = new ArrayList<>();
+		Map<String, String> pronadjeniAkti = new HashMap<>();
+		
+		pronadjeniAkti = XQueryAkt.searchAktsByUserEmail(Util.loadProperties(), korisnik.getEmail());
+		
+		for (String docID : pronadjeniAkti.keySet()) {
+			Akt akt = aktService.findAktDocId(docID);
+			
+			if (!akt.getPreambula().getStatus().getValue().equalsIgnoreCase("odbijen")) {
+				retVal.add(akt);
+			}
+		}
+
 		return new ResponseEntity<List<Akt>>(retVal, HttpStatus.OK);
 	}
 	
