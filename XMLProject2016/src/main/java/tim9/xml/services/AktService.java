@@ -66,43 +66,44 @@ public class AktService {
 	public void release() {
 		client.release();
 	}
-	
+
 	public List<Akt> findAll() {
 		List<Akt> akti = new ArrayList<>();
-		
+
 		QueryManager queryMgr = client.newQueryManager();
-		
+
 		StringQueryDefinition stringQry = queryMgr.newStringDefinition();
 		stringQry.setCollections("akti");
-		
+
 		SearchHandle searchHandle = queryMgr.search(stringQry, new SearchHandle());
 		for (MatchDocumentSummary docSum : searchHandle.getMatchResults()) {
 			Akt a = xmlManager.readAs(docSum.getUri(), Akt.class);
 			akti.add(a);
 		}
-		
+
 		return akti;
 	}
-	
-	public Akt save(Document akt, int id, Korisnik korisnik) throws TransformerFactoryConfigurationError, TransformerException, JAXBException, SAXException, IOException {
-		
+
+	public Akt save(Document akt, int id, Korisnik korisnik) throws TransformerFactoryConfigurationError,
+			TransformerException, JAXBException, SAXException, IOException {
+
 		String collId = "akti";
 		String docId = "akti/" + id;
-		
+
 		DocumentMetadataHandle metadata = new DocumentMetadataHandle();
 		metadata.getCollections().add(collId);
-		
+
 		Transformer transformer = TransformerFactory.newInstance().newTransformer();
 		Result output = new StreamResult(new File("gen/output.xml"));
 		Source input = new DOMSource(akt);
-		
+
 		transformer.transform(input, output);
 
 		InputStreamHandle handle = new InputStreamHandle(new FileInputStream("gen/output.xml"));
 		xmlManager.write(docId, metadata, handle);
-		
+
 		saveMD(Integer.toString(id));
-		
+
 		// Definiše se JAXB kontekst (putanja do paketa sa JAXB bean-ovima)
 		JAXBContext context = JAXBContext.newInstance("tim9.xml.model.akt");
 
@@ -112,12 +113,12 @@ public class AktService {
 
 		// Unmarshalling generiše objektni model na osnovu XML fajla
 		Akt newAkt = (Akt) unmarshaller.unmarshal(new File("./gen/output.xml"));
-		
+
 		return newAkt;
 	}
-	
+
 	private void saveMD(String id) throws SAXException, IOException, TransformerException {
-		
+
 		// Create a document manager to work with XML files.
 		GraphManager graphManager = client.newGraphManager();
 
@@ -127,7 +128,7 @@ public class AktService {
 		// Referencing XML file with RDF data in attributes
 		String xmlFilePath = "./gen/output.xml";
 
-		String rdfFilePath = "gen/rdf/akt1.rdf";
+		String rdfFilePath = "gen/rdf/akt.rdf";
 
 		// Automatic extraction of RDF triples from XML file
 		MetadataExtractor metadataExtractor = new MetadataExtractor();
@@ -139,7 +140,7 @@ public class AktService {
 		FileHandle rdfFileHandle = new FileHandle(new File(rdfFilePath)).withMimetype(RDFMimeTypes.RDFXML);
 
 		// Writing the named graph
-		System.out.println("[INFO] Tripleti su uspesno dodati u bazu. Id trupleta: " + "akti/metadata/" + id + ".");
+		System.out.println("[INFO] Tripleti su uspesno dodati u bazu. Id tripleta: " + "akti/metadata/" + id + ".");
 		graphManager.write("akti/metadata/" + id, rdfFileHandle);
 	}
 
@@ -154,7 +155,7 @@ public class AktService {
 
 		return akt;
 	}
-	
+
 	public Akt findAktDocId(String docId) {
 		Akt akt;
 		try {
@@ -164,6 +165,14 @@ public class AktService {
 		}
 
 		return akt;
+	}
+
+	public void delete(String id) {
+		try {
+			xmlManager.delete(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

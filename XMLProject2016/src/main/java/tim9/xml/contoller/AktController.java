@@ -3,6 +3,7 @@ package tim9.xml.contoller;
 import static org.apache.xerces.jaxp.JAXPConstants.JAXP_SCHEMA_LANGUAGE;
 import static org.apache.xerces.jaxp.JAXPConstants.W3C_XML_SCHEMA;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
@@ -13,7 +14,9 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactoryConfigurationError;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -57,6 +60,10 @@ public class AktController implements ErrorHandler {
 		
 		// preuzmem string xml-a amandmana
 		String xml = xmlObjectDTO.getXml();
+		
+		if(xmlObjectDTO.getUser() == null){
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
 		
 		xml = addNamespaces(xml, xmlObjectDTO);
 		
@@ -219,6 +226,21 @@ public class AktController implements ErrorHandler {
 		}
 
 		return new ResponseEntity<List<Akt>>(retVal, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/povuci/{id}", method = RequestMethod.GET)
+	public ResponseEntity<Void> povuciAkt(@PathVariable String id) throws FileNotFoundException, IOException,
+			TransformerFactoryConfigurationError, ParserConfigurationException, TransformerException, SAXException {
+
+		String docId = "akti/" + id;
+		Akt akt = aktService.findAktDocId(docId);
+
+		if (akt == null)
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
+		aktService.delete(docId);
+
+		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 	
 	@Override

@@ -133,4 +133,12 @@ public class AmandmanService {
 		return amandman;
 	}
 
+	public void delete(String id) {
+		try {
+			xmlManager.delete(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 }
