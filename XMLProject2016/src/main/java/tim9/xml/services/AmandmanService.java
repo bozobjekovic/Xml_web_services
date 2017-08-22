@@ -122,4 +122,15 @@ public class AmandmanService {
 		return amandman;
 	}
 
+	public Amandman getAmandmanDocID(String docId) {
+		Amandman amandman;
+		try {
+			amandman = xmlManager.readAs(docId, Amandman.class);
+		} catch (Exception e) {
+			amandman = null;
+		}
+
+		return amandman;
+	}
+
 }

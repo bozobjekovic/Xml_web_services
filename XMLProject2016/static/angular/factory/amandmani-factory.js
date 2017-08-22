@@ -28,9 +28,20 @@
 					return null;
 				}
 			);
+		}
+		
+		retVal.amandmaniAkta = function() {
+			return Restangular.all('amandman/uProceduri').getList().then(
+				function(data) {
+					return data;
+				},
+				function(err) {
+					return null;
+				}
+			);
 		}		
 		
 		return retVal;
-	}
+	}	
 
 })(angular);

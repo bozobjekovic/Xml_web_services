@@ -18,6 +18,7 @@
             <xs:attribute default="http://www.tim9.com/akt/rdf/predikati/" name="vocab"
                 type="xs:string"/>
             <xs:attribute name="about" type="xs:string"/>
+            <xs:attribute name="korisnikURL" type="xs:string"/>
         </xs:complexType>
     </xs:element>
     <xs:element name="Deo">

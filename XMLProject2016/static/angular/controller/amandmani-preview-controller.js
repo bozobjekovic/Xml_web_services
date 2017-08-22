@@ -19,7 +19,7 @@
 						alert("Greska prilikom generisanja HTML-a!");
 					}
 					else{
-						vm.html = $sce.trustAsHtml(data);;
+						vm.html = $sce.trustAsHtml(data);
 					}
 			});
 		}

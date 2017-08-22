@@ -3,13 +3,17 @@ package tim9.xml.contoller;
 import static org.apache.xerces.jaxp.JAXPConstants.JAXP_SCHEMA_LANGUAGE;
 import static org.apache.xerces.jaxp.JAXPConstants.W3C_XML_SCHEMA;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,10 +32,15 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
+import tim9.xml.DTO.AmandmaniAktaDTO;
 import tim9.xml.DTO.XmlObjectDTO;
+import tim9.xml.model.akt.Akt;
 import tim9.xml.model.amandman.Amandman;
+import tim9.xml.services.AktService;
 import tim9.xml.services.AmandmanService;
 import tim9.xml.transformation.TransformationAmandman;
+import tim9.xml.util.Util;
+import tim9.xml.xquery.XQueryAmandman;
 
 @Controller
 @RequestMapping(value="xmlWS/amandman")
@@ -39,6 +48,9 @@ public class AmandmanController implements ErrorHandler {
 
 	@Autowired
 	AmandmanService amandmanService;
+	
+	@Autowired
+	AktService aktService;
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Amandman> saveAmandman(@RequestBody XmlObjectDTO xmlObjectDTO) {
@@ -76,7 +88,8 @@ public class AmandmanController implements ErrorHandler {
 			/* Dodavanje nedostajucih elemenata i atributa */
 			Element amandmanElement = doc.getDocumentElement();
 			amandmanElement.setAttribute("id", id + "");
-			// ####################### ABOUT
+			amandmanElement.setAttribute("about", "http://www.tim9.com/amandman/" + id);
+			amandmanElement.setAttribute("aktURL", "akti/" + xmlObjectDTO.getAktId());
 			
 			/* META PODACI */
 			/* Detektuju eventualne greske */
@@ -130,6 +143,56 @@ public class AmandmanController implements ErrorHandler {
 		List<Amandman> retVal = amandmanService.findAll();
 		
 		return new ResponseEntity<List<Amandman>>(retVal, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/amandmaniAkta/{id}", method = RequestMethod.GET)
+	public ResponseEntity<List<Amandman>> amandmaniAkta(@PathVariable String id)
+			throws FileNotFoundException, IOException, TransformerConfigurationException, ParserConfigurationException,
+			SAXException {
+
+		ArrayList<String> amandmani = new ArrayList<>();
+
+		amandmani = XQueryAmandman.amandmaniAkta(Util.loadProperties(), id);
+
+		if (amandmani == null)
+			return new ResponseEntity<>(HttpStatus.OK);
+
+		List<Amandman> retVal = new ArrayList<>();
+
+		for (String docId : amandmani) {
+			Amandman amandman = amandmanService.getAmandmanDocID(docId);
+			String idAmandmana = amandman.getAktURL() + "/" + amandman.getId();
+			idAmandmana = idAmandmana.replace("akti", "amandmani");
+			//String amandmanXML = amandmanService.getAmandmanXMLDocId(idAmandmana);
+			//amandman.setTekst(XPathAmandman.generisiTekst(amandmanXML));
+			retVal.add(amandman);
+		}
+
+		return new ResponseEntity<List<Amandman>>(retVal, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/uProceduri", method = RequestMethod.GET)
+	public ResponseEntity<List<AmandmaniAktaDTO>> amandmaniUProceduri() throws TransformerConfigurationException, ParserConfigurationException, SAXException, IOException {
+		List<AmandmaniAktaDTO> amandmaniAktaDTO = new ArrayList<>();
+		
+		List<Akt> akti = aktService.findAll();
+		for (Akt akt : akti) {
+			ArrayList<String> amandmani = new ArrayList<>();
+			amandmani = XQueryAmandman.amandmaniAkta(Util.loadProperties(), akt.getId());
+			
+			List<Amandman> amandmaniAkta = new ArrayList<>();
+			for (String docId : amandmani) {
+				Amandman amandman = amandmanService.getAmandmanDocID(docId);
+				amandmaniAkta.add(amandman);
+			}
+			AmandmaniAktaDTO amdAktaDTO = new AmandmaniAktaDTO();
+			amdAktaDTO.setAkt(akt);
+			amdAktaDTO.setAmandmani(amandmaniAkta);
+			
+			amandmaniAktaDTO.add(amdAktaDTO);
+		}
+		
+		return new ResponseEntity<List<AmandmaniAktaDTO>>(amandmaniAktaDTO, HttpStatus.OK);
 	}
 	
 	@Override

@@ -5,10 +5,7 @@
 
 			<!--Zakazivanje sedince-->
 			<div class="col-sm-3">
-				<br>
-				<h3>
-					<b>Zakazivanje sednice</b>
-				</h3>
+				<h2 class="animate fadeIn text-center">Zakazivanje sednice</h2>
 				<br>
 
 				<h3>
@@ -31,18 +28,30 @@
 			</div>
 
 			<!--Spisak-->
-			<div class="col-sm-9">
-				<h2 class="animate fadeIn text-center">Spisak</h2>
-				<div class="table-responsive">
-					<table class="table">
+			<div class="col-sm-9" ng-controller="AmandmaniAktaController as dokCtrl">
+				<h2 class="animate fadeIn text-center">Spisak akata i amandmana</h2>
+				<div class="table-responsive" style="margin: 5%">
+					<table class="table" ng-repeat="dok in dokCtrl.dokumenti">
+						<thead>
+							<tr>
+								<th>Broj</th>
+								<th>Naslov</th>
+								<th>Oblast/Pravni osnov</th>
+								<th>Datum</th>
+							</tr>
+						</thead>
 						<tbody>
-							<tr ng-repeat="akt in aktiCtrl.akti">
+							<tr>
 								<td>{{ $index + 1 }}</td>
-								<td>{{ akt.naslov }}</td>
-								<td>{{ akt.preambula.oblast.value }}</td>
-								<td>{{ akt.preambula.datumObjave.value }}</td>
-								<td><img border="0" src="../images/pdfIcon.png" ng-click="aktiCtrl.downloadPDF(akt.id)"> <img
-									border="0" src="../images/xhtmlIcon.png"></td>
+								<td>{{ dok.akt.naslov }}</td>
+								<td>{{ dok.akt.preambula.oblast.value }}</td>
+								<td>{{ dok.akt.preambula.datumObjave.value }}</td>
+							</tr>
+							<tr ng-repeat="amd in dok.amandmani" bgcolor="#f1f1f1">
+								<td>Amandman {{ $index + 1 }}</td>
+								<td>{{ amd.naslov }}</td>
+								<td>{{ amd.pravniOsnov }}</td>
+								<td>{{ amd.preambula.datumObjave.value }}</td>
 							</tr>
 						</tbody>
 					</table>
