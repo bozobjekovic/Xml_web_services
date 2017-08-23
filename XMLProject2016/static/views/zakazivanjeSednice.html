@@ -12,18 +12,21 @@
 					Unesite datum
 				</h3>
 
-				<input type="date" name="datum" value="2017-09-09" style="margin-top:10px; width:100%">
+				<input type="date" name="datum" value="2017-09-09" style="margin-top:10px; width:100%"
+				 ng-model="zakazivanjeCtrl.datum">
 
 				<br><br>
 
 				<h3>
 					Unesite vreme
 				</h3>
-				<input type="time" name="vreme" value="08:00" style="margin-top:10px; width:100%">
+				<input type="time" name="vreme" value="08:00" style="margin-top:10px; width:100%"
+				 ng-model="zakazivanjeCtrl.vreme">
 
 				<br><br><br>
 
-				<input type="submit" class="btn btn-success" style= "width:100%" value="Potvrdi">
+				<input type="submit" class="btn btn-success" style= "width:100%" value="Potvrdi"
+				 ng-click="zakazivanjeCtrl.zakazivanje()">
 
 			</div>
 

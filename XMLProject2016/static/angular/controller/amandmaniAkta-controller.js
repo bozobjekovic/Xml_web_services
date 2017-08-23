@@ -16,7 +16,6 @@
 			AmandmaniFactory.amandmaniAkta().then(
 				function(data) {
 					vm.dokumenti = data;
-					console.log(data);
 				});
 			}
 		vm.prikaziDokumente();

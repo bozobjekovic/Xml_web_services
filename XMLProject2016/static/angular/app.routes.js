@@ -48,9 +48,13 @@
 		}).when('/dodajAmandman', {
 			templateUrl : 'views/dodajAmandman.html'
 		}).when('/zakazivanje', {
-			templateUrl : 'views/zakazivanjeSednice.html'
+			templateUrl : 'views/zakazivanjeSednice.html',
+			controller  : 'ZakazivanjeController',
+			controllerAs: 'zakazivanjeCtrl'
 		}).when('/odrzavanje', {
-			templateUrl : 'views/odrzavanjeSednice.html'
+			templateUrl : 'views/odrzavanjeSednice.html',
+			controller  : 'ZakazivanjeController',
+			controllerAs: 'zakazivanjeCtrl'
 		}).when('/glasanje', {
 			templateUrl : 'views/glasanjeSednice.html'
 		}).when('/rezultati', {

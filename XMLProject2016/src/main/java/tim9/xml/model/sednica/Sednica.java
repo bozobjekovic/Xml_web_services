@@ -75,7 +75,7 @@ public class Sednica {
     protected List<Object> aktOrAmandman;
     @XmlAttribute(name = "Id")
     @XmlSchemaType(name = "anySimpleType")
-    protected String id;
+    protected Integer id;
 
     /**
      * Gets the value of the datum property.
@@ -179,7 +179,7 @@ public class Sednica {
      *     {@link String }
      *     
      */
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -191,8 +191,15 @@ public class Sednica {
      *     {@link String }
      *     
      */
-    public void setId(String value) {
+    public void setId(Integer value) {
         this.id = value;
     }
+
+	@Override
+	public String toString() {
+		return "Sednica [datum=" + datum + ", status=" + status + ", brojPrisutnih=" + brojPrisutnih
+				+ ", aktOrAmandman=" + aktOrAmandman + ", id=" + id + "]";
+	}
+    
 
 }
