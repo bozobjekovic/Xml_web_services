@@ -227,17 +227,17 @@ public class AmandmanController implements ErrorHandler {
 	}
 
 	@RequestMapping(value = "/povuciAmandmaneAkta/{id}", method = RequestMethod.GET)
-	public ResponseEntity<Void> povuciAmandmaneAkta(@PathVariable String id)
+	public ResponseEntity<List<String>> povuciAmandmaneAkta(@PathVariable String id)
 			throws TransformerConfigurationException, ParserConfigurationException, SAXException, IOException {
 
-		ArrayList<String> amandmani = new ArrayList<>();
+		List<String> amandmani = new ArrayList<>();
 		amandmani = XQueryAmandman.amandmaniAkta(Util.loadProperties(), id);
 		
 		for (String docId : amandmani) {
 			amandmanService.delete(docId);
 		}
 
-		return new ResponseEntity<>(HttpStatus.OK);
+		return new ResponseEntity<>(amandmani, HttpStatus.OK);
 	}
 
 	@Override

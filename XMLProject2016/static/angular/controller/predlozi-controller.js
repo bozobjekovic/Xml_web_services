@@ -58,11 +58,13 @@
 		
 		vm.povuciAmandmaneAkta = function(id) {
 			PredloziFactory.povuciAmandmaneAkta(id).then(function(data) {
-				for (var i = 0; i < vm.predloziAmd.length; i++) {
-					var obj = vm.predloziAmd[i];
-					if (obj.id === id) {
-						console.log("OVDE");
-						vm.predloziAmd.splice(i, 1);
+				for (var i = 0; i < data.length; i++) {
+					for (var j = 0; j < vm.predloziAmd.length; j++) {
+						var obj = 'amandmani/' + vm.predloziAmd[j].id;
+						if (obj == data[i]) {
+							vm.predloziAmd.splice(j, 1);
+							console.log(j)
+						}
 					}
 				}
 			});
@@ -70,7 +72,6 @@
 		
 		vm.povuciAmandman = function(id) {
 			PredloziFactory.povuciAmandman(id).then(function(data) {
-				//ISPRAVITI ! 
 				for (var i = 0; i < vm.predloziAmd.length; i++) {
 					var obj = vm.predloziAmd[i];
 					if (obj.id === id) {
