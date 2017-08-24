@@ -41,6 +41,17 @@
 			);
 		}
 		
+		retVal.search = function(filter) {
+			return Restangular.one('akt/pretraga').customPOST(filter).then(
+					function (data) {
+						return data;	
+					},
+					function(err) {
+						return null;
+					}
+				);
+		}
+		
 		
 		return retVal;
 

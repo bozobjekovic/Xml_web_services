@@ -15,23 +15,23 @@
 						data-target="#collapse0" style="cursor: pointer">
 						<h4 class="panel-title">Status</h4>
 					</div>
-					<div id="collapse0" class="panel-collapse collapse">
+					<div id="collapse0" class="panel-collapse collapse in">
 						<div class="panel-body">
 							<form>
 								<div class="radio">
-									<label><input type="radio" name="optradio" value="">Svi</label>
+									<label><input type="radio" name="optradio" value="Svi" ng-model="aktiCtrl.filter.status">Svi</label>
 								</div>
 								<div class="radio">
 									<label><input type="radio" name="optradio"
-										value="U proceduri">U proceduri</label>
+										value="U proceduri" ng-model="aktiCtrl.filter.status">U proceduri</label>
 								</div>
 								<div class="radio">
 									<label><input type="radio" name="optradio"
-										value="U celosti">U celosti</label>
+										value="U celosti" ng-model="aktiCtrl.filter.status">U celosti</label>
 								</div>
 								<div class="radio">
 									<label><input type="radio" name="optradio"
-										value="U nacelu">U načelu</label>
+										value="U nacelu" ng-model="aktiCtrl.filter.status">U načelu</label>
 								</div>
 							</form>
 						</div>
@@ -43,31 +43,31 @@
 						data-target="#collapse1" style="cursor: pointer">
 						<h4 class="panel-title">Oblast</h4>
 					</div>
-					<div id="collapse1" class="panel-collapse collapse">
+					<div id="collapse1" class="panel-collapse collapse in">
 						<div class="panel-body">
 							<form>
 								<div class="radio">
-									<label><input type="radio" name="optradio" value="">Sve</label>
+									<label><input type="radio" name="optradio" value="Sve" ng-model="aktiCtrl.filter.oblast">Sve</label>
 								</div>
 								<div class="radio">
 									<label><input type="radio" name="optradio"
-										value="Zdravstvo">Zdravstvo</label>
+										value="Zdravstvo" ng-model="aktiCtrl.filter.oblast">Zdravstvo</label>
 								</div>
 								<div class="radio">
 									<label><input type="radio" name="optradio"
-										value="Å kolstvo">Školstvo</label>
+										value="Å kolstvo" ng-model="aktiCtrl.filter.oblast">Školstvo</label>
 								</div>
 								<div class="radio">
 									<label><input type="radio" name="optradio"
-										value="Vojska">Vojska</label>
+										value="Vojska" ng-model="aktiCtrl.filter.oblast">Vojska</label>
 								</div>
 								<div class="radio">
 									<label><input type="radio" name="optradio"
-										value="Policija">Policija</label>
+										value="Policija" ng-model="aktiCtrl.filter.oblast">Policija</label>
 								</div>
 								<div class="radio">
 									<label><input type="radio" name="optradio"
-										value="Pravosudje">Pravosuđe</label>
+										value="Pravosudje" ng-model="aktiCtrl.filter.oblast">Pravosuđe</label>
 								</div>
 							</form>
 						</div>
@@ -83,35 +83,11 @@
 						<div class="panel-body">
 							<div class="form-group">
 								<label for="minDatumObjave">Početni datum:</label>
-								<div class="input-group">
-									<input type="text" class="form-control" readonly
-										uib-datepicker-popup='dd-MMMM-yyyy'
-										ng-model="aktiCtrl.minDatumObjave"
-										is-open="aktiCtrl.popup1.opened"
-										datepicker-options="aktiCtrl.dateOptions" close-text="Close" />
-									<span class="input-group-btn">
-										<button type="button" class="btn btn-default"
-											ng-click="aktiCtrl.open1()">
-											<i class="glyphicon glyphicon-calendar"></i>
-										</button>
-									</span>
-								</div>
+								<input type="date" ng-model="aktiCtrl.filter.minDatumPredaje">
 							</div>
 							<div class="form-group">
 								<label for="maxDatumObjave">Krajnji datum:</label>
-								<div class="input-group">
-									<input type="text" class="form-control" readonly
-										uib-datepicker-popup='dd-MMMM-yyyy'
-										ng-model="aktiCtrl.maxDatumObjave"
-										is-open="aktiCtrl.popup2.opened"
-										datepicker-options="aktiCtrl.dateOptions" close-text="Close" />
-									<span class="input-group-btn">
-										<button type="button" class="btn btn-default"
-											ng-click="aktiCtrl.open2()">
-											<i class="glyphicon glyphicon-calendar"></i>
-										</button>
-									</span>
-								</div>
+								<input type="date" ng-model="aktiCtrl.filter.maxDatumPredaje">
 							</div>
 						</div>
 					</div>
@@ -126,83 +102,11 @@
 						<div class="panel-body">
 							<div class="form-group">
 								<label for="minDatumPredaje">Početni datum:</label>
-								<div class="input-group">
-									<input type="text" class="form-control" readonly
-										uib-datepicker-popup='dd-MMMM-yyyy'
-										ng-model="aktiCtrl.minDatumPredaje"
-										is-open="aktiCtrl.popup3.opened"
-										datepicker-options="aktiCtrl.dateOptions" close-text="Close" />
-									<span class="input-group-btn">
-										<button type="button" class="btn btn-default"
-											ng-click="aktiCtrl.open3()">
-											<i class="glyphicon glyphicon-calendar"></i>
-										</button>
-									</span>
-								</div>
+								<input type="date" ng-model="aktiCtrl.filter.minDatumObjave">
 							</div>
 							<div class="form-group">
 								<label for="maxDatumPredaje">Krajnji datum:</label>
-								<div class="input-group">
-									<input type="text" class="form-control" readonly
-										uib-datepicker-popup='dd-MMMM-yyyy'
-										ng-model="aktiCtrl.maxDatumPredaje"
-										is-open="aktiCtrl.popup4.opened"
-										datepicker-options="aktiCtrl.dateOptions" close-text="Close" />
-									<span class="input-group-btn">
-										<button type="button" class="btn btn-default"
-											ng-click="aktiCtrl.open4()">
-											<i class="glyphicon glyphicon-calendar"></i>
-										</button>
-									</span>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="panel panel-default">
-					<div class="panel-heading" data-toggle="collapse"
-						data-target="#collapse4" style="cursor: pointer">
-						<h4 class="panel-title">Broj glasova za</h4>
-					</div>
-					<div id="collapse4" class="panel-collapse collapse">
-						<div class="panel-body">
-							<div class="form-group">
-								<label for="minZa">Minimalan broj glasova:</label>
-								<div class="input-group">
-									<input type="number" class="form-control" id="minZa" min="0">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="maxZa">Maksimalan broj glasova:</label>
-								<div class="input-group">
-									<input type="number" class="form-control" id="maxZa" min="0">
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="panel panel-default">
-					<div class="panel-heading" data-toggle="collapse"
-						data-target="#collapse5" style="cursor: pointer">
-						<h4 class="panel-title">Broj glasova protiv</h4>
-					</div>
-					<div id="collapse5" class="panel-collapse collapse">
-						<div class="panel-body">
-							<div class="form-group">
-								<label for="minProtiv">Minimalan broj glasova:</label>
-								<div class="input-group">
-									<input type="number" class="form-control" id="minProtiv"
-										min="0">
-								</div>
-							</div>
-							<div class="form-group">
-								<label for="maxProtiv">Maksimalan broj glasova:</label>
-								<div class="input-group">
-									<input type="number" class="form-control" id="maxProtiv"
-										min="0">
-								</div>
+								<input type="date" ng-model="aktiCtrl.filter.maxDatumObjave">
 							</div>
 						</div>
 					</div>
@@ -211,7 +115,7 @@
 				<div class="panel panel-default" style="cursor: pointer" ng-click="">
 					<div class="panel-heading" style="background-color: green">
 						<h4 class="panel-title" style="text-align: center">
-							<b> Pretraži </b>
+							<a href="" ng-click="aktiCtrl.search()"><b> Pretraži </b></a>
 						</h4>
 					</div>
 				</div>
@@ -240,6 +144,7 @@
 								<th>Broj</th>
 								<th>Naziv</th>
 								<th>Oblast</th>
+								<th>Status</th>
 								<th>Datum</th>
 								<th>Pregledaj</th>
 								<th>Preuzmi</th>
@@ -250,7 +155,8 @@
 								<td>{{ $index + 1 }}</td>
 								<td>{{ akt.naslov }}</td>
 								<td>{{ akt.preambula.oblast.value }}</td>
-								<td>{{ akt.preambula.datumObjave.value }}</td>
+								<td>{{ akt.preambula.status.value }}</td>
+								<td>{{ akt.preambula.datumObjave.value | date : 'dd.MM.yyyy' }}</td>
 								<td style="text-align:center"><a href="" ng-click="aktiCtrl.previewHTML(akt.id)"><img border="0" src="../images/xhtmlIcon.png"></a></td>
 								<td style="text-align:center"><a href="" ng-click="aktiCtrl.downloadPDF(akt.id)"><img border="0" src="../images/pdfIcon.png"></a></td>
 							</tr>

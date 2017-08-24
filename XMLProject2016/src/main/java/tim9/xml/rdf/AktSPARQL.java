@@ -36,20 +36,51 @@ public class AktSPARQL {
 
 		SPARQLQueryManager sparqlQueryManager = client.newSPARQLQueryManager();
 
-		String sparqlQuery = "PREFIX xs:     <http://www.w3.org/2001/XMLSchema#>\n"
-							 + "SELECT * "
-							 + "WHERE { ";
+		String sparqlQuery = "PREFIX xs:     <http://www.w3.org/2001/XMLSchema#>\n" + "SELECT * " + "WHERE { ";
 
 		// STATUS
-		if (searchDTO.getStatus().trim().equals(""))
+		if (searchDTO.getStatus().trim().equals("Svi"))
 			sparqlQuery += "?akt <http://www.tim9.com/akt/rdf/predikati/status> ?status .\n";
 		else
 			sparqlQuery += "?akt <http://www.tim9.com/akt/rdf/predikati/status> " + "\"" + searchDTO.getStatus()
 					+ "\" .\n";
+
+		// OBLAST
+		if (searchDTO.getOblast().trim().equals("Sve"))
+			sparqlQuery += "?akt <http://www.tim9.com/akt/rdf/predikati/oblast> ?oblast .\n";
+		else
+			sparqlQuery += "?akt <http://www.tim9.com/akt/rdf/predikati/oblast> " + "\"" + searchDTO.getOblast()
+					+ "\" .\n";
 		
-		sparqlQuery += " }";
+		sparqlQuery += "?akt <http://www.tim9.com/akt/rdf/predikati/datumPredaje> ?datumPredaje .\n" ;
 		
-		System.out.println(sparqlQuery);
+		sparqlQuery += "?akt <http://www.tim9.com/akt/rdf/predikati/datumObjave> ?datumObjave .\n" ;
+		
+
+		String minDatumPredaje = searchDTO.getMinDatumPredaje();
+		String maxDatumPredaje = searchDTO.getMaxDatumPredaje();
+		String minDatumObjave = searchDTO.getMinDatumObjave();
+		String maxDatumObjave = searchDTO.getMaxDatumObjave();
+		 //uslovi
+/*		sparqlQuery += "FILTER ( ";
+				
+		if (minDatumPredaje != null && !minDatumPredaje.equals("")) {
+			sparqlQuery += "?datumPredaje >= \"" + minDatumPredaje + "\"^^xs:date \n";
+		}
+		
+		if (maxDatumPredaje != null && !maxDatumPredaje.equals("")) {
+			sparqlQuery += " &&\n ?datumPredaje <= \"" + maxDatumPredaje + "\"^^xs:date \n";
+		}
+
+		if (minDatumObjave != null && !minDatumObjave.equals("")) {
+			sparqlQuery += " &&\n ?datumObjave >= \"" + minDatumObjave + "\"^^xs:date \n";
+		}
+		
+		if (maxDatumObjave != null && !maxDatumObjave.equals("")) {
+			sparqlQuery += " &&\n ?datumObjave <= \"" + maxDatumObjave + "\"^^xs:date \n";
+		}	*/
+
+		sparqlQuery += " \n }";
 
 		SPARQLQueryDefinition query = sparqlQueryManager.newQueryDefinition(sparqlQuery);
 

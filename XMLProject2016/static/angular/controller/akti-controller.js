@@ -12,6 +12,14 @@
 		var vm = this;
 		
 		vm.html = "";
+		vm.filter = {
+			status : "Svi",
+			oblast : "Sve",
+			minDatumPredaje : "",
+			maxDatumPredaje : "",
+			minDatumObjave : "",
+			maxDatumObjave : "",
+		}
 		
 		vm.getAll = function() {
 			AktiFactory.getAll().then(
@@ -44,6 +52,16 @@
 		
 		vm.previewHTML = function(id) {
 			$location.path('/preview/' + id);
+		}
+		
+		vm.search = function() {
+			AktiFactory.search(vm.filter).then(
+					function(data) {
+						if(data != null){
+							vm.akti = data;
+						}
+					}
+				);
 		}
 
 	}
