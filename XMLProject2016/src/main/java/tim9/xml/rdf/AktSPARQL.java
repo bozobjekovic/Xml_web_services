@@ -61,26 +61,54 @@ public class AktSPARQL {
 		String maxDatumPredaje = searchDTO.getMaxDatumPredaje();
 		String minDatumObjave = searchDTO.getMinDatumObjave();
 		String maxDatumObjave = searchDTO.getMaxDatumObjave();
-		 //uslovi
-/*		sparqlQuery += "FILTER ( ";
+		
+//		/if(!minDatumPredaje.equals("") || !maxDatumPredaje.equals("") || !minDatumObjave.equals("") || !maxDatumObjave.equals("")){
+//		sparqlQuery += "FILTER ( ";
+		boolean changed = false;
 				
 		if (minDatumPredaje != null && !minDatumPredaje.equals("")) {
-			sparqlQuery += "?datumPredaje >= \"" + minDatumPredaje + "\"^^xs:date \n";
+			changed = true;
+			sparqlQuery += "FILTER ( ?datumPredaje >= \"" + minDatumPredaje + "\"^^xs:date \n";
 		}
 		
 		if (maxDatumPredaje != null && !maxDatumPredaje.equals("")) {
-			sparqlQuery += " &&\n ?datumPredaje <= \"" + maxDatumPredaje + "\"^^xs:date \n";
+			if(changed){
+				sparqlQuery += " &&\n ?datumPredaje <= \"" + maxDatumPredaje + "\"^^xs:date \n";
+			}
+			else{
+				changed = true;
+				sparqlQuery += "FILTER ( ?datumPredaje <= \"" + maxDatumPredaje + "\"^^xs:date \n";
+			}
 		}
 
 		if (minDatumObjave != null && !minDatumObjave.equals("")) {
-			sparqlQuery += " &&\n ?datumObjave >= \"" + minDatumObjave + "\"^^xs:date \n";
+			if(changed){
+				sparqlQuery += " &&\n ?datumObjave >= \"" + minDatumObjave + "\"^^xs:date \n";
+			}
+			else{
+				changed = true;
+				sparqlQuery += "FILTER ( ?datumObjave >= \"" + minDatumObjave + "\"^^xs:date \n";
+			}
 		}
 		
 		if (maxDatumObjave != null && !maxDatumObjave.equals("")) {
-			sparqlQuery += " &&\n ?datumObjave <= \"" + maxDatumObjave + "\"^^xs:date \n";
-		}	*/
-
-		sparqlQuery += " \n }";
+			if(changed){
+				sparqlQuery += " &&\n ?datumObjave <= \"" + maxDatumObjave + "\"^^xs:date \n";
+			}
+			else{
+				changed = true;
+				sparqlQuery += "FILTER ( ?datumObjave <= \"" + maxDatumObjave + "\"^^xs:date \n";
+			}
+		}
+		
+		if(changed){
+			sparqlQuery += " ) \n }";
+		}
+		else{
+			sparqlQuery += " \n }";
+		}
+		
+		System.out.println(sparqlQuery);
 
 		SPARQLQueryDefinition query = sparqlQueryManager.newQueryDefinition(sparqlQuery);
 
