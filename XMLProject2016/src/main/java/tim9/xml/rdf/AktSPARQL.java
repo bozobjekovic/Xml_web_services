@@ -61,17 +61,17 @@ public class AktSPARQL {
 		String maxDatumPredaje = searchDTO.getMaxDatumPredaje();
 		String minDatumObjave = searchDTO.getMinDatumObjave();
 		String maxDatumObjave = searchDTO.getMaxDatumObjave();
-		
-//		/if(!minDatumPredaje.equals("") || !maxDatumPredaje.equals("") || !minDatumObjave.equals("") || !maxDatumObjave.equals("")){
-//		sparqlQuery += "FILTER ( ";
+
 		boolean changed = false;
 				
 		if (minDatumPredaje != null && !minDatumPredaje.equals("")) {
 			changed = true;
+			minDatumPredaje = minDatumPredaje.substring(0, 10);
 			sparqlQuery += "FILTER ( ?datumPredaje >= \"" + minDatumPredaje + "\"^^xs:date \n";
 		}
 		
 		if (maxDatumPredaje != null && !maxDatumPredaje.equals("")) {
+			maxDatumPredaje = maxDatumPredaje.substring(0, 10);
 			if(changed){
 				sparqlQuery += " &&\n ?datumPredaje <= \"" + maxDatumPredaje + "\"^^xs:date \n";
 			}
@@ -82,6 +82,7 @@ public class AktSPARQL {
 		}
 
 		if (minDatumObjave != null && !minDatumObjave.equals("")) {
+			minDatumObjave = minDatumObjave.substring(0, 10);
 			if(changed){
 				sparqlQuery += " &&\n ?datumObjave >= \"" + minDatumObjave + "\"^^xs:date \n";
 			}
@@ -92,6 +93,7 @@ public class AktSPARQL {
 		}
 		
 		if (maxDatumObjave != null && !maxDatumObjave.equals("")) {
+			maxDatumObjave = maxDatumObjave.substring(0, 10);
 			if(changed){
 				sparqlQuery += " &&\n ?datumObjave <= \"" + maxDatumObjave + "\"^^xs:date \n";
 			}
@@ -108,8 +110,6 @@ public class AktSPARQL {
 			sparqlQuery += " \n }";
 		}
 		
-		System.out.println(sparqlQuery);
-
 		SPARQLQueryDefinition query = sparqlQueryManager.newQueryDefinition(sparqlQuery);
 
 		// Initialize DOM results handle
