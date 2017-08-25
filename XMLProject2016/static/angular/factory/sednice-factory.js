@@ -27,8 +27,14 @@
 			);
 		}
 		
+		retVal.prekiniSednicu = function(id) {
+			return Restangular.one('sednica/prekiniSednicu/', id).get().then(
+				function(data) {
+					return data;
+				}
+			);
+		}
+		
 		return retVal;
-
 	}
-
 })(angular);

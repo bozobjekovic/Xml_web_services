@@ -53,8 +53,8 @@
 			controllerAs: 'zakazivanjeCtrl'
 		}).when('/odrzavanje', {
 			templateUrl : 'views/odrzavanjeSednice.html',
-			controller  : 'ZakazivanjeController',
-			controllerAs: 'zakazivanjeCtrl'
+			controller  : 'OdrzavanjeController',
+			controllerAs: 'odrzavanjeCtrl'
 		}).when('/glasanje', {
 			templateUrl : 'views/glasanjeSednice.html'
 		}).when('/rezultati', {

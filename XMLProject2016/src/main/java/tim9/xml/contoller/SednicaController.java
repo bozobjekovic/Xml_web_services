@@ -6,7 +6,6 @@ import static org.apache.xerces.jaxp.JAXPConstants.W3C_XML_SCHEMA;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -25,6 +24,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -70,7 +70,7 @@ public class SednicaController implements ErrorHandler {
 
 			// generisanje ID-a
 			int id = ThreadLocalRandom.current().nextInt(1, 1000 + 1);
-			sednica.setId(id);
+			sednica.setId(id+"");
 
 			// Formatiranje datuma za upis u xml i u objekat
 			GregorianCalendar c = new GregorianCalendar();
@@ -81,6 +81,7 @@ public class SednicaController implements ErrorHandler {
 			sednica.setStatus(sednicaDTO.getStatus());
 
 			Element sednicaElement = doc.createElement("sednica:Sednica");
+			sednicaElement.setAttribute("Id", sednica.getId());
 			sednicaElement.setAttribute("xmlns:akt", "http://www.tim9.com/akt");
 			sednicaElement.setAttribute("xmlns:sednica", "http://www.tim9.com/sednica");
 			sednicaElement.setAttribute("xmlns:amandman", "http://www.tim9.com/amandman");
@@ -133,13 +134,25 @@ public class SednicaController implements ErrorHandler {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		
 		for (Sednica s : sednice) {
-			Date datum = s.getDatum().toGregorianCalendar().getTime();
-			if (datum.after(new Date()))
+			if (s.getStatus().equals("Zakazana"))
 				zakazanaSednica = s;
 		}
+		
 		return new ResponseEntity<Sednica>(zakazanaSednica, HttpStatus.OK);
 	}
 
+	@RequestMapping(value = "/prekiniSednicu/{id}", method = RequestMethod.GET)
+	public ResponseEntity<Sednica> prekiniSednicu(@PathVariable String id) {
+		Sednica sednica = sednicaService.nadjiSednicu(id);
+		
+		try {
+			sednicaService.azurirajStatusSednice(sednica); // xquery za update
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return new ResponseEntity<Sednica>(sednica, HttpStatus.OK);
+	}
+	
 	@Override
 	public void error(SAXParseException arg0) throws SAXException {
 		// TODO Auto-generated method stub

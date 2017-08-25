@@ -9,22 +9,23 @@
 			<img src="../images/skupstina.jpg" alt="Sednica..."
 				 style="margin-left: 5%; margin-top: 5%; width:45%; height:40%; float: left">
 
-			<!-- SEDNICA JE ZAKAZANA ZA... -->
-			<h3 style="margin-top: 15%; margin-right: 5%; width: 35%; float: right">
-				<b>
-					Sednica je u zakazana za
-				</b>
-			</h3>
-
-			<!-- SEDNICA U TOKU
-			<h3 style="margin-top: 15%; margin-right: 5%; width: 35%; float: right">
-				<b>Sednica je u toku...</b>
-			</h3>
-
-			<input type="button" class="btn btn-danger"
-				style="margin-top: 3%; margin-right: 5%; width: 35%; float: right"
-				value="Prekini sednicu">
-			-->
+			<div ng-if="odrzavanjeCtrl.sednicaUToku == true">
+				<h3 style="margin-top: 15%; margin-right: 5%; width: 35%; float: right">
+					<b>Sednica je u toku...</b>
+				</h3>
+	
+				<input type="button" class="btn btn-danger"
+					style="margin-top: 3%; margin-right: 5%; width: 35%; float: right"
+					value="Prekini sednicu"
+					ng-click="odrzavanjeCtrl.prekiniSednicu()">
+			</div>
+			<div ng-if="odrzavanjeCtrl.sednicaUToku == false">
+				<h3 style="margin-top: 15%; margin-right: 5%; width: 35%; float: right">
+					<b>
+						Sednica je u zakazana za {{ odrzavanjeCtrl.sednica.datum | date: 'dd.MM.yyyy' }}.
+					</b>
+				</h3>
+			</div>
 		</div>
 	</div>
 </div>

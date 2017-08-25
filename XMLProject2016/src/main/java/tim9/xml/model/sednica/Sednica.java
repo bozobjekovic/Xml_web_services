@@ -75,7 +75,7 @@ public class Sednica {
     protected List<Object> aktOrAmandman;
     @XmlAttribute(name = "Id")
     @XmlSchemaType(name = "anySimpleType")
-    protected Integer id;
+    protected String id;
 
     /**
      * Gets the value of the datum property.
@@ -179,7 +179,7 @@ public class Sednica {
      *     {@link String }
      *     
      */
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
@@ -191,7 +191,7 @@ public class Sednica {
      *     {@link String }
      *     
      */
-    public void setId(Integer value) {
+    public void setId(String value) {
         this.id = value;
     }
 

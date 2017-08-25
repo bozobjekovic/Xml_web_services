@@ -24,6 +24,7 @@ import org.xml.sax.SAXException;
 import com.marklogic.client.DatabaseClient;
 import com.marklogic.client.DatabaseClientFactory;
 import com.marklogic.client.document.XMLDocumentManager;
+import com.marklogic.client.eval.ServerEvaluationCall;
 import com.marklogic.client.io.DocumentMetadataHandle;
 import com.marklogic.client.io.InputStreamHandle;
 import com.marklogic.client.io.JAXBHandle;
@@ -59,7 +60,7 @@ public class SednicaService {
 		client.release();
 	}
 
-	public void save(Document sednica, int id) throws JAXBException, TransformerFactoryConfigurationError,
+	public void save(Document sednica, String id) throws JAXBException, TransformerFactoryConfigurationError,
 			TransformerException, SAXException, IOException {
 		String collId = "sednice";
 		String docId = "sednice/" + id;
@@ -91,8 +92,37 @@ public class SednicaService {
 			Sednica s = xmlManager.readAs(docSum.getUri(), Sednica.class);
 			sednice.add(s);
 		}
-		
 		return sednice;
 	}
+
+	public Sednica nadjiSednicu(String id) {
+		String docId = "sednice/" + id;
+		Sednica sednica;
+		try {
+			sednica = xmlManager.readAs(docId, Sednica.class);
+		} catch (Exception e) {
+			sednica = null;
+		}
+		return sednica;
+	}
 	
+	public void azurirajStatusSednice(Sednica sednica) throws IOException {
+		String docId = "sednice/" + sednica.getId();
+		sednica.setStatus("Zavrsena");
+		
+		// Initialize XQuery invoker object
+		ServerEvaluationCall invoker = client.newServerEval();
+
+		// Read the file contents into a string object
+		String query = "xquery version \"1.0-ml\";"
+				+ " declare namespace sednica = \"http://www.tim9.com/sednica\";" + " xdmp:node-replace(doc(\""
+				+ docId + "\")//sednica:Sednica/sednica:Status," + " <sednica:Status>"
+				+ sednica.getStatus() + "</sednica:Status>);";
+
+		// Invoke the query
+		invoker.xquery(query);
+
+		// Interpret the results
+		invoker.eval();
+	}
 }
