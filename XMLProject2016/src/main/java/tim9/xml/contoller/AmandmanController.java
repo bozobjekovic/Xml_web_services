@@ -6,7 +6,10 @@ import static org.apache.xerces.jaxp.JAXPConstants.W3C_XML_SCHEMA;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.StringReader;
+import java.nio.charset.Charset;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -33,11 +36,16 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import tim9.xml.DTO.AmandmaniAktaDTO;
+import tim9.xml.DTO.MetadataAmdDTO;
 import tim9.xml.DTO.XmlObjectDTO;
 import tim9.xml.model.akt.Akt;
 import tim9.xml.model.amandman.Amandman;
+import tim9.xml.model.amandman.Preambula;
 import tim9.xml.model.korisnik.Korisnik;
+import tim9.xml.rdf.AmandmanMetadata;
 import tim9.xml.services.AktService;
 import tim9.xml.services.AmandmanService;
 import tim9.xml.transformation.TransformationAmandman;
@@ -59,13 +67,8 @@ public class AmandmanController implements ErrorHandler {
 
 		/* Preuzmem string xml-a amandmana */
 		String xml = xmlObjectDTO.getXml();
-
-		String putanjaDoSeme = System.getProperty("user.dir") + "/data/amandman_schema.xsd";
-		putanjaDoSeme = putanjaDoSeme.replace("\\", "/");
-
-		xml = xml.replace("xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"",
-				"xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"  xsi:schemaLocation=\"http://www.tim9.com/amandman file:/"
-						+ putanjaDoSeme + "\" ");
+		
+		xml = addNamespaces(xml, xmlObjectDTO);
 
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		dbFactory.setValidating(true);
@@ -123,6 +126,23 @@ public class AmandmanController implements ErrorHandler {
 		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	}
 
+	private String addNamespaces(String xml, XmlObjectDTO xmlObjectDTO) {
+		
+		xml = xml.replaceAll("property=\"", "property=\"pred:");
+
+		String putanjaDoSeme = System.getProperty("user.dir") + "/data/amandman_schema.xsd";
+		putanjaDoSeme = putanjaDoSeme.replace("\\", "/");
+
+		xml = xml.replace("xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"",
+				"xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"  xsi:schemaLocation=\"http://www.tim9.com/amandman file:/"
+						+ putanjaDoSeme + "\" ");
+		
+		xml = xml.replace("xmlns:amd=\"http://www.tim9.com/amandman\"", "xmlns:amd=\"http://www.tim9.com/amandman\" xmlns=\"http://www.w3.org/ns/rdfa#\" "
+				+ "xmlns:pred=\"http://www.tim9.com/amandman/rdf/predikati/\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema#\"");
+		
+		return xml;
+	}
+
 	@RequestMapping(value = "/html/{id}", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
 	public ResponseEntity<String> getHTML(@PathVariable String id) {
 		String amandmanXML = amandmanService.getOne(id);
@@ -146,6 +166,56 @@ public class AmandmanController implements ErrorHandler {
 		List<Amandman> retVal = amandmanService.findAll();
 
 		return new ResponseEntity<List<Amandman>>(retVal, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/json/{id}", method = RequestMethod.GET)
+	public ResponseEntity<byte[]> getJSON(@PathVariable String id) throws IOException {
+		
+		Amandman amandman = amandmanService.getAmandmanDocID("amandmani/" + id);
+		
+		if(amandman == null){
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		
+		Preambula preambula = amandman.getPreambula();
+		
+		MetadataAmdDTO metadataAmdDTO = new MetadataAmdDTO();
+		
+		metadataAmdDTO.setBrojGlasovaProtiv(preambula.getBrojGlasovaProtiv().getValue());
+		metadataAmdDTO.setBrojGlasovaUzdrzano(preambula.getBrojGlasovaUzdrzano().getValue());
+		metadataAmdDTO.setBrojGlasovaZa(preambula.getBrojGlasovaZa().getValue());
+		metadataAmdDTO.setStatus(preambula.getStatus().getValue());
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+
+		Calendar datumObjave = preambula.getDatumObjave().getValue().toGregorianCalendar();
+		metadataAmdDTO.setDatumObjave(formatter.format(datumObjave.getTime()));
+
+		Calendar datumPredaje = preambula.getDatumPredaje().getValue().toGregorianCalendar();
+		metadataAmdDTO.setDatumPredaje(formatter.format(datumPredaje.getTime()));
+		
+		ObjectMapper mapper = new ObjectMapper();
+		
+		String jsonString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(metadataAmdDTO);
+
+		byte[] jsonFile = jsonString.getBytes(Charset.forName("UTF-8"));
+
+		return new ResponseEntity<byte[]>(jsonFile, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/rdf/{id}", method = RequestMethod.GET)
+	public ResponseEntity<byte[]> getRDF(@PathVariable String id) throws IOException {
+		
+		Amandman amandman = amandmanService.getAmandmanDocID("amandmani/" + id);
+
+		if (amandman == null)
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
+		String rdfString = AmandmanMetadata.getMetaData(Util.loadProperties(), id);
+		
+		byte[] rdf = rdfString.getBytes(Charset.forName("UTF-8"));
+		
+		return new ResponseEntity<byte[]>(rdf, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/amandmaniAkta/{id}", method = RequestMethod.GET)

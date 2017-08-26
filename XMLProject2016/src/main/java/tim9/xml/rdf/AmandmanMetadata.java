@@ -12,7 +12,7 @@ import com.marklogic.client.semantics.RDFMimeTypes;
 
 import tim9.xml.util.Util.ConnectionProperties;
 
-public class AmandmanMetapodaci {
+public class AmandmanMetadata {
 	private static DatabaseClient client;
 
 	public static String getMetaData(ConnectionProperties props, String id) throws IOException {
@@ -28,7 +28,7 @@ public class AmandmanMetapodaci {
 					props.authType);
 		}
 
-		String graphName = "amandmani/metadata/" + id;  //PROVERITI
+		String graphName = "amandmani/metadata/" + id;
 
 		GraphManager graphManager = client.newGraphManager();
 		graphManager.setDefaultMimetype(RDFMimeTypes.NTRIPLES);

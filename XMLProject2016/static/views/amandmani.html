@@ -12,7 +12,11 @@
 							<th>Broj</th>
 							<th>Naslov</th>
 							<th>Pravni osnov</th>
+							<th>Datum</th>
 							<th>Pregledaj</th>
+							<th>JSON</th>
+							<th>RDF</th>
+							
 						</tr>
 					</thead>
 					<tbody ng-repeat="amandman in amandmaniCtrl.amandmani">
@@ -20,9 +24,20 @@
 							<td>{{ $index + 1 }}</td>
 							<td>{{ amandman.naslov }}</td>
 							<td>{{ amandman.pravniOsnov }}</td>
+							<td>{{ amandman.preambula.datumObjave.value | date : 'dd.MM.yyyy' }}</td>
 							<td>
 								<a href="" ng-click="amandmaniCtrl.previewHTML(amandman.id)">
 									<img border="0" src="../images/xhtmlIcon.png">
+								</a>
+							</td>
+							<td>
+								<a href="" ng-click="amandmaniCtrl.downloadJSON(amandman.id)">
+									<img border="0" src="../images/json-file.png">
+								</a>
+							</td>
+							<td>
+								<a href="" ng-click="amandmaniCtrl.downloadRDF(amandman.id)">
+									<img border="0" src="../images/RDF.png">
 								</a>
 							</td>
 						</tr>

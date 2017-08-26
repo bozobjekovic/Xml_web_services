@@ -1,0 +1,20 @@
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:h="http://www.w3.org/1999/xhtml">
+  <rdf:Description rdf:about="http://www.tim9.com/amandman/633">
+    <pred:status xmlns:pred="http://www.tim9.com/amandman/rdf/predikati/" rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Status0</pred:status>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.tim9.com/amandman/633">
+    <pred:datumPredaje xmlns:pred="http://www.tim9.com/amandman/rdf/predikati/" rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2006-05-04</pred:datumPredaje>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.tim9.com/amandman/633">
+    <pred:datumObjave xmlns:pred="http://www.tim9.com/amandman/rdf/predikati/" rdf:datatype="http://www.w3.org/2001/XMLSchema#date">2006-05-04</pred:datumObjave>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.tim9.com/amandman/633">
+    <pred:za xmlns:pred="http://www.tim9.com/amandman/rdf/predikati/" rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</pred:za>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.tim9.com/amandman/633">
+    <pred:protiv xmlns:pred="http://www.tim9.com/amandman/rdf/predikati/" rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</pred:protiv>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.tim9.com/amandman/633">
+    <pred:uzdrzano xmlns:pred="http://www.tim9.com/amandman/rdf/predikati/" rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</pred:uzdrzano>
+  </rdf:Description>
+</rdf:RDF>
