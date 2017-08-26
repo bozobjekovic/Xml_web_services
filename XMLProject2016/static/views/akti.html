@@ -112,10 +112,13 @@
 					</div>
 				</div>
 
-				<button type="button" ng-click="aktiCtrl.search()" class="panel panel-default" value="Pretraži" style="cursor: pointer">
+				<div ng-click="aktiCtrl.search()" class="panel panel-default" style="cursor: pointer">
 					<div class="panel-heading" style="background-color: green">
+						<h4 class="panel-title" style="text-align: center;">
+							<b>Pretraži</b>
+						</h4>
 					</div>
-				</button>
+				</div>
 
 			</div>
 
@@ -124,9 +127,9 @@
 
 				<form class="navbar-form" role="search">
 					<div class="input-group">
-						<input type="text" class="form-control" placeholder="Pretraži">
+						<input type="text" class="form-control" ng-model="aktiCtrl.searchText" placeholder="Pretraži">
 						<div class="input-group-btn">
-							<button class="btn btn-default" type="submit">
+							<button class="btn btn-default" type="submit" ng-click="aktiCtrl.searchByText()">
 								<i class="glyphicon glyphicon-search"></i>
 							</button>
 						</div>

@@ -149,7 +149,6 @@ public class AktController implements ErrorHandler {
 		
 	}
 	
-
 	@RequestMapping(value = "/pdf/{id}", method = RequestMethod.GET)
 	public ResponseEntity<byte[]> getAktForPDF(@PathVariable String id) {
 		String aktXML = aktService.getOne(id);
@@ -194,7 +193,32 @@ public class AktController implements ErrorHandler {
 		return new ResponseEntity<List<Akt>>(retVal, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/pretraga", method = RequestMethod.POST)
+	@RequestMapping(value = "/pretraga/{criteria}", method = RequestMethod.GET)
+	public ResponseEntity<List<Akt>> searchByText(@PathVariable String criteria) {
+		List<Akt> retVal = new ArrayList<>();
+		Map<String, String> pronadjeniAkti = null;
+		
+		try {
+			pronadjeniAkti = XQueryAkt.searchAktsByText(Util.loadProperties(), criteria);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
+		if (pronadjeniAkti == null)
+			return new ResponseEntity<>(HttpStatus.OK);
+		
+		for (String docId : pronadjeniAkti.keySet()) {
+			Akt akt = aktService.findAktDocId(docId);
+			
+			if (!akt.getPreambula().getStatus().getValue().equalsIgnoreCase("odbijen")) {
+				retVal.add(akt);
+			}
+		}
+		
+		return new ResponseEntity<List<Akt>>(retVal, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/filter", method = RequestMethod.POST)
 	public ResponseEntity<List<Akt>> searchByMetaData(@RequestBody SearchDTO searchDTO) {
 		List<Akt> retVal = null;
 		
@@ -209,8 +233,6 @@ public class AktController implements ErrorHandler {
 		}
 		
 		retVal.removeAll(Collections.singleton(null));
-		
-		System.out.println(retVal);
 		
 		return new ResponseEntity<List<Akt>>(retVal, HttpStatus.OK);
 	}

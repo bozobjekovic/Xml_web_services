@@ -94,7 +94,83 @@ public class XQueryAkt {
 			}
 		}
 		
+		client.release();
+		
 		return retVal;
 	}
 
+	public static Map<String, String> searchAktsByText(ConnectionProperties props, String criteria) {
+		Map<String, String> retVal = new HashMap<String, String>();
+		
+		// Initialize the database client
+		if (props.database.equals("")) {
+			System.out.println("[INFO] Using default database.");
+			client = DatabaseClientFactory.newClient(props.host, props.port, props.user, props.password,
+					props.authType);
+		} else {
+			System.out.println("[INFO] Using \"" + props.database + "\" database.");
+			client = DatabaseClientFactory.newClient(props.host, props.port, props.database, props.user, props.password,
+					props.authType);
+		}
+		
+		// Initialize query manager
+		QueryManager queryManager = client.newQueryManager();
+
+		// Query definition is used to specify Google-style query string
+		StringQueryDefinition queryDefinition = queryManager.newStringDefinition();
+
+		queryDefinition.setCriteria(criteria);
+		
+		// Search within a specific collection
+		queryDefinition.setCollections(COLLECTION);
+
+		// Perform search
+		SearchHandle results = queryManager.search(queryDefinition, new SearchHandle());
+
+		// Serialize search results to the standard output
+		MatchDocumentSummary matches[] = results.getMatchResults();
+		// System.out.println("[INFO] Showing the results for: " + criteria +
+		// "\n");
+
+		MatchDocumentSummary result;
+		MatchLocation locations[];
+		String text;
+
+		String pronadjeno = "";
+		String dokument = "";
+
+		for (int i = 0; i < matches.length; i++) {
+			result = matches[i];
+			
+			locations = result.getMatchLocations();
+		
+			for (MatchLocation location : locations) {
+				for (MatchSnippet snippet : location.getSnippets()) {
+					text = snippet.getText().trim();
+					if (!text.equals("")) {
+						pronadjeno += snippet.isHighlighted() ? text.toUpperCase() : text;
+						pronadjeno += " ";
+					}
+				}
+				String xQueryPath = location.getPath();
+				dokument = xQueryPath.split("\\*")[0];
+				dokument = dokument.replace("fn:doc(", "");
+				dokument = dokument.replace("\"", "");
+				dokument = dokument.replace(")", "");
+				dokument = dokument.substring(0, dokument.length() - 1);
+
+				if (retVal.containsKey(dokument)) {
+					String p = retVal.get(dokument);
+					p += pronadjeno;
+					retVal.replace(dokument, p);
+				} else {
+					retVal.put(dokument, pronadjeno);
+				}
+			}
+		}
+		
+		client.release();
+		
+		return retVal;
+	}
 }

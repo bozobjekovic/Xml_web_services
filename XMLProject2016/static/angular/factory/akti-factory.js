@@ -42,7 +42,7 @@
 		}
 		
 		retVal.search = function(filter) {
-			return Restangular.one('akt/pretraga').customPOST(filter).then(
+			return Restangular.one('akt/filter').customPOST(filter).then(
 					function (data) {
 						return data;	
 					},
@@ -50,6 +50,17 @@
 						return null;
 					}
 				);
+		}
+		
+		retVal.searchByText = function(criteria) {
+			return Restangular.one('akt/pretraga/', criteria).getList().then(
+				function(data) {
+					return data;
+				},
+				function(err) {
+					return null;
+				}
+			);
 		}
 		
 		

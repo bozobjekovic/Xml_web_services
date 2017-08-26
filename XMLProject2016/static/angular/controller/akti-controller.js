@@ -63,6 +63,16 @@
 					}
 				);
 		}
+		
+		vm.searchByText = function() {
+			AktiFactory.searchByText(vm.searchText).then(
+				function(data) {
+					if (data != null) {
+						vm.akti = data;
+					}
+				}
+			);
+		}
 
 	}
 
