@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?><akt:Akt xmlns:akt="http://www.tim9.com/akt" xmlns="http://www.w3.org/ns/rdfa#" xmlns:pred="http://www.tim9.com/akt/rdf/predikati/" xmlns:xs="http://www.w3.org/2001/XMLSchema#" xmlns:korisnik="http://www.tim9.com/korisnik" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" about="http://www.tim9.com/akt/809" id="809" naslov="naslov0" vocab="http://www.tim9.com/akt/rdf/predikati/" xsi:schemaLocation="http://www.tim9.com/akt file:/C:/Users/bbozo/Documents/Faculty/XML/Xml_web_services/XMLProject2016/data/akt_schema.xsd">
+<?xml version="1.0" encoding="UTF-8"?><akt:Akt xmlns:akt="http://www.tim9.com/akt" xmlns="http://www.w3.org/ns/rdfa#" xmlns:pred="http://www.tim9.com/akt/rdf/predikati/" xmlns:xs="http://www.w3.org/2001/XMLSchema#" xmlns:korisnik="http://www.tim9.com/korisnik" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" about="http://www.tim9.com/akt/884" id="884" naslov="Moja mala pereca" vocab="http://www.tim9.com/akt/rdf/predikati/" xsi:schemaLocation="http://www.tim9.com/akt file:/C:/Users/bbozo/Documents/Faculty/XML/Xml_web_services/XMLProject2016/data/akt_schema.xsd">
 	<akt:Preambula>
 		<akt:PravniOsnov>PravniOsnov0</akt:PravniOsnov>
 		<akt:NazivOrgana>NazivOrgana0</akt:NazivOrgana>
-		<akt:Oblast datatype="xs:string" property="pred:oblast">Oblast0</akt:Oblast>
-		<akt:Status datatype="xs:string" property="pred:status">U proceduri</akt:Status>
+		<akt:Oblast datatype="xs:string" property="pred:oblast">Vojska</akt:Oblast>
+		<akt:Status datatype="xs:string" property="pred:status">U celosti</akt:Status>
 		<akt:DatumPredaje datatype="xs:date" property="pred:datumPredaje">2006-05-04</akt:DatumPredaje>
-		<akt:DatumObjave datatype="xs:date" property="pred:datumObjave">DatumObjave0</akt:DatumObjave>
+		<akt:DatumObjave datatype="xs:date" property="pred:datumObjave">2006-05-04</akt:DatumObjave>
 		<akt:BrojGlasovaZa datatype="xs:date" property="pred:za">0</akt:BrojGlasovaZa>
 		<akt:BrojGlasovaProtiv datatype="xs:date" property="pred:protiv">0</akt:BrojGlasovaProtiv>
 		<akt:BrojGlasovaUzdrzano datatype="xs:date" property="pred:uzdrzano">0</akt:BrojGlasovaUzdrzano>

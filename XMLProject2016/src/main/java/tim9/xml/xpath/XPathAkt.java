@@ -1,7 +1,7 @@
 package tim9.xml.xpath;
 
-import java.io.File;
 import java.io.OutputStream;
+import java.io.StringReader;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,6 +24,7 @@ import javax.xml.xpath.XPathFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
@@ -34,6 +35,8 @@ public class XPathAkt {
 	private static TransformerFactory transformerFactory;
 	private static XPathFactory xPathFactory;
 	private static Map<String, String> namespaceMappings;
+	
+	private static String text;
 	
 	private Document document;
 	
@@ -66,15 +69,34 @@ public class XPathAkt {
 			NodeList nodeList = (NodeList) xPathExpression.evaluate(document, XPathConstants.NODESET);
 			Node node;
 			
+			boolean done = false;
+			
 			for (int i = 0; i < nodeList.getLength(); i++) {
+				if (done) {
+					break;
+				}
 			
 				node = nodeList.item(i);
 				
-				if (node.getNodeType() == Node.TEXT_NODE)
-					System.out.println(node.getNodeValue());
-				else
+				if (node.getNodeType() == Node.TEXT_NODE) {
+					String nodeValue = node.getNodeValue();
+					
+					if (nodeValue.trim().length() != 0) {
+						nodeValue.replace("\n", " ");
+						String[] words = nodeValue.split(" ");
+						
+						for (String word : words) {
+							if (text.length() + word.length() > 150) {
+								done = true;
+								break;
+							}
+							text += " " + word;
+						}
+					}
+				}
+				else {
 					transform(node, System.out);
-			
+				}
 			}
 			
 		} catch (XPathExpressionException e) {
@@ -116,7 +138,8 @@ public class XPathAkt {
 		try {
 			
 			DocumentBuilder builder = documentFactory.newDocumentBuilder();
-			document = builder.parse(new File(filePath)); 
+			InputSource is = new InputSource(new StringReader(filePath));
+			document = builder.parse(is); 
 
 			if (document != null)
 				System.out.println("[INFO] File parsed with no errors.");
@@ -142,6 +165,24 @@ public class XPathAkt {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static String generateText(String aktXML) {
+		text = "";
+		XPathAkt xpAkt = new XPathAkt();
+		
+		xpAkt.buildDocument(aktXML);
+		
+		String expression = "/akt:Akt/akt:Clan/descendant::*/text()";
+		xpAkt.evaluateXPath(expression);
+		
+		if (text.trim().equals("")) {
+			expression = "/akt:Akt/akt:Deo/descendant::*/text()";
+			xpAkt.evaluateXPath(expression);
+		}
+		
+		text += "...";
+		return text;
 	}
 	
 	/*public static void main(String[] args) {

@@ -35,6 +35,7 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
+import tim9.xml.DTO.AktDTO;
 import tim9.xml.DTO.SearchDTO;
 import tim9.xml.DTO.XmlObjectDTO;
 import tim9.xml.model.akt.Akt;
@@ -44,6 +45,7 @@ import tim9.xml.services.AktService;
 import tim9.xml.services.AmandmanService;
 import tim9.xml.transformation.TransformationAkt;
 import tim9.xml.util.Util;
+import tim9.xml.xpath.XPathAkt;
 import tim9.xml.xquery.XQueryAkt;
 
 @Controller
@@ -187,15 +189,26 @@ public class AktController implements ErrorHandler {
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<List<Akt>> getAll() {
-		List<Akt> retVal = aktService.findAll();
+	public ResponseEntity<List<AktDTO>> getAll() {
+		List<AktDTO> retVal = new ArrayList<>();
+		List<Akt> sviAkti = aktService.findAll();
 		
-		return new ResponseEntity<List<Akt>>(retVal, HttpStatus.OK);
+		if (sviAkti == null)
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		
+		for (Akt akt : sviAkti) {
+			String aktXML = aktService.getOne(akt.getId());
+			String text = XPathAkt.generateText(aktXML);
+			
+			retVal.add(new AktDTO(akt, text));
+		}
+		
+		return new ResponseEntity<List<AktDTO>>(retVal, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/pretraga/{criteria}", method = RequestMethod.GET)
-	public ResponseEntity<List<Akt>> searchByText(@PathVariable String criteria) {
-		List<Akt> retVal = new ArrayList<>();
+	public ResponseEntity<List<AktDTO>> searchByText(@PathVariable String criteria) {
+		List<AktDTO> retVal = new ArrayList<>();
 		Map<String, String> pronadjeniAkti = null;
 		
 		try {
@@ -211,30 +224,43 @@ public class AktController implements ErrorHandler {
 			Akt akt = aktService.findAktDocId(docId);
 			
 			if (!akt.getPreambula().getStatus().getValue().equalsIgnoreCase("odbijen")) {
-				retVal.add(akt);
+				String text = pronadjeniAkti.get(docId);
+				if (text.length() > 120) {
+					text = text.substring(0, 117);
+				}
+				AktDTO aktDTO = new AktDTO(akt, text);
+				retVal.add(aktDTO);
 			}
 		}
 		
-		return new ResponseEntity<List<Akt>>(retVal, HttpStatus.OK);
+		return new ResponseEntity<List<AktDTO>>(retVal, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/filter", method = RequestMethod.POST)
-	public ResponseEntity<List<Akt>> searchByMetaData(@RequestBody SearchDTO searchDTO) {
-		List<Akt> retVal = null;
+	public ResponseEntity<List<AktDTO>> searchByMetaData(@RequestBody SearchDTO searchDTO) {
+		List<AktDTO> retVal = new ArrayList<>();
+		List<Akt> nadjeniAkti = null;
 		
 		try {
-			retVal = AktSPARQL.searchMetaData(Util.loadProperties(), searchDTO);
+			nadjeniAkti = AktSPARQL.searchMetaData(Util.loadProperties(), searchDTO);
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
 		
-		if (retVal == null) {
+		if (nadjeniAkti == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 		
-		retVal.removeAll(Collections.singleton(null));
+		nadjeniAkti.removeAll(Collections.singleton(null));
 		
-		return new ResponseEntity<List<Akt>>(retVal, HttpStatus.OK);
+		for (Akt akt : nadjeniAkti) {
+			String aktXML = aktService.getOne(akt.getId());
+			String text = XPathAkt.generateText(aktXML);
+			
+			retVal.add(new AktDTO(akt, text));
+		}
+		
+		return new ResponseEntity<List<AktDTO>>(retVal, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/byUser", method = RequestMethod.POST)
