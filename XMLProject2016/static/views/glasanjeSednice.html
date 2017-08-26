@@ -4,11 +4,11 @@
 	<div class="container background-white">
 		<div class="row padding-vert-40">
 
-			<h2 class="animate fadeIn text-center">Održavanje sednice</h2><br>
+			<h2 class="animate fadeIn text-center">Glasanje</h2><br>
 
 			<form>
-				<div class="table-responsive">
-					<table class="table">
+				<div class="table-responsive" ng-controller="AmandmaniAktaController as dokCtrl">
+					<table class="table" ng-repeat="dok in dokCtrl.dokumenti">
 						<thead>
 							<tr>
 								<th>Broj</th>
@@ -22,7 +22,23 @@
 						<tbody>
 							<tr>
 								<td>{{ $index + 1 }}</td>
-								<td>{{ akt.naslov }}</td>
+								<td>{{ dok.akt.naslov }}</td>
+								<td>
+									<input type="number" min="0" max="250">
+								</td>
+								<td>
+									<input type="number" min="0" max="250">
+								</td>
+								<td>
+									<input type="number" min="0" max="250">
+								</td>
+								<td>
+									<input type="submit" class="btn btn-success" value="Potvrdi">
+								</td>
+							</tr>
+							<tr ng-repeat="amd in dok.amandmani" bgcolor="#f1f1f1">
+								<td>Amandman {{ $index + 1 }}</td>
+								<td>{{ amd.naslov }}</td>
 								<td>
 									<input type="number" min="0" max="250">
 								</td>

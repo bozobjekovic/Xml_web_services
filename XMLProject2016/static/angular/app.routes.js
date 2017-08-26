@@ -56,7 +56,9 @@
 			controller  : 'OdrzavanjeController',
 			controllerAs: 'odrzavanjeCtrl'
 		}).when('/glasanje', {
-			templateUrl : 'views/glasanjeSednice.html'
+			templateUrl : 'views/glasanjeSednice.html',
+			controller  : 'GlasanjeController',
+			controllerAs: 'glasanjeCtrl'
 		}).when('/rezultati', {
 			templateUrl : 'views/rezultatiSednice.html'
 		}).otherwise({

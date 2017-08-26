@@ -49,13 +49,13 @@
 								<td>{{ $index + 1 }}</td>
 								<td>{{ dok.akt.naslov }}</td>
 								<td>{{ dok.akt.preambula.oblast.value }}</td>
-								<td>{{ dok.akt.preambula.datumObjave.value }}</td>
+								<td>{{ dok.akt.preambula.datumObjave.value | date: 'dd.MM.yyyy' }}</td>
 							</tr>
 							<tr ng-repeat="amd in dok.amandmani" bgcolor="#f1f1f1">
 								<td>Amandman {{ $index + 1 }}</td>
 								<td>{{ amd.naslov }}</td>
 								<td>{{ amd.pravniOsnov }}</td>
-								<td>{{ amd.preambula.datumObjave.value }}</td>
+								<td>{{ amd.preambula.datumObjave.value | date: 'dd.MM.yyyy' }} }}</td>
 							</tr>
 						</tbody>
 					</table>

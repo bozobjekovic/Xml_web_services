@@ -24,7 +24,6 @@
 		
 		vm.prekiniSednicu = function(){
 			SedniceFactory.prekiniSednicu(vm.sednica.id).then(function(data){
-				console.log("ID " + vm.sednica.id)
 				$location.path('/glasanje');				
 			});
 		}
