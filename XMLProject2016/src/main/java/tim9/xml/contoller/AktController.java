@@ -6,7 +6,10 @@ import static org.apache.xerces.jaxp.JAXPConstants.W3C_XML_SCHEMA;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.StringReader;
+import java.nio.charset.Charset;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -35,11 +38,16 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import tim9.xml.DTO.AktDTO;
+import tim9.xml.DTO.MetadataAktDTO;
 import tim9.xml.DTO.SearchDTO;
 import tim9.xml.DTO.XmlObjectDTO;
 import tim9.xml.model.akt.Akt;
+import tim9.xml.model.akt.Preambula;
 import tim9.xml.model.korisnik.Korisnik;
+import tim9.xml.rdf.AktMetadata;
 import tim9.xml.rdf.AktSPARQL;
 import tim9.xml.services.AktService;
 import tim9.xml.services.AmandmanService;
@@ -186,6 +194,57 @@ public class AktController implements ErrorHandler {
 		}
 		
 		return new ResponseEntity<String>(html, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/json/{id}", method = RequestMethod.GET)
+	public ResponseEntity<byte[]> getJSON(@PathVariable String id) throws IOException {
+		
+		Akt akt = aktService.findAktDocId("akti/" + id);
+		
+		if(akt == null){
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		
+		Preambula preambula = akt.getPreambula();
+		
+		MetadataAktDTO metadataAktDTO = new MetadataAktDTO();
+		
+		metadataAktDTO.setBrojGlasovaProtiv(preambula.getBrojGlasovaProtiv().getValue());
+		metadataAktDTO.setBrojGlasovaUzdrzano(preambula.getBrojGlasovaUzdrzano().getValue());
+		metadataAktDTO.setBrojGlasovaZa(preambula.getBrojGlasovaZa().getValue());
+		metadataAktDTO.setStatus(preambula.getStatus().getValue());
+		metadataAktDTO.setOblast(preambula.getOblast().getValue());
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+
+		Calendar datumObjave = preambula.getDatumObjave().getValue().toGregorianCalendar();
+		metadataAktDTO.setDatumObjave(formatter.format(datumObjave.getTime()));
+
+		Calendar datumPredaje = preambula.getDatumPredaje().getValue().toGregorianCalendar();
+		metadataAktDTO.setDatumPredaje(formatter.format(datumPredaje.getTime()));
+		
+		ObjectMapper mapper = new ObjectMapper();
+		
+		String jsonString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(metadataAktDTO);
+
+		byte[] jsonFile = jsonString.getBytes(Charset.forName("UTF-8"));
+
+		return new ResponseEntity<byte[]>(jsonFile, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/rdf/{id}", method = RequestMethod.GET)
+	public ResponseEntity<byte[]> getRDF(@PathVariable String id) throws IOException {
+		
+		Akt akt = aktService.findAktDocId("akti/" + id);
+
+		if (akt == null)
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
+		String rdfString = AktMetadata.getMetaData(Util.loadProperties(), id);
+		
+		byte[] rdf = rdfString.getBytes(Charset.forName("UTF-8"));
+		
+		return new ResponseEntity<byte[]>(rdf, HttpStatus.OK);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)

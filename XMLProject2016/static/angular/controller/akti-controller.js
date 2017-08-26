@@ -50,6 +50,48 @@
 			);
 		}
 		
+		vm.downloadJSON = function (id) {
+			AktiFactory.downloadJSON(id)
+				.then(function(data) {
+					
+					if (data == null) {
+						alert("Greska prilikom preuzimanja JSON-a!");
+					}
+					
+					var fileName = "akt_" + id + ".json";
+						
+			        var a = document.createElement("a");
+			        document.body.appendChild(a);
+			        var file = new Blob([data], {type: 'application/json'});
+			        var fileURL = window.URL.createObjectURL(file);
+			        a.href = fileURL;
+			        a.download = fileName;
+			        a.click();
+		            
+				});
+		}
+		
+		vm.downloadRDF = function (id) {
+			AktiFactory.downloadRDF(id)
+				.then(function(data) {
+					
+					if (data == null) {
+						alert("Greska prilikom preuzimanja RDF-a!");
+					}
+					
+					var fileName = "akt_" + id + ".rdf";
+						
+			        var a = document.createElement("a");
+			        document.body.appendChild(a);
+			        var file = new Blob([data], {type: 'application/rdf+xml'});
+			        var fileURL = window.URL.createObjectURL(file);
+			        a.href = fileURL;
+			        a.download = fileName;
+			        a.click();
+		            
+				});
+		}
+		
 		vm.previewHTML = function(id) {
 			$location.path('/preview/' + id);
 		}

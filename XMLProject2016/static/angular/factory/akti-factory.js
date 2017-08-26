@@ -63,6 +63,28 @@
 			);
 		}
 		
+		retVal.downloadJSON = function(id) {
+			return Restangular.one('akt/json/', id).withHttpConfig({ responseType: 'arraybuffer' }).get().then(
+					function(data) {
+						return data;
+					},
+					function(err) {
+						return null;
+					}
+			);
+		}
+		
+		retVal.downloadRDF = function(id) {
+			return Restangular.one('akt/rdf/', id).withHttpConfig({ responseType: 'arraybuffer' }).get().then(
+					function(data) {
+						return data;
+					},
+					function(err) {
+						return null;
+					}
+			);
+		}
+		
 		
 		return retVal;
 

@@ -1,3 +1,5 @@
+<div id="content-top-border" class="container"></div>
+
 <div id="content">
 	<div class="container background-white">
 
@@ -149,11 +151,13 @@
 					<div style="width: 520px; word-wrap: break-word; display: inline-block; font-size: 12px; margin-bottom: 5px;">{{ aktObj.text }}</div>
 					<label style="float: right; text-align: right; width: 80px;">Status <br /><span style="font-weight: normal;">{{ aktObj.akt.preambula.status.value }}</span></label>
 					<hr style="border-top: 1px solid #ebebeb; height: 0px; width: 719px;">
-					<a href="" style="float: right;" ng-click="aktiCtrl.downloadPDF(aktObj.akt.id)"><img border="0" src="../images/RDF.png"></a>
-					<a href="" style="float: right; margin: 0 15px;" ng-click="aktiCtrl.downloadPDF(aktObj.akt.id)"><img border="0" src="../images/json-file.png"></a>
+					<a href="" style="float: right;" ng-click="aktiCtrl.downloadRDF(aktObj.akt.id)"><img border="0" src="../images/RDF.png"></a>
+					<a href="" style="float: right; margin: 0 15px;" ng-click="aktiCtrl.downloadJSON(aktObj.akt.id)"><img border="0" src="../images/json-file.png"></a>
 					<a href="" style="float: right;" ng-click="aktiCtrl.downloadPDF(aktObj.akt.id)"><img border="0" src="../images/pdfIcon.png"></a>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
+<div id="content-bottom-border" class="container"></div>
