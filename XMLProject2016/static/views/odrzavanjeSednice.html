@@ -22,7 +22,8 @@
 			<div ng-if="odrzavanjeCtrl.sednicaUToku == false">
 				<h3 style="margin-top: 15%; margin-right: 5%; width: 35%; float: right">
 					<b>
-						Sednica je u zakazana za {{ odrzavanjeCtrl.sednica.datum | date: 'dd.MM.yyyy' }}.
+						Sednica je u zakazana za {{ odrzavanjeCtrl.sednica.datum | date : 'dd.MM.yyyy' }}.
+						u {{ odrzavanjeCtrl.sednica.datum | date : 'H:mm' }} časova.
 					</b>
 				</h3>
 			</div>

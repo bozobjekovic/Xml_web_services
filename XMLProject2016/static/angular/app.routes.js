@@ -59,6 +59,10 @@
 			templateUrl : 'views/glasanjeSednice.html',
 			controller  : 'GlasanjeController',
 			controllerAs: 'glasanjeCtrl'
+		}).when('/uNacelu', {
+			templateUrl : 'views/uNaceluGlasanje.html',
+			controller  : 'GlasanjeController',
+			controllerAs: 'glasanjeCtrl'
 		}).when('/rezultati', {
 			templateUrl : 'views/rezultatiSednice.html'
 		}).otherwise({

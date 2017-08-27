@@ -10,17 +10,24 @@
 	function GlasanjeController($scope, $location, $sce, $routeParams, SedniceFactory) {
 		
 		var vm = this;
-		vm.akt = {};
-		vm.amandman = {};
-		vm.brojGlasovaZa = '';
-		vm.brojGlasovaProtiv = '';
-		vm.brojSuzdrzanih = '';
-
-		vm.glasanje = function() {
-			
+		vm.rezultati = {};
+		
+		vm.uNaceluGlasanje = function() {
+			$location.path('/glasanje');
 			/*SedniceFactory.glasanje(vm.akt).then(function(response){
-				$location.path('/rezultati');
+				$location.path('/glasanje');
 			});*/
+		}
+		
+		vm.glasanjeAmd = function(amandman) {
+			vm.rezultati.brojGlasovaZa = amandman.brojGlasovaZa;
+			vm.rezultati.brojGlasovaProtiv = amandman.brojGlasovaProtiv;
+			vm.rezultati.brojSuzdrzanih = amandman.brojSuzdrzanih;
+			
+			SedniceFactory.glasajAmandman(vm.rezultati).then(function(data){
+				console.log(data);
+				vm.rezultati.status = data;
+			});
 		}
 	}
 

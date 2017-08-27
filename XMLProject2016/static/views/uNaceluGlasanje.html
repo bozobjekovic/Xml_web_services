@@ -4,37 +4,10 @@
 	<div class="container background-white">
 		<div class="row padding-vert-40">
 
-			<!--Zakazivanje sedince-->
-			<div class="col-sm-3">
-				<h2 class="animate fadeIn text-center">Zakazivanje sednice</h2>
-				<br>
+			<h2 class="animate fadeIn text-center">Glasanje u načelu</h2><br>
 
-				<h3>
-					Unesite datum
-				</h3>
-
-				<input type="date" name="datum" style="margin-top:10px; width:100%"
-				 ng-model="zakazivanjeCtrl.datum">
-
-				<br><br>
-
-				<h3>
-					Unesite vreme
-				</h3>
-				<input type="time" name="vreme" value="08:00" style="margin-top:10px; width:100%"
-				 ng-model="zakazivanjeCtrl.vreme">
-
-				<br><br><br>
-
-				<input type="submit" class="btn btn-success" style= "width:100%" value="Potvrdi"
-				 ng-click="zakazivanjeCtrl.zakazivanje()">
-
-			</div>
-
-			<!--Spisak-->
-			<div class="col-sm-9" ng-controller="AmandmaniAktaController as dokCtrl">
-				<h2 class="animate fadeIn text-center">Spisak akata i amandmana</h2>
-				<div class="table-responsive" style="margin: 5%">
+			<form>
+				<div class="table-responsive" ng-controller="AmandmaniAktaController as dokCtrl">
 					<table class="table" ng-repeat="dok in dokCtrl.dokumenti">
 						<thead>
 							<tr>
@@ -42,6 +15,7 @@
 								<th>Naslov</th>
 								<th>Oblast/Pravni osnov</th>
 								<th>Datum</th>
+								<th>Prihvati/Odbij</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -50,6 +24,11 @@
 								<td>{{ dok.akt.naslov }}</td>
 								<td>{{ dok.akt.preambula.oblast.value }}</td>
 								<td>{{ dok.akt.preambula.datumObjave.value | date : 'dd.MM.yyyy' }}.</td>
+								<td>
+									<input type="submit" class="btn btn-success" value="Prihvati u načelu">
+									<input type="submit" class="btn btn-danger" value="Odbij"
+									ng-click="dokCtrl.odbijAkt(dok.akt.id)">
+								</td>
 							</tr>
 							<tr ng-repeat="amd in dok.amandmani" bgcolor="#f1f1f1">
 								<td>Amandman {{ $index + 1 }}</td>
@@ -60,7 +39,12 @@
 						</tbody>
 					</table>
 				</div>
-			</div>
+			</form>
+			
+			<button type="button" class="btn btn-default" style="float: right;"
+			ng-click="glasanjeCtrl.uNaceluGlasanje()">
+				Dalje >>
+			</button>
 			
 		</div>
 	</div>

@@ -23,9 +23,10 @@
 		vm.dobaviSednicu();
 		
 		vm.prekiniSednicu = function(){
-			SedniceFactory.prekiniSednicu(vm.sednica.id).then(function(data){
-				$location.path('/glasanje');				
-			});
+			$location.path('/uNacelu');
+			/*SedniceFactory.prekiniSednicu(vm.sednica.id).then(function(data){
+				$location.path('/uNacelu');				
+			});*/
 		}
 	}
 

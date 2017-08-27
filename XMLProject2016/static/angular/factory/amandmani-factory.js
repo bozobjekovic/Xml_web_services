@@ -43,23 +43,42 @@
 		
 		retVal.downloadJSON = function(id) {
 			return Restangular.one('amandman/json/', id).withHttpConfig({ responseType: 'arraybuffer' }).get().then(
-					function(data) {
-						return data;
-					},
-					function(err) {
-						return null;
-					}
+				function(data) {
+					return data;
+				},
+				function(err) {
+					return null;
+				}
 			);
 		}
 		
 		retVal.downloadRDF = function(id) {
 			return Restangular.one('amandman/rdf/', id).withHttpConfig({ responseType: 'arraybuffer' }).get().then(
-					function(data) {
-						return data;
-					},
-					function(err) {
-						return null;
-					}
+				function(data) {
+					return data;
+				},
+				function(err) {
+					return null;
+				}
+			);
+		}
+		
+		retVal.povuciAkt = function(id) {
+			return Restangular.one('akt/povuci', id).get().then(
+				function(data) {
+					return data;
+				}, 
+				function() {
+					return null;
+				}
+			);
+		}
+		
+		retVal.povuciAmandmaneAkta = function(id) {
+			return Restangular.one('amandman/povuciAmandmaneAkta', id).get().then(
+				function(data) {
+					return data;
+				}
 			);
 		}
 		

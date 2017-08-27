@@ -31,7 +31,7 @@
 			vm.sednica.brojPrisutnih = 0;
 			vm.sednica.status = 'Zakazana';
 			
-			SedniceFactory.zakazi(vm.sednica).then(function(response){
+			SedniceFactory.zakazi(vm.sednica).then(function(data){
 				$location.path('/odrzavanje');
 			});
 		}

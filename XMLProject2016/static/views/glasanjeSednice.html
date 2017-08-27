@@ -16,40 +16,51 @@
 								<th>Broj glasova za</th>
 								<th>Broj glasova protiv</th>
 								<th>Broj suzdržanih</th>
+								<th>Status</th>
 								<th> </th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
-								<td>{{ $index + 1 }}</td>
+								<td>Akt {{ $index + 1 }}</td>
 								<td>{{ dok.akt.naslov }}</td>
 								<td>
-									<input type="number" min="0" max="250">
+									<input type="number" min="0" max="250"
+									ng-disabled="dok.amandmani.length > 0">
 								</td>
 								<td>
-									<input type="number" min="0" max="250">
+									<input type="number" min="0" max="250"
+									ng-disabled="dok.amandmani.length > 0">
 								</td>
 								<td>
-									<input type="number" min="0" max="250">
+									<input type="number" min="0" max="250"
+									ng-disabled="dok.amandmani.length > 0">
 								</td>
+								<td>status</td>
 								<td>
-									<input type="submit" class="btn btn-success" value="Potvrdi">
+									<input type="submit" class="btn btn-success" value="Potvrdi"
+									ng-disabled="dok.amandmani.length > 0">
 								</td>
 							</tr>
 							<tr ng-repeat="amd in dok.amandmani" bgcolor="#f1f1f1">
 								<td>Amandman {{ $index + 1 }}</td>
 								<td>{{ amd.naslov }}</td>
 								<td>
-									<input type="number" min="0" max="250">
+									<input type="number" min="0" max="250"
+									ng-model="amd.brojGlasovaZa">
 								</td>
 								<td>
-									<input type="number" min="0" max="250">
+									<input type="number" min="0" max="250"
+									ng-model="amd.brojGlasovaProtiv">
 								</td>
 								<td>
-									<input type="number" min="0" max="250">
+									<input type="number" min="0" max="250"
+									ng-model="amd.brojSuzdrzanih">
 								</td>
+								<td>{{ glasanjeCtrl.rezultati.status }}</td>
 								<td>
-									<input type="submit" class="btn btn-success" value="Potvrdi">
+									<input type="submit" class="btn btn-success" value="Potvrdi"
+									ng-click="glasanjeCtrl.glasanjeAmd(amd)">
 								</td>
 							</tr>
 						</tbody>

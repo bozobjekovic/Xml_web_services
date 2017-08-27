@@ -35,6 +35,33 @@
 			);
 		}
 		
+		retVal.povuciAkt = function(id) {
+			return Restangular.one('akt/povuci', id).get().then(
+				function(data) {
+					return data;
+				}, 
+				function() {
+					return null;
+				}
+			);
+		}
+		
+		retVal.povuciAmandmaneAkta = function(id) {
+			return Restangular.one('amandman/povuciAmandmaneAkta', id).get().then(
+				function(data) {
+					return data;
+				}
+			);
+		}
+		
+		retVal.glasajAmandman = function(rezultati) {
+			return Restangular.one('sednica/glasajAmandman').customPOST(rezultati).then(
+				function(data) {
+					return data;
+				}
+			);
+		}
+		
 		return retVal;
 	}
 })(angular);
