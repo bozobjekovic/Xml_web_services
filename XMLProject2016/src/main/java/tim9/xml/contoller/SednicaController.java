@@ -36,7 +36,9 @@ import org.xml.sax.SAXParseException;
 
 import tim9.xml.DTO.RezultatiDTO;
 import tim9.xml.DTO.SednicaDTO;
+import tim9.xml.model.amandman.Amandman;
 import tim9.xml.model.sednica.Sednica;
+import tim9.xml.services.AmandmanService;
 import tim9.xml.services.SednicaService;
 
 @Controller
@@ -45,6 +47,9 @@ public class SednicaController implements ErrorHandler {
 
 	@Autowired
 	SednicaService sednicaService;
+	@Autowired
+	AmandmanService amandmanService;
+	
 	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd H:mm:ss");
 
 	@RequestMapping(value = "/zakaziSednicu", method = RequestMethod.POST)
@@ -127,33 +132,6 @@ public class SednicaController implements ErrorHandler {
 		return new ResponseEntity<Sednica>(sednica, HttpStatus.CREATED);
 	}
 
-	@RequestMapping(value = "/glasajAmandman", method = RequestMethod.POST)
-	public ResponseEntity<String> glasajAmandman(@RequestBody RezultatiDTO rezultatiDTO) throws SAXException, IOException {
-
-		int za = rezultatiDTO.getBrojGlasovaZa();
-		int protiv = rezultatiDTO.getBrojGlasovaProtiv();
-		int suzdrzano = rezultatiDTO.getBrojSuzdrzanih();
-
-		String usvojen = "Usvojen";
-		String odbijen = "Odbijen";
-		
-		if (za == 0 && protiv == 0 && suzdrzano == 0)
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		
-		if(za > protiv) {
-			// Usvaja se
-			return new ResponseEntity<String>(usvojen, HttpStatus.OK);
-		}
-		else if (za == protiv) {
-			// ?
-			return new ResponseEntity<String>("", HttpStatus.OK);
-		}
-		else {
-			// Odbija se
-			return new ResponseEntity<String>(odbijen, HttpStatus.OK);
-		}
-	}
-
 	@RequestMapping(value = "/zakazanaSednica", method = RequestMethod.GET)
 	public ResponseEntity<Sednica> zakazanaSednica() {
 		Sednica zakazanaSednica = null;
@@ -179,6 +157,32 @@ public class SednicaController implements ErrorHandler {
 			e.printStackTrace();
 		}
 		return new ResponseEntity<Sednica>(sednica, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/glasajAmandman", method = RequestMethod.POST)
+	public ResponseEntity<Amandman> glasajAmandman(@RequestBody RezultatiDTO rezultatiDTO) throws SAXException, IOException {
+
+		int za = rezultatiDTO.getBrojGlasovaZa();
+		int protiv = rezultatiDTO.getBrojGlasovaProtiv();
+		int suzdrzano = rezultatiDTO.getBrojSuzdrzanih();
+		String id = rezultatiDTO.getId();
+
+		Amandman amd = amandmanService.getAmandmanDocID("amandmani/" + id);
+		
+		if (za == 0 && protiv == 0 && suzdrzano == 0)
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		
+		if(za > protiv) {
+			amandmanService.azurirajStatusNaUsvojen(amd);				// Usvaja se
+			return new ResponseEntity<Amandman>(amd, HttpStatus.OK);
+		}
+		/*else if (za == protiv) {
+			return new ResponseEntity<Amandman>("", HttpStatus.OK);		// ?
+		}*/
+		else {
+			amandmanService.azurirajStatusNaOdbijen(amd);				// Odbija se
+			return new ResponseEntity<Amandman>(amd, HttpStatus.OK);
+		}
 	}
 	
 	@Override

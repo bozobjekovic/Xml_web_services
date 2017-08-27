@@ -23,10 +23,16 @@
 			vm.rezultati.brojGlasovaZa = amandman.brojGlasovaZa;
 			vm.rezultati.brojGlasovaProtiv = amandman.brojGlasovaProtiv;
 			vm.rezultati.brojSuzdrzanih = amandman.brojSuzdrzanih;
+			vm.rezultati.id = amandman.id;
 			
 			SedniceFactory.glasajAmandman(vm.rezultati).then(function(data){
-				console.log(data);
-				vm.rezultati.status = data;
+				document.getElementById(amandman.id + 'za').disabled = true;
+				document.getElementById(amandman.id + 'protiv').disabled = true;
+				document.getElementById(amandman.id + 'suzdrzano').disabled = true;
+				document.getElementById(amandman.id + 'dugme').disabled = true;
+				
+				// Provera da li je lista amandmana tog akta prazna, ako da -> postaje ableovan
+				amandman = data;
 			});
 		}
 	}

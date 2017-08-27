@@ -26,6 +26,7 @@ import org.xml.sax.SAXException;
 import com.marklogic.client.DatabaseClient;
 import com.marklogic.client.DatabaseClientFactory;
 import com.marklogic.client.document.XMLDocumentManager;
+import com.marklogic.client.eval.ServerEvaluationCall;
 import com.marklogic.client.io.DocumentMetadataHandle;
 import com.marklogic.client.io.FileHandle;
 import com.marklogic.client.io.InputStreamHandle;
@@ -167,6 +168,46 @@ public class AmandmanService {
 		return amandman;
 	}
 
+	public void azurirajStatusNaUsvojen(Amandman amandman) throws IOException {
+		String docId = "amandmani/" + amandman.getId();
+		amandman.getPreambula().getStatus().setValue("Usvojen");
+		
+		// Initialize XQuery invoker object
+		ServerEvaluationCall invoker = client.newServerEval();
+
+		// Read the file contents into a string object
+		String query = "xquery version \"1.0-ml\";"
+				+ " declare namespace amd = \"http://www.tim9.com/amandman\";" + " xdmp:node-replace(doc(\""
+				+ docId + "\")//amd:Amandman/amd:Preambula/amd:Status," + " <amd:Status>"
+				+ amandman.getPreambula().getStatus().getValue() + "</amd:Status>);";
+
+		// Invoke the query
+		invoker.xquery(query);
+
+		// Interpret the results
+		invoker.eval();
+	}
+
+	public void azurirajStatusNaOdbijen(Amandman amandman) throws IOException {
+		String docId = "amandmani/" + amandman.getId();
+		amandman.getPreambula().getStatus().setValue("Odbijen");
+		
+		// Initialize XQuery invoker object
+		ServerEvaluationCall invoker = client.newServerEval();
+
+		// Read the file contents into a string object
+		String query = "xquery version \"1.0-ml\";"
+				+ " declare namespace amd = \"http://www.tim9.com/amandman\";" + " xdmp:node-replace(doc(\""
+				+ docId + "\")//amd:Amandman/amd:Preambula/amd:Status," + " <amd:Status>"
+				+ amandman.getPreambula().getStatus().getValue() + "</amd:Status>);";
+
+		// Invoke the query
+		invoker.xquery(query);
+
+		// Interpret the results
+		invoker.eval();
+	}
+	
 	public void delete(String id) {
 		try {
 			xmlManager.delete(id);

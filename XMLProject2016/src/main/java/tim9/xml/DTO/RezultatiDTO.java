@@ -2,10 +2,17 @@ package tim9.xml.DTO;
 
 public class RezultatiDTO {
 
+	private String id;
 	private int brojGlasovaZa;
 	private int brojGlasovaProtiv;
 	private int brojSuzdrzanih;
 	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public int getBrojGlasovaZa() {
 		return brojGlasovaZa;
 	}
@@ -24,11 +31,10 @@ public class RezultatiDTO {
 	public void setBrojSuzdrzanih(int brojSuzdrzanih) {
 		this.brojSuzdrzanih = brojSuzdrzanih;
 	}
-	
 	@Override
 	public String toString() {
-		return "RezultatiDTO [brojGlasovaZa=" + brojGlasovaZa + ", brojGlasovaProtiv=" + brojGlasovaProtiv
-				+ ", brojSuzdrzanih=" + brojSuzdrzanih + "]";
+		return "RezultatiDTO [id=" + id + ", brojGlasovaZa=" + brojGlasovaZa + ", brojGlasovaProtiv="
+				+ brojGlasovaProtiv + ", brojSuzdrzanih=" + brojSuzdrzanih + "]";
 	}
 	
 }

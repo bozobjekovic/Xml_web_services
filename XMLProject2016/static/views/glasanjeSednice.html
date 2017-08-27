@@ -46,20 +46,20 @@
 								<td>Amandman {{ $index + 1 }}</td>
 								<td>{{ amd.naslov }}</td>
 								<td>
-									<input type="number" min="0" max="250"
+									<input type="number" min="0" max="250" id="{{ amd.id }}za"
 									ng-model="amd.brojGlasovaZa">
 								</td>
 								<td>
-									<input type="number" min="0" max="250"
+									<input type="number" min="0" max="250" id="{{ amd.id }}protiv"
 									ng-model="amd.brojGlasovaProtiv">
 								</td>
 								<td>
-									<input type="number" min="0" max="250"
+									<input type="number" min="0" max="250" id="{{ amd.id }}suzdrzano"
 									ng-model="amd.brojSuzdrzanih">
 								</td>
-								<td>{{ glasanjeCtrl.rezultati.status }}</td>
+								<td>{{ amd.preambula.status.value }}</td>
 								<td>
-									<input type="submit" class="btn btn-success" value="Potvrdi"
+									<input type="submit" class="btn btn-success" value="Potvrdi" id="{{ amd.id }}dugme"
 									ng-click="glasanjeCtrl.glasanjeAmd(amd)">
 								</td>
 							</tr>
