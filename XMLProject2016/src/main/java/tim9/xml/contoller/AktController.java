@@ -355,6 +355,28 @@ public class AktController implements ErrorHandler {
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 	
+	@RequestMapping(value = "/reference/{id}", method = RequestMethod.GET)
+	public ResponseEntity<List<Akt>> preuzmiReferenceNaAkt(@PathVariable String id) throws ParserConfigurationException, SAXException, IOException{
+		
+		HashMap<String, Integer> reference = null;
+		
+		reference = XQueryAkt.findReferences(Util.loadProperties(), id);
+		
+		if (reference == null)
+			return new ResponseEntity<>(HttpStatus.OK);
+		
+		List<Akt> retVal = new ArrayList<>();
+		
+		for (String docId : reference.keySet()) {
+			
+			Akt akt = aktService.findAktDocId(docId);
+			retVal.add(akt);
+			
+		}
+		
+		return new ResponseEntity<>(retVal, HttpStatus.OK);
+	}
+	
 	@Override
 	public void error(SAXParseException arg0) throws SAXException {
 		// TODO Auto-generated method stub
