@@ -271,4 +271,9 @@ public class XQueryAkt {
 		}
 		
 	}
+//	
+//	public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
+//		HashMap<String, Integer> reference = findReferences(Util.loadProperties(), "692");
+//
+//	}
 }

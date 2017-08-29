@@ -51,11 +51,10 @@ public class AktSPARQL {
 		else
 			sparqlQuery += "?akt <http://www.tim9.com/akt/rdf/predikati/oblast> " + "\"" + searchDTO.getOblast()
 					+ "\" .\n";
-		
-		sparqlQuery += "?akt <http://www.tim9.com/akt/rdf/predikati/datumPredaje> ?datumPredaje .\n" ;
-		
-		sparqlQuery += "?akt <http://www.tim9.com/akt/rdf/predikati/datumObjave> ?datumObjave .\n" ;
-		
+
+		sparqlQuery += "?akt <http://www.tim9.com/akt/rdf/predikati/datumPredaje> ?datumPredaje .\n";
+
+		sparqlQuery += "?akt <http://www.tim9.com/akt/rdf/predikati/datumObjave> ?datumObjave .\n";
 
 		String minDatumPredaje = searchDTO.getMinDatumPredaje();
 		String maxDatumPredaje = searchDTO.getMaxDatumPredaje();
@@ -63,19 +62,18 @@ public class AktSPARQL {
 		String maxDatumObjave = searchDTO.getMaxDatumObjave();
 
 		boolean changed = false;
-				
+
 		if (minDatumPredaje != null && !minDatumPredaje.equals("")) {
 			changed = true;
 			minDatumPredaje = minDatumPredaje.substring(0, 10);
 			sparqlQuery += "FILTER ( ?datumPredaje >= \"" + minDatumPredaje + "\"^^xs:date \n";
 		}
-		
+
 		if (maxDatumPredaje != null && !maxDatumPredaje.equals("")) {
 			maxDatumPredaje = maxDatumPredaje.substring(0, 10);
-			if(changed){
+			if (changed) {
 				sparqlQuery += " &&\n ?datumPredaje <= \"" + maxDatumPredaje + "\"^^xs:date \n";
-			}
-			else{
+			} else {
 				changed = true;
 				sparqlQuery += "FILTER ( ?datumPredaje <= \"" + maxDatumPredaje + "\"^^xs:date \n";
 			}
@@ -83,32 +81,70 @@ public class AktSPARQL {
 
 		if (minDatumObjave != null && !minDatumObjave.equals("")) {
 			minDatumObjave = minDatumObjave.substring(0, 10);
-			if(changed){
+			if (changed) {
 				sparqlQuery += " &&\n ?datumObjave >= \"" + minDatumObjave + "\"^^xs:date \n";
-			}
-			else{
+			} else {
 				changed = true;
 				sparqlQuery += "FILTER ( ?datumObjave >= \"" + minDatumObjave + "\"^^xs:date \n";
 			}
 		}
-		
+
 		if (maxDatumObjave != null && !maxDatumObjave.equals("")) {
 			maxDatumObjave = maxDatumObjave.substring(0, 10);
-			if(changed){
+			if (changed) {
 				sparqlQuery += " &&\n ?datumObjave <= \"" + maxDatumObjave + "\"^^xs:date \n";
-			}
-			else{
+			} else {
 				changed = true;
 				sparqlQuery += "FILTER ( ?datumObjave <= \"" + maxDatumObjave + "\"^^xs:date \n";
 			}
 		}
-		
-		if(changed){
+
+		if (changed) {
 			sparqlQuery += " ) \n }";
-		}
-		else{
+		} else {
 			sparqlQuery += " \n }";
 		}
+
+		SPARQLQueryDefinition query = sparqlQueryManager.newQueryDefinition(sparqlQuery);
+
+		// Initialize DOM results handle
+		DOMHandle domResultsHandle = new DOMHandle();
+
+		domResultsHandle = sparqlQueryManager.executeSelect(query, domResultsHandle);
+		DOMUtil.transform(domResultsHandle.get(), System.out);
+
+		// Initialize Jackson results handle
+		JacksonHandle resultsHandle = new JacksonHandle();
+		resultsHandle.setMimetype(SPARQLMimeTypes.SPARQL_JSON);
+
+		query = sparqlQueryManager.newQueryDefinition(sparqlQuery);
+
+		resultsHandle = sparqlQueryManager.executeSelect(query, resultsHandle);
+
+		client.release();
+
+		return handleResults(resultsHandle);
+
+	}
+
+	public static List<Akt> findByStatus(ConnectionProperties props, String status) {
+
+		// Initialize the database client
+		if (props.database.equals("")) { // using default DB
+			client = DatabaseClientFactory.newClient(props.host, props.port, props.user, props.password,
+					props.authType);
+		} else {
+			client = DatabaseClientFactory.newClient(props.host, props.port, props.database, props.user, props.password,
+					props.authType);
+		}
+		
+		SPARQLQueryManager sparqlQueryManager = client.newSPARQLQueryManager();
+
+		String sparqlQuery = "SELECT * " + "WHERE { ";
+
+
+		sparqlQuery += "?akt <http://www.tim9.com/akt/rdf/predikati/status> " + "\"" + status
+					+ "\" .\n }";
 		
 		SPARQLQueryDefinition query = sparqlQueryManager.newQueryDefinition(sparqlQuery);
 
