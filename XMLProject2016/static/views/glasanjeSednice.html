@@ -25,26 +25,27 @@
 								<td>Akt {{ $index + 1 }}</td>
 								<td>{{ dok.akt.naslov }}</td>
 								<td>
-									<input type="number" min="0" max="250"
+									<input type="number" min="0" max="250" id="{{ dok.akt.id }}za"
 									ng-disabled="dok.amandmani.length > 0">
 								</td>
 								<td>
-									<input type="number" min="0" max="250"
+									<input type="number" min="0" max="250" id="{{ dok.akt.id }}protiv"
 									ng-disabled="dok.amandmani.length > 0">
 								</td>
 								<td>
-									<input type="number" min="0" max="250"
+									<input type="number" min="0" max="250" id="{{ dok.akt.id }}suzdrzano"
 									ng-disabled="dok.amandmani.length > 0">
 								</td>
-								<td>status</td>
+								<td>{{ dok.akt.preambula.status.value }}</td>
 								<td>
 									<input type="submit" class="btn btn-success" value="Potvrdi"
+									id="{{ dok.akt.id }}dugme"
 									ng-disabled="dok.amandmani.length > 0">
 								</td>
 							</tr>
 							<tr ng-repeat="amd in dok.amandmani" bgcolor="#f1f1f1">
 								<td>Amandman {{ $index + 1 }}</td>
-								<td>{{ amd.naslov }}</td>
+								<td>{{ amd.id }}</td>
 								<td>
 									<input type="number" min="0" max="250" id="{{ amd.id }}za"
 									ng-model="amd.brojGlasovaZa">
@@ -57,9 +58,10 @@
 									<input type="number" min="0" max="250" id="{{ amd.id }}suzdrzano"
 									ng-model="amd.brojSuzdrzanih">
 								</td>
-								<td>{{ amd.preambula.status.value }}</td>
+								<td id="{{ amd.id }}statVal">{{ amd.preambula.status.value }}</td>
 								<td>
-									<input type="submit" class="btn btn-success" value="Potvrdi" id="{{ amd.id }}dugme"
+									<input type="submit" class="btn btn-success" value="Potvrdi"
+									id="{{ amd.id }}dugme"
 									ng-click="glasanjeCtrl.glasanjeAmd(amd)">
 								</td>
 							</tr>
@@ -67,6 +69,11 @@
 					</table>
 				</div>
 			</form>
+			
+			<button type="button" class="btn btn-default" style="float: right;"
+			ng-click="glasanjeCtrl.predjiNaRezultate()">
+				Dalje >>
+			</button>
 			
 		</div>
 	</div>

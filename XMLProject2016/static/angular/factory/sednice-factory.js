@@ -11,6 +11,17 @@
 		
 		var retVal = {};
 		
+		retVal.amandmaniAkta = function() {
+			return Restangular.all('amandman/uProceduri').getList().then(
+				function(data) {
+					return data;
+				},
+				function(err) {
+					return null;
+				}
+			);
+		}
+		
 		retVal.zakazi = function(sednica) {
 			return Restangular.one('sednica/zakaziSednicu').customPOST(sednica).then(
 				function(data) {
@@ -29,6 +40,14 @@
 		
 		retVal.prekiniSednicu = function(id) {
 			return Restangular.one('sednica/prekiniSednicu/', id).get().then(
+				function(data) {
+					return data;
+				}
+			);
+		}
+		
+		retVal.prihvatiUNacelu = function(id) {
+			return Restangular.one('akt/prihvatiUNacelu', id).get().then(
 				function(data) {
 					return data;
 				}

@@ -26,6 +26,7 @@ import org.xml.sax.SAXException;
 import com.marklogic.client.DatabaseClient;
 import com.marklogic.client.DatabaseClientFactory;
 import com.marklogic.client.document.XMLDocumentManager;
+import com.marklogic.client.eval.ServerEvaluationCall;
 import com.marklogic.client.io.DocumentMetadataHandle;
 import com.marklogic.client.io.FileHandle;
 import com.marklogic.client.io.InputStreamHandle;
@@ -167,6 +168,26 @@ public class AktService {
 		return akt;
 	}
 
+	public void azurirajStatusAkta(Akt akt) throws IOException {
+		String docId = "akti/" + akt.getId();
+		akt.getPreambula().getStatus().setValue("U nacelu");
+		
+		// Initialize XQuery invoker object
+		ServerEvaluationCall invoker = client.newServerEval();
+
+		// Read the file contents into a string object
+		String query = "xquery version \"1.0-ml\";"
+				+ " declare namespace akt = \"http://www.tim9.com/akt\";" + " xdmp:node-replace(doc(\""
+				+ docId + "\")//akt:Akt/akt:Preambula/akt:Status," + " <akt:Status>"
+				+ akt.getPreambula().getStatus().getValue() + "</akt:Status>);";
+
+		// Invoke the query
+		invoker.xquery(query);
+
+		// Interpret the results
+		invoker.eval();
+	}
+	
 	public void delete(String id) {
 		try {
 			xmlManager.delete(id);

@@ -7,8 +7,8 @@
 			<h2 class="animate fadeIn text-center">Glasanje u načelu</h2><br>
 
 			<form>
-				<div class="table-responsive" ng-controller="AmandmaniAktaController as dokCtrl">
-					<table class="table" ng-repeat="dok in dokCtrl.dokumenti">
+				<div class="table-responsive">
+					<table class="table" ng-repeat="dok in glasanjeCtrl.dokumenti">
 						<thead>
 							<tr>
 								<th>Broj</th>
@@ -25,9 +25,11 @@
 								<td>{{ dok.akt.preambula.oblast.value }}</td>
 								<td>{{ dok.akt.preambula.datumObjave.value | date : 'dd.MM.yyyy' }}.</td>
 								<td>
-									<input type="submit" class="btn btn-success" value="Prihvati u načelu">
+									<input type="submit" class="btn btn-success" value="Prihvati u načelu"
+									ng-click="glasanjeCtrl.prihvatiUNacelu(dok.akt.id)">
+									
 									<input type="submit" class="btn btn-danger" value="Odbij"
-									ng-click="dokCtrl.odbijAkt(dok.akt.id)">
+									ng-click="glasanjeCtrl.odbijAkt(dok.akt.id)">
 								</td>
 							</tr>
 							<tr ng-repeat="amd in dok.amandmani" bgcolor="#f1f1f1">
@@ -42,7 +44,7 @@
 			</form>
 			
 			<button type="button" class="btn btn-default" style="float: right;"
-			ng-click="glasanjeCtrl.uNaceluGlasanje()">
+			ng-click="glasanjeCtrl.predjiNaGlasanje()">
 				Dalje >>
 			</button>
 			

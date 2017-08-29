@@ -377,6 +377,20 @@ public class AktController implements ErrorHandler {
 		return new ResponseEntity<>(retVal, HttpStatus.OK);
 	}
 	
+	@RequestMapping(value = "/prihvatiUNacelu/{id}", method = RequestMethod.GET)
+	public ResponseEntity<Akt> prihvatiUNacelu(@PathVariable String id) {
+
+		String docId = "akti/" + id;
+		Akt akt = aktService.findAktDocId(docId);
+		
+		try {
+			aktService.azurirajStatusAkta(akt); // xquery za update
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return new ResponseEntity<Akt>(akt, HttpStatus.OK);
+	}
+	
 	@Override
 	public void error(SAXParseException arg0) throws SAXException {
 		// TODO Auto-generated method stub
