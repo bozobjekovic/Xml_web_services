@@ -44,7 +44,9 @@
 			controller  : 'PredloziController',
 			controllerAs: 'predloziCtrl'
 		}).when('/dodajAkt', {
-			templateUrl : 'views/dodajAkt.html'
+			templateUrl : 'views/dodajAkt.html',
+			controller  : 'DodajAktController',
+			controllerAs: 'dodajAktCtrl'
 		}).when('/dodajAmandman', {
 			templateUrl : 'views/dodajAmandman.html'
 		}).when('/zakazivanje', {

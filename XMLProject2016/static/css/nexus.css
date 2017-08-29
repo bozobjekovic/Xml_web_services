@@ -1150,7 +1150,7 @@ p {
   margin-bottom: 16px;
 }
 hr {
-  background: url("../img/hr.png") no-repeat scroll 50% 0 transparent;
+  /* background: url("../images/hr.png") no-repeat scroll 50% 0 transparent; */
   border: medium none;
   height: 19px;
   margin: 0px 0 10px;
