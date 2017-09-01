@@ -160,12 +160,13 @@ public class SednicaController implements ErrorHandler {
 	}
 
 	@RequestMapping(value = "/glasajAmandman", method = RequestMethod.POST)
-	public ResponseEntity<Amandman> glasajAmandman(@RequestBody RezultatiDTO rezultatiDTO) throws SAXException, IOException {
+	public ResponseEntity<Amandman> glasajAmandman(@RequestBody RezultatiDTO rezultatiDTO) throws SAXException, IOException, TransformerException {
 
 		int za = rezultatiDTO.getBrojGlasovaZa();
 		int protiv = rezultatiDTO.getBrojGlasovaProtiv();
 		int suzdrzano = rezultatiDTO.getBrojSuzdrzanih();
 		String id = rezultatiDTO.getId();
+		String status = "";
 
 		Amandman amd = amandmanService.getAmandmanDocID("amandmani/" + id);
 		
@@ -173,14 +174,20 @@ public class SednicaController implements ErrorHandler {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		
 		if(za > protiv) {
-			amandmanService.azurirajStatusNaUsvojen(amd);				// Usvaja se
+			amd.getPreambula().getStatus().setValue("Usvojen");
+			status = amd.getPreambula().getStatus().getValue();
+			amandmanService.azurirajStatus(amd, status);					// Usvaja se
+			amandmanService.azurirajMetapodatke(amd.getId());
 			return new ResponseEntity<Amandman>(amd, HttpStatus.OK);
 		}
-		/*else if (za == protiv) {
-			return new ResponseEntity<Amandman>("", HttpStatus.OK);		// ?
-		}*/
+		else if (za == protiv) {
+			return new ResponseEntity<Amandman>(HttpStatus.BAD_REQUEST);	// Ponovi glasanje
+		}
 		else {
-			amandmanService.azurirajStatusNaOdbijen(amd);				// Odbija se
+			amd.getPreambula().getStatus().setValue("Odbijen");
+			status = amd.getPreambula().getStatus().getValue();
+			amandmanService.azurirajStatus(amd, status);					// Odbija se
+			amandmanService.azurirajMetapodatke(amd.getId());
 			return new ResponseEntity<Amandman>(amd, HttpStatus.OK);
 		}
 	}

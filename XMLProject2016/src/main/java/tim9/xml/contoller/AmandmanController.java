@@ -45,6 +45,7 @@ import tim9.xml.model.akt.Akt;
 import tim9.xml.model.amandman.Amandman;
 import tim9.xml.model.amandman.Preambula;
 import tim9.xml.model.korisnik.Korisnik;
+import tim9.xml.rdf.AktSPARQL;
 import tim9.xml.rdf.AmandmanMetadata;
 import tim9.xml.services.AktService;
 import tim9.xml.services.AmandmanService;
@@ -244,12 +245,13 @@ public class AmandmanController implements ErrorHandler {
 		return new ResponseEntity<List<Amandman>>(retVal, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/uProceduri", method = RequestMethod.GET)
-	public ResponseEntity<List<AmandmaniAktaDTO>> amandmaniUProceduri()
+	@RequestMapping(value = "/status/{status}", method = RequestMethod.GET)
+	public ResponseEntity<List<AmandmaniAktaDTO>> amandmaniStatus(@PathVariable String status)
 			throws TransformerConfigurationException, ParserConfigurationException, SAXException, IOException {
+		
 		List<AmandmaniAktaDTO> amandmaniAktaDTO = new ArrayList<>();
-
-		List<Akt> akti = aktService.findAll();
+		List<Akt> akti = AktSPARQL.findByStatus(Util.loadProperties(), status);
+		
 		for (Akt akt : akti) {
 			ArrayList<String> amandmani = new ArrayList<>();
 			amandmani = XQueryAmandman.amandmaniAkta(Util.loadProperties(), akt.getId());

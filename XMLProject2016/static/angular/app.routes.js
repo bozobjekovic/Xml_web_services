@@ -63,8 +63,8 @@
 			controllerAs: 'glasanjeCtrl'
 		}).when('/uNacelu', {
 			templateUrl : 'views/uNaceluGlasanje.html',
-			controller  : 'GlasanjeController',
-			controllerAs: 'glasanjeCtrl'
+			controller  : 'UNaceluController',
+			controllerAs: 'uNaceluCtrl'
 		}).when('/rezultati', {
 			templateUrl : 'views/rezultatiSednice.html'
 		}).otherwise({

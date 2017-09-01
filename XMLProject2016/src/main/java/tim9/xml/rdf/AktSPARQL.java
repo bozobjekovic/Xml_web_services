@@ -17,6 +17,7 @@ import com.marklogic.client.semantics.SPARQLQueryManager;
 import tim9.xml.DTO.SearchDTO;
 import tim9.xml.model.akt.Akt;
 import tim9.xml.services.AktService;
+import tim9.xml.util.Util;
 import tim9.xml.util.Util.ConnectionProperties;
 
 public class AktSPARQL {
@@ -142,9 +143,7 @@ public class AktSPARQL {
 
 		String sparqlQuery = "SELECT * " + "WHERE { ";
 
-
-		sparqlQuery += "?akt <http://www.tim9.com/akt/rdf/predikati/status> " + "\"" + status
-					+ "\" .\n }";
+		sparqlQuery += "?akt <http://www.tim9.com/akt/rdf/predikati/status> \"" + status + "\" }";
 		
 		SPARQLQueryDefinition query = sparqlQueryManager.newQueryDefinition(sparqlQuery);
 
@@ -152,7 +151,7 @@ public class AktSPARQL {
 		DOMHandle domResultsHandle = new DOMHandle();
 
 		domResultsHandle = sparqlQueryManager.executeSelect(query, domResultsHandle);
-		DOMUtil.transform(domResultsHandle.get(), System.out);
+		//DOMUtil.transform(domResultsHandle.get(), System.out);
 
 		// Initialize Jackson results handle
 		JacksonHandle resultsHandle = new JacksonHandle();
@@ -192,6 +191,14 @@ public class AktSPARQL {
 			}
 		}
 		return retVal;
+	}
+	
+	public static void main(String[] args) throws IOException {
+		List<Akt> akati = findByStatus(Util.loadProperties(), "U nacelu");
+		
+		for (Akt akt : akati) {
+			System.out.println("ID " + akt.getId() + " STATUS " + akt.getPreambula().getStatus().getValue());
+		}
 	}
 
 }

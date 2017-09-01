@@ -30,8 +30,8 @@
 			);
 		}
 		
-		retVal.amandmaniAkta = function() {
-			return Restangular.all('amandman/uProceduri').getList().then(
+		retVal.amandmaniAkta = function(status) {
+			return Restangular.one('amandman/status/', status).getList().then(
 				function(data) {
 					return data;
 				},

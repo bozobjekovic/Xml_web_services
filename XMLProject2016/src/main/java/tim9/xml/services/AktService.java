@@ -4,12 +4,16 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Result;
 import javax.xml.transform.Source;
 import javax.xml.transform.Transformer;
@@ -21,6 +25,7 @@ import javax.xml.transform.stream.StreamResult;
 
 import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import com.marklogic.client.DatabaseClient;
@@ -168,7 +173,7 @@ public class AktService {
 		return akt;
 	}
 
-	public void azurirajStatusAkta(Akt akt) throws IOException {
+	public void azurirajStatusAkta(Akt akt) throws IOException, SAXException, ParserConfigurationException, TransformerFactoryConfigurationError, TransformerException {
 		String docId = "akti/" + akt.getId();
 		akt.getPreambula().getStatus().setValue("U nacelu");
 		
@@ -177,8 +182,9 @@ public class AktService {
 
 		// Read the file contents into a string object
 		String query = "xquery version \"1.0-ml\";"
-				+ " declare namespace akt = \"http://www.tim9.com/akt\";" + " xdmp:node-replace(doc(\""
-				+ docId + "\")//akt:Akt/akt:Preambula/akt:Status," + " <akt:Status>"
+				+ " declare namespace akt = \"http://www.tim9.com/akt\";"
+				+ " xdmp:node-replace(doc(\"" + docId + "\")//akt:Akt/akt:Preambula/akt:Status,"
+				+ " <akt:Status datatype=\"xs:string\" property=\"pred:status\">"
 				+ akt.getPreambula().getStatus().getValue() + "</akt:Status>);";
 
 		// Invoke the query
@@ -186,6 +192,46 @@ public class AktService {
 
 		// Interpret the results
 		invoker.eval();
+		
+		String aktXML = getOne(akt.getId());
+
+		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder builder = factory.newDocumentBuilder();
+		Document doc = builder.parse(new InputSource(new StringReader(aktXML)));
+
+		Transformer transformer = TransformerFactory.newInstance().newTransformer();
+		Result output = new StreamResult(new File("gen/output.xml"));
+		Source input = new DOMSource(doc);
+
+		transformer.transform(input, output);
+	}
+
+	public void azurirajMetapodatke(String id) {
+		// Create a document manager to work with XML files.
+		GraphManager graphManager = client.newGraphManager();
+
+		// Set the default media type (RDF/XML)
+		graphManager.setDefaultMimetype(RDFMimeTypes.RDFXML);
+
+		String xmlFilePath = "gen/output.xml";
+		String rdfFilePath = "gen/rdf/akt.rdf";
+
+		MetadataExtractor metadataExtractor;
+		try {
+			metadataExtractor = new MetadataExtractor();
+			metadataExtractor.extractMetadata(new FileInputStream(new File(xmlFilePath)),
+					new FileOutputStream(new File(rdfFilePath)));
+		} catch (SAXException | IOException | TransformerException e) {
+			e.printStackTrace();
+		}
+
+		// A handle to hold the RDF content.
+		FileHandle rdfFileHandle = new FileHandle(new File(rdfFilePath)).withMimetype(RDFMimeTypes.RDFXML);
+
+		// Writing the named graph
+		System.out.println(
+				"[INFO] Tripleti su uspesno azurirani i dodati u bazu. Id tripleta: " + "akti/metadata/" + id + ".");
+		graphManager.write("akti/metadata/" + id, rdfFileHandle);
 	}
 	
 	public void delete(String id) {

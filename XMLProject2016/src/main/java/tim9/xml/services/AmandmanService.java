@@ -168,9 +168,8 @@ public class AmandmanService {
 		return amandman;
 	}
 
-	public void azurirajStatusNaUsvojen(Amandman amandman) throws IOException {
+	public void azurirajStatus(Amandman amandman, String status) throws IOException {
 		String docId = "amandmani/" + amandman.getId();
-		amandman.getPreambula().getStatus().setValue("Usvojen");
 		
 		// Initialize XQuery invoker object
 		ServerEvaluationCall invoker = client.newServerEval();
@@ -179,7 +178,7 @@ public class AmandmanService {
 		String query = "xquery version \"1.0-ml\";"
 				+ " declare namespace amd = \"http://www.tim9.com/amandman\";" + " xdmp:node-replace(doc(\""
 				+ docId + "\")//amd:Amandman/amd:Preambula/amd:Status," + " <amd:Status>"
-				+ amandman.getPreambula().getStatus().getValue() + "</amd:Status>);";
+				+ status + "</amd:Status>);";
 
 		// Invoke the query
 		invoker.xquery(query);
@@ -188,24 +187,28 @@ public class AmandmanService {
 		invoker.eval();
 	}
 
-	public void azurirajStatusNaOdbijen(Amandman amandman) throws IOException {
-		String docId = "amandmani/" + amandman.getId();
-		amandman.getPreambula().getStatus().setValue("Odbijen");
-		
-		// Initialize XQuery invoker object
-		ServerEvaluationCall invoker = client.newServerEval();
+	public void azurirajMetapodatke(String id) throws TransformerException, SAXException, IOException {
+		// Create a document manager to work with XML files.
+		GraphManager graphManager = client.newGraphManager();
 
-		// Read the file contents into a string object
-		String query = "xquery version \"1.0-ml\";"
-				+ " declare namespace amd = \"http://www.tim9.com/amandman\";" + " xdmp:node-replace(doc(\""
-				+ docId + "\")//amd:Amandman/amd:Preambula/amd:Status," + " <amd:Status>"
-				+ amandman.getPreambula().getStatus().getValue() + "</amd:Status>);";
+		// Set the default media type (RDF/XML)
+		graphManager.setDefaultMimetype(RDFMimeTypes.RDFXML);
 
-		// Invoke the query
-		invoker.xquery(query);
+		String xmlFilePath = "gen/outputAmandman.xml";
+		String rdfFilePath = "gen/rdf/amandman.rdf";
 
-		// Interpret the results
-		invoker.eval();
+		MetadataExtractor metadataExtractor = new MetadataExtractor();
+
+		metadataExtractor.extractMetadata(new FileInputStream(new File(xmlFilePath)),
+				new FileOutputStream(new File(rdfFilePath)));
+
+		// A handle to hold the RDF content.
+		FileHandle rdfFileHandle = new FileHandle(new File(rdfFilePath)).withMimetype(RDFMimeTypes.RDFXML);
+
+		// Writing the named graph
+		System.out.println("[INFO] Tripleti su uspesno azurrani i dodati u bazu. Id trupleta: "
+				+ "amandmani/metadata/" + id + ".");
+		graphManager.write("amandmani/metadata/" + id, rdfFileHandle);
 	}
 	
 	public void delete(String id) {

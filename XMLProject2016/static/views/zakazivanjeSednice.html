@@ -42,6 +42,7 @@
 								<th>Naslov</th>
 								<th>Oblast/Pravni osnov</th>
 								<th>Datum</th>
+								<th>Status</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -50,6 +51,7 @@
 								<td>{{ dok.akt.naslov }}</td>
 								<td>{{ dok.akt.preambula.oblast.value }}</td>
 								<td>{{ dok.akt.preambula.datumObjave.value | date : 'dd.MM.yyyy' }}.</td>
+								<td>{{ dok.akt.preambula.status.value }}</td>
 							</tr>
 							<tr ng-repeat="amd in dok.amandmani" bgcolor="#f1f1f1">
 								<td>Amandman {{ $index + 1 }}</td>

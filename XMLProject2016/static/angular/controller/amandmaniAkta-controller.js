@@ -13,7 +13,7 @@
 		vm.dokumenti = [];
 		
 		vm.prikaziDokumente = function() {
-			AmandmaniFactory.amandmaniAkta().then(
+			AmandmaniFactory.amandmaniAkta("U proceduri").then(
 				function(data) {
 					vm.dokumenti = data;
 				});

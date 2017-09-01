@@ -8,28 +8,34 @@
 
 			<form>
 				<div class="table-responsive">
-					<table class="table" ng-repeat="dok in glasanjeCtrl.dokumenti">
+					<table class="table" ng-repeat="dok in uNaceluCtrl.dokumenti">
 						<thead>
 							<tr>
 								<th>Broj</th>
+								<th>Id</th>
 								<th>Naslov</th>
 								<th>Oblast/Pravni osnov</th>
 								<th>Datum</th>
+								<th>Status</th>
 								<th>Prihvati/Odbij</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
 								<td>Akt {{ $index + 1 }}</td>
+								<td>{{ dok.akt.id }}</td>
 								<td>{{ dok.akt.naslov }}</td>
 								<td>{{ dok.akt.preambula.oblast.value }}</td>
 								<td>{{ dok.akt.preambula.datumObjave.value | date : 'dd.MM.yyyy' }}.</td>
+								<td id="{{ dok.akt.id }}status">{{ dok.akt.preambula.status.value }}</td>
 								<td>
 									<input type="submit" class="btn btn-success" value="Prihvati u načelu"
-									ng-click="glasanjeCtrl.prihvatiUNacelu(dok.akt.id)">
+									id = "{{ dok.akt.id }}prihvati"
+									ng-click="uNaceluCtrl.prihvatiUNacelu(dok.akt.id)">
 									
 									<input type="submit" class="btn btn-danger" value="Odbij"
-									ng-click="glasanjeCtrl.odbijAkt(dok.akt.id)">
+									id = "{{ dok.akt.id }}odbij"
+									ng-click="uNaceluCtrl.odbijAkt(dok.akt.id)">
 								</td>
 							</tr>
 							<tr ng-repeat="amd in dok.amandmani" bgcolor="#f1f1f1">
@@ -44,7 +50,7 @@
 			</form>
 			
 			<button type="button" class="btn btn-default" style="float: right;"
-			ng-click="glasanjeCtrl.predjiNaGlasanje()">
+			ng-click="uNaceluCtrl.predjiNaGlasanje()">
 				Dalje >>
 			</button>
 			

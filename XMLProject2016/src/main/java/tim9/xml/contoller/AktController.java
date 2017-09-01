@@ -378,16 +378,18 @@ public class AktController implements ErrorHandler {
 	}
 	
 	@RequestMapping(value = "/prihvatiUNacelu/{id}", method = RequestMethod.GET)
-	public ResponseEntity<Akt> prihvatiUNacelu(@PathVariable String id) {
+	public ResponseEntity<Akt> prihvatiUNacelu(@PathVariable String id) throws SAXException, ParserConfigurationException, TransformerFactoryConfigurationError, TransformerException {
 
 		String docId = "akti/" + id;
 		Akt akt = aktService.findAktDocId(docId);
 		
 		try {
-			aktService.azurirajStatusAkta(akt); // xquery za update
+			aktService.azurirajStatusAkta(akt);
+			aktService.azurirajMetapodatke(akt.getId());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
 		return new ResponseEntity<Akt>(akt, HttpStatus.OK);
 	}
 	

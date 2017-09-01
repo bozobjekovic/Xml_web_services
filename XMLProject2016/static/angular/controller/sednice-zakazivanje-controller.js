@@ -10,17 +10,27 @@
 	function ZakazivanjeController($scope, $location, $sce, $routeParams, SedniceFactory) {
 		
 		var vm = this;
+		vm.dokumenti = [];
 		vm.sednica = {};
 		vm.datum = '';
 		vm.vreme = '';
 		
 		vm.dobaviSednicu = function(){
-			SedniceFactory.dobaviSednicu().then(function(data){
+			$location.path('/uNacelu');
+			/*SedniceFactory.dobaviSednicu().then(function(data){
 				if (data != null)
 					$location.path('/odrzavanje');
-			});
+			});*/
 		}
 		vm.dobaviSednicu();
+
+		vm.prikaziDokumente = function() {
+			SedniceFactory.amandmaniAkta("U proceduri").then(
+				function(data) {
+					vm.dokumenti = data;
+				});
+			}
+		vm.prikaziDokumente();
 
 		vm.zakazivanje = function() {
 			var datumSednice = vm.datum;

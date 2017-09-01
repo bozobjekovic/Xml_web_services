@@ -7,11 +7,12 @@
 			<h2 class="animate fadeIn text-center">Glasanje</h2><br>
 
 			<form>
-				<div class="table-responsive" ng-controller="AmandmaniAktaController as dokCtrl">
-					<table class="table" ng-repeat="dok in dokCtrl.dokumenti">
+				<div class="table-responsive">
+					<table class="table" ng-repeat="dok in glasanjeCtrl.dokUNacelu">
 						<thead>
 							<tr>
 								<th>Broj</th>
+								<th>Id</th>
 								<th>Naziv</th>
 								<th>Broj glasova za</th>
 								<th>Broj glasova protiv</th>
@@ -23,6 +24,7 @@
 						<tbody>
 							<tr>
 								<td>Akt {{ $index + 1 }}</td>
+								<td>{{ dok.akt.id }}</td>
 								<td>{{ dok.akt.naslov }}</td>
 								<td>
 									<input type="number" min="0" max="250" id="{{ dok.akt.id }}za"
@@ -46,6 +48,7 @@
 							<tr ng-repeat="amd in dok.amandmani" bgcolor="#f1f1f1">
 								<td>Amandman {{ $index + 1 }}</td>
 								<td>{{ amd.id }}</td>
+								<td>{{ amd.naslov }}</td>
 								<td>
 									<input type="number" min="0" max="250" id="{{ amd.id }}za"
 									ng-model="amd.brojGlasovaZa">
