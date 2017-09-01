@@ -121,4 +121,21 @@
         </p>
     </xsl:template>
     
+    <xsl:template match="akt:Sadrzaj//akt:Referenca">
+    	<xsl:variable name="id_url" select="substring-after(@URL, 'http://www.tim9.com/akt/')"/>
+	    <xsl:choose>
+	    	<xsl:when test="substring(@URL, 1, 1) != '#'">
+				<a  class="referenca" title="prikaži" href="#/preview/{$id_url}" target="_blank">
+	            	<xsl:apply-templates />
+	        	</a>
+	        </xsl:when>
+			<!--  kada referenca pocinje sa #, referencira se unutar dokumenta -->
+	        <xsl:otherwise>
+	        	<a  class="referenca" title="prikaži" href="#/preview/{$aktId}{@URL}" target="_self">
+	            	<xsl:apply-templates />
+	        	</a>
+	        </xsl:otherwise>
+		</xsl:choose>
+    </xsl:template>
+    
 </xsl:stylesheet>

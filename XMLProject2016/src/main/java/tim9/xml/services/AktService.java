@@ -173,16 +173,16 @@ public class AktService {
 		return akt;
 	}
 
-	public void azurirajStatusAkta(Akt akt) throws IOException, SAXException, ParserConfigurationException, TransformerFactoryConfigurationError, TransformerException {
+	public void azurirajStatusAkta(Akt akt) throws IOException, SAXException, ParserConfigurationException,
+			TransformerFactoryConfigurationError, TransformerException {
 		String docId = "akti/" + akt.getId();
 		akt.getPreambula().getStatus().setValue("U nacelu");
-		
+
 		// Initialize XQuery invoker object
 		ServerEvaluationCall invoker = client.newServerEval();
 
 		// Read the file contents into a string object
-		String query = "xquery version \"1.0-ml\";"
-				+ " declare namespace akt = \"http://www.tim9.com/akt\";"
+		String query = "xquery version \"1.0-ml\";" + " declare namespace akt = \"http://www.tim9.com/akt\";"
 				+ " xdmp:node-replace(doc(\"" + docId + "\")//akt:Akt/akt:Preambula/akt:Status,"
 				+ " <akt:Status datatype=\"xs:string\" property=\"pred:status\">"
 				+ akt.getPreambula().getStatus().getValue() + "</akt:Status>);";
@@ -192,7 +192,7 @@ public class AktService {
 
 		// Interpret the results
 		invoker.eval();
-		
+
 		String aktXML = getOne(akt.getId());
 
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -233,10 +233,14 @@ public class AktService {
 				"[INFO] Tripleti su uspesno azurirani i dodati u bazu. Id tripleta: " + "akti/metadata/" + id + ".");
 		graphManager.write("akti/metadata/" + id, rdfFileHandle);
 	}
-	
+
 	public void delete(String id) {
 		try {
-			xmlManager.delete(id);
+			String docId = "akti/" + id;
+			xmlManager.delete(docId);
+			docId = "akti/metadata/" + id;
+			xmlManager.delete(docId);
+			// TRIPLETSTORE
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
