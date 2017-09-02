@@ -32,7 +32,7 @@
 					alert("Ponovi glasanje!");
 					return;
 				}
-				
+
 				document.getElementById(amandman.id + 'za').disabled = true;
 				document.getElementById(amandman.id + 'protiv').disabled = true;
 				document.getElementById(amandman.id + 'suzdrzano').disabled = true;

@@ -16,11 +16,10 @@
 		vm.vreme = '';
 		
 		vm.dobaviSednicu = function(){
-			$location.path('/uNacelu');
-			/*SedniceFactory.dobaviSednicu().then(function(data){
+			SedniceFactory.dobaviSednicu().then(function(data){
 				if (data != null)
 					$location.path('/odrzavanje');
-			});*/
+			});
 		}
 		vm.dobaviSednicu();
 

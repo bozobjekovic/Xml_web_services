@@ -4,12 +4,16 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Result;
 import javax.xml.transform.Source;
 import javax.xml.transform.Transformer;
@@ -21,6 +25,7 @@ import javax.xml.transform.stream.StreamResult;
 
 import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import com.marklogic.client.DatabaseClient;
@@ -168,23 +173,42 @@ public class AmandmanService {
 		return amandman;
 	}
 
-	public void azurirajStatus(Amandman amandman, String status) throws IOException {
+	public void azurirajStatus(Amandman amandman, String status) throws IOException, ParserConfigurationException, SAXException, TransformerFactoryConfigurationError, TransformerException {
 		String docId = "amandmani/" + amandman.getId();
 		
 		// Initialize XQuery invoker object
 		ServerEvaluationCall invoker = client.newServerEval();
 
 		// Read the file contents into a string object
-		String query = "xquery version \"1.0-ml\";"
-				+ " declare namespace amd = \"http://www.tim9.com/amandman\";" + " xdmp:node-replace(doc(\""
-				+ docId + "\")//amd:Amandman/amd:Preambula/amd:Status," + " <amd:Status>"
-				+ status + "</amd:Status>);";
-
+		String query = "xquery version \"1.0-ml\"; "
+				+ " declare namespace amd = \"http://www.tim9.com/amandman\";" + "xdmp:node-replace(doc(\""
+				+ docId + "\")//amd:Amandman/amd:Preambula, "
+				+ "<amd:Preambula><amd:Status datatype=\"xs:string\" property=\"pred:status\">"
+				+ amandman.getPreambula().getStatus().getValue() + "</amd:Status>"
+				+ "<amd:BrojGlasovaZa datatype=\"xs:int\" property=\"pred:za\" xmlns=\"\">"
+				+ amandman.getPreambula().getBrojGlasovaZa().getValue() + "</amd:BrojGlasovaZa>"
+				+ "<amd:BrojGlasovaProtiv datatype=\"xs:int\" property=\"pred:protiv\" xmlns=\"\">"
+				+ amandman.getPreambula().getBrojGlasovaProtiv().getValue() + "</amd:BrojGlasovaProtiv>"
+				+ "<amd:BrojGlasovaUzdrzano datatype=\"xs:int\" property=\"pred:uzdrzano\" xmlns=\"\">"
+				+ amandman.getPreambula().getBrojGlasovaUzdrzano().getValue() + "</amd:BrojGlasovaUzdrzano></amd:Preambula>" + ");";
+		
 		// Invoke the query
 		invoker.xquery(query);
 
 		// Interpret the results
 		invoker.eval();
+		
+		String amandmanXML = getOne(amandman.getId());
+
+		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder builder = factory.newDocumentBuilder();
+		Document doc = builder.parse(new InputSource(new StringReader(amandmanXML)));
+
+		Transformer transformer = TransformerFactory.newInstance().newTransformer();
+		Result output = new StreamResult(new File("gen/outputAmandman.xml"));
+		Source input = new DOMSource(doc);
+
+		transformer.transform(input, output);
 	}
 
 	public void azurirajMetapodatke(String id) throws TransformerException, SAXException, IOException {

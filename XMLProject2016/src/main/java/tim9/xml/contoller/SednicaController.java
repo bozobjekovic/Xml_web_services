@@ -160,8 +160,8 @@ public class SednicaController implements ErrorHandler {
 	}
 
 	@RequestMapping(value = "/glasajAmandman", method = RequestMethod.POST)
-	public ResponseEntity<Amandman> glasajAmandman(@RequestBody RezultatiDTO rezultatiDTO) throws SAXException, IOException, TransformerException {
-
+	public ResponseEntity<Amandman> glasajAmandman(@RequestBody RezultatiDTO rezultatiDTO) throws SAXException, IOException, TransformerException, ParserConfigurationException, TransformerFactoryConfigurationError {
+		
 		int za = rezultatiDTO.getBrojGlasovaZa();
 		int protiv = rezultatiDTO.getBrojGlasovaProtiv();
 		int suzdrzano = rezultatiDTO.getBrojSuzdrzanih();
@@ -169,24 +169,30 @@ public class SednicaController implements ErrorHandler {
 		String status = "";
 
 		Amandman amd = amandmanService.getAmandmanDocID("amandmani/" + id);
+		amd.getPreambula().getBrojGlasovaZa().setValue(za);
+		amd.getPreambula().getBrojGlasovaProtiv().setValue(protiv);
+		amd.getPreambula().getBrojGlasovaUzdrzano().setValue(suzdrzano);
 		
 		if (za == 0 && protiv == 0 && suzdrzano == 0)
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		
-		if(za > protiv) {
+		if(za > protiv) {													// Usvaja se
 			amd.getPreambula().getStatus().setValue("Usvojen");
 			status = amd.getPreambula().getStatus().getValue();
-			amandmanService.azurirajStatus(amd, status);					// Usvaja se
+			
+			amandmanService.azurirajStatus(amd, status);
 			amandmanService.azurirajMetapodatke(amd.getId());
+			
 			return new ResponseEntity<Amandman>(amd, HttpStatus.OK);
 		}
-		else if (za == protiv) {
-			return new ResponseEntity<Amandman>(HttpStatus.BAD_REQUEST);	// Ponovi glasanje
+		else if (za == protiv) {											// Ponovi glasanje
+			return new ResponseEntity<Amandman>(HttpStatus.BAD_REQUEST);
 		}
-		else {
+		else {																// Odbija se
 			amd.getPreambula().getStatus().setValue("Odbijen");
 			status = amd.getPreambula().getStatus().getValue();
-			amandmanService.azurirajStatus(amd, status);					// Odbija se
+			
+			amandmanService.azurirajStatus(amd, status);
 			amandmanService.azurirajMetapodatke(amd.getId());
 			return new ResponseEntity<Amandman>(amd, HttpStatus.OK);
 		}

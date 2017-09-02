@@ -40,9 +40,11 @@
 							</tr>
 							<tr ng-repeat="amd in dok.amandmani" bgcolor="#f1f1f1">
 								<td>Amandman {{ $index + 1 }}</td>
+								<td>{{ amd.id }}</td>
 								<td>{{ amd.naslov }}</td>
 								<td>{{ amd.pravniOsnov }}</td>
 								<td>{{ amd.preambula.datumObjave.value | date : 'dd.MM.yyyy' }}.</td>
+								<td>{{ amd.preambula.status.value }}</td>
 							</tr>
 						</tbody>
 					</table>

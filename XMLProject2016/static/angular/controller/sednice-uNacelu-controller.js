@@ -30,9 +30,9 @@
 
 		vm.odbijAkt = function(id) {
 			SedniceFactory.povuciAkt(id).then(function(data) {
-				document.getElementById(data.id + 'prihvati').disabled = true;
-				document.getElementById(data.id + 'odbij').disabled = true;
-				document.getElementById(data.id + 'status').innerHTML = data.preambula.status.value;
+				document.getElementById(id + 'prihvati').disabled = true;
+				document.getElementById(id + 'odbij').disabled = true;
+				document.getElementById(id + 'status').innerHTML = "Odbijen";
 				vm.povuciAmandmaneAkta(id);
 				for (var i = 0; i < vm.dokumenti.length; i++) {
 					var obj = vm.dokumenti[i];
