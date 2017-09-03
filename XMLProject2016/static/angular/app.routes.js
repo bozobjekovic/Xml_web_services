@@ -66,7 +66,9 @@
 			controller  : 'UNaceluController',
 			controllerAs: 'uNaceluCtrl'
 		}).when('/rezultati', {
-			templateUrl : 'views/rezultatiSednice.html'
+			templateUrl : 'views/rezultatiSednice.html',
+			controller  : 'GlasanjeController',
+			controllerAs: 'glasanjeCtrl'
 		}).otherwise({
 			redirectTo : '/'
 		});
