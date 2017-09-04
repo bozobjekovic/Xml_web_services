@@ -26,6 +26,7 @@
                 <xs:element ref="amd:OdredbaAkta"/>
                 <xs:element name="PredlozenoResenje" type="xs:string"/>
                 <xs:element ref="amd:Obrazlozenje"/>
+                <xs:element name="Predlog" type="xs:string"/>
             </xs:sequence>
             <xs:attribute name="id"/>
         </xs:complexType>
