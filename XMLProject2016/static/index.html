@@ -15,15 +15,22 @@
 </head>
 
 <body ng-app="xmlWebServices">
-	<div id="body-bg" style="height: 100%;">
+	<div id="body-bg" style="height: 100%;" ng-controller="IndexController as indexCtrl">
 
 		<!-- === BEGIN HEADER === -->
 		<div id="header">
-			<a href="#" ng-href="/#/login"
-				style="float: right; margin-right: 30px; font-size: 18px;">Login</a>
+			<a href="#" ng-href="/#/login" ng-show="indexCtrl.prikaz()"
+				style="float: right; margin-right: 30px; font-size: 18px;">
+				Login
+			</a>
+			<a href="#" ng-href="/#/" ng-click="indexCtrl.logout()" ng-show="!indexCtrl.prikaz()"
+				style="float: right; margin-right: 30px; font-size: 18px;">
+				Logout
+			</a>
 			<div class="container">
 				<div class="logo">
-					<a ng-href="/#/"> <img src="images/logo.png" alt="Logo" />
+					<a ng-href="/#/">
+						<img src="images/logo.png" alt="Logo" />
 					</a>
 				</div>
 			</div>
@@ -39,12 +46,20 @@
 							<li><a ng-href="#/amandmani">Amandmani</a></li>
 
 							<!--Odbornik i predsednik-->
-							<li><a ng-href="#/dodajAkt">Predloži akt</a></li>
-							<li><a ng-href="#/dodajAmandman">Predloži amandman</a></li>
-							<li><a href="#/mojiPredlozi">Moji predlozi</a></li>
+							<li ng-show="!indexCtrl.prikaz()">
+								<a ng-href="#/dodajAkt">Predloži akt</a>
+							</li>
+							<li ng-show="!indexCtrl.prikaz()">
+								<a ng-href="#/dodajAmandman">Predloži amandman</a>
+							</li>
+							<li ng-show="!indexCtrl.prikaz()">
+								<a href="#/mojiPredlozi">Moji predlozi</a>
+							</li>
 
 							<!--Predsednik-->
-							<li><a ng-href="#/zakazivanje">Sednica</a></li>
+							<li ng-show="!indexCtrl.prikaz()">
+								<a ng-href="#/zakazivanje">Sednica</a>
+							</li>
 						</ul>
 					</div>
 				</div>

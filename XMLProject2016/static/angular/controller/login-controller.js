@@ -13,7 +13,6 @@
 		
 		vm.user = {};
 		vm.showError = false;
-
 		
 		vm.login = function() {
 			LoginFactory.logn(vm.user).then(
