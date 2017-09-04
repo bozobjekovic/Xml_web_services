@@ -14,8 +14,8 @@
 							<tr>
 								<td><label> <b>Ime</b>
 								</label></td>
-								<td colspan="2"><input class="form-control" ng-model="registrationCtrl.user.ime" type="text">
-								</td>
+								<td colspan="2"><input class="form-control"
+									ng-model="registrationCtrl.user.ime" type="text"></td>
 								<td></td>
 							</tr>
 
@@ -26,8 +26,8 @@
 							<tr>
 								<td><label> <b>Prezime</b>
 								</label></td>
-								<td colspan="2"><input class="form-control" ng-model="registrationCtrl.user.prezime" type="text">
-								</td>
+								<td colspan="2"><input class="form-control"
+									ng-model="registrationCtrl.user.prezime" type="text"></td>
 								<td></td>
 							</tr>
 
@@ -39,7 +39,8 @@
 								<td><label> <b>Email</b>
 								</label></td>
 								<td colspan="2" text-align="right"><input
-									class="form-control" ng-model="registrationCtrl.user.email" type="email"></td>
+									class="form-control" ng-model="registrationCtrl.user.email"
+									type="email"></td>
 								<td></td>
 							</tr>
 
@@ -51,7 +52,8 @@
 								<td><label> <b>Šifra</b>
 								</label></td>
 								<td colspan="2" text-align="right"><input
-									class="form-control" ng-model="registrationCtrl.user.lozinka" type="password"></td>
+									class="form-control" ng-model="registrationCtrl.user.lozinka"
+									type="password"></td>
 								<td></td>
 							</tr>
 
@@ -60,20 +62,24 @@
 							</tr>
 
 						</table>
-						
-						<blockquote ng-if="registrationCtrl.showError" class="bg-primary" style="margin-top: 10px; margin-bottom: 5px; text-align: center; border-left: none;">
-                            <p>
-                                <em>Wrong input!</em>
-                            </p>
-                        </blockquote>
-                        
-                        <blockquote ng-if="registrationCtrl.showSuccess" class="bg-primary" style="margin-top: 10px; margin-bottom: 5px; text-align: center; border-left: none;">
-                            <p>
-                                <em>Registration successful!</em>
-                            </p>
-                        </blockquote>
 
-						<input type="submit" ng-click="registrationCtrl.registration()" class="btn btn-success"
+						<blockquote ng-if="registrationCtrl.showError" class="bg-primary"
+							style="margin-top: 10px; margin-bottom: 5px; text-align: center; border-left: none;">
+							<p>
+								<em>Wrong input!</em>
+							</p>
+						</blockquote>
+
+						<blockquote ng-if="registrationCtrl.showSuccess"
+							class="bg-primary"
+							style="margin-top: 10px; margin-bottom: 5px; text-align: center; border-left: none;">
+							<p>
+								<em>Registration successful!</em>
+							</p>
+						</blockquote>
+
+						<input type="submit" ng-click="registrationCtrl.registration()"
+							class="btn btn-success"
 							style="margin-top: 7%; margin-left: 30%; width: 40%;"
 							value="Potvrdi">
 					</div>
