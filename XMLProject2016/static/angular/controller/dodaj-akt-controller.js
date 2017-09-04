@@ -5,13 +5,19 @@
 		.module('xmlWebServices.controllers')
 		.controller('DodajAktController', DodajAktController);
 	
-	DodajAktController.$inject = ['$scope', '$location', 'DodajAktFactory'];
+	DodajAktController.$inject = ['$scope', '$location', '$localStorage', 'DodajAktFactory'];
 
-	function DodajAktController($scope, $location, DodajAktFactory) {
+	function DodajAktController($scope, $location, $localStorage, DodajAktFactory) {
 		
 		var vm = this;
 		
+		vm.successful = false;
+		vm.error = false;
+		vm.xmlObject = {};
+		
 		function setupXonomy() {
+			
+			vm.xmlObject.user = $localStorage.user;
 			
 			var docSpec = {
 				onchange : function() {
@@ -24,28 +30,28 @@
 				elements : {
 					// ########################################
 					// ------------- Akt elements ------------
-					"Akt" : {
+					"akt:Akt" : {
 						menu : [
 							{
-								caption : "Dodaj <Preambula>",
+								caption : "Dodaj <akt:Preambula>",
 								action : Xonomy.addPreambulaChildElement,
-								actionParameter : "<Preambula/>",
+								actionParameter : "<akt:Preambula xmlns:akt=\"http://www.tim9.com/akt\"/>",
 								hideIf : function(jsElement) {
-									return jsElement.hasChildElement("Preambula");
+									return jsElement.hasChildElement("akt:Preambula");
 								}
 							}, {
-								caption : "Dodaj <Deo>",
+								caption : "Dodaj <akt:Deo>",
 								action : Xonomy.addDeoChildElement,
-								actionParameter : "<Deo/>",
+								actionParameter : "<akt:Deo xmlns:akt=\"http://www.tim9.com/akt\"/>",
 								hideIf : function(jsElement) {
-									return jsElement.hasChildElement("Član");
+									return jsElement.hasChildElement("akt:Član");
 								}
 							}, {
-								caption : "Dodaj <Član>",
+								caption : "Dodaj <akt:Član>",
 								action : Xonomy.addClanChildElement,
-								actionParameter : "<Član/>",
+								actionParameter : "<akt:Član xmlns:akt=\"http://www.tim9.com/akt\"/>",
 								hideIf : function(jsElement) {
-									return jsElement.hasChildElement("Deo");
+									return jsElement.hasChildElement("akt:Deo");
 								}
 							}, {
 								caption : "Dodaj @naslov",
@@ -68,35 +74,35 @@
 					
 					// ########################################
 					// --------- Preambula elements ----------
-					"Preambula" : {
+					"akt:Preambula" : {
 						menu : [ {
-							caption : "Dodaj novi <PravniOsnov>",
+							caption : "Dodaj novi <akt:PravniOsnov>",
 							action : Xonomy.newElementChild,
-							actionParameter : "<PravniOsnov/>",
+							actionParameter : "<akt:PravniOsnov xmlns:akt=\"http://www.tim9.com/akt\"/>",
 							hideIf : function(jsElement) {
-								return jsElement.hasChildElement("PravniOsnov");
+								return jsElement.hasChildElement("akt:PravniOsnov");
 							}
 
 						}, {
-							caption : "Dodaj novi <NazivOrgana>",
+							caption : "Dodaj novi <akt:NazivOrgana>",
 							action : Xonomy.newElementChild,
-							actionParameter : "<NazivOrgana/>",
+							actionParameter : "<akt:NazivOrgana xmlns:akt=\"http://www.tim9.com/akt\"/>",
 							hideIf : function(jsElement) {
-								return jsElement.hasChildElement("NazivOrgana");
+								return jsElement.hasChildElement("akt:NazivOrgana");
 							}
 
 						}, {
-							caption : "Dodaj novu <Oblast>",
+							caption : "Dodaj novu <akt:Oblast>",
 							action : Xonomy.newElementChild,
-							actionParameter : "<Oblast/>",
+							actionParameter : "<akt:Oblast xmlns:akt=\"http://www.tim9.com/akt\"/>",
 							hideIf : function(jsElement) {
-								return jsElement.hasChildElement("Oblast");
+								return jsElement.hasChildElement("akt:Oblast");
 							}
 
 						} ]
 					},
 					
-					"PravniOsnov" : {
+					"akt:PravniOsnov" : {
 						hasText : true,
 						menu : [ {
 							caption : "Obriši",
@@ -105,7 +111,7 @@
 						mustBeBefore : [ "Deo" ]
 					},
 
-					"NazivOrgana" : {
+					"akt:NazivOrgana" : {
 						hasText : true,
 						asker : Xonomy.askPicklist,
 						askerParameter : [ "Skupština Grada Novog Sada" ],
@@ -116,7 +122,7 @@
 						mustBeAfter : [ "PravniOsnov" ]
 					},
 
-					"Oblast" : {
+					"akt:Oblast" : {
 						hasText : true,
 						asker : Xonomy.askPicklist,
 						askerParameter : [ "Zdravstvo", "Školstvo", "Vojska",
@@ -130,22 +136,22 @@
 					
 					// ########################################
 					// ------------ Deo elements -------------
-					"Deo" : {
+					"akt:Deo" : {
 						menu : [
 							{
-								caption : "Dodaj novu <Glava>",
+								caption : "Dodaj novu <akt:Glava>",
 								action : Xonomy.addGlavaChildElement,
-								actionParameter : "<Glava/>",
+								actionParameter : "<akt:Glava xmlns:akt=\"http://www.tim9.com/akt\"/>",
 								hideIf : function(jsElement) {
-									return jsElement.hasChildElement("Član");
+									return jsElement.hasChildElement("akt:Član");
 								}
 
 							}, {
-								caption : "Dodaj novi <Član>",
+								caption : "Dodaj novi <akt:Član>",
 								action : Xonomy.addClanChildElement,
-								actionParameter : "<Član/>",
+								actionParameter : "<akt:Član xmlns:akt=\"http://www.tim9.com/akt\"/>",
 								hideIf : function(jsElement) {
-									return jsElement.hasChildElement("Glava");
+									return jsElement.hasChildElement("akt:Glava");
 								}
 							}, {
 								caption : "Dodaj @naslov",
@@ -180,7 +186,7 @@
 								asker : Xonomy.askString
 							}
 						},
-						mustBeAfter : [ "Korisnik", "naslov" ]
+						mustBeAfter : [ "naslov" ]
 					},
 					
 					"redniBroj" : {
@@ -194,22 +200,22 @@
 					
 					// ########################################
 					// ----------- Glava elements -------------
-					"Glava" : {
+					"akt:Glava" : {
 						menu : [
 							{
-								caption : "Dodaj novi <Odeljak>",
+								caption : "Dodaj novi <akt:Odeljak>",
 								action : Xonomy.addOdeljakChildElement,
-								actionParameter : "<Odeljak/>",
+								actionParameter : "<akt:Odeljak xmlns:akt=\"http://www.tim9.com/akt\"/>",
 								hideIf : function(jsElement) {
-									return jsElement.hasChildElement("Član");
+									return jsElement.hasChildElement("akt:Član");
 								}
 
 							}, {
-								caption : "Dodaj novi <Član>",
+								caption : "Dodaj novi <akt:Član>",
 								action : Xonomy.addClanChildElement,
-								actionParameter : "<Član/>",
+								actionParameter : "<akt:Član xmlns:akt=\"http://www.tim9.com/akt\"/>",
 								hideIf : function(jsElement) {
-									return jsElement.hasChildElement("Odeljak");
+									return jsElement.hasChildElement("akt:Odeljak");
 								}
 							}, {
 								caption : "Dodaj @naslov",
@@ -248,21 +254,21 @@
 					
 					// ########################################
 					// --------- Odeljak elements -----------
-					"Odeljak" : {
+					"akt:Odeljak" : {
 						menu : [
 							{
-								caption : "Dodaj novi <Pododeljak>",
+								caption : "Dodaj novi <akt:Pododeljak>",
 								action : Xonomy.addPododeljakChildElement,
-								actionParameter : "<Pododeljak/>",
+								actionParameter : "<akt:Pododeljak xmlns:akt=\"http://www.tim9.com/akt\"/>",
 								hideIf : function(jsElement) {
-									return jsElement.hasChildElement("Član");
+									return jsElement.hasChildElement("akt:Član");
 								}
 							}, {
-								caption : "Dodaj novi <Član>",
+								caption : "Dodaj novi <akt:Član>",
 								action : Xonomy.addClanChildElement,
-								actionParameter : "<Član/>",
+								actionParameter : "<akt:Član xmlns:akt=\"http://www.tim9.com/akt\"/>",
 								hideIf : function(jsElement) {
-									return jsElement.hasChildElement("Pododeljak");
+									return jsElement.hasChildElement("akt:Pododeljak");
 								}
 							}, {
 								caption : "Dodaj @naslov",
@@ -301,12 +307,12 @@
 					
 					// ########################################
 					// -------- Pododeljak elements ----------
-					"Pododeljak" : {
+					"akt:Pododeljak" : {
 						menu : [
 							{
-								caption : "Dodaj novi <Član>",
+								caption : "Dodaj novi <akt:Član>",
 								action : Xonomy.addClanChildElement,
-								actionParameter : "<Član/>"
+								actionParameter : "<akt:Član xmlns:akt=\"http://www.tim9.com/akt\"/>"
 							}, {
 								caption : "Dodaj @naslov",
 								action : Xonomy.newAttribute,
@@ -344,12 +350,12 @@
 					
 					// ########################################
 					// ----------- Clan elements ------------
-					"Član" : {
+					"akt:Član" : {
 						menu : [
 							{
-								caption : "Dodaj novi <Stav>",
+								caption : "Dodaj novi <akt:Stav>",
 								action : Xonomy.addStavChildElement,
-								actionParameter : "<Stav/>",
+								actionParameter : "<akt:Stav xmlns:akt=\"http://www.tim9.com/akt\"/>",
 							}, {
 								caption : "Dodaj @naslov",
 								action : Xonomy.newAttribute,
@@ -387,18 +393,18 @@
 					
 					// ########################################
 					// ----------- Stav elements ------------
-					"Stav" : {
+					"akt:Stav" : {
 						menu : [
 							{
-								caption : "Dodaj novu <Tačka>",
+								caption : "Dodaj novu <akt:Tačka>",
 								action : Xonomy.addTackaChildElement,
-								actionParameter : "<Tačka/>"
+								actionParameter : "<akt:Tačka xmlns:akt=\"http://www.tim9.com/akt\"/>"
 							}, {
-								caption : "Dodaj novi <Sadrzaj>",
+								caption : "Dodaj novi <akt:Sadrzaj>",
 								action : Xonomy.newElementChild,
-								actionParameter : "<Sadrzaj/>",
+								actionParameter : "<akt:Sadrzaj xmlns:akt=\"http://www.tim9.com/akt\"/>",
 								hideIf : function(jsElement) {
-									return jsElement.hasChildElement("Sadrzaj");
+									return jsElement.hasChildElement("akt:Sadrzaj");
 								}
 							}, {
 								caption : "Obriši",
@@ -409,18 +415,18 @@
 					
 					// ########################################
 					// ----------- Tacka elements ------------
-					"Tačka" : {
+					"akt:Tačka" : {
 						menu : [
 							{
-								caption : "Dodaj novi <Podtačka>",
+								caption : "Dodaj novi <akt:Podtačka>",
 								action : Xonomy.addPodtackaChildElement,
-								actionParameter : "<Podtačka/>",
+								actionParameter : "<akt:Podtačka xmlns:akt=\"http://www.tim9.com/akt\"/>",
 							}, {
-								caption : "Dodaj novi <Sadrzaj>",
+								caption : "Dodaj novi <akt:Sadrzaj>",
 								action : Xonomy.newElementChild,
-								actionParameter : "<Sadrzaj/>",
+								actionParameter : "<akt:Sadrzaj xmlns:akt=\"http://www.tim9.com/akt\"/>",
 								hideIf : function(jsElement) {
-									return jsElement.hasChildElement("Sadrzaj");
+									return jsElement.hasChildElement("akt:Sadrzaj");
 								},
 							}, {
 								caption : "Dodaj @redniBroj",
@@ -437,7 +443,7 @@
 								action : Xonomy.deleteElement
 							}
 						],
-						mustBeAfter : [ "Sadrzaj" ],
+						mustBeAfter : [ "akt:Sadrzaj" ],
 						attributes : {
 							"redniBroj" : {
 								asker : Xonomy.askString
@@ -447,18 +453,18 @@
 					
 					// ########################################
 					// --------- Podtacka elements -----------
-					"Podtačka" : {
+					"akt:Podtačka" : {
 						menu : [
 							{
-								caption : "Dodaj novu <Alineja>",
+								caption : "Dodaj novu <akt:Alineja>",
 								action : Xonomy.addAlinejaChildElement,
-								actionParameter : "<Alineja/>"
+								actionParameter : "<akt:Alineja xmlns:akt=\"http://www.tim9.com/akt\"/>"
 							}, {
-								caption : "Dodaj novi <Sadrzaj>",
+								caption : "Dodaj novi <akt:Sadrzaj>",
 								action : Xonomy.newElementChild,
-								actionParameter : "<Sadrzaj/>",
+								actionParameter : "<akt:Sadrzaj xmlns:akt=\"http://www.tim9.com/akt\"/>",
 								hideIf : function(jsElement) {
-									return jsElement.hasChildElement("Sadrzaj");
+									return jsElement.hasChildElement("akt:Sadrzaj");
 								}
 							}, {
 								caption : "Dodaj @redniBroj",
@@ -484,12 +490,12 @@
 					
 					// ########################################
 					// --------- Alineja elements -----------
-					"Alineja" : {
+					"akt:Alineja" : {
 						menu : [
 							{
-								caption : "Dodaj novi <Sadrzaj>",
+								caption : "Dodaj novi <akt:Sadrzaj>",
 								action : Xonomy.newElementChild,
-								actionParameter : "<Sadrzaj/>"
+								actionParameter : "<akt:Sadrzaj xmlns:akt=\"http://www.tim9.com/akt\"/>"
 							}, {
 								caption : "Obriši",
 								action : Xonomy.deleteElement
@@ -497,7 +503,7 @@
 						]
 					},
 					
-					"Sadrzaj" : {
+					"akt:Sadrzaj" : {
 						hasText : true,
 						menu : [
 							{
@@ -507,22 +513,22 @@
 						],
 						inlineMenu : [
 							{
-								caption : "Dodaj <Referenca>",
+								caption : "Dodaj <akt:Referenca>",
 								action : Xonomy.wrap,
 								actionParameter : {
-									template : "<Referenca>$</Referenca>",
+									template : "<Rakt:eferenca>$</akt:Referenca>",
 									placeholder : "$"
 								}
 							}
 						],
-						mustBeBefore : [ "Tačka", "Podtačka", "Alineja" ]
+						mustBeBefore : [ "akt:Tačka", "akt:Podtačka", "akt:Alineja" ]
 					},
 					
-					"Referenca" : {
+					"akt:Referenca" : {
 						hasText : false,
 						menu : [ 
 							{
-								caption : "Obriši <Referenca>",
+								caption : "Obriši <akt:Referenca>",
 								action : Xonomy.unwrap
 							}, {
 								caption : "Dodaj @URL",
@@ -544,8 +550,14 @@
 					}
 				}
 			};
-			
-			var xml = "<Akt></Akt>";
+
+			var xml = "<akt:Akt xmlns:akt=\"http://www.tim9.com/akt\" " +
+						   "xmlns=\"http://www.w3.org/ns/rdfa#\" " +
+						   "xmlns:pred=\"http://www.tim9.com/akt/rdf/predikati/\" " +
+						   "xmlns:xs=\"http://www.w3.org/2001/XMLSchema#\" " +
+						   "xmlns:korisnik=\"http://www.tim9.com/korisnik\" " +
+					       "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">" +
+					   "</akt:Akt>";
 			
 			var insEditor = document.getElementById("xmlEditor");
 			
@@ -553,6 +565,22 @@
 			Xonomy.render(xml, insEditor, docSpec);
 		}
 		setupXonomy();
+		
+		vm.addAkt = function() {
+			vm.xmlObject.xml = Xonomy.harvest();
+			DodajAktFactory.addAkt(vm.xmlObject).then(
+				function(data) {
+					if (data == null) {
+						vm.error = true;
+						vm.successful = false;
+					} else {
+						vm.error = false;
+						vm.successful = true;
+						$timeout(function(){$location.path('/mojiPredlozi');}, 3000);
+					}
+				}
+			);
+		}
 		
 	}
 

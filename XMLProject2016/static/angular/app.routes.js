@@ -48,7 +48,9 @@
 			controller  : 'DodajAktController',
 			controllerAs: 'dodajAktCtrl'
 		}).when('/dodajAmandman', {
-			templateUrl : 'views/dodajAmandman.html'
+			templateUrl : 'views/dodajAmandman.html',
+			controller  : 'DodajAmandmanController',
+			controllerAs: 'dodajAmandmanCtrl'
 		}).when('/zakazivanje', {
 			templateUrl : 'views/zakazivanjeSednice.html',
 			controller  : 'ZakazivanjeController',

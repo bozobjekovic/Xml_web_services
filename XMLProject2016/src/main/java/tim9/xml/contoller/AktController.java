@@ -77,20 +77,20 @@ public class AktController implements ErrorHandler {
 		}
 
 		xml = addNamespaces(xml, xmlObjectDTO);
-
+		
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		dbFactory.setValidating(true);
 		dbFactory.setNamespaceAware(true);
 		dbFactory.setIgnoringComments(true);
 		dbFactory.setIgnoringElementContentWhitespace(true);
 
-		/* Validacija u odnosu na XML šemu. */
+		// Validacija u odnosu na XML šemu. 
 		dbFactory.setAttribute(JAXP_SCHEMA_LANGUAGE, W3C_XML_SCHEMA);
 
 		try {
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 
-			/* Postavlja error handler. */
+			// Postavlja error handler. 
 			dBuilder.setErrorHandler(this);
 
 			Document doc = dBuilder.parse(new InputSource(new StringReader(xml)));
@@ -107,7 +107,7 @@ public class AktController implements ErrorHandler {
 			aktElement.appendChild(korisnik);
 			// korisnik.removeAttribute("xmlns");
 			// META PODACI
-			/* Detektuju eventualne greske */
+			// Detektuju eventualne greske 
 			if (doc != null)
 				System.out.println("[INFO] File parsed with no errors.");
 

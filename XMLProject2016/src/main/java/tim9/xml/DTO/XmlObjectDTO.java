@@ -8,6 +8,12 @@ public class XmlObjectDTO {
 	private Korisnik user;
 	private String aktId;
 	
+	
+	@Override
+	public String toString() {
+		return "XmlObjectDTO [xml=" + xml + ", user=" + user + ", aktId=" + aktId + "]";
+	}
+
 	public String getXml() {
 		return xml;
 	}
