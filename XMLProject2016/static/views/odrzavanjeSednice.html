@@ -14,11 +14,13 @@
 					<b>Sednica je u toku...</b>
 				</h3>
 	
-				<input type="button" class="btn btn-danger"
-					style="margin-top: 3%; margin-right: 5%; width: 35%; float: right"
-					value="Prekini sednicu"
-					ng-click="odrzavanjeCtrl.prekiniSednicu()"
-					ng-show="odrzavanjeCtrl.prikaz()">
+				<div ng-controller="ZakazivanjeController as zakazivanjeCtrl">
+					<input type="button" class="btn btn-danger"
+						style="margin-top: 3%; margin-right: 5%; width: 35%; float: right"
+						value="Prekini sednicu"
+						ng-show="zakazivanjeCtrl.prikaz()"
+						ng-click="odrzavanjeCtrl.prekiniSednicu()">
+				</div>
 			</div>
 			
 			<div ng-if="odrzavanjeCtrl.sednicaNema == false && odrzavanjeCtrl.sednicaUToku == false">

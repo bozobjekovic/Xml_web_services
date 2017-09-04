@@ -5,24 +5,14 @@
 		.module('xmlWebServices.controllers')
 		.controller('OdrzavanjeController', OdrzavanjeController);
 	
-	OdrzavanjeController.$inject = ['$scope', '$location', '$localStorage', '$sce', '$routeParams', 'SedniceFactory'];
+	OdrzavanjeController.$inject = ['$scope', '$location', '$sce', '$routeParams', 'SedniceFactory'];
 
-	function OdrzavanjeController($scope, $location, $localStorage, $sce, $routeParams, SedniceFactory) {
+	function OdrzavanjeController($scope, $location, $sce, $routeParams, SedniceFactory) {
 		
 		var vm = this;
 		vm.sednica = {};
 		vm.sednicaUToku = false;
 		vm.sednicaNema = false;
-		
-		vm.prikaz = function() {
-			if($localStorage.user == null)
-				return false;
-			
-			if($localStorage.user.uloga == 'odbornik')
-				false;
-			else
-				true;
-		}
 		
 		vm.dobaviSednicu = function(){
 			SedniceFactory.dobaviSednicu().then(function(data){

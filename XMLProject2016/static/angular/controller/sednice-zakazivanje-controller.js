@@ -19,8 +19,12 @@
 			if($localStorage.user == null)
 				return false;
 			
-			if($localStorage.user.uloga != 'predsednik')
+			if($localStorage.user.uloga != 'predsednik') {
 				$location.path('/odrzavanje');
+				return false;
+			}
+			else
+				return true;
 		}
 		vm.prikaz();
 		
