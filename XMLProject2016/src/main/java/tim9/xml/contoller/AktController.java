@@ -11,11 +11,15 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -33,6 +37,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.xml.sax.ErrorHandler;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -77,20 +82,20 @@ public class AktController implements ErrorHandler {
 		}
 
 		xml = addNamespaces(xml, xmlObjectDTO);
-		
+
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		dbFactory.setValidating(true);
 		dbFactory.setNamespaceAware(true);
 		dbFactory.setIgnoringComments(true);
 		dbFactory.setIgnoringElementContentWhitespace(true);
 
-		// Validacija u odnosu na XML šemu. 
+		// Validacija u odnosu na XML šemu.
 		dbFactory.setAttribute(JAXP_SCHEMA_LANGUAGE, W3C_XML_SCHEMA);
 
 		try {
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 
-			// Postavlja error handler. 
+			// Postavlja error handler.
 			dBuilder.setErrorHandler(this);
 
 			Document doc = dBuilder.parse(new InputSource(new StringReader(xml)));
@@ -105,9 +110,10 @@ public class AktController implements ErrorHandler {
 
 			Element korisnik = addUser(xmlObjectDTO, doc);
 			aktElement.appendChild(korisnik);
-			// korisnik.removeAttribute("xmlns");
-			// META PODACI
-			// Detektuju eventualne greske 
+
+			addPreambula(doc);
+
+			// Detektuju eventualne greske
 			if (doc != null)
 				System.out.println("[INFO] File parsed with no errors.");
 
@@ -135,17 +141,61 @@ public class AktController implements ErrorHandler {
 
 	}
 
+	private void addPreambula(Document doc) throws DatatypeConfigurationException {
+		GregorianCalendar date = new GregorianCalendar();
+		XMLGregorianCalendar datum = DatatypeFactory.newInstance().newXMLGregorianCalendar(date);
+		String datumStr = datum.toString().split("T")[0];
+
+		Node preambula = doc.getElementsByTagName("akt:Preambula").item(0);
+
+		Element status = doc.createElementNS("http://www.tim9.com/akt", "akt:Status");
+		status.appendChild(doc.createTextNode("U proceduri"));
+		status.setAttribute("property", "pred:status");
+		status.setAttribute("datatype", "xs:string");
+		preambula.appendChild(status);
+
+		Element datumPredaje = doc.createElementNS("http://www.tim9.com/akt", "akt:DatumPredaje");
+		datumPredaje.appendChild(doc.createTextNode(datumStr));
+		datumPredaje.setAttribute("property", "pred:datumPredaje");
+		datumPredaje.setAttribute("datatype", "xs:date");
+		preambula.appendChild(datumPredaje);
+
+		Element datumObjave = doc.createElementNS("http://www.tim9.com/akt", "akt:DatumObjave");
+		datumObjave.appendChild(doc.createTextNode("0001-01-01"));
+		datumObjave.setAttribute("property", "pred:datumObjave");
+		datumObjave.setAttribute("datatype", "xs:date");
+		preambula.appendChild(datumObjave);
+
+		Element za = doc.createElementNS("http://www.tim9.com/akt", "akt:BrojGlasovaZa");
+		za.appendChild(doc.createTextNode("0"));
+		za.setAttribute("property", "pred:za");
+		za.setAttribute("datatype", "xs:int");
+		preambula.appendChild(za);
+
+		Element protiv = doc.createElementNS("http://www.tim9.com/akt", "akt:BrojGlasovaProtiv");
+		protiv.appendChild(doc.createTextNode("0"));
+		protiv.setAttribute("property", "pred:protiv");
+		protiv.setAttribute("datatype", "xs:int");
+		preambula.appendChild(protiv);
+
+		Element suzdrzano = doc.createElementNS("http://www.tim9.com/akt", "akt:BrojGlasovaUzdrzano");
+		suzdrzano.appendChild(doc.createTextNode("0"));
+		suzdrzano.setAttribute("property", "pred:uzdrzano");
+		suzdrzano.setAttribute("datatype", "xs:int");
+		preambula.appendChild(suzdrzano);
+	}
+
 	private Element addUser(XmlObjectDTO xmlObjectDTO, Document doc) {
-		Element korisnik = doc.createElement("korisnik:Korisnik");
-		Element uloga = doc.createElement("korisnik:Uloga");
+		Element korisnik = doc.createElementNS("http://www.tim9.com/korisnik", "korisnik:Korisnik");
+		Element uloga = doc.createElementNS("http://www.tim9.com/korisnik", "korisnik:Uloga");
 		uloga.appendChild(doc.createTextNode(xmlObjectDTO.getUser().getUloga()));
-		Element ime = doc.createElement("korisnik:Ime");
+		Element ime = doc.createElementNS("http://www.tim9.com/korisnik", "korisnik:Ime");
 		ime.appendChild(doc.createTextNode(xmlObjectDTO.getUser().getIme()));
-		Element prezime = doc.createElement("korisnik:Prezime");
+		Element prezime = doc.createElementNS("http://www.tim9.com/korisnik", "korisnik:Prezime");
 		prezime.appendChild(doc.createTextNode(xmlObjectDTO.getUser().getPrezime()));
-		Element email = doc.createElement("korisnik:Email");
+		Element email = doc.createElementNS("http://www.tim9.com/korisnik", "korisnik:Email");
 		email.appendChild(doc.createTextNode(xmlObjectDTO.getUser().getEmail()));
-		Element lozinka = doc.createElement("korisnik:Lozinka");
+		Element lozinka = doc.createElementNS("http://www.tim9.com/korisnik", "korisnik:Lozinka");
 		lozinka.appendChild(doc.createTextNode(xmlObjectDTO.getUser().getLozinka()));
 
 		korisnik.appendChild(uloga);

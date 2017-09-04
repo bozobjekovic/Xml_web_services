@@ -134,6 +134,7 @@ public class XQueryAkt {
 		StringQueryDefinition queryDefinition = queryManager.newStringDefinition();
 
 		queryDefinition.setCriteria(criteria);
+		System.out.println(criteria);
 
 		// Search within a specific collection
 		queryDefinition.setCollections(COLLECTION);
