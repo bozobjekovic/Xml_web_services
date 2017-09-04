@@ -12,6 +12,9 @@
 		var vm = this;
 		
 		vm.prikaz = function() {
+			if($localStorage.user == null)
+				return true;
+			
 			var korisnik = $localStorage.user.email;
 			if(korisnik == null)
 				return true;
