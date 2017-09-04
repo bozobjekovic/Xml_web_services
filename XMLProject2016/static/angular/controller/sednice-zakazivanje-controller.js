@@ -5,15 +5,24 @@
 		.module('xmlWebServices.controllers')
 		.controller('ZakazivanjeController', ZakazivanjeController);
 	
-	ZakazivanjeController.$inject = ['$scope', '$location', '$sce', '$routeParams', 'SedniceFactory'];
+	ZakazivanjeController.$inject = ['$scope', '$location', '$localStorage', '$sce', '$routeParams', 'SedniceFactory'];
 
-	function ZakazivanjeController($scope, $location, $sce, $routeParams, SedniceFactory) {
+	function ZakazivanjeController($scope, $location, $localStorage, $sce, $routeParams, SedniceFactory) {
 		
 		var vm = this;
 		vm.dokumenti = [];
 		vm.sednica = {};
 		vm.datum = '';
 		vm.vreme = '';
+		
+		vm.prikaz = function() {
+			if($localStorage.user == null)
+				return false;
+			
+			if($localStorage.user.uloga != 'predsednik')
+				$location.path('/odrzavanje');
+		}
+		vm.prikaz();
 		
 		vm.dobaviSednicu = function(){
 			SedniceFactory.dobaviSednicu().then(function(data){

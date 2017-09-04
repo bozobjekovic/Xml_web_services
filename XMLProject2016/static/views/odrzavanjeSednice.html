@@ -17,13 +17,23 @@
 				<input type="button" class="btn btn-danger"
 					style="margin-top: 3%; margin-right: 5%; width: 35%; float: right"
 					value="Prekini sednicu"
-					ng-click="odrzavanjeCtrl.prekiniSednicu()">
+					ng-click="odrzavanjeCtrl.prekiniSednicu()"
+					ng-show="odrzavanjeCtrl.prikaz()">
 			</div>
-			<div ng-if="odrzavanjeCtrl.sednicaUToku == false">
+			
+			<div ng-if="odrzavanjeCtrl.sednicaNema == false && odrzavanjeCtrl.sednicaUToku == false">
 				<h3 style="margin-top: 15%; margin-right: 5%; width: 35%; float: right">
 					<b>
 						Sednica je u zakazana za <br/> {{ odrzavanjeCtrl.sednica.datum | date : 'dd.MM.yyyy' }}.
 						u {{ odrzavanjeCtrl.sednica.datum | date : 'H:mm' }} časova.
+					</b>
+				</h3>
+			</div>
+			
+			<div ng-if="odrzavanjeCtrl.sednicaNema == true">
+				<h3 style="margin-top: 15%; margin-right: 5%; width: 35%; float: right">
+					<b>
+						Trenutno nema nijedne zakazane sednice.
 					</b>
 				</h3>
 			</div>

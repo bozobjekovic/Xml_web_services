@@ -42,20 +42,7 @@
             <xs:attribute name="id"/>
         </xs:complexType>
     </xs:element>
-    <xs:element name="OdredbaAkta">
-        <xs:complexType>
-            <xs:choice>
-                <xs:element ref="akt:Clan"/>
-                <xs:element ref="akt:Deo"/>
-                <xs:element ref="akt:Glava"/>
-                <xs:element ref="akt:Odeljak"/>
-                <xs:element ref="akt:Pododeljak"/>
-                <xs:element ref="akt:Podtacka"/>
-                <xs:element ref="akt:Tacka"/>
-                <xs:element ref="akt:Stav"/>
-            </xs:choice>
-        </xs:complexType>
-    </xs:element>
+    <xs:element name="OdredbaAkta" type="xs:string"> </xs:element>
     <xs:element name="Preambula">
         <xs:complexType>
             <xs:sequence>

@@ -10,10 +10,14 @@
 	function IndexController($scope, $localStorage, $location) {
 		
 		var vm = this;
+		vm.regOdb = false;
 		
 		vm.prikaz = function() {
 			if($localStorage.user == null)
 				return true;
+			
+			if($localStorage.user.uloga == 'predsednik')
+				vm.regOdb = true;
 			
 			var korisnik = $localStorage.user.email;
 			if(korisnik == null)
