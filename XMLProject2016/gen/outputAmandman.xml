@@ -1,119 +1,123 @@
-<?xml version="1.0" encoding="UTF-8"?><amd:Amandman xmlns:amd="http://www.tim9.com/amandman" xmlns:akt="http://www.tim9.com/akt" xmlns:korisnik="http://www.tim9.com/korisnik" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="791" xsi:schemaLocation="http://www.tim9.com/amandman file:/E:/7. semestar/XML i veb servisi/Projekat/Projekat/Xml_web_services/XMLProject2016/data/amandman_schema.xsd">
-    <amd:Naslov>Naslov0</amd:Naslov>
-    <amd:PravniOsnov>PravniOsnov0</amd:PravniOsnov>
-    <amd:Sadrzaj id="id1">
-        <amd:NazivAkta>NazivAkta0</amd:NazivAkta>
-        <amd:OdredbaAkta>
-            <akt:Odeljak id="id2" naslov="naslov0" redniBroj="redniBroj0">
-                <akt:Pododeljak id="id3" naslov="naslov1" redniBroj="redniBroj1">
-                    <akt:Clan id="id4" naslov="naslov2" redniBroj="redniBroj2">
-                        <akt:Stav id="id5">
-                            <akt:Tacka id="id6" redniBroj="redniBroj3">
-                                <akt:Sadrzaj>Sadrzaj0</akt:Sadrzaj>
-                            </akt:Tacka>
-                            <akt:Tacka id="id7" redniBroj="redniBroj4">
-                                <akt:Sadrzaj>Sadrzaj1</akt:Sadrzaj>
-                            </akt:Tacka>
-                        </akt:Stav>
-                        <akt:Stav id="id8">
-                            <akt:Tacka id="id9" redniBroj="redniBroj5">
-                                <akt:Sadrzaj>Sadrzaj2</akt:Sadrzaj>
-                            </akt:Tacka>
-                            <akt:Tacka id="id10" redniBroj="redniBroj6">
-                                <akt:Sadrzaj>Sadrzaj3</akt:Sadrzaj>
-                            </akt:Tacka>
-                        </akt:Stav>
-                    </akt:Clan>
-                    <akt:Clan id="id11" naslov="naslov3" redniBroj="redniBroj7">
-                        <akt:Stav id="id12">
-                            <akt:Sadrzaj>Sadrzaj4</akt:Sadrzaj>
-                        </akt:Stav>
-                        <akt:Stav id="id13">
-                            <akt:Tacka id="id14" redniBroj="redniBroj8">
-                                <akt:Sadrzaj>Sadrzaj5</akt:Sadrzaj>
-                            </akt:Tacka>
-                            <akt:Tacka id="id15" redniBroj="redniBroj9">
-                                <akt:Podtacka id="id16" redniBroj="redniBroj10">
-                                    <akt:Alineja id="id17">
-                                        <akt:Sadrzaj>Sadrzaj6</akt:Sadrzaj>
-                                    </akt:Alineja>
-                                    <akt:Alineja id="id18">
-                                        <akt:Sadrzaj>Sadrzaj7</akt:Sadrzaj>
-                                    </akt:Alineja>
-                                </akt:Podtacka>
-                                <akt:Podtacka id="id19" redniBroj="redniBroj11">
-                                    <akt:Alineja id="id20">
-                                        <akt:Sadrzaj>Sadrzaj8</akt:Sadrzaj>
-                                    </akt:Alineja>
-                                    <akt:Alineja id="id21">
-                                        <akt:Sadrzaj>Sadrzaj9</akt:Sadrzaj>
-                                    </akt:Alineja>
-                                </akt:Podtacka>
-                            </akt:Tacka>
-                        </akt:Stav>
-                    </akt:Clan>
-                </akt:Pododeljak>
-                <akt:Pododeljak id="id22" naslov="naslov4" redniBroj="redniBroj12">
-                    <akt:Clan id="id23" naslov="naslov5" redniBroj="redniBroj13">
-                        <akt:Stav id="id24">
-                            <akt:Sadrzaj>Sadrzaj10</akt:Sadrzaj>
-                        </akt:Stav>
-                        <akt:Stav id="id25">
-                            <akt:Tacka id="id26" redniBroj="redniBroj14">
-                                <akt:Podtacka id="id27" redniBroj="redniBroj15">
-                                    <akt:Sadrzaj>Sadrzaj11</akt:Sadrzaj>
-                                </akt:Podtacka>
-                                <akt:Podtacka id="id28" redniBroj="redniBroj16">
-                                    <akt:Sadrzaj>Sadrzaj12</akt:Sadrzaj>
-                                </akt:Podtacka>
-                            </akt:Tacka>
-                            <akt:Tacka id="id29" redniBroj="redniBroj17">
-                                <akt:Sadrzaj>Sadrzaj13</akt:Sadrzaj>
-                            </akt:Tacka>
-                        </akt:Stav>
-                    </akt:Clan>
-                    <akt:Clan id="id30" naslov="naslov6" redniBroj="redniBroj18">
-                        <akt:Stav id="id31">
-                            <akt:Sadrzaj>Sadrzaj14</akt:Sadrzaj>
-                        </akt:Stav>
-                        <akt:Stav id="id32">
-                            <akt:Tacka id="id33" redniBroj="redniBroj19">
-                                <akt:Sadrzaj>Sadrzaj15</akt:Sadrzaj>
-                            </akt:Tacka>
-                            <akt:Tacka id="id34" redniBroj="redniBroj20">
-                                <akt:Sadrzaj>Sadrzaj16</akt:Sadrzaj>
-                            </akt:Tacka>
-                        </akt:Stav>
-                    </akt:Clan>
-                </akt:Pododeljak>
-            </akt:Odeljak>
-        </amd:OdredbaAkta>
-        <amd:PredlozenoResenje>PredlozenoResenje0</amd:PredlozenoResenje>
-        <amd:Obrazlozenje id="id35">
-            <amd:RazlogPodnosenja>RazlogPodnosenja0</amd:RazlogPodnosenja>
-            <amd:Objasnjenje>Objasnjenje0</amd:Objasnjenje>
-            <amd:CiljPodnosenja>CiljPodnosenja0</amd:CiljPodnosenja>
-            <amd:ProcenaUticaja>ProcenaUticaja0</amd:ProcenaUticaja>
-        </amd:Obrazlozenje>
-    </amd:Sadrzaj>
-    <amd:Sadrzaj id="id36">
-        <amd:NazivAkta>NazivAkta1</amd:NazivAkta>
-        <amd:OdredbaAkta>
-            <akt:Podtacka id="id37" redniBroj="redniBroj21">
-                <akt:Alineja id="id38">
-                    <akt:Sadrzaj>Sadrzaj17</akt:Sadrzaj>
-                </akt:Alineja>
-                <akt:Alineja id="id39">
-                    <akt:Sadrzaj>Sadrzaj18</akt:Sadrzaj>
-                </akt:Alineja>
-            </akt:Podtacka>
-        </amd:OdredbaAkta>
-        <amd:PredlozenoResenje>PredlozenoResenje1</amd:PredlozenoResenje>
-        <amd:Obrazlozenje id="id40">
-            <amd:RazlogPodnosenja>RazlogPodnosenja1</amd:RazlogPodnosenja>
-            <amd:Objasnjenje>Objasnjenje1</amd:Objasnjenje>
-            <amd:CiljPodnosenja>CiljPodnosenja1</amd:CiljPodnosenja>
-            <amd:ProcenaUticaja>ProcenaUticaja1</amd:ProcenaUticaja>
-        </amd:Obrazlozenje>
-    </amd:Sadrzaj>
+<?xml version="1.0" encoding="UTF-8"?>
+<amd:Amandman xmlns:amd="http://www.tim9.com/amandman"
+	xmlns:akt="http://www.tim9.com/akt" xmlns:korisnik="http://www.tim9.com/korisnik"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="791"
+	xsi:schemaLocation="http://www.tim9.com/amandman file:/E:/7. semestar/XML i veb servisi/Projekat/Projekat/Xml_web_services/XMLProject2016/data/amandman_schema.xsd">
+	<amd:Naslov>Naslov0</amd:Naslov>
+	<amd:PravniOsnov>PravniOsnov0</amd:PravniOsnov>
+	<amd:Sadrzaj id="id1">
+		<amd:NazivAkta>NazivAkta0</amd:NazivAkta>
+		<amd:OdredbaAkta>
+			<akt:Odeljak id="id2" naslov="naslov0" redniBroj="redniBroj0">
+				<akt:Pododeljak id="id3" naslov="naslov1" redniBroj="redniBroj1">
+					<akt:Clan id="id4" naslov="naslov2" redniBroj="redniBroj2">
+						<akt:Stav id="id5">
+							<akt:Tacka id="id6" redniBroj="redniBroj3">
+								<akt:Sadrzaj>Sadrzaj0</akt:Sadrzaj>
+							</akt:Tacka>
+							<akt:Tacka id="id7" redniBroj="redniBroj4">
+								<akt:Sadrzaj>Sadrzaj1</akt:Sadrzaj>
+							</akt:Tacka>
+						</akt:Stav>
+						<akt:Stav id="id8">
+							<akt:Tacka id="id9" redniBroj="redniBroj5">
+								<akt:Sadrzaj>Sadrzaj2</akt:Sadrzaj>
+							</akt:Tacka>
+							<akt:Tacka id="id10" redniBroj="redniBroj6">
+								<akt:Sadrzaj>Sadrzaj3</akt:Sadrzaj>
+							</akt:Tacka>
+						</akt:Stav>
+					</akt:Clan>
+					<akt:Clan id="id11" naslov="naslov3" redniBroj="redniBroj7">
+						<akt:Stav id="id12">
+							<akt:Sadrzaj>Sadrzaj4</akt:Sadrzaj>
+						</akt:Stav>
+						<akt:Stav id="id13">
+							<akt:Tacka id="id14" redniBroj="redniBroj8">
+								<akt:Sadrzaj>Sadrzaj5</akt:Sadrzaj>
+							</akt:Tacka>
+							<akt:Tacka id="id15" redniBroj="redniBroj9">
+								<akt:Podtacka id="id16" redniBroj="redniBroj10">
+									<akt:Alineja id="id17">
+										<akt:Sadrzaj>Sadrzaj6</akt:Sadrzaj>
+									</akt:Alineja>
+									<akt:Alineja id="id18">
+										<akt:Sadrzaj>Sadrzaj7</akt:Sadrzaj>
+									</akt:Alineja>
+								</akt:Podtacka>
+								<akt:Podtacka id="id19" redniBroj="redniBroj11">
+									<akt:Alineja id="id20">
+										<akt:Sadrzaj>Sadrzaj8</akt:Sadrzaj>
+									</akt:Alineja>
+									<akt:Alineja id="id21">
+										<akt:Sadrzaj>Sadrzaj9</akt:Sadrzaj>
+									</akt:Alineja>
+								</akt:Podtacka>
+							</akt:Tacka>
+						</akt:Stav>
+					</akt:Clan>
+				</akt:Pododeljak>
+				<akt:Pododeljak id="id22" naslov="naslov4" redniBroj="redniBroj12">
+					<akt:Clan id="id23" naslov="naslov5" redniBroj="redniBroj13">
+						<akt:Stav id="id24">
+							<akt:Sadrzaj>Sadrzaj10</akt:Sadrzaj>
+						</akt:Stav>
+						<akt:Stav id="id25">
+							<akt:Tacka id="id26" redniBroj="redniBroj14">
+								<akt:Podtacka id="id27" redniBroj="redniBroj15">
+									<akt:Sadrzaj>Sadrzaj11</akt:Sadrzaj>
+								</akt:Podtacka>
+								<akt:Podtacka id="id28" redniBroj="redniBroj16">
+									<akt:Sadrzaj>Sadrzaj12</akt:Sadrzaj>
+								</akt:Podtacka>
+							</akt:Tacka>
+							<akt:Tacka id="id29" redniBroj="redniBroj17">
+								<akt:Sadrzaj>Sadrzaj13</akt:Sadrzaj>
+							</akt:Tacka>
+						</akt:Stav>
+					</akt:Clan>
+					<akt:Clan id="id30" naslov="naslov6" redniBroj="redniBroj18">
+						<akt:Stav id="id31">
+							<akt:Sadrzaj>Sadrzaj14</akt:Sadrzaj>
+						</akt:Stav>
+						<akt:Stav id="id32">
+							<akt:Tacka id="id33" redniBroj="redniBroj19">
+								<akt:Sadrzaj>Sadrzaj15</akt:Sadrzaj>
+							</akt:Tacka>
+							<akt:Tacka id="id34" redniBroj="redniBroj20">
+								<akt:Sadrzaj>Sadrzaj16</akt:Sadrzaj>
+							</akt:Tacka>
+						</akt:Stav>
+					</akt:Clan>
+				</akt:Pododeljak>
+			</akt:Odeljak>
+		</amd:OdredbaAkta>
+		<amd:PredlozenoResenje>PredlozenoResenje0</amd:PredlozenoResenje>
+		<amd:Obrazlozenje id="id35">
+			<amd:RazlogPodnosenja>RazlogPodnosenja0</amd:RazlogPodnosenja>
+			<amd:Objasnjenje>Objasnjenje0</amd:Objasnjenje>
+			<amd:CiljPodnosenja>CiljPodnosenja0</amd:CiljPodnosenja>
+			<amd:ProcenaUticaja>ProcenaUticaja0</amd:ProcenaUticaja>
+		</amd:Obrazlozenje>
+	</amd:Sadrzaj>
+	<amd:Sadrzaj id="id36">
+		<amd:NazivAkta>NazivAkta1</amd:NazivAkta>
+		<amd:OdredbaAkta>
+			<akt:Podtacka id="id37" redniBroj="redniBroj21">
+				<akt:Alineja id="id38">
+					<akt:Sadrzaj>Sadrzaj17</akt:Sadrzaj>
+				</akt:Alineja>
+				<akt:Alineja id="id39">
+					<akt:Sadrzaj>Sadrzaj18</akt:Sadrzaj>
+				</akt:Alineja>
+			</akt:Podtacka>
+		</amd:OdredbaAkta>
+		<amd:PredlozenoResenje>PredlozenoResenje1</amd:PredlozenoResenje>
+		<amd:Obrazlozenje id="id40">
+			<amd:RazlogPodnosenja>RazlogPodnosenja1</amd:RazlogPodnosenja>
+			<amd:Objasnjenje>Objasnjenje1</amd:Objasnjenje>
+			<amd:CiljPodnosenja>CiljPodnosenja1</amd:CiljPodnosenja>
+			<amd:ProcenaUticaja>ProcenaUticaja1</amd:ProcenaUticaja>
+		</amd:Obrazlozenje>
+	</amd:Sadrzaj>
 </amd:Amandman>

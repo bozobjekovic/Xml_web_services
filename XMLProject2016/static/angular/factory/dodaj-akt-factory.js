@@ -11,6 +11,16 @@
 		
 		var retVal = {};
 		
+		retVal.addAkt = function(xmlObject) {
+			return Restangular.one('akt').customPOST(xmlObject).then(
+				function(data) {
+					return data;
+				}, function(err) {
+					return null;
+				}
+			);
+		}
+		
 		return retVal;
 
 	}

@@ -65,8 +65,15 @@ public class Korisnik {
     @XmlAttribute(name = "Id")
     @XmlSchemaType(name = "anySimpleType")
     protected String id;
+    
+    
+    @Override
+	public String toString() {
+		return "Korisnik [uloga=" + uloga + ", ime=" + ime + ", prezime=" + prezime + ", email=" + email + ", lozinka="
+				+ lozinka + ", id=" + id + "]";
+	}
 
-    /**
+	/**
      * Gets the value of the uloga property.
      * 
      * @return

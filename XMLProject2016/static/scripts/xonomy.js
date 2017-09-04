@@ -1001,7 +1001,7 @@ Xonomy.newElementChild=function(htmlID, parameter) {
 	
 	htmlID = "xonomy" + Xonomy.lastIDNum; 
 	izabranaOdredba = izabranaOdredba.substring(14, izabranaOdredba.length - 14);
-	var html=Xonomy.renderElement(Xonomy.xml2js("<"+ izabranaOdredba +"/>"));
+	var html=Xonomy.renderElement(Xonomy.xml2js("<akt:"+ izabranaOdredba +"/>"));
 	var $html=$(html).hide();
 	$("#"+htmlID+" > .children").append($html);
 	Xonomy.plusminus(htmlID, true);
@@ -1036,7 +1036,7 @@ Xonomy.addPreambulaChildElement=function(htmlID, parameter) {
 	$html.slideDown();
 	
 	htmlID = "xonomy" + Xonomy.lastIDNum; 
-	var html=Xonomy.renderElement(Xonomy.xml2js("<PravniOsnov/>"));
+	var html=Xonomy.renderElement(Xonomy.xml2js("<akt:PravniOsnov xmlns:akt=\"http://www.tim9.com/akt\"/>"));
 	var $html=$(html).hide();
 	$("#"+htmlID+" > .children").append($html);
 	Xonomy.plusminus(htmlID, true);
@@ -1044,7 +1044,7 @@ Xonomy.addPreambulaChildElement=function(htmlID, parameter) {
 	Xonomy.changed();
 	$html.slideDown();
 	
-	var html=Xonomy.renderElement(Xonomy.xml2js("<NazivOrgana/>"));
+	var html=Xonomy.renderElement(Xonomy.xml2js("<akt:NazivOrgana xmlns:akt=\"http://www.tim9.com/akt\"/>"));
 	var $html=$(html).hide();
 	$("#"+htmlID+" > .children").append($html);
 	Xonomy.plusminus(htmlID, true);
@@ -1052,7 +1052,7 @@ Xonomy.addPreambulaChildElement=function(htmlID, parameter) {
 	Xonomy.changed();
 	$html.slideDown();
 	
-	var html=Xonomy.renderElement(Xonomy.xml2js("<Oblast/>"));
+	var html=Xonomy.renderElement(Xonomy.xml2js("<akt:Oblast xmlns:akt=\"http://www.tim9.com/akt\"/>"));
 	var $html=$(html).hide();
 	$("#"+htmlID+" > .children").append($html);
 	Xonomy.plusminus(htmlID, true);
