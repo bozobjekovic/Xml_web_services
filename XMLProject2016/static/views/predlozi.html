@@ -18,6 +18,7 @@
 								<th>Naziv</th>
 								<th>Oblast</th>
 								<th>Datum</th>
+								<th>Status</th>
 								<th>Pregledaj</th>
 								<th>Preuzmi</th>
 								<th>Obriši</th>
@@ -29,10 +30,11 @@
 								<td>{{ akt.naslov }}</td>
 								<td>{{ akt.preambula.oblast.value }}</td>
 								<td>{{ akt.preambula.datumObjave.value | date : 'dd.MM.yyyy' }}</td>
+								<td>{{ akt.preambula.status.value }}</td>
 								<td ng-controller="AktiController as aktiCtrl"><a href="" ng-click="aktiCtrl.previewHTML(akt.id)"><img border="0" src="../images/xhtmlIcon.png"></a></td>
 								<td ng-controller="AktiController as aktiCtrl"><a href="" ng-click="aktiCtrl.downloadPDF(akt.id)"><img border="0" src="../images/pdfIcon.png"></a></td>
 								<td>
-									<a href="" ng-click="predloziCtrl.povuciAkt(akt.id)">
+									<a ng-if="akt.preambula.status.value == 'U proceduri'" href="" ng-click="predloziCtrl.povuciAkt(akt.id)">
 										<i class="glyphicon glyphicon-remove"></i>
 									</a>
 								</td>

@@ -34,6 +34,9 @@
 			return Restangular.one('sednica/zakazanaSednica').get().then(
 				function(data) {
 					return data;
+				},
+				function(err) {
+					return null;
 				}
 			);
 		}

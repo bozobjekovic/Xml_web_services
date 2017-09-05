@@ -50,6 +50,11 @@
 			datumSednice.setMinutes(vm.vreme.getMinutes());
 			vm.sednica.datum = datumSednice;
 			
+			if(vm.sednica.datum < new Date()){
+				vm.invalid = true;
+				return;
+			}
+			
 			vm.sednica.brojPrisutnih = 0;
 			vm.sednica.status = 'Zakazana';
 			

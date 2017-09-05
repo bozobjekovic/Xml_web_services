@@ -21,6 +21,17 @@
 			);
 		}
 		
+		retVal.dobaviSednicu = function() {
+			return Restangular.one('sednica/zakazanaSednica').get().then(
+				function(data) {
+					return data;
+				},
+				function(err) {
+					return null;
+				}
+			);
+		}
+		
 		return retVal;
 
 	}

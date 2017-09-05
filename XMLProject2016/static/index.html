@@ -15,7 +15,7 @@
 </head>
 
 <body ng-app="xmlWebServices">
-	<div id="body-bg" style="height: 100%;" ng-controller="IndexController as indexCtrl">
+	<div ng-controller="IndexController as indexCtrl">
 
 		<!-- === BEGIN HEADER === -->
 		<div id="header">
@@ -60,7 +60,7 @@
 							<li ng-show="!indexCtrl.prikaz()">
 								<a ng-href="#/zakazivanje">Sednica</a>
 							</li>
-							<li ng-show="indexCtrl.regOdb">
+							<li ng-show="indexCtrl.predsednik()">
 								<a ng-href="#/registrate">Registruj odbornika</a>
 							</li>
 						</ul>

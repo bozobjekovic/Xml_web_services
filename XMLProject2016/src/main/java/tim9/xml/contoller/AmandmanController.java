@@ -252,10 +252,14 @@ public class AmandmanController implements ErrorHandler {
 		List<AmandmaniAktaDTO> amandmaniAktaDTO = new ArrayList<>();
 		List<Akt> akti = AktSPARQL.findByStatus(Util.loadProperties(), status);
 		
+		if(akti.size() == 0){
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		
 		for (Akt akt : akti) {
 			ArrayList<String> amandmani = new ArrayList<>();
 			amandmani = XQueryAmandman.amandmaniAkta(Util.loadProperties(), akt.getId());
-
+			
 			List<Amandman> amandmaniAkta = new ArrayList<>();
 			for (String docId : amandmani) {
 				Amandman amandman = amandmanService.getAmandmanDocID(docId);

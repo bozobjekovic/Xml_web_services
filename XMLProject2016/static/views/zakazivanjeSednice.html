@@ -27,6 +27,13 @@
 	
 					<input type="submit" class="btn btn-success" style= "width:100%" value="Potvrdi"
 					 ng-click="zakazivanjeCtrl.zakazivanje()">
+
+					<blockquote ng-if="zakazivanjeCtrl.invalid" class="bg-primary" style="margin-top: 10px; margin-bottom: 5px; text-align: center; border-left: none; background: #ef7777; border: 1px solid #c5c4c4;">
+	                    <p>
+	                        <em>Greska!</em><br /><br />
+	                        <em>Neispravan datum!</em>
+	                    </p>
+	                </blockquote>
 				</div>
 			</div>
 		</div>

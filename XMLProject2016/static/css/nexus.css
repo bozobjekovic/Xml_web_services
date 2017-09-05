@@ -9,11 +9,6 @@ body {
   font-family: PT Sans;
   font-size: 14px;
   font-weight: 300;
-  background-color: #5f807a;
-  background-color: #F4F1EA;
-  color: #656565;
-}
-#body-bg {
   background-attachment: fixed;
   background-clip: border-box;
   background-color: rgba(0, 0, 0, 0);
@@ -22,7 +17,6 @@ body {
   background-position: 50% 0;
   background-repeat: no-repeat;
   background-size: cover !important;
-  position: relative;
 }
 .primary-container-background .primary-container {
   width: 1080px;

@@ -13,7 +13,17 @@
 		
 		vm.successful = false;
 		vm.error = false;
+		vm.invalid = false;
 		vm.xmlObject = {};
+		
+		vm.dobaviSednicu = function(){
+			DodajAktFactory.dobaviSednicu().then(function(data){
+				if (data == null){
+					vm.invalid = true;
+				}
+			});
+		}
+		vm.dobaviSednicu();
 		
 		function setupXonomy() {
 			

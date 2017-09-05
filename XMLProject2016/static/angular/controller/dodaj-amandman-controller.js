@@ -15,6 +15,15 @@
 		vm.error = false;
 		vm.xmlObject = {};
 		
+		vm.dobaviSednicu = function(){
+			DodajAmandmanFactory.dobaviSednicu().then(function(data){
+				if (data == null){
+					vm.invalid = true;
+				}
+			});
+		}
+		vm.dobaviSednicu();
+		
 		function setupXonomy() {
 			
 			vm.xmlObject.user = $localStorage.user;

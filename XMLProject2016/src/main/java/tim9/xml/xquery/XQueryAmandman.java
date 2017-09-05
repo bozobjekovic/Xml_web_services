@@ -83,7 +83,7 @@ public class XQueryAmandman {
 			}
 		}
 		client.release();
-
+		
 		return retVal;
 	}
 

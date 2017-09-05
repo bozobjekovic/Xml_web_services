@@ -7,6 +7,13 @@
 			<h2 class="animate fadeIn text-center">Dodaj amandman</h2>
 			<hr style="border-top: 1px solid #ebebeb; height: 8px;">
 			
+			<blockquote ng-if="dodajAmandmanCtrl.invalid" class="bg-primary"
+				style="margin-top: 10px; margin-bottom: 5px; text-align: center; border-left: none; background: #d4d485; border: 1px solid #c5c4c4;">
+				<p>
+					<em>Trenutno nema zakazane sednice!</em><br />
+				</p>
+			</blockquote>
+			
 			<div style="display: flex;">
 				<div style="display: inline-block; width: 150px; text-align: center; padding: 10px 10px 0 0;">
 					<button ng-click="dodajAmandmanCtrl.addAmandman()" style="width: 100px; color: #315696; font-weight: bold; background-color: #eeeeee; border: 1px solid #dddddd; border-radius: 2px;">Dodaj</button>

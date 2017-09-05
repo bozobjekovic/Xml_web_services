@@ -10,21 +10,25 @@
 	function IndexController($scope, $localStorage, $location) {
 		
 		var vm = this;
-		vm.regOdb = false;
 		
 		vm.prikaz = function() {
 			if($localStorage.user == null)
 				return true;
-			
-			if($localStorage.user.uloga == 'predsednik')
-				vm.regOdb = true;
 			
 			var korisnik = $localStorage.user.email;
 			if(korisnik == null)
 				return true;
 			else
 				return false;
-		} 
+		}
+		
+		vm.predsednik = function(){
+			if($localStorage.user != null){
+				if($localStorage.user.uloga == 'predsednik')
+					return true;
+			}
+			return false;
+		}
 		
 		vm.logout = function() {
 			 $localStorage.user = [];
