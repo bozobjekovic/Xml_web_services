@@ -17,7 +17,9 @@
 								<th>Oblast/Pravni osnov</th>
 								<th>Datum</th>
 								<th>Status</th>
-								<th>Prihvati/Odbij</th>
+								<th>Pregled</th>
+								<th>Prihvati</th>
+								<th>Odbij</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -28,12 +30,13 @@
 								<td>{{ dok.akt.preambula.oblast.value }}</td>
 								<td>{{ dok.akt.preambula.datumObjave.value | date : 'dd.MM.yyyy' }}.</td>
 								<td id="{{ dok.akt.id }}status">{{ dok.akt.preambula.status.value }}</td>
+								<td ng-controller="AktiController as aktiCtrl"><a href="" style="float: right;" ng-click="aktiCtrl.downloadPDF(dok.akt.id)"><img border="0" src="../images/pdfIcon.png"></a></td>
 								<td>
-									<input type="submit" class="btn btn-success" value="Prihvati u načelu"
+									<input type="submit" class="btn btn-success" value="Prihvati"
 									id = "{{ dok.akt.id }}prihvati"
 									ng-click="uNaceluCtrl.prihvatiUNacelu(dok.akt.id)">
-									
-									<input type="submit" class="btn btn-danger" value="Odbij"
+								</td>
+								<td><input type="submit" class="btn btn-danger" value="Odbij"
 									id = "{{ dok.akt.id }}odbij"
 									ng-click="uNaceluCtrl.odbijAkt(dok.akt.id)">
 								</td>

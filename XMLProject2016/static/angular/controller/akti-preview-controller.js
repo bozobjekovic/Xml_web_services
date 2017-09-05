@@ -25,6 +25,15 @@
 			});
 		}
 		vm.previewHTML();
+		
+		vm.getAktAmandmans = function() {
+			AktiFactory.getAktAmandmans(vm.id).then(
+				function(data) {
+					vm.amandmani = data;
+				}
+			);
+		}
+		vm.getAktAmandmans();
 
 	}
 

@@ -1,10 +1,65 @@
 <div id="content">
-	<div class="container background-white">
 
+	<div id="content-top-border" class="container"></div>
+	<div class="container background-white">
 		<div class="row padding-vert-40">
 
 			<div ng-bind-html="aktPreviewCtrl.html"></div>
 
 		</div>
 	</div>
+	<div id="content-bottom-border" class="container"></div>
+	
+	<br/>
+	
+	<div id="content-top-border" class="container" ng-if="aktPreviewCtrl.amandmani.length != 0"></div>
+	<div class="container background-white" ng-if="aktPreviewCtrl.amandmani.length != 0">
+		<div class="row padding-vert-40">
+			
+			<h2 class="animate fadeIn text-center">Amandmani akta</h2>
+			
+			<div class="table-responsive" style="margin-left: 10%; margin-right: 10%; margin-top: 5%">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Broj</th>
+							<th>Naslov</th>
+							<th>Pravni osnov</th>
+							<th>Datum</th>
+							<th>Pregledaj</th>
+							<th>JSON</th>
+							<th>RDF</th>
+							
+						</tr>
+					</thead>
+					<tbody ng-repeat="amandman in aktPreviewCtrl.amandmani">
+						<tr ng-controller="AmandmaniController as amandmaniCtrl">
+							<td>{{ $index + 1 }}</td>
+							<td>{{ amandman.naslov }}</td>
+							<td>{{ amandman.pravniOsnov }}</td>
+							<td>{{ amandman.preambula.datumObjave.value | date : 'dd.MM.yyyy' }}</td>
+							<td>
+								<a href="" ng-click="amandmaniCtrl.previewHTML(amandman.id)">
+									<img border="0" src="../images/xhtmlIcon.png">
+								</a>
+							</td>
+							<td>
+								<a href="" ng-click="amandmaniCtrl.downloadJSON(amandman.id)">
+									<img border="0" src="../images/json-file.png">
+								</a>
+							</td>
+							<td>
+								<a href="" ng-click="amandmaniCtrl.downloadRDF(amandman.id)">
+									<img border="0" src="../images/RDF.png">
+								</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+		</div>
+	</div>
+	<div id="content-bottom-border" class="container" ng-if="aktPreviewCtrl.amandmani.length != 0"></div>
+		
 </div>

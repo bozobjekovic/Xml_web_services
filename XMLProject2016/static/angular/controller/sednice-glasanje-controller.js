@@ -33,10 +33,10 @@
 					return;
 				}
 
+				document.getElementById(amandman.id + 'dugme').disabled = true;
 				document.getElementById(amandman.id + 'za').disabled = true;
 				document.getElementById(amandman.id + 'protiv').disabled = true;
 				document.getElementById(amandman.id + 'suzdrzano').disabled = true;
-				document.getElementById(amandman.id + 'dugme').disabled = true;
 				document.getElementById(amandman.id + 'statVal').innerHTML = data.preambula.status.value;
 				
 				var aktId = amandman.aktURL.split('/')[1];

@@ -85,6 +85,14 @@
 			);
 		}
 		
+		retVal.getAktAmandmans = function(id) {
+			return Restangular.one('amandman/amandmaniAkta', id).getList().then(
+					function (data) {
+						return data;	
+					}
+				);
+		}
+		
 		
 		return retVal;
 

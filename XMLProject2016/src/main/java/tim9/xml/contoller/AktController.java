@@ -216,6 +216,15 @@ public class AktController implements ErrorHandler {
 		xml = xml.replace("xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"",
 				"xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"  xsi:schemaLocation=\"http://www.tim9.com/akt file:/"
 						+ putanjaDoSeme + "\" ");
+		
+		xml = xml.replace('č', 'c');
+		xml = xml.replace('Č', 'C');
+		xml = xml.replace('š', 's');
+		xml = xml.replace('Š', 'S');
+		xml = xml.replace('ć', 'c');
+		xml = xml.replace('Ć', 'C');
+		xml = xml.replace('ž', 'z');
+		xml = xml.replace('Ž', 'Z');
 
 		xml = xml.replace("xmlns:akt=\"http://www.tim9.com/akt\"",
 				"xmlns:akt=\"http://www.tim9.com/akt\" xmlns=\"http://www.w3.org/ns/rdfa#\" "

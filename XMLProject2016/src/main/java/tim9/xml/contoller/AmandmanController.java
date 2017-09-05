@@ -10,6 +10,7 @@ import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -244,6 +245,24 @@ public class AmandmanController implements ErrorHandler {
 
 		return new ResponseEntity<List<Amandman>>(retVal, HttpStatus.OK);
 	}
+	
+	@RequestMapping(value = "/aktAmandmana/{id}", method = RequestMethod.GET)
+	public ResponseEntity<Akt> aktAmandmana(@PathVariable String id){
+		
+		Amandman amandman = amandmanService.getAmandmanDocID("amandmani/" + id);
+		
+		System.out.println(amandman);
+		
+		if(amandman == null){
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		
+		String idAkta = amandman.getAktURL();
+		
+		Akt akt = aktService.findAktDocId(idAkta);
+		
+		return new ResponseEntity<Akt>(akt, HttpStatus.OK);
+	}
 
 	@RequestMapping(value = "/status/{status}", method = RequestMethod.GET)
 	public ResponseEntity<List<AmandmaniAktaDTO>> amandmaniStatus(@PathVariable String status)
@@ -255,6 +274,8 @@ public class AmandmanController implements ErrorHandler {
 		if(akti.size() == 0){
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
+		
+		akti.removeAll(Collections.singleton(null));
 		
 		for (Akt akt : akti) {
 			ArrayList<String> amandmani = new ArrayList<>();

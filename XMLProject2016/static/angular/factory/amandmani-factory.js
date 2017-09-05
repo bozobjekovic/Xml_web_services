@@ -63,6 +63,17 @@
 			);
 		}
 		
+		retVal.aktAmandmana = function(id) {
+			return Restangular.one('amandman/aktAmandmana/', id).get().then(
+				function(data) {
+					return data;
+				},
+				function(err) {
+					return null;
+				}
+			);
+		}
+		
 		return retVal;
 	}	
 
