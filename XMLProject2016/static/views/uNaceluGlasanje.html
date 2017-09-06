@@ -8,13 +8,12 @@
 
 			<form>
 				<div class="table-responsive">
-					<table class="table" ng-repeat="dok in uNaceluCtrl.dokumenti">
+					<table class="table">
 						<thead>
 							<tr>
 								<th>Broj</th>
-								<th>Id</th>
 								<th>Naslov</th>
-								<th>Oblast/Pravni osnov</th>
+								<th>Oblast</th>
 								<th>Datum</th>
 								<th>Status</th>
 								<th>Pregled</th>
@@ -23,14 +22,17 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
+							<tr ng-repeat="dok in uNaceluCtrl.dokumenti">
 								<td>Akt {{ $index + 1 }}</td>
-								<td>{{ dok.akt.id }}</td>
 								<td>{{ dok.akt.naslov }}</td>
 								<td>{{ dok.akt.preambula.oblast.value }}</td>
 								<td>{{ dok.akt.preambula.datumObjave.value | date : 'dd.MM.yyyy' }}.</td>
 								<td id="{{ dok.akt.id }}status">{{ dok.akt.preambula.status.value }}</td>
-								<td ng-controller="AktiController as aktiCtrl"><a href="" style="float: right;" ng-click="aktiCtrl.downloadPDF(dok.akt.id)"><img border="0" src="../images/pdfIcon.png"></a></td>
+								<td ng-controller="AktiController as aktiCtrl" align="left">
+									<a href="" ng-click="aktiCtrl.downloadPDF(dok.akt.id)">
+										<img border="0" src="../images/pdfIcon.png">
+									</a>
+								</td>
 								<td>
 									<input type="submit" class="btn btn-success" value="Prihvati"
 									id = "{{ dok.akt.id }}prihvati"
@@ -40,14 +42,6 @@
 									id = "{{ dok.akt.id }}odbij"
 									ng-click="uNaceluCtrl.odbijAkt(dok.akt.id)">
 								</td>
-							</tr>
-							<tr ng-repeat="amd in dok.amandmani" bgcolor="#f1f1f1">
-								<td>Amandman {{ $index + 1 }}</td>
-								<td>{{ amd.id }}</td>
-								<td>{{ amd.naslov }}</td>
-								<td>{{ amd.pravniOsnov }}</td>
-								<td>{{ amd.preambula.datumObjave.value | date : 'dd.MM.yyyy' }}.</td>
-								<td>{{ amd.preambula.status.value }}</td>
 							</tr>
 						</tbody>
 					</table>
