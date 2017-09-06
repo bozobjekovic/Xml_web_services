@@ -87,6 +87,17 @@
 			);
 		}
 		
+		retVal.glasajAkt = function(rezultati) {
+			return Restangular.one('sednica/glasajAkt').customPOST(rezultati).then(
+				function(data) {
+					return data;
+				},
+				function(data) {
+					return null;
+				}
+			);
+		}
+		
 		return retVal;
 	}
 })(angular);

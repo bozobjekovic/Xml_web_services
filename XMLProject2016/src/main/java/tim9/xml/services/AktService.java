@@ -206,6 +206,43 @@ public class AktService {
 		transformer.transform(input, output);
 	}
 
+	public void azurirajStatusUCelosti(Akt akt, String status) throws ParserConfigurationException, SAXException, IOException, TransformerFactoryConfigurationError, TransformerException {
+		
+		String docId = "akti/" + akt.getId();
+		
+		// Initialize XQuery invoker object
+		ServerEvaluationCall invoker = client.newServerEval();
+
+		String query = "xquery version \"1.0-ml\"; " + " declare namespace akt = \"http://www.tim9.com/akt\";"
+				+ "xdmp:node-replace(doc(\"" + docId + "\")//akt:Akt/akt:Preambula, "
+				+ "<akt:Preambula><akt:Status datatype=\"xs:string\" property=\"pred:status\">"
+				+ akt.getPreambula().getStatus().getValue() + "</akt:Status>"
+				+ "<akt:BrojGlasovaZa datatype=\"xs:int\" property=\"pred:za\" xmlns=\"\">"
+				+ akt.getPreambula().getBrojGlasovaZa().getValue() + "</akt:BrojGlasovaZa>"
+				+ "<akt:BrojGlasovaProtiv datatype=\"xs:int\" property=\"pred:protiv\" xmlns=\"\">"
+				+ akt.getPreambula().getBrojGlasovaProtiv().getValue() + "</akt:BrojGlasovaProtiv>"
+				+ "<akt:BrojGlasovaUzdrzano datatype=\"xs:int\" property=\"pred:uzdrzano\" xmlns=\"\">"
+				+ akt.getPreambula().getBrojGlasovaUzdrzano().getValue() + "</akt:BrojGlasovaUzdrzano></akt:Preambula>" + ");";
+
+		// Invoke the query
+		invoker.xquery(query);
+
+		// Interpret the results
+		invoker.eval();
+
+		String aktXML = getOne(akt.getId());
+
+		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder builder = factory.newDocumentBuilder();
+		Document doc = builder.parse(new InputSource(new StringReader(aktXML)));
+
+		Transformer transformer = TransformerFactory.newInstance().newTransformer();
+		Result output = new StreamResult(new File("gen/outputAkt.xml"));
+		Source input = new DOMSource(doc);
+
+		transformer.transform(input, output);		
+	}
+	
 	public void azurirajMetapodatke(String id) {
 		// Create a document manager to work with XML files.
 		GraphManager graphManager = client.newGraphManager();

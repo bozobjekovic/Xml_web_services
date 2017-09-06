@@ -36,8 +36,10 @@ import org.xml.sax.SAXParseException;
 
 import tim9.xml.DTO.RezultatiDTO;
 import tim9.xml.DTO.SednicaDTO;
+import tim9.xml.model.akt.Akt;
 import tim9.xml.model.amandman.Amandman;
 import tim9.xml.model.sednica.Sednica;
+import tim9.xml.services.AktService;
 import tim9.xml.services.AmandmanService;
 import tim9.xml.services.SednicaService;
 
@@ -49,6 +51,8 @@ public class SednicaController implements ErrorHandler {
 	SednicaService sednicaService;
 	@Autowired
 	AmandmanService amandmanService;
+	@Autowired
+	AktService aktService;
 	
 	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd H:mm:ss");
 
@@ -195,6 +199,45 @@ public class SednicaController implements ErrorHandler {
 			amandmanService.azurirajStatus(amd, status);
 			amandmanService.azurirajMetapodatke(amd.getId());
 			return new ResponseEntity<Amandman>(amd, HttpStatus.OK);
+		}
+	}
+	
+	@RequestMapping(value = "/glasajAkt", method = RequestMethod.POST)
+	public ResponseEntity<Akt> glasajAkt(@RequestBody RezultatiDTO rezultatiDTO) throws SAXException, IOException, TransformerException, ParserConfigurationException, TransformerFactoryConfigurationError {
+		
+		int za = rezultatiDTO.getBrojGlasovaZa();
+		int protiv = rezultatiDTO.getBrojGlasovaProtiv();
+		int suzdrzano = rezultatiDTO.getBrojSuzdrzanih();
+		String id = rezultatiDTO.getId();
+		String status = "";
+
+		Akt akt = aktService.findAktDocId("akti/" + id);
+		akt.getPreambula().getBrojGlasovaZa().setValue(za);
+		akt.getPreambula().getBrojGlasovaProtiv().setValue(protiv);
+		akt.getPreambula().getBrojGlasovaUzdrzano().setValue(suzdrzano);
+		
+		if (za == 0 && protiv == 0 && suzdrzano == 0)
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		
+		if(za > protiv) {													// Usvaja se
+			akt.getPreambula().getStatus().setValue("Usvojen");
+			status = akt.getPreambula().getStatus().getValue();
+			
+			aktService.azurirajStatusUCelosti(akt, status);
+			aktService.azurirajMetapodatke(akt.getId());
+			
+			return new ResponseEntity<Akt>(akt, HttpStatus.OK);
+		}
+		else if (za == protiv) {											// Ponovi glasanje
+			return new ResponseEntity<Akt>(HttpStatus.BAD_REQUEST);
+		}
+		else {																// Odbija se
+			akt.getPreambula().getStatus().setValue("Odbijen");
+			status = akt.getPreambula().getStatus().getValue();
+			
+			aktService.azurirajStatusUCelosti(akt, status);
+			aktService.azurirajMetapodatke(akt.getId());
+			return new ResponseEntity<Akt>(akt, HttpStatus.OK);
 		}
 	}
 	

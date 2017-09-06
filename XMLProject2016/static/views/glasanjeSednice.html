@@ -12,7 +12,6 @@
 						<thead>
 							<tr>
 								<th>Broj</th>
-								<th>Id</th>
 								<th>Naziv</th>
 								<th>Broj glasova za</th>
 								<th>Broj glasova protiv</th>
@@ -25,21 +24,23 @@
 						<tbody>
 							<tr>
 								<td>Akt {{ $index + 1 }}</td>
-								<td>{{ dok.akt.id }}</td>
 								<td>{{ dok.akt.naslov }}</td>
 								<td>
 									<input type="number" min="0" id="{{ dok.akt.id }}za"
-									ng-disabled="dok.amandmani.length > 0">
+									ng-disabled="dok.amandmani.length > 0"
+									ng-model="dok.akt.brojGlasovaZa">
 								</td>
 								<td>
 									<input type="number" min="0" id="{{ dok.akt.id }}protiv"
-									ng-disabled="dok.amandmani.length > 0">
+									ng-disabled="dok.amandmani.length > 0"
+									ng-model="dok.akt.brojGlasovaProtiv">
 								</td>
 								<td>
 									<input type="number" min="0" id="{{ dok.akt.id }}suzdrzano"
-									ng-disabled="dok.amandmani.length > 0">
+									ng-disabled="dok.amandmani.length > 0"
+									ng-model="dok.akt.brojSuzdrzanih">
 								</td>
-								<td>{{ dok.akt.preambula.status.value }}</td>
+								<td id="{{ dok.akt.id }}statVal">{{ dok.akt.preambula.status.value }}</td>
 								<td ng-controller="AktiController as aktiCtrl" align="center">
 									<a href="" ng-click="aktiCtrl.downloadPDF(dok.akt.id)">
 										<img border="0" src="../images/pdfIcon.png">
@@ -48,12 +49,12 @@
 								<td>
 									<input type="submit" class="btn btn-success" value="Potvrdi"
 									id="{{ dok.akt.id }}dugme"
-									ng-disabled="dok.amandmani.length > 0">
+									ng-disabled="dok.amandmani.length > 0"
+									ng-click="glasanjeCtrl.glasanjeAkt(dok.akt)">
 								</td>
 							</tr>
 							<tr ng-repeat="amd in dok.amandmani" bgcolor="#f1f1f1">
 								<td>Amandman {{ $index + 1 }}</td>
-								<td>{{ amd.id }}</td>
 								<td>{{ amd.naslov }}</td>
 								<td>
 									<input type="number" min="0" id="{{ amd.id }}za"

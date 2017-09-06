@@ -11,6 +11,7 @@
 		
 		var vm = this;
 		vm.rezultati = {};
+		vm.rezultatiAkt = {};
 		vm.dokUNacelu = [];
 		
 		vm.dokumentiUNacelu = function() {
@@ -18,7 +19,7 @@
 				function(data) {
 					vm.dokUNacelu = data;
 				});
-			}
+		}
 		vm.dokumentiUNacelu();
 		
 		vm.glasanjeAmd = function(amandman) {
@@ -69,6 +70,26 @@
 						}
 					}
 				}
+			});
+		}
+		
+		vm.glasanjeAkt = function(akt) {
+			vm.rezultatiAkt.brojGlasovaZa = akt.brojGlasovaZa;
+			vm.rezultatiAkt.brojGlasovaProtiv = akt.brojGlasovaProtiv;
+			vm.rezultatiAkt.brojSuzdrzanih = akt.brojSuzdrzanih;
+			vm.rezultatiAkt.id = akt.id;
+
+			SedniceFactory.glasajAkt(vm.rezultatiAkt).then(function(data){
+				if (data == null) {
+					alert("Ponovi glasanje!");
+					return;
+				}
+
+				document.getElementById(akt.id + 'dugme').disabled = true;
+				document.getElementById(akt.id + 'za').disabled = true;
+				document.getElementById(akt.id + 'protiv').disabled = true;
+				document.getElementById(akt.id + 'suzdrzano').disabled = true;
+				document.getElementById(akt.id + 'statVal').innerHTML = data.preambula.status.value;
 			});
 		}
 		
