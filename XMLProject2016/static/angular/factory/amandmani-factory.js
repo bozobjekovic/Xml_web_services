@@ -30,6 +30,17 @@
 			);
 		}
 		
+		retVal.getAmdPDF = function(id) {
+			return Restangular.one('amandman/pdf/', id).withHttpConfig({ responseType: 'arraybuffer' }).get().then(
+					function(data) {
+						return data;
+					},
+					function(err) {
+						return null;
+					}
+			);
+		}
+		
 		retVal.amandmaniAkta = function(status) {
 			return Restangular.one('amandman/status/', status).getList().then(
 				function(data) {

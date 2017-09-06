@@ -163,6 +163,25 @@ public class AmandmanController implements ErrorHandler {
 		return new ResponseEntity<String>(html, HttpStatus.OK);
 	}
 
+	@RequestMapping(value = "/pdf/{id}", method = RequestMethod.GET)
+	public ResponseEntity<byte[]> getAmdForPDF(@PathVariable String id) {
+		String amdXML = amandmanService.getOne(id);
+
+		if (amdXML == null) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+
+		byte[] pdf = null;
+
+		try {
+			pdf = new TransformationAmandman().generatePDF(amdXML);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return new ResponseEntity<byte[]>(pdf, HttpStatus.OK);
+	}
+	
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<Amandman>> getAll() {
 		List<Amandman> retVal = amandmanService.findAll();

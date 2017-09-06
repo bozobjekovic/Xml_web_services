@@ -25,6 +25,26 @@
 			$location.path('/previewAmd/' + id);
 		}
 		
+		vm.downloadPDF = function(id) {
+			AmandmaniFactory.getAmdPDF(id).then(
+				function(data) {
+					if (data == null) {
+						alert("Greska prilikom preuzimanja PDF-a!");
+					} else {
+						var fileName = "amandman_" + id + ".pdf";
+						
+						var a = document.createElement("a");
+				        document.body.appendChild(a);
+				        var file = new Blob([data], {type: 'application/pdf'});
+				        var fileURL = window.URL.createObjectURL(file);
+				        a.href = fileURL;
+				        a.download = fileName;
+				        a.click();
+					}
+				}
+			);
+		}
+		
 		vm.downloadJSON = function (id) {
 			AmandmaniFactory.downloadJSON(id)
 				.then(function(data) {
