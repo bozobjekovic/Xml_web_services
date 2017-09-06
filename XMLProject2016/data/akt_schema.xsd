@@ -30,8 +30,14 @@
                 </xs:choice>
             </xs:sequence>
             <xs:attribute name="id"/>
-            <xs:attribute name="redniBroj" type="xs:string"/>
             <xs:attribute name="naslov" type="xs:string"/>
+            <xs:attribute name="redniBroj">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="DEO .+"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
         </xs:complexType>
     </xs:element>
     <xs:element name="Glava">
@@ -44,7 +50,13 @@
             </xs:sequence>
             <xs:attribute name="id"/>
             <xs:attribute name="naslov" type="xs:string"/>
-            <xs:attribute name="redniBroj" type="xs:string"/>
+            <xs:attribute name="redniBroj">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="(Glava)? .+"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
         </xs:complexType>
     </xs:element>
     <xs:element name="Odeljak">
@@ -57,7 +69,13 @@
             </xs:sequence>
             <xs:attribute name="id"/>
             <xs:attribute name="naslov" type="xs:string"/>
-            <xs:attribute name="redniBroj" type="xs:string"/>
+            <xs:attribute name="redniBroj">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="[0-9]+\."/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
         </xs:complexType>
     </xs:element>
     <xs:element name="Pododeljak">
@@ -67,7 +85,13 @@
             </xs:sequence>
             <xs:attribute name="id"/>
             <xs:attribute name="naslov" type="xs:string"/>
-            <xs:attribute name="redniBroj" type="xs:string"/>
+            <xs:attribute name="redniBroj">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="[a-z]\)"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
         </xs:complexType>
     </xs:element>
     <xs:element name="Clan">
@@ -77,7 +101,13 @@
             </xs:sequence>
             <xs:attribute name="id"/>
             <xs:attribute name="naslov" type="xs:string"/>
-            <xs:attribute name="redniBroj" type="xs:string"/>
+            <xs:attribute name="redniBroj">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="(Clan|Član) [0-9]+\."/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
         </xs:complexType>
     </xs:element>
     <xs:element name="Stav">
@@ -100,7 +130,13 @@
                 </xs:choice>
             </xs:sequence>
             <xs:attribute name="id"/>
-            <xs:attribute name="redniBroj" type="xs:string"/>
+            <xs:attribute name="redniBroj">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="[0-9]+\)"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
         </xs:complexType>
     </xs:element>
     <xs:element name="Podtacka">
@@ -112,7 +148,13 @@
                 </xs:choice>
             </xs:sequence>
             <xs:attribute name="id"/>
-            <xs:attribute name="redniBroj" type="xs:string"/>
+            <xs:attribute name="redniBroj">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="\([0-9]+\)"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
         </xs:complexType>
     </xs:element>
     <xs:element name="Preambula">
