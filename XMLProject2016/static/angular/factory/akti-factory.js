@@ -93,6 +93,17 @@
 				);
 		}
 		
+		retVal.getIDOdredbeAkta = function(id) {
+			return Restangular.one('akt/getIDsOdredbeAkta', id).getList().then(
+				function (data) {
+					return data;	
+				},
+				function() {
+					return null;
+				}
+			);
+		}
+		
 		
 		return retVal;
 

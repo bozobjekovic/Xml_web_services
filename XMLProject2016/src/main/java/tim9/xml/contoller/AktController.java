@@ -452,6 +452,20 @@ public class AktController implements ErrorHandler {
 
 		return new ResponseEntity<>(retVal, HttpStatus.OK);
 	}
+	
+	@RequestMapping(value = "/getIDsOdredbeAkta/{id}", method = RequestMethod.GET)
+	public ResponseEntity<List<String>> getIDsOdredbeAkta(@PathVariable String id) {
+		List<String> retVal = new ArrayList<>();
+		String xml = aktService.getOne(id);
+		
+		if (xml == null) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		
+		retVal = XPathAkt.getOdredbeByIDs(xml, id);
+		
+		return new ResponseEntity<List<String>>(retVal, HttpStatus.OK);
+	}
 
 	@RequestMapping(value = "/prihvatiUNacelu/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Akt> prihvatiUNacelu(@PathVariable String id) throws SAXException,

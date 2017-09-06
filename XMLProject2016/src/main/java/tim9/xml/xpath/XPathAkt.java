@@ -2,7 +2,9 @@ package tim9.xml.xpath;
 
 import java.io.OutputStream;
 import java.io.StringReader;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -37,6 +39,7 @@ public class XPathAkt {
 	private static Map<String, String> namespaceMappings;
 	
 	private static String text;
+	private static List<String> listIDs;
 	
 	private Document document;
 	
@@ -53,6 +56,39 @@ public class XPathAkt {
 		
 		namespaceMappings = new HashMap<String, String>();
 		
+	}
+	
+	public void evaluateXPathListID(String expression, String id) {
+		
+		XPath xPath = xPathFactory.newXPath();
+		XPathExpression xPathExpression;
+		namespaceMappings.put("akt", "http://www.tim9.com/akt");
+		xPath.setNamespaceContext(new NamespaceContext(namespaceMappings));
+		
+		try {
+			
+			xPathExpression = xPath.compile(expression);
+
+			NodeList nodeList = (NodeList) xPathExpression.evaluate(document, XPathConstants.NODESET);
+			Node node;
+			
+			boolean done = false;
+			
+			for (int i = 0; i < nodeList.getLength(); i++) {
+				if (done) {
+					break;
+				}
+			
+				node = nodeList.item(i);
+				if (!node.getNodeValue().equals(id)) {
+					listIDs.add(node.getNodeValue());
+				}
+			}
+			
+		} catch (XPathExpressionException e) {
+			System.out.println("[ERROR] Error evaluationg \"" + expression + "\" expression, line: " + e.getMessage());
+			e.printStackTrace();
+		}
 	}
 	
 	public void evaluateXPath(String expression) {
@@ -183,6 +219,19 @@ public class XPathAkt {
 		
 		text += "...";
 		return text;
+	}
+	
+	public static List<String> getOdredbeByIDs(String xml, String id) {
+		listIDs = new ArrayList<>();
+		XPathAkt xpAkt = new XPathAkt();
+		
+		xpAkt.buildDocument(xml);
+		
+		String expression = "//@id";
+		xpAkt.evaluateXPathListID(expression, id);
+		
+		return listIDs;
+		
 	}
 	
 	/*public static void main(String[] args) {

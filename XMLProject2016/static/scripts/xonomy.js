@@ -313,13 +313,13 @@ Xonomy.harvestElement=function(htmlElement, jsParent) {
 	js.type="element";
 	js.name=htmlElement.getAttribute("data-name");
 	
-	/*if(js.name == "NazivAkta" && htmlElement.textContent != "<NazivAkta/>...</NazivAkta>"){
+	if(js.name == "amd:NazivAkta" && htmlElement.textContent != "<amd:NazivAkta/>...</amd:NazivAkta>"){
 		nazivId = htmlElement.textContent;
 		if(sveOdredbeIzabranogAkta.length == 0)
 			preuzmiSveIdIzabranogAkta();
 	}
-	
-	if(js.name == "OdredbaAkta" && htmlElement.textContent != "<OdredbaAkta/>...</OdredbaAkta>"){
+
+	if(js.name == "amd:OdredbaAkta" && htmlElement.textContent != "<amd:OdredbaAkta/>...</amd:OdredbaAkta>"){
 		izabranaOdredba = htmlElement.textContent;
 		if(htmlElement.textContent.includes("deo"))
 			izabranaOdredba = "Deo";
@@ -339,7 +339,7 @@ Xonomy.harvestElement=function(htmlElement, jsParent) {
 			izabranaOdredba = "Podtačka";
 		if(htmlElement.textContent.includes("alineja"))
 			izabranaOdredba = "Alineja";
-	}*/
+	}
 	
 	js.htmlID=htmlElement.id;
 	js.attributes=[];
@@ -855,7 +855,7 @@ Xonomy.askPicklistAkti=function(defaultString, picklist) {
 	html+="<div class='menu'>";
 	for(var i=0; i<picklist.length; i++) {
 		//ovo je ceo objekat
-		var item=picklist[i];
+		var item=picklist[i].akt;
 		if(typeof(item)=="string") item={value: item, caption: ""};
 		html+="<div class='menuItem techno"+(item.value==defaultString?" current":"")+"' onclick='Xonomy.answer(\""+Xonomy.xmlEscape(item.naslov+ ' - ' + item.id)+"\")'>";
 		html+="<span class='punc'>\"</span>";
@@ -989,7 +989,10 @@ Xonomy.newElementChild=function(htmlID, parameter) {
 	var parent = this.parentNode;
 };
 
-/*Xonomy.newElementChildPredlozenoResenje=function(htmlID, parameter) {
+//#########################################################################################
+//-------------------- OUR FUNCTIONS ------------------------------
+
+Xonomy.addPredlozenoResenjeChildElement=function(htmlID, parameter) {
 	Xonomy.clickoff();
 	var html=Xonomy.renderElement(Xonomy.xml2js(parameter));
 	var $html=$(html).hide();
@@ -999,19 +1002,18 @@ Xonomy.newElementChild=function(htmlID, parameter) {
 	Xonomy.changed();
 	$html.slideDown();
 	
+	
 	htmlID = "xonomy" + Xonomy.lastIDNum; 
-	izabranaOdredba = izabranaOdredba.substring(14, izabranaOdredba.length - 14);
-	var html=Xonomy.renderElement(Xonomy.xml2js("<akt:"+ izabranaOdredba +"/>"));
+	izabranaOdredba = izabranaOdredba.substring(18, izabranaOdredba.length - 18);
+	var html=Xonomy.renderElement(Xonomy.xml2js("<akt:"+ izabranaOdredba +" xmlns:akt=\"http://www.tim9.com/akt\"/>"));
 	var $html=$(html).hide();
 	$("#"+htmlID+" > .children").append($html);
 	Xonomy.plusminus(htmlID, true);
 	Xonomy.refresh();
 	Xonomy.changed();
 	$html.slideDown();
-};*/
+};
 
-//#########################################################################################
-//-------------------- OUR FUNCTIONS ------------------------------
 //COUNTERS
 var deoCounter = 1;
 var clanCounter = 1;
