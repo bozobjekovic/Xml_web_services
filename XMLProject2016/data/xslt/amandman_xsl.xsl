@@ -5,24 +5,19 @@
 
 	<xsl:output encoding="UTF-8" />
 	
-	<xsl:variable name="amandmanId" select="/*/@id" />
-	<xsl:variable name="smallcase" select="'abcdefghijklmnopqrstuvwxyzšđž'" />
-	<xsl:variable name="uppercase" select="'ABCDEFGHIJKLMNOPQRSTUVWXYZŠĐŽ'" />
-
-	<xsl:variable name="naslovAmandmana" select="/*/@naslov" />
-	<xsl:variable name="pravniOsnov" select="/*/@pravniOsnov" />
-
 	<xsl:template match="/">
+		<xsl:variable name="urlAkta" select="amandman:Amandman/@aktURL" />
+		<xsl:variable name="idAkta" select="tokenize($urlAkta,'/')[last()]"/>
 		<h1 class="tim9">
-			<xsl:value-of select="translate($naslovAmandmana, $smallcase, $uppercase)" />
+			<xsl:value-of select="amandman:Amandman/amandman:Naslov" />
 		</h1>
 		<h3 class="tim9">Pravni osnov</h3>
 		<p>
-			<xsl:value-of select="translate($pravniOsnov, $smallcase, $uppercase)" />
+			<xsl:value-of select="amandman:Amandman/amandman:PravniOsnov" />
 		</p>
 
 		<!-- SADRZAJ AMANDMANA -->
-		<xsl:for-each select="child::*/child::amandman:Sadrzaj">
+		<xsl:for-each select="amandman:Amandman/amandman:SadrzajAmandmana">
 			<h3 class="tim9">Predlog amandmana</h3>
 			
 			<p>
@@ -35,9 +30,9 @@
 					<xsl:value-of select="amandman:OdredbaAkta" />
 				</b>
 				zakona
-				<!-- <a href="#/akti/amandman/{$idAkta}" id="linkAkta">
+				<a href="#/akti/preview/{$idAkta}" id="linkAkta">
 					<xsl:value-of select="amandman:NazivAkta" />
-				</a> -->
+				</a>
 				.
 				<br />
 				<br />

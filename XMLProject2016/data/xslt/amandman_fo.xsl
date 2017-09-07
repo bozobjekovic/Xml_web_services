@@ -44,7 +44,7 @@
 							<xsl:text>zakona</xsl:text>
 							<xsl:text> </xsl:text>
 							<fo:basic-link color="#618587" show-destination="new"
-								external-destination="url(http://localhost:8080/#/akti)">
+								external-destination="url(http://localhost:8080/#/akti/preview/{$idAkta})">
 								<xsl:value-of select="amandman:NazivAkta" />
 							</fo:basic-link>
 							<xsl:text>.</xsl:text>
