@@ -94,7 +94,7 @@
 		}
 		
 		vm.predjiNaRezultate = function() {
-			$location.path('/rezultati');
+			$location.path('/');
 		}
 	}
 

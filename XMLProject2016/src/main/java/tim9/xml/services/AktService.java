@@ -238,7 +238,7 @@ public class AktService {
 				+ "<akt:PravniOsnov>" + akt.getPreambula().getPravniOsnov() + "</akt:PravniOsnov>"
 				+ "<akt:NazivOrgana>" + akt.getPreambula().getNazivOrgana() + "</akt:NazivOrgana>"
 				+ "<akt:Oblast datatype=\"xs:string\" property=\"pred:status\">"
-				+ akt.getPreambula().getOblast() + "</akt:Oblast>"
+				+ akt.getPreambula().getOblast().getValue() + "</akt:Oblast>"
 				+ "<akt:Status datatype=\"xs:string\" property=\"pred:status\">"
 				+ status + "</akt:Status>"
 				+ "<akt:DatumPredaje datatype=\"xs:date\" property=\"pred:datumPredaje\">"

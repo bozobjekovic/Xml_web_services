@@ -44,7 +44,7 @@
 		
 		vm.povuciAmandmaneAkta = function(id) {
 			SedniceFactory.povuciAmandmaneAkta(id).then(function(data) {
-				for (var i = 0; i < data.length; i++) {
+				/*for (var i = 0; i < data.length; i++) {
 					console.log(vm.dokumenti);
 					for (var j = 0; j < vm.dokumenti.amandmani.length; j++) {
 						var obj = 'amandmani/' + vm.dokumenti.amandmani[j].id;
@@ -53,7 +53,7 @@
 							console.log(j)
 						}
 					}
-				}
+				}*/
 			});
 		}
 		
