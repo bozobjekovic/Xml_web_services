@@ -9,7 +9,6 @@
             <xs:sequence>
                 <xs:element name="Datum" type="xs:date"/>
                 <xs:element name="Status" type="xs:string"/>
-                <xs:element maxOccurs="1" name="BrojPrisutnih" type="xs:int"/>
                 <xs:choice maxOccurs="unbounded" minOccurs="0">
                     <xs:element ref="akt:Akt"/>
                     <xs:element ref="amd:Amandman"/>

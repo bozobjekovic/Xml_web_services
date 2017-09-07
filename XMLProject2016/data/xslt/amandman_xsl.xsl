@@ -28,7 +28,7 @@
 			<p>
 				Predlaže se
 				<span style="text-transform: lowercase">
-					<xsl:value-of select="amandman:Obrazlozenje" />
+					<xsl:value-of select="amandman:PredlozenoResenje" />
 				</span>
 				u
 				<b>
@@ -42,22 +42,22 @@
 				<br />
 				<br />
 				Predlaže se sledeće rešenje:
-				<xsl:value-of select="amandman:PredlozenoResenje" />
+				<xsl:value-of select="amandman:Predlog" />
 			</p>
 			<p style="font-size:29px; text-align: center;">Obrazloženje</p>
-			<!-- <p>
+			<p>
 				Razlog podnošenja:
-				<xsl:value-of select="amd:Obrazlozenje/amd:RazlogPodnosenja" />
+				<xsl:value-of select="amandman:Obrazlozenje/amandman:RazlogPodnosenja" />
 				<br />
 				Cilj podnošenja:
-				<xsl:value-of select="amd:Obrazlozenje/amd:CiljPodnosenja" />
+				<xsl:value-of select="amandman:Obrazlozenje/amandman:CiljPodnosenja" />
 				<br />
 				Objašnjenje rešenja:
-				<xsl:value-of select="amd:Obrazlozenje/amd:ObjasnjenjeResenja" />
+				<xsl:value-of select="amandman:Obrazlozenje/amandman:ObjasnjenjeResenja" />
 				<br />
 				Procena uticaja:
-				<xsl:value-of select="amd:Obrazlozenje/amd:ProcenaUticaja" />
-			</p> -->
+				<xsl:value-of select="amandman:Obrazlozenje/amandman:ProcenaUticaja" />
+			</p>
 		</xsl:for-each>
 	</xsl:template>
 </xsl:stylesheet>

@@ -109,10 +109,6 @@ public class SednicaController implements ErrorHandler {
 			statusElement.appendChild(doc.createTextNode(sednica.getStatus()));
 			sednicaElement.appendChild(statusElement);
 
-			Element brPrisutnihElement = doc.createElement("sednica:BrojPrisutnih");
-			brPrisutnihElement.appendChild(doc.createTextNode(sednica.getBrojPrisutnih() + ""));
-			sednicaElement.appendChild(brPrisutnihElement);
-
 			/* Detektuju eventualne greske */
 			if (doc != null)
 				System.out.println("[INFO] File parsed with no errors.");

@@ -6,7 +6,7 @@
     <xs:element name="Amandman">
         <xs:complexType>
             <xs:sequence>
-                <xs:element minOccurs="0" ref="amd:Preambula"/>
+                <xs:element minOccurs="1" ref="amd:Preambula"/>
                 <xs:element name="Naslov" type="xs:string"/>
                 <xs:element name="PravniOsnov" type="xs:string"/>
                 <xs:element maxOccurs="unbounded" ref="amd:Sadrzaj"/>
@@ -46,7 +46,7 @@
     <xs:element name="Preambula">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="NazivOrgana" type="xs:string" minOccurs="0"/>
+                <xs:element name="NazivOrgana" type="xs:string" minOccurs="1"/>
                 <xs:element name="Status" minOccurs="0">
                     <xs:complexType>
                         <xs:simpleContent>
