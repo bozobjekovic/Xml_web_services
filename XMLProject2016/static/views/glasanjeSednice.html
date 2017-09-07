@@ -4,7 +4,7 @@
 	<div class="container background-white">
 		<div class="row padding-vert-40">
 
-			<h2 class="animate fadeIn text-center">Glasanje</h2><br>
+			<h2 class="animate fadeIn text-center" >Glasanjee</h2><br>
 
 			<form>
 				<div class="table-responsive">
@@ -57,8 +57,9 @@
 								<td>Amandman {{ $index + 1 }}</td>
 								<td>{{ amd.naslov }}</td>
 								<td>
-									<input type="number" min="0" id="{{ amd.id }}za"
-									ng-model="amd.brojGlasovaZa">
+									<!-- id="{{ amd.id }}za" -->
+									<input type="number" min="0" ng-disabled="{{ amd.id }}za"
+									ng-model="amd.brojGlasovaZa" >
 								</td>
 								<td>
 									<input type="number" min="0" id="{{ amd.id }}protiv"

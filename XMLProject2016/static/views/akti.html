@@ -147,7 +147,7 @@
 				
 				<div style="border: 1px solid #d8d7d7; padding: 10px; height: 138px; margin-bottom: 15px;" ng-repeat="aktObj in aktiCtrl.akti">
 					<a href="" ng-click="aktiCtrl.previewHTML(aktObj.akt.id)"><label style="cursor: pointer;"><span>{{ aktObj.akt.naslov }}</span> ( <span>{{ aktObj.akt.preambula.oblast.value }}</span> )</label></a>
-					<label style="float: right;">20.15.2015</label><br /> <!-- {{ aktObj.akt.preambula.datumObjave.value | date : 'dd.MM.yyyy' }} -->
+					<label style="float: right;">{{ aktObj.akt.preambula.datumPredaje.value | date : 'dd.MM.yyyy' }}</label><br />
 					<div style="width: 520px; word-wrap: break-word; display: inline-block; font-size: 12px; margin-bottom: 5px;">{{ aktObj.text }}</div>
 					<label style="float: right; text-align: right; width: 80px;">Status <br /><span style="font-weight: normal;">{{ aktObj.akt.preambula.status.value }}</span></label>
 					<hr style="border-top: 1px solid #ebebeb; height: 0px; width: 719px;">

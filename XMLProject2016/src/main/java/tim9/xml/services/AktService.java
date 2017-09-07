@@ -236,6 +236,8 @@ public class AktService {
 				+ "xdmp:node-replace(doc(\"" + docId + "\")//akt:Akt/akt:Preambula, "
 				+ "<akt:Preambula><akt:Status datatype=\"xs:string\" property=\"pred:status\">"
 				+ status + "</akt:Status>"
+				+ "<akt:Preambula><akt:DatumObjave datatype=\"xs:date\" property=\"pred:datumObjave\">"
+				+ akt.getPreambula().getDatumObjave().getValue() + "</akt:DatumObjave>"
 				+ "<akt:BrojGlasovaZa datatype=\"xs:int\" property=\"pred:za\" xmlns=\"\">"
 				+ akt.getPreambula().getBrojGlasovaZa().getValue() + "</akt:BrojGlasovaZa>"
 				+ "<akt:BrojGlasovaProtiv datatype=\"xs:int\" property=\"pred:protiv\" xmlns=\"\">"

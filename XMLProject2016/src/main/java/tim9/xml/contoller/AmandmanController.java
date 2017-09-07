@@ -11,9 +11,13 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -32,6 +36,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.xml.sax.ErrorHandler;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -99,7 +104,12 @@ public class AmandmanController implements ErrorHandler {
 			amandmanElement.setAttribute("aktURL", "akti/" + xmlObjectDTO.getAktId());
 			amandmanElement.setAttribute("korisnikURL", "users/" + xmlObjectDTO.getUser().getEmail());
 
-			/* META PODACI */
+			if(doc.getElementsByTagName("amd:Preambula").item(0) == null){
+				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			}
+			
+			addPreambula(doc);
+			
 			/* Detektuju eventualne greske */
 			if (doc != null)
 				System.out.println("[INFO] File parsed with no errors.");
@@ -130,6 +140,51 @@ public class AmandmanController implements ErrorHandler {
 		}
 
 		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+	}
+
+	private void addPreambula(Document doc) throws DatatypeConfigurationException {
+		GregorianCalendar date = new GregorianCalendar();
+		XMLGregorianCalendar datum = DatatypeFactory.newInstance().newXMLGregorianCalendar(date);
+		String datumStr = datum.toString().split("T")[0];
+
+		Node preambula = doc.getElementsByTagName("amd:Preambula").item(0);
+
+		Element status = doc.createElementNS("http://www.tim9.com/amandman", "amd:Status");
+		status.appendChild(doc.createTextNode("U proceduri"));
+		status.setAttribute("property", "pred:status");
+		status.setAttribute("datatype", "xs:string");
+		preambula.appendChild(status);
+
+		Element datumPredaje = doc.createElementNS("http://www.tim9.com/amandman", "amd:DatumPredaje");
+		datumPredaje.appendChild(doc.createTextNode(datumStr));
+		datumPredaje.setAttribute("property", "pred:datumPredaje");
+		datumPredaje.setAttribute("datatype", "xs:date");
+		preambula.appendChild(datumPredaje);
+
+		Element datumObjave = doc.createElementNS("http://www.tim9.com/amandman", "amd:DatumObjave");
+		datumObjave.appendChild(doc.createTextNode("0001-01-01"));
+		datumObjave.setAttribute("property", "pred:datumObjave");
+		datumObjave.setAttribute("datatype", "xs:date");
+		preambula.appendChild(datumObjave);
+
+		Element za = doc.createElementNS("http://www.tim9.com/amandman", "amd:BrojGlasovaZa");
+		za.appendChild(doc.createTextNode("0"));
+		za.setAttribute("property", "pred:za");
+		za.setAttribute("datatype", "xs:int");
+		preambula.appendChild(za);
+
+		Element protiv = doc.createElementNS("http://www.tim9.com/amandman", "amd:BrojGlasovaProtiv");
+		protiv.appendChild(doc.createTextNode("0"));
+		protiv.setAttribute("property", "pred:protiv");
+		protiv.setAttribute("datatype", "xs:int");
+		preambula.appendChild(protiv);
+
+		Element suzdrzano = doc.createElementNS("http://www.tim9.com/amandman", "amd:BrojGlasovaUzdrzano");
+		suzdrzano.appendChild(doc.createTextNode("0"));
+		suzdrzano.setAttribute("property", "pred:uzdrzano");
+		suzdrzano.setAttribute("datatype", "xs:int");
+		preambula.appendChild(suzdrzano);
+		
 	}
 
 	private String addNamespaces(String xml, XmlObjectDTO xmlObjectDTO) {

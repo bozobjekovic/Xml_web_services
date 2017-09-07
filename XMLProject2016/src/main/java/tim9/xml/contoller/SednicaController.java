@@ -199,18 +199,22 @@ public class SednicaController implements ErrorHandler {
 	}
 	
 	@RequestMapping(value = "/glasajAkt", method = RequestMethod.POST)
-	public ResponseEntity<Akt> glasajAkt(@RequestBody RezultatiDTO rezultatiDTO) throws SAXException, IOException, TransformerException, ParserConfigurationException, TransformerFactoryConfigurationError {
+	public ResponseEntity<Akt> glasajAkt(@RequestBody RezultatiDTO rezultatiDTO) throws SAXException, IOException, TransformerException, ParserConfigurationException, TransformerFactoryConfigurationError, DatatypeConfigurationException {
 		
 		int za = rezultatiDTO.getBrojGlasovaZa();
 		int protiv = rezultatiDTO.getBrojGlasovaProtiv();
 		int suzdrzano = rezultatiDTO.getBrojSuzdrzanih();
 		String id = rezultatiDTO.getId();
 		String status = "";
+		
+		GregorianCalendar date = new GregorianCalendar();
+		XMLGregorianCalendar datum = DatatypeFactory.newInstance().newXMLGregorianCalendar(date);
 
 		Akt akt = aktService.findAktDocId("akti/" + id);
 		akt.getPreambula().getBrojGlasovaZa().setValue(za);
 		akt.getPreambula().getBrojGlasovaProtiv().setValue(protiv);
 		akt.getPreambula().getBrojGlasovaUzdrzano().setValue(suzdrzano);
+		akt.getPreambula().getDatumObjave().setValue(datum);
 		
 		if (za == 0 && protiv == 0 && suzdrzano == 0)
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

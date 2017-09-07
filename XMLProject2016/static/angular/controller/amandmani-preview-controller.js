@@ -15,7 +15,6 @@
 
 		vm.aktAmandmana = function() {
 			AmandmaniFactory.aktAmandmana(vm.id).then(function(data) {
-				console.log(data);
 				vm.idAkta = data.id;
 			});
 		}
