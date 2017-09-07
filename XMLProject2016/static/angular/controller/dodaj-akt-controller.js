@@ -5,9 +5,9 @@
 		.module('xmlWebServices.controllers')
 		.controller('DodajAktController', DodajAktController);
 	
-	DodajAktController.$inject = ['$scope', '$location', '$localStorage', 'DodajAktFactory'];
+	DodajAktController.$inject = ['$scope', '$location', '$localStorage', '$timeout', 'DodajAktFactory'];
 
-	function DodajAktController($scope, $location, $localStorage, DodajAktFactory) {
+	function DodajAktController($scope, $location, $localStorage, $timeout, DodajAktFactory) {
 		
 		var vm = this;
 		
@@ -109,7 +109,8 @@
 								return jsElement.hasChildElement("akt:Oblast");
 							}
 
-						} ]
+						} ],
+						mustBeBefore : [ "akt:Deo", "akt:Član" ]
 					},
 					
 					"akt:PravniOsnov" : {
@@ -118,7 +119,7 @@
 							caption : "Obriši",
 							action : Xonomy.deleteElement
 						} ],
-						mustBeBefore : [ "Deo" ]
+						mustBeBefore : [ "akt:Deo" ]
 					},
 
 					"akt:NazivOrgana" : {
@@ -129,7 +130,7 @@
 							caption : "Obriši",
 							action : Xonomy.deleteElement
 						} ],
-						mustBeAfter : [ "PravniOsnov" ]
+						mustBeAfter : [ "akt:PravniOsnov" ]
 					},
 
 					"akt:Oblast" : {
@@ -141,7 +142,7 @@
 							caption : "Obriši",
 							action : Xonomy.deleteElement
 						} ],
-						mustBeAfter : [ "NazivOrgana" ]
+						mustBeAfter : [ "akt:NazivOrgana" ]
 					},
 					
 					// ########################################
@@ -526,7 +527,7 @@
 								caption : "Dodaj <akt:Referenca>",
 								action : Xonomy.wrap,
 								actionParameter : {
-									template : "<Rakt:eferenca>$</akt:Referenca>",
+									template : "<akt:Referenca xmlns:akt=\"http://www.tim9.com/akt\">$</akt:Referenca>",
 									placeholder : "$"
 								}
 							}
@@ -538,9 +539,6 @@
 						hasText : false,
 						menu : [ 
 							{
-								caption : "Obriši <akt:Referenca>",
-								action : Xonomy.unwrap
-							}, {
 								caption : "Dodaj @URL",
 								action : Xonomy.newAttribute,
 								actionParameter : {
@@ -550,6 +548,9 @@
 								hideIf : function(jsElement) {
 									return jsElement.hasAttribute("URL");
 								}
+							}, {
+								caption : "Obriši <akt:Referenca>",
+								action : Xonomy.unwrap
 							}
 						],
 						attributes : {

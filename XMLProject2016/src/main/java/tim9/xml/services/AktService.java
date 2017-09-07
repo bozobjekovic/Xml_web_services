@@ -8,6 +8,7 @@ import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.XMLConstants;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
@@ -22,6 +23,8 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.TransformerFactoryConfigurationError;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
 
 import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
@@ -106,21 +109,36 @@ public class AktService {
 		transformer.transform(input, output);
 
 		InputStreamHandle handle = new InputStreamHandle(new FileInputStream("gen/output.xml"));
-		xmlManager.write(docId, metadata, handle);
-
-		saveMD(Integer.toString(id));
 
 		// Definiše se JAXB kontekst (putanja do paketa sa JAXB bean-ovima)
 		JAXBContext context = JAXBContext.newInstance("tim9.xml.model.akt");
 
 		// Unmarshaller je objekat zadužen za konverziju iz XML-a u objektni
 		// model
-		Unmarshaller unmarshaller = context.createUnmarshaller();
 
-		// Unmarshalling generiše objektni model na osnovu XML fajla
-		Akt newAkt = (Akt) unmarshaller.unmarshal(new File("./gen/output.xml"));
+		try {
+			Unmarshaller unmarshaller = context.createUnmarshaller();
 
-		return newAkt;
+			// XML schema validacija
+			SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+			Schema schema = schemaFactory.newSchema(new File("C:/Users/Ana/Desktop/akt_schema.xsd"));
+
+			// Podešavanje unmarshaller-a za XML schema validaciju
+			unmarshaller.setSchema(schema);
+
+			// Unmarshalling generiše objektni model na osnovu XML fajla
+			Akt newAkt = (Akt) unmarshaller.unmarshal(new File("./gen/output.xml"));
+
+			xmlManager.write(docId, metadata, handle);
+
+			saveMD(Integer.toString(id));
+
+			return newAkt;
+		} catch (SAXException e) {
+			return null;
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 	private void saveMD(String id) throws SAXException, IOException, TransformerException {
@@ -206,10 +224,11 @@ public class AktService {
 		transformer.transform(input, output);
 	}
 
-	public void azurirajStatusUCelosti(Akt akt, String status) throws ParserConfigurationException, SAXException, IOException, TransformerFactoryConfigurationError, TransformerException {
-		
+	public void azurirajStatusUCelosti(Akt akt, String status) throws ParserConfigurationException, SAXException,
+			IOException, TransformerFactoryConfigurationError, TransformerException {
+
 		String docId = "akti/" + akt.getId();
-		
+
 		// Initialize XQuery invoker object
 		ServerEvaluationCall invoker = client.newServerEval();
 
@@ -222,7 +241,8 @@ public class AktService {
 				+ "<akt:BrojGlasovaProtiv datatype=\"xs:int\" property=\"pred:protiv\" xmlns=\"\">"
 				+ akt.getPreambula().getBrojGlasovaProtiv().getValue() + "</akt:BrojGlasovaProtiv>"
 				+ "<akt:BrojGlasovaUzdrzano datatype=\"xs:int\" property=\"pred:uzdrzano\" xmlns=\"\">"
-				+ akt.getPreambula().getBrojGlasovaUzdrzano().getValue() + "</akt:BrojGlasovaUzdrzano></akt:Preambula>" + ");";
+				+ akt.getPreambula().getBrojGlasovaUzdrzano().getValue() + "</akt:BrojGlasovaUzdrzano></akt:Preambula>"
+				+ ");";
 
 		// Invoke the query
 		invoker.xquery(query);
@@ -240,9 +260,9 @@ public class AktService {
 		Result output = new StreamResult(new File("gen/outputAkt.xml"));
 		Source input = new DOMSource(doc);
 
-		transformer.transform(input, output);		
+		transformer.transform(input, output);
 	}
-	
+
 	public void azurirajMetapodatke(String id) {
 		// Create a document manager to work with XML files.
 		GraphManager graphManager = client.newGraphManager();

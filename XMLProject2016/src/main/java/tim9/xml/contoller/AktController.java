@@ -72,7 +72,7 @@ public class AktController implements ErrorHandler {
 	AmandmanService amandmanService;
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Akt> saveAkt(@RequestBody XmlObjectDTO xmlObjectDTO) {
+	public ResponseEntity<Akt> saveAkt(@RequestBody XmlObjectDTO xmlObjectDTO) throws SAXException {
 
 		// preuzmem string xml-a amandmana
 		String xml = xmlObjectDTO.getXml();
@@ -101,7 +101,7 @@ public class AktController implements ErrorHandler {
 			Document doc = dBuilder.parse(new InputSource(new StringReader(xml)));
 
 			// generisanje ID-a
-			int id = ThreadLocalRandom.current().nextInt(1, 1000 + 1);
+			int id = ThreadLocalRandom.current().nextInt(1, 10000);
 
 			// dodavanje nedostajucih elemenata i atributa
 			Element aktElement = doc.getDocumentElement();
@@ -111,13 +111,20 @@ public class AktController implements ErrorHandler {
 			Element korisnik = addUser(xmlObjectDTO, doc);
 			aktElement.appendChild(korisnik);
 
+			if(doc.getElementsByTagName("akt:Preambula").item(0) == null){
+				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			}
+				
 			addPreambula(doc);
+
+			Akt akt = aktService.save(doc, id, xmlObjectDTO.getUser());
+			if (akt == null) {
+				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			}
 
 			// Detektuju eventualne greske
 			if (doc != null)
 				System.out.println("[INFO] File parsed with no errors.");
-
-			Akt akt = aktService.save(doc, id, xmlObjectDTO.getUser());
 
 			return new ResponseEntity<Akt>(akt, HttpStatus.CREATED);
 		} catch (SAXParseException e) {
@@ -134,8 +141,10 @@ public class AktController implements ErrorHandler {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		} catch (SAXException e) {
 			e.printStackTrace();
+			// System.out.print("[ERROR] SAXException: ");
 		} catch (Exception e) {
 			e.printStackTrace();
+			// System.out.print("[ERROR] Exception: ");
 		}
 		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 
@@ -213,10 +222,15 @@ public class AktController implements ErrorHandler {
 		String putanjaDoSeme = System.getProperty("user.dir") + "/data/akt_schema.xsd";
 		putanjaDoSeme = putanjaDoSeme.replace("\\", "/");
 
-		xml = xml.replace("xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"",
-				"xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"  xsi:schemaLocation=\"http://www.tim9.com/akt file:/"
-						+ putanjaDoSeme + "\" ");
-		
+		// xml =
+		// xml.replace("xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'",
+		// "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
+		// xsi:schemaLocation=\"http://www.tim9.com/akt file:/"
+		// + putanjaDoSeme + "\" ");
+
+		xml = xml.replace("xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'",
+				"xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"  xsi:schemaLocation=\"http://www.tim9.com/akt file:/C:/Users/Ana/Desktop/akt_schema.xsd\" ");
+
 		xml = xml.replace('č', 'c');
 		xml = xml.replace('Č', 'C');
 		xml = xml.replace('š', 's');
@@ -226,9 +240,10 @@ public class AktController implements ErrorHandler {
 		xml = xml.replace('ž', 'z');
 		xml = xml.replace('Ž', 'Z');
 
-		xml = xml.replace("xmlns:akt=\"http://www.tim9.com/akt\"",
-				"xmlns:akt=\"http://www.tim9.com/akt\" xmlns=\"http://www.w3.org/ns/rdfa#\" "
-						+ "xmlns:pred=\"http://www.tim9.com/akt/rdf/predikati/\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema#\"");
+		xml = xml.replace("<akt:Oblast xml:space='preserve'>",
+				"<akt:Oblast datatype=\"xs:string\" property=\"pred:oblast\">");
+		xml = xml.replace("xml:space='preserve'", "");
+		xml = xml.replace("standalone=\"yes\"", "");
 
 		return xml;
 
@@ -452,18 +467,18 @@ public class AktController implements ErrorHandler {
 
 		return new ResponseEntity<>(retVal, HttpStatus.OK);
 	}
-	
+
 	@RequestMapping(value = "/getIDsOdredbeAkta/{id}", method = RequestMethod.GET)
 	public ResponseEntity<List<String>> getIDsOdredbeAkta(@PathVariable String id) {
 		List<String> retVal = new ArrayList<>();
 		String xml = aktService.getOne(id);
-		
+
 		if (xml == null) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
-		
+
 		retVal = XPathAkt.getOdredbeByIDs(xml, id);
-		
+
 		return new ResponseEntity<List<String>>(retVal, HttpStatus.OK);
 	}
 

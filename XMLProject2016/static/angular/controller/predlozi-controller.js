@@ -8,7 +8,7 @@
 			'PredloziFactory' ];
 
 	function PredloziController($scope, $location, $localStorage,
-			PredloziFactory) {
+			PredloziFactory ) {
 
 		var vm = this;
 
@@ -80,7 +80,6 @@
 				}
 			});
 		}
-
 	}
 
 })(angular);

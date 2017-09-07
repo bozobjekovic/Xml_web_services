@@ -8,6 +8,7 @@ import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.XMLConstants;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
@@ -22,6 +23,8 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.TransformerFactoryConfigurationError;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
 
 import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
@@ -89,8 +92,8 @@ public class AmandmanService {
 		return amandmani;
 	}
 
-	public Amandman save(Document amandman, int id)
-			throws TransformerFactoryConfigurationError, TransformerException, JAXBException, SAXException, IOException {
+	public Amandman save(Document amandman, int id) throws TransformerFactoryConfigurationError, TransformerException,
+			JAXBException, SAXException, IOException {
 
 		String collId = "amandmani";
 		String docId = "amandmani/" + id;
@@ -105,25 +108,40 @@ public class AmandmanService {
 		transformer.transform(input, output);
 
 		InputStreamHandle handle = new InputStreamHandle(new FileInputStream("gen/outputAmandman.xml"));
-		xmlManager.write(docId, metadata, handle);
-
-		saveMD(id);
 
 		// Definiše se JAXB kontekst (putanja do paketa sa JAXB bean-ovima)
 		JAXBContext context = JAXBContext.newInstance("tim9.xml.model.amandman");
 
 		// Unmarshaller je objekat zadužen za konverziju iz XML-a u objektni
 		// model
-		Unmarshaller unmarshaller = context.createUnmarshaller();
 
-		// Unmarshalling generiše objektni model na osnovu XML fajla
-		Amandman newAmandman = (Amandman) unmarshaller.unmarshal(new File("./gen/outputAmandman.xml"));
+		try {
+			Unmarshaller unmarshaller = context.createUnmarshaller();
 
-		return newAmandman;
+			// XML schema validacija
+			SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+			Schema schema = schemaFactory.newSchema(new File("C:/Users/Ana/Desktop/amandman_schema.xsd"));
+
+			// Podešavanje unmarshaller-a za XML schema validaciju
+			unmarshaller.setSchema(schema);
+
+			// Unmarshalling generiše objektni model na osnovu XML fajla
+			Amandman newAmandman = (Amandman) unmarshaller.unmarshal(new File("./gen/outputAmandman.xml"));
+			
+			xmlManager.write(docId, metadata, handle);
+
+			saveMD(id);
+			
+			return newAmandman;
+		} catch (SAXException e) {
+			return null;
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 	private void saveMD(int id) throws SAXException, IOException, TransformerException {
-		
+
 		// Create a document manager to work with XML files.
 		GraphManager graphManager = client.newGraphManager();
 
@@ -145,8 +163,8 @@ public class AmandmanService {
 		FileHandle rdfFileHandle = new FileHandle(new File(rdfFilePath)).withMimetype(RDFMimeTypes.RDFXML);
 
 		// Writing the named graph
-		System.out.println(
-				"[INFO] Tripleti su uspesno dodati u bazu. Id trupleta: " + "amandmani/metadata/" + id + ".");
+		System.out
+				.println("[INFO] Tripleti su uspesno dodati u bazu. Id trupleta: " + "amandmani/metadata/" + id + ".");
 		graphManager.write("amandmani/metadata/" + id, rdfFileHandle);
 	}
 
@@ -173,16 +191,16 @@ public class AmandmanService {
 		return amandman;
 	}
 
-	public void azurirajStatus(Amandman amandman, String status) throws IOException, ParserConfigurationException, SAXException, TransformerFactoryConfigurationError, TransformerException {
+	public void azurirajStatus(Amandman amandman, String status) throws IOException, ParserConfigurationException,
+			SAXException, TransformerFactoryConfigurationError, TransformerException {
 		String docId = "amandmani/" + amandman.getId();
-		
+
 		// Initialize XQuery invoker object
 		ServerEvaluationCall invoker = client.newServerEval();
 
 		// Read the file contents into a string object
-		String query = "xquery version \"1.0-ml\"; "
-				+ " declare namespace amd = \"http://www.tim9.com/amandman\";" + "xdmp:node-replace(doc(\""
-				+ docId + "\")//amd:Amandman/amd:Preambula, "
+		String query = "xquery version \"1.0-ml\"; " + " declare namespace amd = \"http://www.tim9.com/amandman\";"
+				+ "xdmp:node-replace(doc(\"" + docId + "\")//amd:Amandman/amd:Preambula, "
 				+ "<amd:Preambula><amd:Status datatype=\"xs:string\" property=\"pred:status\">"
 				+ amandman.getPreambula().getStatus().getValue() + "</amd:Status>"
 				+ "<amd:BrojGlasovaZa datatype=\"xs:int\" property=\"pred:za\" xmlns=\"\">"
@@ -190,14 +208,15 @@ public class AmandmanService {
 				+ "<amd:BrojGlasovaProtiv datatype=\"xs:int\" property=\"pred:protiv\" xmlns=\"\">"
 				+ amandman.getPreambula().getBrojGlasovaProtiv().getValue() + "</amd:BrojGlasovaProtiv>"
 				+ "<amd:BrojGlasovaUzdrzano datatype=\"xs:int\" property=\"pred:uzdrzano\" xmlns=\"\">"
-				+ amandman.getPreambula().getBrojGlasovaUzdrzano().getValue() + "</amd:BrojGlasovaUzdrzano></amd:Preambula>" + ");";
-		
+				+ amandman.getPreambula().getBrojGlasovaUzdrzano().getValue()
+				+ "</amd:BrojGlasovaUzdrzano></amd:Preambula>" + ");";
+
 		// Invoke the query
 		invoker.xquery(query);
 
 		// Interpret the results
 		invoker.eval();
-		
+
 		String amandmanXML = getOne(amandman.getId());
 
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -230,11 +249,11 @@ public class AmandmanService {
 		FileHandle rdfFileHandle = new FileHandle(new File(rdfFilePath)).withMimetype(RDFMimeTypes.RDFXML);
 
 		// Writing the named graph
-		System.out.println("[INFO] Tripleti su uspesno azurrani i dodati u bazu. Id trupleta: "
-				+ "amandmani/metadata/" + id + ".");
+		System.out.println("[INFO] Tripleti su uspesno azurrani i dodati u bazu. Id trupleta: " + "amandmani/metadata/"
+				+ id + ".");
 		graphManager.write("amandmani/metadata/" + id, rdfFileHandle);
 	}
-	
+
 	public void delete(String id) {
 		try {
 			xmlManager.delete(id);

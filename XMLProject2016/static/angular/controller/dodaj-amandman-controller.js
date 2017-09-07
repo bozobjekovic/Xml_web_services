@@ -23,11 +23,8 @@ function DodajAmandmanController($scope, $location, $localStorage, DodajAmandman
 		
 		var docSpec = {
 			onchange : function() {
-				//localStorage.setItem("nedovrseniAkt", Xonomy.harvest());
-				console.log("I been changed now!")
 			},
 			validate : function(obj) {
-				console.log("I be validatin' now!")
 			},
 			elements : {
 				// ########################################
@@ -116,6 +113,9 @@ function DodajAmandmanController($scope, $location, $localStorage, DodajAmandman
 								return jsElement
 										.hasChildElement("amd:Predlog");
 							}
+						}, {
+							caption : "Obriši",
+							action : Xonomy.deleteElement
 						}
 					],
 					mustBeAfter : [ "amd:PravniOsnov" ]
@@ -622,7 +622,7 @@ function DodajAmandmanController($scope, $location, $localStorage, DodajAmandman
 							caption : "Dodaj <akt:Referenca>",
 							action : Xonomy.wrap,
 							actionParameter : {
-								template : "<Rakt:eferenca>$</akt:Referenca>",
+								template : "<akt:Referenca>$</akt:Referenca>",
 								placeholder : "$"
 							}
 						}
@@ -658,7 +658,11 @@ function DodajAmandmanController($scope, $location, $localStorage, DodajAmandman
 		};
 	
 		var xml = "<amd:Amandman xmlns:amd=\"http://www.tim9.com/amandman\" " +
-					   "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">" +
+					   "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" " +
+					   "xmlns:akt=\"http://www.tim9.com/akt\" " +
+					   "xmlns:pred=\"http://www.tim9.com/akt/rdf/predikati/\" " +
+					   "xmlns=\"http://www.w3.org/ns/rdfa#\" " +
+					   "xmlns:xs=\"http://www.w3.org/2001/XMLSchema#\">" +
 				  "</amd:Amandman>";
 		
 		var insEditor = document.getElementById("xmlEditor");
@@ -680,7 +684,7 @@ function DodajAmandmanController($scope, $location, $localStorage, DodajAmandman
 	preuzmiSveIdIzabranogAkta = function() {
 		nazivId = nazivId.substring(16, nazivId.length - 16);
 		nazivId = nazivId.split("-")[1].split(" ")[1];
-		// u VM id za cuvanje ...............
+		vm.xmlObject.aktId = nazivId;
 		AktiFactory.getIDOdredbeAkta(nazivId).then(
 			function(data) {
 				if (data == null) {

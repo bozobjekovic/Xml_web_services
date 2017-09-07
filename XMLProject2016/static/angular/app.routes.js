@@ -6,7 +6,7 @@
 			[ 'ngRoute', 'restangular', 'ngStorage', 'lodash']).config(configure).run(runBlock);
 	
 	configure.$inject = [ '$routeProvider', '$locationProvider' ];
-	runBlock.$inject = [ 'Restangular' ];
+	runBlock.$inject = [ 'Restangular'];
 	
 	function configure($routeProvider, $locationProvider) {
 		$locationProvider.hashPrefix('');
@@ -77,10 +77,11 @@
 	}
 	
 	function runBlock(Restangular, $log) {
+
 		Restangular.setBaseUrl('xmlWS');
 		Restangular.setErrorInterceptor(function(response) {
 			if (response.status === 500) {
-				//$log.info("internal server error");
+				// $log.info("internal server error");
 				return true;
 			}
 			return true;

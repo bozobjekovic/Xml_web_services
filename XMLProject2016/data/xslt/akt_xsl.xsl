@@ -89,7 +89,7 @@
     </xsl:template>
 	
 	<xsl:template match="akt:Sadrzaj">
-        <p class="tim9 uvucen"> 
+        <p class="tim9 uvucen" > 
             <xsl:apply-templates />
         </p>
     </xsl:template>
@@ -122,7 +122,7 @@
     </xsl:template>
     
     <xsl:template match="akt:Sadrzaj//akt:Referenca">
-    	<xsl:variable name="id_url" select="substring-after(@URL, 'http://www.tim9.com/akt/')"/>
+    	<xsl:variable name="id_url" select="substring-after(@URL, 'akt/')"/>
 	    <xsl:choose>
 	    	<xsl:when test="substring(@URL, 1, 1) != '#'">
 				<a  class="referenca" title="prikaži" href="#/preview/{$id_url}" target="_blank">
@@ -131,7 +131,8 @@
 	        </xsl:when>
 			<!--  kada referenca pocinje sa #, referencira se unutar dokumenta -->
 	        <xsl:otherwise>
-	        	<a  class="referenca" title="prikaži" href="#/preview/{$aktId}{@URL}" target="_self">
+	        	<xsl:variable name="withoutHash" select="substring-after(@URL, '#')"/>
+	        	<a  class="referenca" title="prikaži" href="#/preview/{$aktId}skrol{$withoutHash}" target="_self">
 	            	<xsl:apply-templates />
 	        	</a>
 	        </xsl:otherwise>

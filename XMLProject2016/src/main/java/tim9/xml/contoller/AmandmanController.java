@@ -105,6 +105,10 @@ public class AmandmanController implements ErrorHandler {
 				System.out.println("[INFO] File parsed with no errors.");
 
 			Amandman amandman = amandmanService.save(doc, id);
+			if (amandman == null) {
+				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			}
+			
 			return new ResponseEntity<Amandman>(amandman, HttpStatus.CREATED);
 
 		} catch (SAXParseException e) {
@@ -139,8 +143,19 @@ public class AmandmanController implements ErrorHandler {
 				"xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"  xsi:schemaLocation=\"http://www.tim9.com/amandman file:/"
 						+ putanjaDoSeme + "\" ");
 		
-		xml = xml.replace("xmlns:amd=\"http://www.tim9.com/amandman\"", "xmlns:amd=\"http://www.tim9.com/amandman\" xmlns=\"http://www.w3.org/ns/rdfa#\" "
-				+ "xmlns:pred=\"http://www.tim9.com/amandman/rdf/predikati/\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema#\"");
+		xml = xml.replace('č', 'c');
+		xml = xml.replace('Č', 'C');
+		xml = xml.replace('š', 's');
+		xml = xml.replace('Š', 'S');
+		xml = xml.replace('ć', 'c');
+		xml = xml.replace('Ć', 'C');
+		xml = xml.replace('ž', 'z');
+		xml = xml.replace('Ž', 'Z');
+		
+		xml = xml.replace("xml:space='preserve'", "");
+		
+		/*xml = xml.replace("xmlns:amd=\"http://www.tim9.com/amandman\"", "xmlns:amd=\"http://www.tim9.com/amandman\" xmlns=\"http://www.w3.org/ns/rdfa#\" "
+				+ "xmlns:pred=\"http://www.tim9.com/amandman/rdf/predikati/\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema#\"");*/
 		
 		return xml;
 	}
