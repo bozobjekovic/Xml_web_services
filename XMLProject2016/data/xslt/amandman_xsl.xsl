@@ -48,7 +48,7 @@
 				<xsl:value-of select="amandman:Obrazlozenje/amandman:CiljPodnosenja" />
 				<br />
 				Objašnjenje rešenja:
-				<xsl:value-of select="amandman:Obrazlozenje/amandman:ObjasnjenjeResenja" />
+				<xsl:value-of select="amandman:Obrazlozenje/amandman:Objasnjenje" />
 				<br />
 				Procena uticaja:
 				<xsl:value-of select="amandman:Obrazlozenje/amandman:ProcenaUticaja" />
