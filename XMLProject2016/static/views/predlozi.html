@@ -8,7 +8,8 @@
 			<!--Izlistavanje rezultata-->
 			<div class="col-sm-12">
 
-				<h2 class="animate fadeIn text-center">Spisak predloga</h2><br/>
+				<h2 class="animate fadeIn text-center">Spisak predloga</h2>
+				<br />
 				<div class="table-responsive">
 					<h3 class="animate fadeIn text-center">Akti</h3>
 					<table class="table">
@@ -20,7 +21,6 @@
 								<th>Datum</th>
 								<th>Status</th>
 								<th>Pregledaj</th>
-								<th>Preuzmi</th>
 								<th>Obriši</th>
 							</tr>
 						</thead>
@@ -29,19 +29,22 @@
 								<td>{{ $index + 1 }}</td>
 								<td>{{ akt.naslov }}</td>
 								<td>{{ akt.preambula.oblast.value }}</td>
-								<td>{{ akt.preambula.datumObjave.value | date : 'dd.MM.yyyy' }}</td>
+								<td>{{ akt.preambula.datumPredaje.value | date :
+									'dd.MM.yyyy' }}.</td>
 								<td>{{ akt.preambula.status.value }}</td>
-								<td ng-controller="AktiController as aktiCtrl"><a href="" ng-click="aktiCtrl.previewHTML(akt.id)"><img border="0" src="../images/xhtmlIcon.png"></a></td>
-								<td ng-controller="AktiController as aktiCtrl"><a href="" ng-click="aktiCtrl.downloadPDF(akt.id)"><img border="0" src="../images/pdfIcon.png"></a></td>
-								<td>
-									<a ng-if="akt.preambula.status.value == 'U proceduri'" href="" ng-click="predloziCtrl.povuciAkt(akt.id)">
-										<i class="glyphicon glyphicon-remove"></i>
-									</a>
-								</td>
+								<td ng-controller="AktiController as aktiCtrl"><a href=""
+									ng-click="aktiCtrl.previewHTML(akt.id)"><img border="0"
+										src="../images/xhtmlIcon.png"></a> &nbsp;&nbsp;&nbsp; <a
+									href="" ng-click="aktiCtrl.downloadPDF(akt.id)"><img
+										border="0" src="../images/pdfIcon.png"></a></td>
+								<td><a ng-if="akt.preambula.status.value == 'U proceduri'"
+									href="" ng-click="predloziCtrl.povuciAkt(akt.id)"> <i
+										class="glyphicon glyphicon-remove"></i>
+								</a></td>
 							</tr>
 						</tbody>
 					</table>
-					<br/>
+					<br />
 					<h3 class="animate fadeIn text-center">Amandmani</h3>
 					<table class="table">
 						<thead>
@@ -49,6 +52,8 @@
 								<th>Broj</th>
 								<th>Naslov</th>
 								<th>Pravni osnov</th>
+								<th>Datum</th>
+								<th>Status</th>
 								<th>Pregledaj</th>
 								<th>Obriši</th>
 							</tr>
@@ -58,12 +63,20 @@
 								<td>{{ $index + 1 }}</td>
 								<td>{{ amd.naslov }}</td>
 								<td>{{ amd.pravniOsnov }}</td>
-								<td ng-controller="AmandmaniController as amandmaniCtrl"><a href="" ng-click="amandmaniCtrl.previewHTML(amd.id)"><img border="0" src="../images/xhtmlIcon.png"></a></td>
-								<td>
-									<a href="" ng-click="predloziCtrl.povuciAmandman(amd.id)">
-										<i class="glyphicon glyphicon-remove"></i>
-									</a>
-								</td>
+								<td>{{ amd.preambula.datumPredaje.value | date :
+									'dd.MM.yyyy' }}.</td>
+								<td>{{ amd.preambula.status.value }}</td>
+								<td ng-controller="AmandmaniController as amandmaniCtrl"><a
+									href="" ng-click="amandmaniCtrl.previewHTML(amd.id)">
+										<img border="0" src="../images/xhtmlIcon.png">
+								</a> &nbsp;&nbsp;&nbsp; <a href=""
+									ng-click="amandmaniCtrl.downloadPDF(amd.id)"> <img
+										border="0" src="../images/pdfIcon.png">
+								</a></td>
+								<td><a href=""
+									ng-click="predloziCtrl.povuciAmandman(amd.id)"> <i
+										class="glyphicon glyphicon-remove"></i>
+								</a></td>
 							</tr>
 						</tbody>
 					</table>

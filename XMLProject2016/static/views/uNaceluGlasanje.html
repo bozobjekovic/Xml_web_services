@@ -23,10 +23,10 @@
 						</thead>
 						<tbody>
 							<tr ng-repeat="dok in uNaceluCtrl.dokumenti">
-								<td>Akt {{ $index + 1 }}</td>
+								<td>{{ $index + 1 }}</td>
 								<td>{{ dok.akt.naslov }}</td>
 								<td>{{ dok.akt.preambula.oblast.value }}</td>
-								<td>{{ dok.akt.preambula.datumObjave.value | date : 'dd.MM.yyyy' }}.</td>
+								<td>{{ dok.akt.preambula.datumPredaje.value | date : 'dd.MM.yyyy' }}.</td>
 								<td id="{{ dok.akt.id }}status">{{ dok.akt.preambula.status.value }}</td>
 								<td ng-controller="AktiController as aktiCtrl" align="left">
 									<a href="" ng-click="aktiCtrl.downloadPDF(dok.akt.id)">
