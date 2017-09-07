@@ -121,7 +121,7 @@ public class AktService {
 
 			// XML schema validacija
 			SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-			Schema schema = schemaFactory.newSchema(new File("C:/Users/Ana/Desktop/akt_schema.xsd"));
+			Schema schema = schemaFactory.newSchema(new File("data/akt_schema.xsd"));
 
 			// Podešavanje unmarshaller-a za XML schema validaciju
 			unmarshaller.setSchema(schema);

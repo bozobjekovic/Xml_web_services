@@ -222,14 +222,8 @@ public class AktController implements ErrorHandler {
 		String putanjaDoSeme = System.getProperty("user.dir") + "/data/akt_schema.xsd";
 		putanjaDoSeme = putanjaDoSeme.replace("\\", "/");
 
-		// xml =
-		// xml.replace("xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'",
-		// "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"
-		// xsi:schemaLocation=\"http://www.tim9.com/akt file:/"
-		// + putanjaDoSeme + "\" ");
-
 		xml = xml.replace("xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'",
-				"xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"  xsi:schemaLocation=\"http://www.tim9.com/akt file:/C:/Users/Ana/Desktop/akt_schema.xsd\" ");
+			 "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:schemaLocation=\"http://www.tim9.com/akt file:/"	+ putanjaDoSeme + "\" ");
 
 		xml = xml.replace('č', 'c');
 		xml = xml.replace('Č', 'C');
@@ -243,7 +237,6 @@ public class AktController implements ErrorHandler {
 		xml = xml.replace("<akt:Oblast xml:space='preserve'>",
 				"<akt:Oblast datatype=\"xs:string\" property=\"pred:oblast\">");
 		xml = xml.replace("xml:space='preserve'", "");
-		xml = xml.replace("standalone=\"yes\"", "");
 
 		return xml;
 

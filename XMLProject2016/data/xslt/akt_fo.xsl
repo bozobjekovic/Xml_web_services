@@ -96,7 +96,7 @@
   	    
 		<xsl:for-each select="akt:Stav">
 		    <fo:block id="{@id}" font-family="Arial" font-size="12" text-align="justify" text-indent="40px" margin="10px">
-            	<!-- <xsl:apply-templates select="akt:Sadrzaj"/> -->
+            	<xsl:apply-templates select="akt:Sadrzaj"/>
             	<xsl:apply-templates select="akt:Tacka"/>
             </fo:block>
 		</xsl:for-each>
@@ -108,13 +108,11 @@
     </xsl:template>
     
     <xsl:template match="akt:Sadrzaj//akt:Referenca">
-    	<xsl:variable name="pre" select="substring-before($status,' ')"/>
-        <xsl:variable name="posle" select="substring-after($status,' ')"/>
-        <xsl:variable name="statusAkta" select="concat(lower-case(substring($pre,1)), upper-case(substring($posle,1,1)), substring($posle, 2))"/>
+    	<xsl:variable name="id_url" select="substring-after(@URL, 'akt/')"/>
 	    <xsl:choose>
 	    	<xsl:when test="substring(@URL, 1, 1) != '#'">
 	        	<fo:basic-link color="#618587" show-destination="new"
-	        		external-destination="url(http://localhost:8080/#/akti/{$statusAkta}/{@URL})">
+	        		external-destination="url(http://localhost:8080/#/preview/{$id_url})">
             		<xsl:value-of select="text()"/>
             	</fo:basic-link>
 	        </xsl:when>

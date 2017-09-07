@@ -140,8 +140,7 @@ public class AmandmanController implements ErrorHandler {
 		putanjaDoSeme = putanjaDoSeme.replace("\\", "/");
 
 		xml = xml.replace("xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"",
-				"xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"  xsi:schemaLocation=\"http://www.tim9.com/amandman file:/"
-						+ putanjaDoSeme + "\" ");
+			 "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"  xsi:schemaLocation=\"http://www.tim9.com/amandman file:/" + putanjaDoSeme + "\" ");
 		
 		xml = xml.replace('č', 'c');
 		xml = xml.replace('Č', 'C');
@@ -153,10 +152,7 @@ public class AmandmanController implements ErrorHandler {
 		xml = xml.replace('Ž', 'Z');
 		
 		xml = xml.replace("xml:space='preserve'", "");
-		
-		/*xml = xml.replace("xmlns:amd=\"http://www.tim9.com/amandman\"", "xmlns:amd=\"http://www.tim9.com/amandman\" xmlns=\"http://www.w3.org/ns/rdfa#\" "
-				+ "xmlns:pred=\"http://www.tim9.com/amandman/rdf/predikati/\" xmlns:xs=\"http://www.w3.org/2001/XMLSchema#\"");*/
-		
+
 		return xml;
 	}
 
