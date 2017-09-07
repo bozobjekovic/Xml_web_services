@@ -43,6 +43,13 @@ function DodajAmandmanController($scope, $location, $localStorage, DodajAmandman
 				"amd:Amandman" : {
 					menu : [
 						{
+							caption : "Dodaj <amd:Preambula>",
+							action : Xonomy.newElementChild,
+							actionParameter : "<amd:Preambula xmlns:amd=\"http://www.tim9.com/amandman\"/>",
+							hideIf : function(jsElement) {
+								return jsElement.hasChildElement("amd:Preambula");
+							}
+						}, {
 							caption : "Dodaj <amd:Naslov>",
 							action : Xonomy.newElementChild,
 							actionParameter : "<amd:Naslov xmlns:amd=\"http://www.tim9.com/amandman\"/>",
@@ -65,12 +72,36 @@ function DodajAmandmanController($scope, $location, $localStorage, DodajAmandman
 					]
 				},
 				
+				"amd:Preambula" : {
+					menu : [
+						{
+							caption : "Dodaj novi <amd:NazivOrgana>",
+							action : Xonomy.newElementChild,
+							actionParameter : "<amd:NazivOrgana xmlns:amd=\"http://www.tim9.com/amandman\"/>",
+							hideIf : function(jsElement) {
+								return jsElement.hasChildElement("amd:NazivOrgana");
+							}
+						}
+					]
+				},
+				
+				"amd:NazivOrgana" : {
+					hasText : true,
+					asker : Xonomy.askPicklist,
+					askerParameter : [ "Skupština Grada Novog Sada" ],
+					menu : [ {
+						caption : "Obriši",
+						action : Xonomy.deleteElement
+					} ]
+				},
+				
 				"amd:Naslov" : {
 					hasText : true,
 					menu : [ {
 						caption : "Obriši",
 						action : Xonomy.deleteElement
 					} ],
+					mustBeAfter : [ "amd:Preambula" ]
 				},
 				
 				"amd:PravniOsnov" : {
@@ -79,7 +110,7 @@ function DodajAmandmanController($scope, $location, $localStorage, DodajAmandman
 					menu : [ {
 						caption : "Obriši",
 						action : Xonomy.deleteElement
-					} ],
+					} ]
 				},
 				
 				"amd:Sadržaj" : {

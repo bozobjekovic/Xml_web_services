@@ -911,8 +911,9 @@ Xonomy.elementMenu=function(htmlID) {
 	for(var i=0; i<spec.menu.length; i++) {
 		var item=spec.menu[i];
 		if(item.caption == "Dodaj <Default>"){
-			item.caption = "Dodaj <" + izabranaOdredba + ">";
-			item.actionParameter = "<" + izabranaOdredba + "/>";
+			console.log(izabranaOdredba);
+			item.caption = "Dodaj <akt:" + izabranaOdredba + ">";
+			item.actionParameter = "<akt:" + izabranaOdredba + " xmlns:akt=\"http://www.tim9.com/akt\"/>";
 		}
 		var includeIt=!item.hideIf(Xonomy.harvestElement(document.getElementById(htmlID)));
 		if(includeIt) {
