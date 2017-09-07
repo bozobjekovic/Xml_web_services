@@ -14,7 +14,7 @@
                 <xs:element maxOccurs="1" minOccurs="0" ref="korisnik:Korisnik"/>
             </xs:sequence>
             <xs:attribute name="id"/>
-            <xs:attribute name="naslov" type="xs:string"/>
+            <xs:attribute name="naslov" type="xs:string" use="required"/>
             <xs:attribute default="http://www.tim9.com/akt/rdf/predikati/" name="vocab"
                 type="xs:string"/>
             <xs:attribute name="about" type="xs:string"/>
@@ -30,8 +30,8 @@
                 </xs:choice>
             </xs:sequence>
             <xs:attribute name="id"/>
-            <xs:attribute name="naslov" type="xs:string"/>
-            <xs:attribute name="redniBroj">
+            <xs:attribute name="naslov" type="xs:string" use="required"/>
+            <xs:attribute name="redniBroj" use="required">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
                         <xs:pattern value="DEO .+"/>
@@ -49,8 +49,8 @@
                 </xs:choice>
             </xs:sequence>
             <xs:attribute name="id"/>
-            <xs:attribute name="naslov" type="xs:string"/>
-            <xs:attribute name="redniBroj">
+            <xs:attribute name="naslov" type="xs:string" use="required"/>
+            <xs:attribute name="redniBroj" use="required">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
                         <xs:pattern value="(Glava)? .+"/>
@@ -68,8 +68,8 @@
                 </xs:choice>
             </xs:sequence>
             <xs:attribute name="id"/>
-            <xs:attribute name="naslov" type="xs:string"/>
-            <xs:attribute name="redniBroj">
+            <xs:attribute name="naslov" type="xs:string" use="required"/>
+            <xs:attribute name="redniBroj" use="required">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
                         <xs:pattern value="[0-9]+\."/>
@@ -84,8 +84,8 @@
                 <xs:element maxOccurs="unbounded" ref="akt:Clan"/>
             </xs:sequence>
             <xs:attribute name="id"/>
-            <xs:attribute name="naslov" type="xs:string"/>
-            <xs:attribute name="redniBroj">
+            <xs:attribute name="naslov" type="xs:string" use="required"/>
+            <xs:attribute name="redniBroj" use="required">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
                         <xs:pattern value="[a-z]\)"/>
@@ -100,8 +100,8 @@
                 <xs:element maxOccurs="unbounded" ref="akt:Stav"/>
             </xs:sequence>
             <xs:attribute name="id"/>
-            <xs:attribute name="naslov" type="xs:string"/>
-            <xs:attribute name="redniBroj">
+            <xs:attribute name="naslov" type="xs:string" use="required"/>
+            <xs:attribute name="redniBroj" use="required">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
                         <xs:pattern value="(Clan|Član) [0-9]+\."/>
@@ -130,7 +130,7 @@
                 </xs:choice>
             </xs:sequence>
             <xs:attribute name="id"/>
-            <xs:attribute name="redniBroj">
+            <xs:attribute name="redniBroj" use="required">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
                         <xs:pattern value="[0-9]+\)"/>
@@ -148,7 +148,7 @@
                 </xs:choice>
             </xs:sequence>
             <xs:attribute name="id"/>
-            <xs:attribute name="redniBroj">
+            <xs:attribute name="redniBroj" use="required">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">
                         <xs:pattern value="\([0-9]+\)"/>
@@ -253,7 +253,7 @@
         <xs:complexType>
             <xs:simpleContent>
                 <xs:extension base="xs:string">
-                    <xs:attribute name="URL" type="xs:string"/>
+                    <xs:attribute name="URL" type="xs:string" use="required"/>
                 </xs:extension>
             </xs:simpleContent>
         </xs:complexType>
