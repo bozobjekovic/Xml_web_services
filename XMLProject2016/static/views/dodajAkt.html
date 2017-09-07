@@ -17,7 +17,7 @@
 			<div style="display: flex;">
 				<div
 					style="display: inline-block; width: 150px; text-align: center; padding: 10px 10px 0 0;">
-					<button ng-click="dodajAktCtrl.addAkt()"
+					<button ng-click="dodajAktCtrl.addAkt()" ng-if="!dodajAktCtrl.invalid"
 						style="width: 100px; color: #315696; font-weight: bold; background-color: #eeeeee; border: 1px solid #dddddd; border-radius: 2px;">Dodaj</button>
 
 					<blockquote ng-if="dodajAktCtrl.successful" class="bg-primary"

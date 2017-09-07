@@ -17,6 +17,17 @@ function DodajAmandmanController($scope, $location, $localStorage, DodajAmandman
 	
 	izabranaOdredba = "";
 	
+	vm.dobaviSednicu = function(){
+		DodajAmandmanFactory.dobaviSednicu().then(function(data){
+			if (data == null){
+				vm.invalid = true;
+			} else {
+				getAllAkts();
+			}
+		});
+	}
+	vm.dobaviSednicu();
+	
 	function setupXonomy() {
 		
 		vm.xmlObject.user = $localStorage.user;
@@ -679,7 +690,6 @@ function DodajAmandmanController($scope, $location, $localStorage, DodajAmandman
 			}
 		);
 	}
-	getAllAkts();
 	
 	preuzmiSveIdIzabranogAkta = function() {
 		nazivId = nazivId.substring(16, nazivId.length - 16);

@@ -235,7 +235,7 @@ public class AktService {
 		String query = "xquery version \"1.0-ml\"; " + " declare namespace akt = \"http://www.tim9.com/akt\";"
 				+ "xdmp:node-replace(doc(\"" + docId + "\")//akt:Akt/akt:Preambula, "
 				+ "<akt:Preambula><akt:Status datatype=\"xs:string\" property=\"pred:status\">"
-				+ akt.getPreambula().getStatus().getValue() + "</akt:Status>"
+				+ status + "</akt:Status>"
 				+ "<akt:BrojGlasovaZa datatype=\"xs:int\" property=\"pred:za\" xmlns=\"\">"
 				+ akt.getPreambula().getBrojGlasovaZa().getValue() + "</akt:BrojGlasovaZa>"
 				+ "<akt:BrojGlasovaProtiv datatype=\"xs:int\" property=\"pred:protiv\" xmlns=\"\">"
@@ -257,7 +257,7 @@ public class AktService {
 		Document doc = builder.parse(new InputSource(new StringReader(aktXML)));
 
 		Transformer transformer = TransformerFactory.newInstance().newTransformer();
-		Result output = new StreamResult(new File("gen/outputAkt.xml"));
+		Result output = new StreamResult(new File("gen/output.xml"));
 		Source input = new DOMSource(doc);
 
 		transformer.transform(input, output);

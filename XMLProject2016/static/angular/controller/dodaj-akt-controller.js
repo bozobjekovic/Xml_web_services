@@ -20,6 +20,8 @@
 			DodajAktFactory.dobaviSednicu().then(function(data){
 				if (data == null){
 					vm.invalid = true;
+				} else {
+					setupXonomy();
 				}
 			});
 		}
@@ -575,7 +577,6 @@
 			Xonomy.setMode("laic");
 			Xonomy.render(xml, insEditor, docSpec);
 		}
-		setupXonomy();
 		
 		vm.addAkt = function() {
 			vm.xmlObject.xml = Xonomy.harvest();

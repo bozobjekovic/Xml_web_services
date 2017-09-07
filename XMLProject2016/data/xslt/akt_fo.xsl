@@ -103,11 +103,11 @@
     </xsl:template>
 
     
-    <!-- <xsl:template match="akt:Tekst">
+    <xsl:template match="akt:Sadrzaj">
     		<xsl:apply-templates />
     </xsl:template>
     
-    <xsl:template match="akt:Tekst//akt:Referenca">
+    <xsl:template match="akt:Sadrzaj//akt:Referenca">
     	<xsl:variable name="pre" select="substring-before($status,' ')"/>
         <xsl:variable name="posle" select="substring-after($status,' ')"/>
         <xsl:variable name="statusAkta" select="concat(lower-case(substring($pre,1)), upper-case(substring($posle,1,1)), substring($posle, 2))"/>
@@ -118,14 +118,14 @@
             		<xsl:value-of select="text()"/>
             	</fo:basic-link>
 	        </xsl:when>
-			 kada referenca pocinje sa #, referencira se unutar dokumenta
+			<!--  kada referenca pocinje sa #, referencira se unutar dokumenta -->
 	        <xsl:otherwise>
 	        	<xsl:variable name="referenca" select="substring-after(@URL,'#')"/>
 	        	<fo:basic-link color="#876185" internal-destination="{$referenca}">
 						<xsl:value-of select="text()"/>	</fo:basic-link>
 	        </xsl:otherwise>
 		</xsl:choose>
-    </xsl:template> -->
+    </xsl:template>
     
     <xsl:template match="akt:Tacka">
     	<fo:block id="{@id}" font-family="Arial" font-size="12" text-align="justify" text-indent="40px" margin-bottom="10px" margin-top="10px">
