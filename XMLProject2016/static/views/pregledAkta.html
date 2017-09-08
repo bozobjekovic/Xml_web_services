@@ -26,6 +26,7 @@
 							<th>Naslov</th>
 							<th>Pravni osnov</th>
 							<th>Datum</th>
+							<th>Status</th>
 							<th>Pregledaj</th>
 							<th>JSON</th>
 							<th>RDF</th>
@@ -37,7 +38,8 @@
 							<td>{{ $index + 1 }}</td>
 							<td>{{ amandman.naslov }}</td>
 							<td>{{ amandman.pravniOsnov }}</td>
-							<td>{{ amandman.preambula.datumPredaje.value | date : 'dd.MM.yyyy' }}</td>
+							<td>{{ amandman.preambula.datumPredaje.value | date : 'dd.MM.yyyy' }}.</td>
+							<td>{{ amandman.preambula.status.value }}</td>
 							<td>
 								<a href="" ng-click="amandmaniCtrl.previewHTML(amandman.id)">
 									<img border="0" src="../images/xhtmlIcon.png">

@@ -98,6 +98,16 @@
 			);
 		}
 		
+		retVal.primeniAmandman = function(id) {
+			return Restangular.one('amandman/primenaAmandmana', id).get().then(
+				function() {
+					return true; 
+				}, function(err) {
+					return false;
+				}
+			);
+		}
+		
 		return retVal;
 	}
 })(angular);

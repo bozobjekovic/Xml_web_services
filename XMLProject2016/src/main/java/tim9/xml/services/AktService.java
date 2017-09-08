@@ -2,6 +2,7 @@ package tim9.xml.services;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.StringReader;
@@ -222,6 +223,21 @@ public class AktService {
 		Source input = new DOMSource(doc);
 
 		transformer.transform(input, output);
+	}
+	
+	public void azuriajAkt(Document akt, String docId) throws TransformerFactoryConfigurationError, TransformerException, FileNotFoundException {
+
+		DocumentMetadataHandle metadata = new DocumentMetadataHandle();
+		metadata.getCollections().add("akti");
+		
+		Transformer transformer = TransformerFactory.newInstance().newTransformer();
+		Result output = new StreamResult(new File("gen/outputPrimenaAmandmanaAkt.xml"));
+		Source input = new DOMSource(akt);
+
+		transformer.transform(input, output);
+		
+		InputStreamHandle handle = new InputStreamHandle(new FileInputStream("gen/outputPrimenaAmandmanaAkt.xml"));
+		xmlManager.write(docId, metadata, handle);
 	}
 
 	public void azurirajStatusUCelosti(Akt akt, String status) throws ParserConfigurationException, SAXException,

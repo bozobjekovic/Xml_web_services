@@ -1,5 +1,6 @@
 package tim9.xml.xquery;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
@@ -18,12 +19,14 @@ import org.xml.sax.SAXException;
 import com.marklogic.client.DatabaseClient;
 import com.marklogic.client.DatabaseClientFactory;
 import com.marklogic.client.document.XMLDocumentManager;
+import com.marklogic.client.eval.ServerEvaluationCall;
 import com.marklogic.client.io.SearchHandle;
 import com.marklogic.client.query.MatchDocumentSummary;
 import com.marklogic.client.query.QueryManager;
 import com.marklogic.client.query.StringQueryDefinition;
 
 import tim9.xml.model.amandman.Amandman;
+import tim9.xml.util.PrimeniAmandman;
 import tim9.xml.util.Util.ConnectionProperties;
 
 public class XQueryAmandman {
@@ -131,5 +134,103 @@ public class XQueryAmandman {
 		client.release();
 
 		return retVal;
+	}
+	
+	public static void primeniAmandman(ConnectionProperties props, PrimeniAmandman pAmandman) {
+		
+		// Initialize the database client
+		if (props.database.equals("")) {
+			client = DatabaseClientFactory.newClient(props.host, props.port, props.user, props.password,
+					props.authType);
+		} else {
+			client = DatabaseClientFactory.newClient(props.host, props.port, props.database, props.user, props.password,
+					props.authType);
+		}
+		
+		// Initialize XQuery invoker object
+		ServerEvaluationCall invoker = client.newServerEval();
+		
+		String query = "";
+		if (pAmandman.getPredlozenoResenje().equalsIgnoreCase("Izmena")) {
+			pAmandman.setPatch(fomatPatch(pAmandman.getPatch()));
+			query = "xquery version \"1.0-ml\"; declare namespace akt = \"http://www.tim9.com/akt\";"
+					+ " xdmp:node-replace(doc(\"" + pAmandman.getDocIDAkt() + "\")//*[@id=\"" + pAmandman.getOdredba() + "\"]," + pAmandman.getPatch() + ");";
+		} else if (pAmandman.getPredlozenoResenje().equalsIgnoreCase("Dodavanje")) {
+			pAmandman.setPatch(fomatPatch(pAmandman.getPatch()));
+			query = "xquery version \"1.0-ml\"; declare namespace akt = \"http://www.tim9.com/akt\";"
+					+ " xdmp:node-insert-after(doc(\"" + pAmandman.getDocIDAkt() + "\")//*[@id=\"" + pAmandman.getOdredba() + "\"]," + pAmandman.getPatch() + ");";
+		} else if (pAmandman.getPredlozenoResenje().equalsIgnoreCase("Brisanje")) {
+			query = "xquery version \"1.0-ml\"; declare namespace akt = \"http://www.tim9.com/akt\";"
+					+ " xdmp:node-delete(doc(\"" + pAmandman.getDocIDAkt() + "\")//*[@id=\"" + pAmandman.getOdredba() + "\"]);";
+		}
+		
+		System.out.println(pAmandman.getPatch());
+		
+		// Invoke the query
+		invoker.xquery(query);
+		
+		// Interpret the results
+		invoker.eval();
+		
+		System.out.println("GOTOVO");
+		
+	}
+	
+	private static String fomatPatch(String patch) {
+		
+		patch = patch.replace("<?xml version=\"1.0\" encoding=\"UTF-8\"?>", "");
+		patch = patch.replace("xmlns:akt=\"http://www.tim9.com/akt\"", "");
+		patch = patch.replace("xmlns:pred=\"http://www.tim9.com/akt/rdf/predikati/\"", "");
+		patch = patch.replace("xmlns:amd=\"http://www.tim9.com/amandman\"", "");
+		patch = patch.replace("xmlns:xs=\"http://www.w3.org/2001/XMLSchema#\"", "");
+		patch = patch.replace("xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"", "");
+		
+		patch = patch.replaceAll("(?m)^[ \t]*\r?\n", "");
+		
+		BufferedReader bufReader = new BufferedReader(new StringReader(patch));
+		patch = "";
+		try {
+			String line = "";
+			while ((line = bufReader.readLine()) != null) {
+
+				if (!line.contains("id") && !line.contains(">"))
+					line = line + " id=\"-1\" ";
+
+				if (!line.contains("redniBroj") && !line.contains(">") && trebaRedniBroj(line))
+					line = line + " redniBroj=\"-1\" ";
+
+				if (!line.contains(">"))
+					line = line + ">";
+
+				line = line.replace(" >", ">");
+
+				patch += line + "\n";
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return patch;
+	}
+	
+	private static boolean trebaRedniBroj(String line) {
+
+		if (line.toLowerCase().contains("akt:deo"))
+			return true;
+
+		if (line.toLowerCase().contains("akt:glava"))
+			return true;
+
+		if (line.toLowerCase().contains("akt:odeljak"))
+			return true;
+
+		if (line.toLowerCase().contains("akt:pododeljak"))
+			return true;
+
+		if (line.toLowerCase().contains("akt:clan"))
+			return true;
+
+		return false;
+		
 	}
 }
